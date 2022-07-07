@@ -22,7 +22,7 @@
 	crossorigin="anonymous"></script>
 </head>
 <body>
-	<footer class="bg-dark text-center text-black">
+	<footer  class="bg-dark text-center text-black sticky-bottom">
 		<!-- Section: Social media -->
 		<section class="mb-4">
 			<!-- Facebook -->
