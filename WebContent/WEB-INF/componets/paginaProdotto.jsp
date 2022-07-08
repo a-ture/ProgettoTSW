@@ -35,8 +35,6 @@
 	<br>
 
 	<!-- Sezione Prodotto -->
-	<!-- Nome Prodotto -->
-
 	<br>
 	<!-- Foto Prodotto -->
 	<div class="row">
@@ -125,50 +123,44 @@
 			</div>
 			<hr>
 			<div class="row">
-				<div class="form-check form-switch">
 
+				<div class="form-check form-switch">
 					<input class="form-check-input" type="checkbox"
-						id="flexSwitchCheckChecked" checked=""> <label
-						class="form-check-label" for="flexSwitchCheckChecked"><i
-						class="fa-solid fa-gifts"></i> é un regalo?</label>
+						id="flexSwitchCheckDefault"> <label
+						class="form-check-label" for="flexSwitchCheckDefault"> <i
+						class="fa-solid fa-gifts"></i> È un regalo?
+					</label>
 				</div>
 			</div>
-			<div class="row">
+			<div id="giftSection" class="row d-none">
 				<div class="col-5">
 					<br>
 					<p>Cosa riceve il destinatario?</p>
 					<p>Il destinatario riceverà nella data da te selezionata:</p>
 					<ul>
-						<li>una mail di benvenuto con i datidell’albero Un PDF
-							personalizzato la tua dedica e la tua firma</li>
+						<li>una mail di benvenuto con i datidell’albero</li>
+						<li>Un PDF personalizzato la tua dedica e la tua firma</li>
 						<li>7 aggiornamenti fotografici del suo albero in tre anni</li>
-						<li>Tu riceverai solo una mail di conferma dell’ordine.</li>
 					</ul>
+					<strong>Tu riceverai solo una mail di conferma
+						dell’ordine.</strong>
 				</div>
 				<div class="col">
 					<div class="row">
-						<div class="col-4">
+						<div class="col-6">
 							<div class="form-group">
 								<label class="col-form-label col-form-label-sm mt-4"
-									for="inputSmall">Small input</label> <input
+									for="inputSmall">Per chi è?</label> <input
 									class="form-control form-control-sm" type="text"
-									placeholder=".form-control-sm" id="inputSmall">
+									placeholder="Nome" id="inputSmall">
 							</div>
 						</div>
-						<div class="col-4">
+						<div class="col-6">
 							<div class="form-group">
 								<label class="col-form-label col-form-label-sm mt-4"
-									for="inputSmall">Small input</label> <input
+									for="inputSmall">La sua mail?</label> <input
 									class="form-control form-control-sm" type="text"
-									placeholder=".form-control-sm" id="inputSmall">
-							</div>
-						</div>
-						<div class="col-4">
-							<div class="form-group">
-								<label class="col-form-label col-form-label-sm mt-4"
-									for="inputSmall">Small input</label> <input
-									class="form-control form-control-sm" type="text"
-									placeholder=".form-control-sm" id="inputSmall">
+									placeholder="e-mail" id="inputSmall">
 							</div>
 						</div>
 					</div>
@@ -186,7 +178,6 @@
 			</div>
 			<hr>
 			<div class="text-center">
-
 				<button type="button" class="btn btn-primary">Acquista</button>
 			</div>
 		</div>
@@ -194,27 +185,138 @@
 	<!-- Fine Sezione Prodotto -->
 
 	<!-- Dettagli Prodotto -->
-	<!-- Dove Viene Piantato -->
-	<div class="text-center">
-		<h3>Dove Viene Piantato?</h3>
-		<p class="lead">Piantiamo l’avocado in Guatemala, nella regione
-			del Petén in terreni a forte rischio desertificazione. Le piantagioni
-			a monocoltura intensive richiedono tanta acqua, fertilizzanti e
-			pesticidi chimici. Al contrario, nei nostri sistemi agroforestali
-			misti, la varietà di specie assicura la stabilità e la resilienza
-			dell’impianto. Un sistema agroforestale stabile infatti, richiede
-			meno input, rigenera il suolo e la biodiversità e produce
-			costantemente produzioni variegate.</p>
-	</div>
-	<div class="text-center">
-		<img src="resources/img/doveVienePiantato/guatemala.png"
-			class="img-fluid" height="626px" width="925px">
-	</div>
-	<!-- Fine Dettagli Prodotto -->
+	<!-- Breve Descrizione  -->
+	<br>
+	<br>
+	<div class="row">
+		<div class="col-6">
+			<div class="card" style="background: #c4d89d;">
+				<div class="card-body">
+					<h4 class="card-title">Descrizione Breve</h4>
+					<p class="card-text">Un frutto che piace a tutti, ricco di
+						vitamine e nutrienti, per questo particolarmente apprezzato dalle
+						mamme. In Guatemala viene utilizzato per la preparazione di molti
+						piatti tipici, tra cui il guacamole. Le nostre piante di Avocado
+						in Guatemala sono sostenibili a 360°: offrono supporto economico e
+						sostegno alimentare, senza venir meno alla sostenibilità
+						ambientale.</p>
 
-	<!-- Footer -->
-	<%@ include file="footer.jsp"%>
-	<script>
+				</div>
+			</div>
+		</div>
+		<div class="col-6">
+			<div class="col">
+				<div class="card" style="background: #c4d89d;">
+					<div class="card-body">
+						<h4 class="card-title">I miei superpoteri</h4>
+						<div class="row">
+							<div class="col-3">
+								<p class="card-text">
+									<i class="fa-solid fa-cloud"></i> <strong>CO2
+										Assorbita</strong>
+								</p>
+							</div>
+							<div class=" col-9 progress">
+								<div class="progress-bar" role="progressbar" style="width: 25%;"
+									aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-3">
+								<p class="card-text">
+									<i class="fa-solid fa-seedling"></i> <strong>Salvaguardia
+										Ambientale</strong>
+								</p>
+							</div>
+							<div class=" col-9 progress">
+								<div class="progress-bar" role="progressbar" style="width: 25%;"
+									aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-6">
+								<p class="card-text">
+									<strong>Nome Scientifico</strong>
+								</p>
+							</div>
+							<div class="col-6">
+								<p class="card-text">Swietenia macrophylla King</p>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-6">
+								<p class="card-text">
+									<strong> Altezza media </strong>
+								</p>
+							</div>
+							<div class="col-6">
+								<p class="card-text">30 media</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br> <br>
+		<!-- Cosa Vuol Dire Piantare Un albero con WoodLot -->
+		<div class="row text-center">
+			<br> <br>
+			<h2>Cosa vuol dire piantare un albero con WoodLot</h2>
+			<div class="col-4">
+				<h1>
+					<i class="fa-solid fa-location-dot"></i>
+				</h1>
+				<h4>Trasparenza e tracciabilità</h4>
+				<p>Tutti gli Alberi Treedom sono geolocalizzati e fotografati
+					quando vengono piantati. Dal momento dell'acquisto è necessario
+					attendere da alcune settimane a qualche mese prima che un albero
+					sia pronto per essere piantato.</p>
+			</div>
+			<div class="col-4">
+				<h1>
+					<i class="fa-solid fa-book"></i>
+				</h1>
+				<h4>Un racconto che dura nel tempo</h4>
+				<p>Ogni albero ha il proprio Diario, una pagina online dove
+					scoprirai le sue caratteristiche e seguirai la storia del progetto
+					di cui fa parte.</p>
+			</div>
+			<div class="col-4">
+				<h1>
+					<i class="fa-solid fa-gift"></i>
+				</h1>
+				<h4>Un regalo originale</h4>
+				<p>Regalare un albero è semplicissimo. Puoi farlo durante la
+					procedura d'acquisto o in qualunque momento dal tuo profilo,
+					scegliendo la modalità che preferisci (via mail, messaggio o
+					stampando un biglietto da consegnare a mano).</p>
+			</div>
+		</div>
+		<!-- Dove Viene Piantato -->
+		<div class="text-center">
+			<br> <br>
+			<h3>Dove Viene Piantato?</h3>
+			<p class="lead">Piantiamo l’avocado in Guatemala, nella regione
+				del Petén in terreni a forte rischio desertificazione. Le
+				piantagioni a monocoltura intensive richiedono tanta acqua,
+				fertilizzanti e pesticidi chimici. Al contrario, nei nostri sistemi
+				agroforestali misti, la varietà di specie assicura la stabilità e la
+				resilienza dell’impianto. Un sistema agroforestale stabile infatti,
+				richiede meno input, rigenera il suolo e la biodiversità e produce
+				costantemente produzioni variegate.</p>
+		</div>
+		<div class="text-center">
+			<img src="resources/img/doveVienePiantato/guatemala.png"
+				class="img-fluid" height="626px" width="925px">
+		</div>
+		<!-- Fine Dettagli Prodotto -->
+
+		<!-- Footer -->
+		<%@ include file="footer.jsp"%>
+
+
+		<script>
 $('.btn-number').click(function(e){
     e.preventDefault();
     
@@ -286,7 +388,15 @@ $(".input-number").keydown(function (e) {
             e.preventDefault();
         }
     });
- 
+   
+$(document).ready(function() {
+	$("#flexSwitchCheckDefault").click(function(event) {
+
+		$("#giftSection").toggleClass("d-none");
+
+	});
+	
+});
 </script>
 </body>
 </html>
