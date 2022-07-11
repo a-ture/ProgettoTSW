@@ -40,11 +40,11 @@
 
 			<div class="navbar-collapse collapse" id="navbarColor01" style="">
 				<ul class="navbar-nav me-auto">
-					<li class="nav-item"><a class="nav-link active" href="#">Home
+					<li class="nav-item"><a class="nav-link active" href="home.jsp">Home
 							<span class="visually-hidden">(current)</span>
 					</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Alberi</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Chi
+					<li class="nav-item"><a class="nav-link" href="catalogo.jsp">Alberi</a></li>
+					<li class="nav-item"><a class="nav-link" href="chiSiamo.jsp">Chi
 							Siamo</a></li>
 					<li class="nav-item"><a class="btn btn-secondary my-2 my-sm-0"
 						href="#">Hai un Treecode?</a></li>
@@ -55,7 +55,7 @@
 						<li class="nav-item"><a
 							class="btn btn-secondary my-2 my-sm-0" href="#">Accedi</a></li>
 						<li class="nav-item"><img class="nav-link img-fluid"
-							src="resources/img/icons8-carriola-50.png" width="40" height="40"></img>
+							src="../resources/img/icons8-carriola-50.png" width="40" height="40"></img>
 						</li>
 					</ul>
 				</div>
