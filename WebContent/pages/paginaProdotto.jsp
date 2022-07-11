@@ -7,11 +7,11 @@
 <title>AVOCADO</title>
 <!--CSS-->
 <link rel="stylesheet" type="text/css"
-	href="resources/css/bootstrap.css">
+	href="../resources/css/bootstrap.css">
 <link rel="stylesheet" type="text/css"
-	href="resources/css/_variables.scss">
+	href="../resources/css/_variables.scss">
 <link rel="stylesheet" type="text/css"
-	href="resources/css/_bootswatch.scss">
+	href="../resources/css/_bootswatch.scss">
 
 
 
@@ -30,7 +30,7 @@
 </head>
 <body>
 	<!-- Header -->
-	<%@ include file="header.jsp"%>
+	<%@ include file="../fragments/header.jsp" %>
 	<br>
 	<br>
 
@@ -258,65 +258,67 @@
 				</div>
 			</div>
 		</div>
+	</div>
+	<br>
+	<br>
+	<!-- Cosa Vuol Dire Piantare Un albero con WoodLot -->
+	<div class="row text-center">
 		<br> <br>
-		<!-- Cosa Vuol Dire Piantare Un albero con WoodLot -->
-		<div class="row text-center">
-			<br> <br>
-			<h2>Cosa vuol dire piantare un albero con WoodLot</h2>
-			<div class="col-4">
-				<h1>
-					<i class="fa-solid fa-location-dot"></i>
-				</h1>
-				<h4>Trasparenza e tracciabilità</h4>
-				<p>Tutti gli Alberi Treedom sono geolocalizzati e fotografati
-					quando vengono piantati. Dal momento dell'acquisto è necessario
-					attendere da alcune settimane a qualche mese prima che un albero
-					sia pronto per essere piantato.</p>
-			</div>
-			<div class="col-4">
-				<h1>
-					<i class="fa-solid fa-book"></i>
-				</h1>
-				<h4>Un racconto che dura nel tempo</h4>
-				<p>Ogni albero ha il proprio Diario, una pagina online dove
-					scoprirai le sue caratteristiche e seguirai la storia del progetto
-					di cui fa parte.</p>
-			</div>
-			<div class="col-4">
-				<h1>
-					<i class="fa-solid fa-gift"></i>
-				</h1>
-				<h4>Un regalo originale</h4>
-				<p>Regalare un albero è semplicissimo. Puoi farlo durante la
-					procedura d'acquisto o in qualunque momento dal tuo profilo,
-					scegliendo la modalità che preferisci (via mail, messaggio o
-					stampando un biglietto da consegnare a mano).</p>
-			</div>
+		<h2>Cosa vuol dire piantare un albero con WoodLot</h2>
+		<div class="col-4">
+			<h1>
+				<i class="fa-solid fa-location-dot"></i>
+			</h1>
+			<h4>Trasparenza e tracciabilità</h4>
+			<p>Tutti gli Alberi Treedom sono geolocalizzati e fotografati
+				quando vengono piantati. Dal momento dell'acquisto è necessario
+				attendere da alcune settimane a qualche mese prima che un albero sia
+				pronto per essere piantato.</p>
 		</div>
-		<!-- Dove Viene Piantato -->
-		<div class="text-center">
-			<br> <br>
-			<h3>Dove Viene Piantato?</h3>
-			<p class="lead">Piantiamo l’avocado in Guatemala, nella regione
-				del Petén in terreni a forte rischio desertificazione. Le
-				piantagioni a monocoltura intensive richiedono tanta acqua,
-				fertilizzanti e pesticidi chimici. Al contrario, nei nostri sistemi
-				agroforestali misti, la varietà di specie assicura la stabilità e la
-				resilienza dell’impianto. Un sistema agroforestale stabile infatti,
-				richiede meno input, rigenera il suolo e la biodiversità e produce
-				costantemente produzioni variegate.</p>
+		<div class="col-4">
+			<h1>
+				<i class="fa-solid fa-book"></i>
+			</h1>
+			<h4>Un racconto che dura nel tempo</h4>
+			<p>Ogni albero ha il proprio Diario, una pagina online dove
+				scoprirai le sue caratteristiche e seguirai la storia del progetto
+				di cui fa parte.</p>
 		</div>
-		<div class="text-center">
-			<img src="resources/img/doveVienePiantato/guatemala.png"
-				class="img-fluid" height="626px" width="925px">
+		<div class="col-4">
+			<h1>
+				<i class="fa-solid fa-gift"></i>
+			</h1>
+			<h4>Un regalo originale</h4>
+			<p>Regalare un albero è semplicissimo. Puoi farlo durante la
+				procedura d'acquisto o in qualunque momento dal tuo profilo,
+				scegliendo la modalità che preferisci (via mail, messaggio o
+				stampando un biglietto da consegnare a mano).</p>
 		</div>
-		<!-- Fine Dettagli Prodotto -->
+	</div>
+	<!-- Dove Viene Piantato -->
+	<div class="text-center">
+		<br> <br>
+		<h3>Dove Viene Piantato?</h3>
+		<p class="lead">Piantiamo l’avocado in Guatemala, nella regione
+			del Petén in terreni a forte rischio desertificazione. Le piantagioni
+			a monocoltura intensive richiedono tanta acqua, fertilizzanti e
+			pesticidi chimici. Al contrario, nei nostri sistemi agroforestali
+			misti, la varietà di specie assicura la stabilità e la resilienza
+			dell’impianto. Un sistema agroforestale stabile infatti, richiede
+			meno input, rigenera il suolo e la biodiversità e produce
+			costantemente produzioni variegate.</p>
+	</div>
+	<div class="text-center">
+		<img src="resources/img/doveVienePiantato/guatemala.png"
+			class="img-fluid" height="626px" width="925px">
+	</div>
+	<!-- Fine Dettagli Prodotto -->
 
-		<!-- Footer -->
-		<%@ include file="footer.jsp"%>
+	<!-- Footer -->
+	<%@ include file="../fragments/footer.jsp"%>
 
 
-		<script>
+	<script>
 $('.btn-number').click(function(e){
     e.preventDefault();
     

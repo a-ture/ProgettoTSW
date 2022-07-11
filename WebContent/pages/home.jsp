@@ -7,11 +7,11 @@
 <title>WoodLot</title>
 <!--CSS-->
 <link rel="stylesheet" type="text/css"
-	href="resources/css/bootstrap.css">
+	href="../resources/css/bootstrap.css">
 <link rel="stylesheet" type="text/css"
-	href="resources/css/_variables.scss">
+	href="../resources/css/_variables.scss">
 <link rel="stylesheet" type="text/css"
-	href="resources/css/_bootswatch.scss">
+	href="../resources/css/_bootswatch.scss">
 
 <!-- JavaScript Bundle with Popper -->
 <script
@@ -24,8 +24,8 @@
 </head>
 <body>
 	<!-- Header -->
-	<%@ include file="header.jsp"%>
-	
+	<%@ include file="../fragments/header.jsp"%>
+
 	<!-- Hero Section -->
 	<div class="container my-5">
 		<div
@@ -67,9 +67,9 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<!-- Vedere quale preferisce raffy -->
-	
+
 	<!-- Jumbotron -->
 	<div
 		class="bg-image p-5 text-center shadow-1-strong rounded mb-5 text-white"
@@ -82,7 +82,7 @@
 			unde? Aut dolorum quod excepturi fugit.</p>
 	</div>
 	<!-- Jumbotron -->
-	
+
 	<!-- Fine Hero Section -->
 
 	<!-- Card Section -->
@@ -96,7 +96,7 @@
 		<!-- Card 1 -->
 		<div class="col">
 			<div class="card">
-				<img src="resources/img/alberi/Arancia.png" class="card-img-top"
+				<img src="../resources/img/alberi/Arancia.png" class="card-img-top"
 					alt="Palm Springs Road" />
 				<div class="card-body">
 					<h5 class="card-title">Card title</h5>
@@ -113,7 +113,7 @@
 		<!-- Card 2 -->
 		<div class="col">
 			<div class="card">
-				<img src="resources/img/alberi/Avocado.png" class="card-img-top"
+				<img src="../resources/img/alberi/Avocado.png" class="card-img-top"
 					alt="Palm Springs Road" />
 				<div class="card-body">
 					<h5 class="card-title">Card title</h5>
@@ -130,7 +130,7 @@
 		<!-- Card 3 -->
 		<div class="col">
 			<div class="card">
-				<img src="resources/img/alberi/Caoba.png" class="card-img-top"
+				<img src="../resources/img/alberi/Caoba.png" class="card-img-top"
 					alt="Los Angeles Skyscrapers" />
 				<div class="card-body">
 					<h5 class="card-title">Card title</h5>
@@ -146,7 +146,7 @@
 		<!-- Card 4 -->
 		<div class="col">
 			<div class="card">
-				<img src="resources/img/alberi/Cedro.png" class="card-img-top"
+				<img src="../resources/img/alberi/Cedro.png" class="card-img-top"
 					alt="Los Angeles Skyscrapers" />
 				<div class="card-body">
 					<h5 class="card-title">Card title</h5>
@@ -182,7 +182,7 @@
 		<!-- Card Regala -->
 		<div class="col">
 			<div class="card" style="width: 11rem;">
-				<img src="resources/img/cosaPuoiFare/whatucando-gift-icon.png"
+				<img src="../resources/img/cosaPuoiFare/whatucando-gift-icon.png"
 					class="card-img-top" />
 				<div class="card-body">
 					<h5 class="card-title">Regala</h5>
@@ -194,7 +194,7 @@
 		<!-- Card Pianta -->
 		<div class="col">
 			<div class="card" style="width: 11rem;">
-				<img src="resources/img/cosaPuoiFare/whatucando-discover-icon.png"
+				<img src="../resources/img/cosaPuoiFare/whatucando-discover-icon.png"
 					class="card-img-top" />
 				<div class="card-body">
 					<h5 class="card-title">Pianta</h5>
@@ -207,7 +207,7 @@
 		<div class="col">
 			<div class="card" style="width: 11rem;">
 				<img
-					src="resources/img/cosaPuoiFare/whatucando-subscription-icon.png"
+					src="../resources/img/cosaPuoiFare/whatucando-subscription-icon.png"
 					class="card-img-top" />
 				<div class="card-body">
 					<h5 class="card-title">Abbonati</h5>
@@ -220,7 +220,7 @@
 		<div class="col">
 			<div class="card" style="width: 11rem;">
 				<img
-					src="resources/img/cosaPuoiFare/cartoon-forest-wood-landscape-vector-34521700.jpg"
+					src="../resources/img/cosaPuoiFare/cartoon-forest-wood-landscape-vector-34521700.jpg"
 					class="card-img-top" />
 				<div class="card-body">
 					<h5 class="card-title">Crea il tuo WoodLot</h5>
@@ -235,6 +235,6 @@
 	<!-- Fine Cosa Puoi Fare -->
 
 	<!-- Footer -->
-	<%@ include file="footer.jsp"%>
+	<%@ include file="../fragments/footer.jsp"%>
 </body>
 </html>

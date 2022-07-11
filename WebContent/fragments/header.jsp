@@ -10,11 +10,11 @@
 
 <!--CSS-->
 <link rel="stylesheet" type="text/css"
-	href="resources/css/bootstrap.css">
+	href="../resources/css/bootstrap.css">
 <link rel="stylesheet" type="text/css"
-	href="resources/css/_variables.scss">
+	href="../resources/css/_variables.scss">
 <link rel="stylesheet" type="text/css"
-	href="resources/css/_bootswatch.scss">
+	href="../resources/css/_bootswatch.scss">
 
 <!-- JavaScript Bundle with Popper -->
 <script
@@ -29,7 +29,7 @@
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 		<div class="container-fluid">
 		<button background="">
-			<img class="navbar-brand" src="resources/img/logo.png" height="60px">
+			<img class="navbar-brand" src="../resources/img/logo.png" height="60px">
 		</button>
 			<button class="navbar-toggler collapsed" type="button"
 				data-bs-toggle="collapse" data-bs-target="#navbarColor01"

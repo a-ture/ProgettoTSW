@@ -7,11 +7,11 @@
 <title>Catalogo</title>
 <!--CSS-->
 <link rel="stylesheet" type="text/css"
-	href="resources/css/bootstrap.css">
+	href="../resources/css/bootstrap.css">
 <link rel="stylesheet" type="text/css"
-	href="resources/css/_variables.scss">
+	href="../resources/css/_variables.scss">
 <link rel="stylesheet" type="text/css"
-	href="resources/css/_bootswatch.scss">
+	href="../resources/css/_bootswatch.scss">
 
 <!-- JavaScript Bundle with Popper -->
 <script
@@ -24,7 +24,7 @@
 </head>
 <body>
 	<!-- Header -->
-	<%@ include file="header.jsp"%>
+	<%@ include file="../fragments/header.jsp" %>
 	<br>
 	<br>
 
@@ -96,7 +96,7 @@
 		<!-- Card 1 -->
 		<div class="col">
 			<div class="card">
-				<img src="resources/img/alberi/Arancia.png" class="card-img-top"
+				<img src="../resources/img/alberi/Arancia.png" class="card-img-top"
 					alt="Palm Springs Road" />
 				<div class="card-body">
 					<h5 class="card-title">Card title</h5>
@@ -113,7 +113,7 @@
 		<!-- Card 2 -->
 		<div class="col">
 			<div class="card">
-				<img src="resources/img/alberi/Avocado.png" class="card-img-top"
+				<img src="../resources/img/alberi/Avocado.png" class="card-img-top"
 					alt="Palm Springs Road" />
 				<div class="card-body">
 					<h5 class="card-title">Card title</h5>
@@ -130,7 +130,7 @@
 		<!-- Card 3 -->
 		<div class="col">
 			<div class="card">
-				<img src="resources/img/alberi/Caoba.png" class="card-img-top"
+				<img src="../resources/img/alberi/Caoba.png" class="card-img-top"
 					alt="Los Angeles Skyscrapers" />
 				<div class="card-body">
 					<h5 class="card-title">Card title</h5>
@@ -146,7 +146,7 @@
 		<!-- Card 4 -->
 		<div class="col">
 			<div class="card">
-				<img src="resources/img/alberi/Cedro.png" class="card-img-top"
+				<img src="../resources/img/alberi/Cedro.png" class="card-img-top"
 					alt="Los Angeles Skyscrapers" />
 				<div class="card-body">
 					<h5 class="card-title">Card title</h5>
@@ -162,7 +162,7 @@
 		<!-- Card 5 -->
 		<div class="col">
 			<div class="card">
-				<img src="resources/img/alberi/Chico-zapote.png"
+				<img src="../resources/img/alberi/Chico-zapote.png"
 					class="card-img-top" alt="Los Angeles Skyscrapers" />
 				<div class="card-body">
 					<h5 class="card-title">Card title</h5>
@@ -178,7 +178,7 @@
 		<!-- Card 6 -->
 		<div class="col">
 			<div class="card">
-				<img src="resources/img/alberi/Forestale.png" class="card-img-top"
+				<img src="../resources/img/alberi/Forestale.png" class="card-img-top"
 					alt="Skyscrapers" />
 				<div class="card-body">
 					<h5 class="card-title">Card title</h5>
@@ -195,7 +195,7 @@
 		<!-- Card 7 -->
 		<div class="col">
 			<div class="card">
-				<img src="resources/img/alberi/Lime.png" class="card-img-top"
+				<img src="../resources/img/alberi/Lime.png" class="card-img-top"
 					alt="Los Angeles Skyscrapers" />
 				<div class="card-body">
 					<h5 class="card-title">Card title</h5>
@@ -211,7 +211,7 @@
 		<!-- Card 8 -->
 		<div class="col">
 			<div class="card">
-				<img src="resources/img/alberi/Melo.png" class="card-img-top"
+				<img src="../resources/img/alberi/Melo.png" class="card-img-top"
 					alt="Skyscrapers" />
 				<div class="card-body">
 					<h5 class="card-title">Card title</h5>
@@ -228,7 +228,7 @@
 		<!-- Card 9 -->
 		<div class="col">
 			<div class="card">
-				<img src="resources/img/alberi/Mango_new.png" class="card-img-top"
+				<img src="../resources/img/alberi/Mango_new.png" class="card-img-top"
 					alt="Los Angeles Skyscrapers" />
 				<div class="card-body">
 					<h5 class="card-title">Card title</h5>
@@ -244,7 +244,7 @@
 		<!-- Card 10 -->
 		<div class="col">
 			<div class="card">
-				<img src="resources/img/alberi/Pesco.png" class="card-img-top"
+				<img src="../resources/img/alberi/Pesco.png" class="card-img-top"
 					alt="Los Angeles Skyscrapers" />
 				<div class="card-body">
 					<h5 class="card-title">Card title</h5>
@@ -260,7 +260,7 @@
 		<!-- Card 11 -->
 		<div class="col">
 			<div class="card">
-				<img src="resources/img/alberi/Pioppo-1.png" class="card-img-top"
+				<img src="../resources/img/alberi/Pioppo-1.png" class="card-img-top"
 					alt="Los Angeles Skyscrapers" />
 				<div class="card-body">
 					<h5 class="card-title">Card title</h5>
@@ -276,7 +276,7 @@
 		<!-- Card 12 -->
 		<div class="col">
 			<div class="card">
-				<img src="resources/img/alberi/Pino-1.png" class="card-img-top"
+				<img src="../resources/img/alberi/Pino-1.png" class="card-img-top"
 					alt="Skyscrapers" />
 				<div class="card-body">
 					<h5 class="card-title">Card title</h5>
@@ -296,6 +296,6 @@
 	<!-- Fine Sezione Prodotti -->
 
 	<!-- Footer -->
-	<%@ include file="footer.jsp"%>
+	<%@ include file="../fragments/footer.jsp"%>
 </body>
 </html>
