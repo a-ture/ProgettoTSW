@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Chi Siamo</title>
+<title>Carrello</title>
 <!--CSS-->
 <link rel="stylesheet" type="text/css"
 	href="../resources/css/bootstrap.css">
@@ -23,19 +23,6 @@
 	crossorigin="anonymous"></script>
 </head>
 <body>
-	<!-- Header -->
-	<%@ include file="../fragments/header.jsp"%>
-	<br>
-	<br>
-	<!-- Chi Siamo Section -->
-	<div class="row text-center">
-		<h1>Chi Siamo</h1>
-	</div>
-	
-	<!-- Mission Section -->
-	<div>
-	</div>
-	<!-- Footer -->
-	<%@ include file="../fragments/footer.jsp"%>
+
 </body>
 </html>

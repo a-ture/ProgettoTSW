@@ -28,7 +28,7 @@
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 		<div class="container-fluid">
-			<button background="">
+			<button class="btn btn-primary">
 				<img class="navbar-brand" src="../resources/img/logo.png"
 					height="60px">
 			</button>

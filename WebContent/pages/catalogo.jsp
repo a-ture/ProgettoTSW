@@ -202,8 +202,8 @@
 					<p class="card-text">This is a longer card with supporting text
 						below as a natural lead-in to additional content.</p>
 					<div class="text-center">
-						<button type="button" class="btn btn-success">Piantalo
-							Ora</button>
+						<a class="btn btn-success" href="paginaProdotto.jsp">Piantalo
+							Ora</a>
 					</div>
 				</div>
 			</div>
@@ -219,8 +219,8 @@
 						below as a natural lead-in to additional content. This content is
 						a little bit longer.</p>
 					<div class="text-center">
-						<button type="button" class="btn btn-success">Piantalo
-							Ora</button>
+						<a class="btn btn-success" href="paginaProdotto.jsp">Piantalo
+							Ora</a>
 					</div>
 				</div>
 			</div>
@@ -235,8 +235,8 @@
 					<p class="card-text">This is a longer card with supporting text
 						below as a natural lead-in to additional content.</p>
 					<div class="text-center">
-						<button type="button" class="btn btn-success">Piantalo
-							Ora</button>
+						<a class="btn btn-success" href="paginaProdotto.jsp">Piantalo
+							Ora</a>
 					</div>
 				</div>
 			</div>
@@ -251,8 +251,8 @@
 					<p class="card-text">This is a longer card with supporting text
 						below as a natural lead-in to additional content.</p>
 					<div class="text-center">
-						<button type="button" class="btn btn-success">Piantalo
-							Ora</button>
+						<a class="btn btn-success" href="paginaProdotto.jsp">Piantalo
+							Ora</a>
 					</div>
 				</div>
 			</div>
@@ -267,8 +267,8 @@
 					<p class="card-text">This is a longer card with supporting text
 						below as a natural lead-in to additional content.</p>
 					<div class="text-center">
-						<button type="button" class="btn btn-success">Piantalo
-							Ora</button>
+						<a class="btn btn-success" href="paginaProdotto.jsp">Piantalo
+							Ora</a>
 					</div>
 				</div>
 			</div>
@@ -284,8 +284,8 @@
 						below as a natural lead-in to additional content. This content is
 						a little bit longer.</p>
 					<div class="text-center">
-						<button type="button" class="btn btn-success">Piantalo
-							Ora</button>
+						<a class="btn btn-success" href="paginaProdotto.jsp">Piantalo
+							Ora</a>
 					</div>
 				</div>
 			</div>

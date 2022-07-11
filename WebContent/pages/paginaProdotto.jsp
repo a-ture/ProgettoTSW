@@ -311,6 +311,81 @@
 	</div>
 	<!-- Fine Dettagli Prodotto -->
 
+	<!-- Prodotti Consigliati  -->
+	<div class="col-md-12 text-center">
+		<h1>Pianta altri alberi</h1>
+		<br> <br>
+	</div>
+	<div class="row row-cols-1 row-cols-md-4">
+		<!-- Card 1 -->
+		<div class="col">
+			<div class="card">
+				<img src="../resources/img/alberi/Arancia.png" class="card-img-top"
+					alt="Palm Springs Road" />
+				<div class="card-body">
+					<h5 class="card-title">Card title</h5>
+					<p class="card-text">This is a longer card with supporting text
+						below as a natural lead-in to additional content. This content is
+						a little bit longer.</p>
+					<div class="text-center">
+						<a class="btn btn-success" href="paginaProdotto.jsp">Piantalo
+							Ora</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Card 2 -->
+		<div class="col">
+			<div class="card">
+				<img src="../resources/img/alberi/Avocado.png" class="card-img-top"
+					alt="Palm Springs Road" />
+				<div class="card-body">
+					<h5 class="card-title">Card title</h5>
+					<p class="card-text">This is a longer card with supporting text
+						below as a natural lead-in to additional content. This content is
+						a little bit longer.</p>
+					<div class="text-center">
+						<a class="btn btn-success" href="paginaProdotto.jsp">Piantalo
+							Ora</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Card 3 -->
+		<div class="col">
+			<div class="card">
+				<img src="../resources/img/alberi/Caoba.png" class="card-img-top"
+					alt="Los Angeles Skyscrapers" />
+				<div class="card-body">
+					<h5 class="card-title">Card title</h5>
+					<p class="card-text">This is a longer card with supporting text
+						below as a natural lead-in to additional content.</p>
+					<div class="text-center">
+						<a class="btn btn-success" href="paginaProdotto.jsp">Piantalo
+							Ora</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Card 4 -->
+		<div class="col">
+			<div class="card">
+				<img src="../resources/img/alberi/Cedro.png" class="card-img-top"
+					alt="Los Angeles Skyscrapers" />
+				<div class="card-body">
+					<h5 class="card-title">Card title</h5>
+					<p class="card-text">This is a longer card with supporting text
+						below as a natural lead-in to additional content.</p>
+					<div class="text-center">
+						<a class="btn btn-success" href="paginaProdotto.jsp">Piantalo
+							Ora</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<br><br>
 	<!-- Footer -->
 	<%@ include file="../fragments/footer.jsp"%>
 
