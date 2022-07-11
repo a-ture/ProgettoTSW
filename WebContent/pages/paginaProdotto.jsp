@@ -12,9 +12,6 @@
 	href="../resources/css/_variables.scss">
 <link rel="stylesheet" type="text/css"
 	href="../resources/css/_bootswatch.scss">
-
-
-
 <!-- JavaScript Bundle with Popper -->
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
@@ -30,7 +27,7 @@
 </head>
 <body>
 	<!-- Header -->
-	<%@ include file="../fragments/header.jsp" %>
+	<%@ include file="../fragments/header.jsp"%>
 	<br>
 	<br>
 
@@ -54,15 +51,15 @@
 				<!-- The slideshow/carousel -->
 				<div class="carousel-inner">
 					<div class="carousel-item active">
-						<img src="resources/img/doveVienePiantato/guatemala.png"
+						<img src="../resources/img/doveVienePiantato/guatemala.png"
 							class="d-block w-100">
 					</div>
 					<div class="carousel-item">
-						<img src="resources/img/doveVienePiantato/perù.png"
+						<img src="../resources/img/doveVienePiantato/perù.png"
 							class="d-block w-100">
 					</div>
 					<div class="carousel-item">
-						<img src="resources/img/doveVienePiantato/italia.png"
+						<img src="../resources/img/doveVienePiantato/italia.png"
 							class="d-block w-100">
 					</div>
 				</div>
@@ -309,7 +306,7 @@
 			costantemente produzioni variegate.</p>
 	</div>
 	<div class="text-center">
-		<img src="resources/img/doveVienePiantato/guatemala.png"
+		<img src="../resources/img/doveVienePiantato/guatemala.png"
 			class="img-fluid" height="626px" width="925px">
 	</div>
 	<!-- Fine Dettagli Prodotto -->
