@@ -51,12 +51,12 @@
 		</section>
 		<!-- Section: Social media -->
 		<ul class="list-inline">
-			<li class="list-inline-item"><a href="#">Alberi</a></li>
-			<li class="list-inline-item"><a href="#">Chi Siamo</a></li>
-			<li class="list-inline-item"><a href="#">Preferenze Cookie</a></li>
-			<li class="list-inline-item"><a href="#">Condizioni
+			<li class="list-inline-item"><a href="catalogo.jsp">Alberi</a></li>
+			<li class="list-inline-item"><a href="chiSiamo.jsp">Chi Siamo</a></li>
+			<li class="list-inline-item"><a href="preferenzeCookie.jsp">Preferenze Cookie</a></li>
+			<li class="list-inline-item"><a href="condizioni.jsp">Condizioni
 					d'utilizzo</a></li>
-			<li class="list-inline-item"><a href="#">Privacy</a></li>
+			<li class="list-inline-item"><a href="privacy.jsp">Privacy</a></li>
 		</ul>
 		<p class="copyright">WoodLot © 2022</p>
 	</footer>

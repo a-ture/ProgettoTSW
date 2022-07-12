@@ -33,11 +33,8 @@
 			<div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
 				<div class="lc-block mb-3">
 					<div editable="rich">
-						<h2 class="fw-bold display-4">
-							Border hero with cropped image and shadows&nbsp;
-							<p></p>
-							<p></p>
-						</h2>
+						<h2 class="fw-bold display-4">Border hero with cropped image
+							and shadows&nbsp;</h2>
 					</div>
 				</div>
 
@@ -69,7 +66,30 @@
 	</div>
 
 	<!-- Vedere quale preferisce raffy -->
-
+	<div class="container my-5">
+		<div
+			class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">
+			<div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
+				<h1 class="display-4 fw-bold lh-1">Border hero with cropped
+					image and shadows</h1>
+				<p class="lead">Quickly design and customize responsive
+					mobile-first sites with Bootstrap, the world’s most popular
+					front-end open source toolkit, featuring Sass variables and mixins,
+					responsive grid system, extensive prebuilt components, and powerful
+					JavaScript plugins.</p>
+				<div
+					class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3">
+					<button type="button"
+						class="btn btn-primary btn-lg px-4 me-md-2 fw-bold">Primary</button>
+					<button type="button" class="btn btn-outline-secondary btn-lg px-4">Default</button>
+				</div>
+			</div>
+			<div class="col-lg-4 offset-lg-1 p-0 overflow-hidden shadow-lg">
+				<img class="rounded-lg-3" src="bootstrap-docs.png" alt=""
+					width="720">
+			</div>
+		</div>
+	</div>
 	<!-- Jumbotron -->
 	<div
 		class="bg-image p-5 text-center shadow-1-strong rounded mb-5 text-white"
@@ -178,51 +198,42 @@
 		<br> <br>
 	</div>
 	<!-- Cards -->
+
 	<div class="row row-cols-1 row-cols-md-4 g-4">
-		<!-- Card Regala -->
-		<div class="col">
-			<div class="card" style="width: 11rem;">
+		<div class="card-group   w-100">
+			<div class="card">
 				<img src="../resources/img/cosaPuoiFare/whatucando-gift-icon.png"
-					class="card-img-top" />
+					class="card-img-top">
 				<div class="card-body">
 					<h5 class="card-title">Regala</h5>
 					<p class="card-text">Un regalo originale per l’ambiente e per
-						le persone a cui vuoi bene.</p>
+						le persone a cui vuoi bene</p>
 				</div>
 			</div>
-		</div>
-		<!-- Card Pianta -->
-		<div class="col">
-			<div class="card" style="width: 11rem;">
+			<div class="card">
 				<img
 					src="../resources/img/cosaPuoiFare/whatucando-discover-icon.png"
-					class="card-img-top" />
+					class="card-img-top">
 				<div class="card-body">
-					<h5 class="card-title">Pianta</h5>
+					<h5 class="card-title text-center">Pianta</h5>
 					<p class="card-text">Tante specie ognuna con le sue
 						caratteristiche ed i suoi poteri</p>
 				</div>
 			</div>
-		</div>
-		<!-- Card Abbonati -->
-		<div class="col">
-			<div class="card" style="width: 11rem;">
+			<div class="card">
 				<img
 					src="../resources/img/cosaPuoiFare/whatucando-subscription-icon.png"
-					class="card-img-top" />
+					class="card-img-top" alt="...">
 				<div class="card-body">
 					<h5 class="card-title">Abbonati</h5>
 					<p class="card-text">Pianta alberi ogni mese e inizia il tuo
 						percorso green</p>
+
 				</div>
 			</div>
-		</div>
-		<!-- Card Crea il tuo WoodLot -->
-		<div class="col">
-			<div class="card" style="width: 11rem;">
-				<img
-					src="../resources/img/cosaPuoiFare/cartoon-forest-wood-landscape-vector-34521700.jpg"
-					class="card-img-top" />
+			<div class="card">
+				<img src="../resources/img/chiSiamoPage/info_trees.svg"
+					class="card-img-top">
 				<div class="card-body">
 					<h5 class="card-title">Crea il tuo WoodLot</h5>
 					<p class="card-text">Pianta alberi ogni mese e inizia il tuo

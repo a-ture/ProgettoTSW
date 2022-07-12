@@ -54,10 +54,10 @@
 				<div>
 					<ul class="navbar-nav me-auto">
 						<li class="nav-item"><a
-							class="btn btn-secondary my-2 my-sm-0" href="#">Accedi</a></li>
-						<li class="nav-item"><img class="nav-link img-fluid"
+							class="btn btn-secondary my-2 my-sm-0" href="formLogin.jsp">Accedi</a></li>
+						<li class="nav-item"><a href="cart.jsp"><img class="nav-link img-fluid"
 							src="../resources/img/icons8-carriola-50.png" width="40"
-							height="40"></img></li>
+							height="40"></a></li>
 					</ul>
 				</div>
 			</div>
