@@ -32,18 +32,26 @@
 	<br>
 	<div class="container">
 		<div class="row">
-			<div class="col">
+			<div class="col-3">
 				<img src="../resources/img/alberi/Arancia.png"
 					class="rounded-circle mb-3" style="width: 150px;" alt="Avatar" />
-
-				<h5 class="mb-2">
-					<strong>John Doe</strong>
-				</h5>
-				<p class="text-muted">
-					Web designer <span class="badge bg-primary">PRO</span>
-				</p>
 			</div>
-			<div class="col"></div>
+			<div class="col-9">
+				<div class="row">
+					<p>Nome e Cognome</p>
+				</div>
+				<div class="row">
+					<p>Email
+					<p>
+				</div>
+				<div class="row">
+					<p>Altre belle informazioni</p>
+				</div>
+				<div class="row">
+					<button type="button" class="btn btn-primary col-3">Modifica Informazioni</button>
+				</div>
+			</div>
+			
 		</div>
 	</div>
 	<hr>
@@ -153,7 +161,8 @@
 								class="card-img-top" alt="...">
 							<div class="card-body">
 								<h5 class="card-title">Astrologo</h5>
-								<a href="#!" class="btn btn-primary">Sblocca</a>
+								<a href="#!" class="btn btn-primary" data-bs-toggle="modal"
+									data-bs-target="#astrologoModal">Sblocca</a>
 							</div>
 						</div>
 						<!-- benefattore -->
@@ -162,7 +171,8 @@
 								class="card-img-top" alt="...">
 							<div class="card-body">
 								<h5 class="card-title">Benefattore</h5>
-								<a href="#!" class="btn btn-primary">Sblocca</a>
+								<a href="#!" class="btn btn-primary" data-bs-toggle="modal"
+									data-bs-target="#benefattoreModal">Sblocca</a>
 							</div>
 						</div>
 						<!-- Giramondo -->
@@ -171,7 +181,8 @@
 								class="card-img-top" alt="...">
 							<div class="card-body">
 								<h5 class="card-title">Giramondo</h5>
-								<a href="#!" class="btn btn-primary">Sblocca</a>
+								<a href="#!" class="btn btn-primary" data-bs-toggle="modal"
+									data-bs-target="#giramondoModal">Sblocca</a>
 							</div>
 						</div>
 						<!-- Matricola -->
@@ -180,7 +191,8 @@
 								class="card-img-top" alt="...">
 							<div class="card-body">
 								<h5 class="card-title">Matricola</h5>
-								<a href="#!" class="btn btn-primary">Sblocca</a>
+								<a href="#!" class="btn btn-primary" data-bs-toggle="modal"
+									data-bs-target="#matricolaModal">Sblocca</a>
 							</div>
 						</div>
 						<!-- Multitasking -->
@@ -189,7 +201,8 @@
 								class="card-img-top" alt="...">
 							<div class="card-body">
 								<h5 class="card-title">Multitasking</h5>
-								<a href="#!" class="btn btn-primary">Sblocca</a>
+								<a href="#!" class="btn btn-primary" data-bs-toggle="modal"
+									data-bs-target="#multitaskingModal">Sblocca</a>
 							</div>
 						</div>
 						<!-- Tarzan -->
@@ -198,12 +211,164 @@
 								alt="...">
 							<div class="card-body">
 								<h5 class="card-title">Tarzan</h5>
-								<a href="#!" class="btn btn-primary">Sblocca</a>
+								<a href="#!" class="btn btn-primary" data-bs-toggle="modal"
+									data-bs-target="#tarzanModal">Sblocca</a>
 							</div>
 						</div>
 					</div>
 				</div>
 				<!-- Row END -->
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal Astrologo -->
+	<div class="modal fade" id="astrologoModal" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Astrologo</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">Mira alle stelle e pianta l'albero del
+					tuo segno zodiacale.</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-bs-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary"
+						data-bs-dismiss="modal">Ok</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Modal Astrologo -->
+	<div class="modal fade" id="astrologoModal" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Astrologo</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">Mira alle stelle e pianta l'albero del
+					tuo segno zodiacale.</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-bs-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary"
+						data-bs-dismiss="modal">Ok</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Modal Benefattore -->
+	<div class="modal fade" id="benefattoreModal" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Benefattore</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">Sii generoso e regala almeno un
+					albero. Otterrai il riconoscimento quando la persona a cui hai
+					regalato l'albero, lo riscatterà, diventandone così custode e
+					iniziando a seguirne la storia..</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-bs-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary"
+						data-bs-dismiss="modal">Ok</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Modal Giramondo -->
+	<div class="modal fade" id="giramondoModal" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Giramondo</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">Supera i confini e pianta almeno un
+					albero in 3 paesi diversi.</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-bs-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary"
+						data-bs-dismiss="modal">Ok</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Modal Matricola -->
+	<div class="modal fade" id="matricolaModal" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Matricola</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">Inizia la tua esperienza e pianta il
+					tuo primo albero.</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-bs-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary"
+						data-bs-dismiss="modal">Ok</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Modal Multitasking -->
+	<div class="modal fade" id="multitaskingModal" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Multitasking</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">Gli alberi sanno essere utili in molti
+					modi. Pianta alberi che assolvono ad almeno 6 dei loro 8 usi e
+					benefici.</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-bs-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary"
+						data-bs-dismiss="modal">Ok</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Modal Tarzan -->
+	<div class="modal fade" id="tarzanModal" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Tarzan</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">Non essere timido e pubblica la tua
+					prima foresta.</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-bs-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary"
+						data-bs-dismiss="modal">Ok</button>
+				</div>
 			</div>
 		</div>
 	</div>
