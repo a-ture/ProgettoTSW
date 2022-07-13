@@ -1,0 +1,236 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Profilo</title>
+<!--CSS-->
+<link rel="stylesheet" type="text/css"
+	href="../resources/css/bootstrap.css">
+<link rel="stylesheet" type="text/css"
+	href="../resources/css/_variables.scss">
+<link rel="stylesheet" type="text/css"
+	href="../resources/css/_bootswatch.scss">
+
+<!-- JavaScript Bundle with Popper -->
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+	crossorigin="anonymous"></script>
+<!-- FontAwesome -->
+<script src="https://kit.fontawesome.com/6bd8866cc2.js"
+	crossorigin="anonymous"></script>
+<!-- jQuey -->
+<script src="https://code.jquery.com/jquery-3.6.0.js"
+	integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+	crossorigin="anonymous"></script>
+</head>
+<body>
+	<!-- Header -->
+	<%@ include file="../fragments/header.jsp"%>
+	<br>
+	<div class="container">
+		<div class="row">
+			<div class="col">
+				<img src="../resources/img/alberi/Arancia.png"
+					class="rounded-circle mb-3" style="width: 150px;" alt="Avatar" />
+
+				<h5 class="mb-2">
+					<strong>John Doe</strong>
+				</h5>
+				<p class="text-muted">
+					Web designer <span class="badge bg-primary">PRO</span>
+				</p>
+			</div>
+			<div class="col"></div>
+		</div>
+	</div>
+	<hr>
+
+
+	<div class="container">
+		<div class="row g-4">
+			<!-- Sidenav START -->
+			<div class="col-lg-3">
+				<!-- Advanced filter responsive toggler START -->
+				<div class="d-flex align-items-center d-lg-none">
+					<button class="border-0 bg-transparent" type="button"
+						data-bs-toggle="offcanvas" data-bs-target="#offcanvasSideNavbar"
+						aria-controls="offcanvasSideNavbar">
+						<i class="btn btn-primary fw-bold fa-solid fa-sliders-h"></i> <span
+							class="h6 mb-0 fw-bold d-lg-none ms-2">My profile</span>
+					</button>
+				</div>
+				<!-- Advanced filter responsive toggler END -->
+
+				<!-- Navbar START-->
+				<nav class="navbar navbar-expand-lg mx-0">
+					<div class="offcanvas offcanvas-start" tabindex="-1"
+						id="offcanvasSideNavbar">
+						<!-- Offcanvas header -->
+						<div class="offcanvas-header">
+							<button type="button" class="btn-close text-reset ms-auto"
+								data-bs-dismiss="offcanvas" aria-label="Close"></button>
+						</div>
+
+						<!-- Offcanvas body -->
+						<div class="offcanvas-body d-block px-2 px-lg-0">
+							<!-- Card START -->
+							<div class="card overflow-hidden">
+								<!-- Cover image -->
+								<div class="h-50px"
+									style="background-image: url(assets/images/bg/01.jpg); background-position: center; background-size: cover; background-repeat: no-repeat;"></div>
+								<!-- Card body START -->
+								<div class="card-body pt-0">
+									<!-- Side Nav START -->
+									<ul class="nav nav-link-secondary flex-column fw-bold gap-2">
+
+										<li class="nav-item"><a class="nav-link" href="#ordini"
+											id="ordiniButton"><i class="fa-solid fa-clipboard-list"></i><span>
+													Ordini </span></a></li>
+
+										<li class="nav-item"><a class="nav-link" href="#woodLot"
+											id="woodLotButton"> <i class="fa-solid fa-tree"></i><span>Il
+													tuo WoodLot </span></a></li>
+
+										<li class="nav-item"><a class="nav-link" href="#badge"
+											id="badgeButton"> <i class="fa-solid fa-award"></i><span>
+													Badge </span>
+										</a></li>
+										<li class="nav-item"><a class="nav-link"
+											href="events.html"> <img class="me-2 h-20px fa-fw"
+												src="assets/images/icon/calendar-outline-filled.svg" alt=""><span>Events
+											</span></a></li>
+										<li class="nav-item"><a class="nav-link"
+											href="groups.html"> <img class="me-2 h-20px fa-fw"
+												src="assets/images/icon/chat-outline-filled.svg" alt=""><span>Groups
+											</span></a></li>
+										<li class="nav-item"><a class="nav-link"
+											href="notifications.html"> <img class="me-2 h-20px fa-fw"
+												src="assets/images/icon/notification-outlined-filled.svg"
+												alt=""><span>Notifications </span></a></li>
+										<li class="nav-item"><a class="nav-link"
+											href="settings.html"> <i
+												class="fa-solid fa-right-from-bracket"></i><span>Logout
+											</span></a></li>
+									</ul>
+									<!-- Side Nav END -->
+								</div>
+								<!-- Card body END -->
+							</div>
+							<!-- Card END -->
+						</div>
+					</div>
+				</nav>
+				<!-- Navbar END-->
+			</div>
+			<!-- Sidenav END -->
+
+			<!-- Main content START -->
+			<div class="col-md-8 col-lg-6 vstack gap-4">
+				<!-- Ordini -->
+				<div id="ordini" class="row d-none">
+					<h1 class="text-center">I tuoi ordini</h1>
+					<p>Qui puoi trovare il riepilogo degli ordini fatti nel nostro
+						shop</p>
+				</div>
+				<!-- WoodLot -->
+				<div id="woodLot" class="row d-none">
+					<h1 class="text-center">Il tuo WoodLot</h1>
+					<p>
+						Non hai ancora alberi ...torna al <a href="catalogo.jsp">negozio</a>
+					</p>
+				</div>
+				<!-- Badge -->
+				<div class="row d-none" id="badge">
+					<h1 class="text-center">I tuoi badge</h1>
+					<!-- Astrologo -->
+					<div class="row row-cols-1 row-cols-md-3 g-3 text-center">
+						<div class="card-group w-100"></div>
+						<div class="card">
+							<img src="../resources/img/badge/astrologo.png"
+								class="card-img-top" alt="...">
+							<div class="card-body">
+								<h5 class="card-title">Astrologo</h5>
+								<a href="#!" class="btn btn-primary">Sblocca</a>
+							</div>
+						</div>
+						<!-- benefattore -->
+						<div class="card">
+							<img src="../resources/img/badge/benefattore.png"
+								class="card-img-top" alt="...">
+							<div class="card-body">
+								<h5 class="card-title">Benefattore</h5>
+								<a href="#!" class="btn btn-primary">Sblocca</a>
+							</div>
+						</div>
+						<!-- Giramondo -->
+						<div class="card">
+							<img src="../resources/img/badge/giramondo.png"
+								class="card-img-top" alt="...">
+							<div class="card-body">
+								<h5 class="card-title">Giramondo</h5>
+								<a href="#!" class="btn btn-primary">Sblocca</a>
+							</div>
+						</div>
+						<!-- Matricola -->
+						<div class="card">
+							<img src="../resources/img/badge/matricola.png"
+								class="card-img-top" alt="...">
+							<div class="card-body">
+								<h5 class="card-title">Matricola</h5>
+								<a href="#!" class="btn btn-primary">Sblocca</a>
+							</div>
+						</div>
+						<!-- Multitasking -->
+						<div class="card">
+							<img src="../resources/img/badge/multitasking.png"
+								class="card-img-top" alt="...">
+							<div class="card-body">
+								<h5 class="card-title">Multitasking</h5>
+								<a href="#!" class="btn btn-primary">Sblocca</a>
+							</div>
+						</div>
+						<!-- Tarzan -->
+						<div class="card">
+							<img src="../resources/img/badge/tarzan.png" class="card-img-top"
+								alt="...">
+							<div class="card-body">
+								<h5 class="card-title">Tarzan</h5>
+								<a href="#!" class="btn btn-primary">Sblocca</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Row END -->
+			</div>
+		</div>
+	</div>
+	<!-- Footer -->
+	<%@ include file="../fragments/footer.jsp"%>
+
+	<script>
+		$(document).ready(function() {
+
+			$("#ordiniButton").click(function(event) {
+				$("#ordini").removeClass("d-none");
+				$("#badge").addClass("d-none");
+				$("#woodLot").addClass("d-none");
+			});
+
+			$("#badgeButton").click(function(event) {
+				$("#badge").removeClass("d-none");
+				$("#ordini").addClass("d-none");
+				$("#woodLot").addClass("d-none");
+			});
+
+			$("#woodLotButton").click(function(event) {
+				$("#woodLot").removeClass("d-none");
+				$("#badge").addClass("d-none");
+				$("#ordini").addClass("d-none");
+			});
+		});
+	</script>
+</body>
+</html>
