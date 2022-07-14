@@ -108,73 +108,75 @@
 	<!-- Card Section -->
 	<br>
 	<!-- Scritta -->
-	<div class="col-md-12 text-center">
-		<h1>Scegli il tuo albero</h1>
-		<br> <br>
-	</div>
-	<div class="row row-cols-1 row-cols-md-4">
-		<!-- Card 1 -->
-		<div class="col">
-			<div class="card">
-				<img src="../resources/img/alberi/Arancia.png" class="card-img-top"
-					alt="Palm Springs Road" />
-				<div class="card-body">
-					<h5 class="card-title">Card title</h5>
-					<p class="card-text">This is a longer card with supporting text
-						below as a natural lead-in to additional content. This content is
-						a little bit longer.</p>
-					<div class="text-center">
-						<a class="btn btn-success" href="paginaProdotto.jsp">Piantalo
-							Ora</a>
+	<div class="container">
+		<div class="col-md-12 text-center">
+			<h1>Scegli il tuo albero</h1>
+			<br> <br>
+		</div>
+		<div class="row row-cols-1 row-cols-md-4">
+			<!-- Card 1 -->
+			<div class="col">
+				<div class="card">
+					<img src="../resources/img/alberi/Arancia.png" class="card-img-top"
+						alt="Palm Springs Road" />
+					<div class="card-body">
+						<h5 class="card-title">Card title</h5>
+						<p class="card-text">This is a longer card with supporting
+							text below as a natural lead-in to additional content. This
+							content is a little bit longer.</p>
+						<div class="text-center">
+							<a class="btn btn-success" href="paginaProdotto.jsp">Piantalo
+								Ora</a>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		<!-- Card 2 -->
-		<div class="col">
-			<div class="card">
-				<img src="../resources/img/alberi/Avocado.png" class="card-img-top"
-					alt="Palm Springs Road" />
-				<div class="card-body">
-					<h5 class="card-title">Card title</h5>
-					<p class="card-text">This is a longer card with supporting text
-						below as a natural lead-in to additional content. This content is
-						a little bit longer.</p>
-					<div class="text-center">
-						<a class="btn btn-success" href="paginaProdotto.jsp">Piantalo
-							Ora</a>
+			<!-- Card 2 -->
+			<div class="col">
+				<div class="card">
+					<img src="../resources/img/alberi/Avocado.png" class="card-img-top"
+						alt="Palm Springs Road" />
+					<div class="card-body">
+						<h5 class="card-title">Card title</h5>
+						<p class="card-text">This is a longer card with supporting
+							text below as a natural lead-in to additional content. This
+							content is a little bit longer.</p>
+						<div class="text-center">
+							<a class="btn btn-success" href="paginaProdotto.jsp">Piantalo
+								Ora</a>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		<!-- Card 3 -->
-		<div class="col">
-			<div class="card">
-				<img src="../resources/img/alberi/Caoba.png" class="card-img-top"
-					alt="Los Angeles Skyscrapers" />
-				<div class="card-body">
-					<h5 class="card-title">Card title</h5>
-					<p class="card-text">This is a longer card with supporting text
-						below as a natural lead-in to additional content.</p>
-					<div class="text-center">
-						<a class="btn btn-success" href="paginaProdotto.jsp">Piantalo
-							Ora</a>
+			<!-- Card 3 -->
+			<div class="col">
+				<div class="card">
+					<img src="../resources/img/alberi/Caoba.png" class="card-img-top"
+						alt="Los Angeles Skyscrapers" />
+					<div class="card-body">
+						<h5 class="card-title">Card title</h5>
+						<p class="card-text">This is a longer card with supporting
+							text below as a natural lead-in to additional content.</p>
+						<div class="text-center">
+							<a class="btn btn-success" href="paginaProdotto.jsp">Piantalo
+								Ora</a>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		<!-- Card 4 -->
-		<div class="col">
-			<div class="card">
-				<img src="../resources/img/alberi/Cedro.png" class="card-img-top"
-					alt="Los Angeles Skyscrapers" />
-				<div class="card-body">
-					<h5 class="card-title">Card title</h5>
-					<p class="card-text">This is a longer card with supporting text
-						below as a natural lead-in to additional content.</p>
-					<div class="text-center">
-						<a class="btn btn-success" href="paginaProdotto.jsp">Piantalo
-							Ora</a>
+			<!-- Card 4 -->
+			<div class="col">
+				<div class="card">
+					<img src="../resources/img/alberi/Cedro.png" class="card-img-top"
+						alt="Los Angeles Skyscrapers" />
+					<div class="card-body">
+						<h5 class="card-title">Card title</h5>
+						<p class="card-text">This is a longer card with supporting
+							text below as a natural lead-in to additional content.</p>
+						<div class="text-center">
+							<a class="btn btn-success" href="paginaProdotto.jsp">Piantalo
+								Ora</a>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -198,46 +200,47 @@
 		<br> <br>
 	</div>
 	<!-- Cards -->
+	<div class="container">
+		<div class="row row-cols-1 row-cols-md-4 g-4">
+			<div class="card-group   w-100">
+				<div class="card">
+					<img src="../resources/img/cosaPuoiFare/whatucando-gift-icon.png"
+						class="card-img-top">
+					<div class="card-body">
+						<h5 class="card-title">Regala</h5>
+						<p class="card-text">Un regalo originale per l’ambiente e per
+							le persone a cui vuoi bene</p>
+					</div>
+				</div>
+				<div class="card">
+					<img
+						src="../resources/img/cosaPuoiFare/whatucando-discover-icon.png"
+						class="card-img-top">
+					<div class="card-body">
+						<h5 class="card-title text-center">Pianta</h5>
+						<p class="card-text">Tante specie ognuna con le sue
+							caratteristiche ed i suoi poteri</p>
+					</div>
+				</div>
+				<div class="card">
+					<img
+						src="../resources/img/cosaPuoiFare/whatucando-subscription-icon.png"
+						class="card-img-top" alt="...">
+					<div class="card-body">
+						<h5 class="card-title">Abbonati</h5>
+						<p class="card-text">Pianta alberi ogni mese e inizia il tuo
+							percorso green</p>
 
-	<div class="row row-cols-1 row-cols-md-4 g-4">
-		<div class="card-group   w-100">
-			<div class="card">
-				<img src="../resources/img/cosaPuoiFare/whatucando-gift-icon.png"
-					class="card-img-top">
-				<div class="card-body">
-					<h5 class="card-title">Regala</h5>
-					<p class="card-text">Un regalo originale per l’ambiente e per
-						le persone a cui vuoi bene</p>
+					</div>
 				</div>
-			</div>
-			<div class="card">
-				<img
-					src="../resources/img/cosaPuoiFare/whatucando-discover-icon.png"
-					class="card-img-top">
-				<div class="card-body">
-					<h5 class="card-title text-center">Pianta</h5>
-					<p class="card-text">Tante specie ognuna con le sue
-						caratteristiche ed i suoi poteri</p>
-				</div>
-			</div>
-			<div class="card">
-				<img
-					src="../resources/img/cosaPuoiFare/whatucando-subscription-icon.png"
-					class="card-img-top" alt="...">
-				<div class="card-body">
-					<h5 class="card-title">Abbonati</h5>
-					<p class="card-text">Pianta alberi ogni mese e inizia il tuo
-						percorso green</p>
-
-				</div>
-			</div>
-			<div class="card">
-				<img src="../resources/img/chiSiamoPage/info_trees.svg"
-					class="card-img-top">
-				<div class="card-body">
-					<h5 class="card-title">Crea il tuo WoodLot</h5>
-					<p class="card-text">Pianta alberi ogni mese e inizia il tuo
-						percorso green</p>
+				<div class="card">
+					<img src="../resources/img/chiSiamoPage/info_trees.svg"
+						class="card-img-top">
+					<div class="card-body">
+						<h5 class="card-title">Crea il tuo WoodLot</h5>
+						<p class="card-text">Pianta alberi ogni mese e inizia il tuo
+							percorso green</p>
+					</div>
 				</div>
 			</div>
 		</div>

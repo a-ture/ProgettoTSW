@@ -31,186 +31,56 @@
 	<%@ include file="../fragments/header.jsp"%>
 	<br>
 	<br>
-	<div class="container">
-		<!-- Coso Superiore -->
-		<div class="row text-center">
-			<ul class="pagination pagination-lg">
 
-				<li class="page-item active"><a class="page-link" href="#"><i
-						class="fa-solid fa-cart-shopping"></i> Carrello</a></li>
-				<li class="page-item"><a class="page-link" href="#"><i
-						class="fa-solid fa-credit-card"></i> Acquista</a></li>
-			</ul>
-		</div>
-
-		<div class="row">
-			<!-- Il tuo carrello -->
-			<div class="col bg-primary">
-				<div class="row">
-					<a href="catalogo.jsp">Aggiungi altri alberi</a>
-				</div>
-				<br>
-				<div class="row">
-					<div class="col">
-						<h3>Il tuo carrello</h3>
-					</div>
-					<div class="col">
-						<h5>
-							<i class="fa-solid fa-trash"></i> Svuota
-						</h5>
-					</div>
-				</div>
-
-				<!-- Elementi carrello -->
-
-				<div class="row">
-					<!-- Foto -->
-					<div class="col">
-						<img src="../resources/img/alberi/Arancia.png" class="rounded"
-							height="80px" width="80px">
-					</div>
-					<!-- Nome -->
-					<div class="col"></div>
-					<!-- quantità -->
-					<div class="col">
-						<div class="input-group">
-							<span class="input-group-btn">
-								<button type="button" class="btn btn-danger btn-number"
-									data-type="minus" data-field="quant[2]">
-									<span class="glyphicon glyphicon-minus">-</span>
-								</button>
-							</span> <input type="text" name="quant[2]"
-								class="form-control input-number" value="10" min="1" max="100">
-							<span class="input-group-btn">
-								<button type="button" class="btn btn-success btn-number"
-									data-type="plus" data-field="quant[2]">
-									<span class="glyphicon glyphicon-plus">+</span>
-								</button>
-							</span>
-						</div>
-					</div>
-					<!-- prezzo -->
-					<div class="col">
-						<h5>Prezzo</h5>
-					</div>
-
-				</div>
-				<!-- Fine Elementi Carrello -->
-				<div class="row">
-					<p>Se dopo l’acquisto non ti riterrai soddisfatto del servizio,
-						comunicacelo entro 30 giorni per ottenere un rimborso.</p>
-				</div>
-			</div>
-			<div class="col">
-				<!-- Totale -->
-				<div class="col">
-					<h3>Totale: €14,90</h3>
-					<button type="button" class="btn btn-primary btn-lg">Procedi
-						all'acquisto</button>
-				</div>
-			</div>
-			<div class="w-100"></div>
-
-			<div class="col">
-				<!-- Cosa è incluso nel prezzo -->
-				<div class="row">
-					<h3>Cos'è incluso nel prezzo?</h3>
-				</div>
-				<div class="row">
-					<p>Non dovrai pagare nulla in futuro. Piantare un albero con
-						WoodLot significa finanziare un contadino per piantare un albero e
-						sostenerlo fino a quando non sarà produttivo. Con WoodLot infatti
-						un albero è molto più di un albero. Ecco cosa è incluso nel
-						prezzo:</p>
-					<ol class="list-group list-group-numbered">
-						<li>Avvio del progetto</li>
-						<li>Costruzione del vivaio e produzione delle piantine</li>
-						<li>Distribuzione delle piante ai contadini</li>
-						<li>Messa a dimora della pianta</li>
-						<li>Manutenzione della pianta fino al momento in cui non darà
-							un reddito al contadino</li>
-						<li>Formazione dei contadini sulle migliori pratiche
-							agro-forestali, anche con il supporto di università ed enti di
-							ricerca locali</li>
-						<li>Sostituzione delle fallanze durante i primi anni in cui
-							il tasso di mortalità è più elevato</li>
-						<li>Piantumazione di un 5% in più di alberi che non vengono
-							assegnati agli utenti per coprire le fallanze</li>
-						<li>Registrazione delle coordinate GPS dell'albero e
-							monitoraggio fotografico</li>
-						<li>Controlli annuali a campione sulle aree di progetto per
-							verificare la permanenza degli alberi e la loro buona salute</li>
-						<li>Approvazione della foto e controllo delle coordinate di
-							ogni singolo albero da parte dei nostri agronomi specializzati.</li>
-						<li>Aggiornamenti periodici sul progetto, con un focus sui
-							benefici ambientali e sociali, pubblicati nel Diario dell’Albero</li>
-					</ol>
-				</div>
-			</div>
-			<div class="col">
-				<!-- Assistenza clienti -->
-				<div class="row">
-					<h3>Assistenza clienti</h3>
-				</div>
-				<div class="row">
-					<p>Meglio parlarne a voce? Chiamaci dal lunedì al venerdì dalle
-						9:30 - 13:30 (GMT+1)</p>
-					<a class="link"><i class="fa-solid fa-phone"></i> +39 345678901</a>
-				</div>
-			</div>
-		</div>
-	</div>
-	<br>
-	<br>
 	<div class="container">
 		<div class="row g-5">
 			<div class="col-md-5 col-lg-4 order-md-last">
 				<h4 class="d-flex justify-content-between align-items-center mb-3">
-					<span class="text-primary">Your cart</span> <span
+					<span class="text-primary">Il tuo carrello</span> <span
 						class="badge bg-primary rounded-pill">3</span>
 				</h4>
 				<ul class="list-group mb-3">
 					<li class="list-group-item d-flex justify-content-between lh-sm">
 						<div>
-							<h6 class="my-0">Product name</h6>
-							<small class="text-muted">Brief description</small>
+							<h6 class="my-0">Nome Prodotto 1</h6>
+							<small class="text-muted">Breve descrizione</small>
 						</div> <span class="text-muted">$12</span>
 					</li>
 					<li class="list-group-item d-flex justify-content-between lh-sm">
 						<div>
-							<h6 class="my-0">Second product</h6>
-							<small class="text-muted">Brief description</small>
+							<h6 class="my-0">Nome Prodotto 2</h6>
+							<small class="text-muted">Breve descrizione</small>
 						</div> <span class="text-muted">$8</span>
 					</li>
 					<li class="list-group-item d-flex justify-content-between lh-sm">
 						<div>
-							<h6 class="my-0">Third item</h6>
-							<small class="text-muted">Brief description</small>
+							<h6 class="my-0">Nome Prodotto 3</h6>
+							<small class="text-muted">Breve descrizione</small>
 						</div> <span class="text-muted">$5</span>
 					</li>
 					<li class="list-group-item d-flex justify-content-between bg-light">
 						<div class="text-success">
-							<h6 class="my-0">Promo code</h6>
+							<h6 class="my-0">Codice promozionale</h6>
 							<small>EXAMPLECODE</small>
 						</div> <span class="text-success">−$5</span>
 					</li>
-					<li class="list-group-item d-flex justify-content-between"><span>Total
-							(USD)</span> <strong>$20</strong></li>
+					<li class="list-group-item d-flex justify-content-between"><span>Totale
+					</span> <strong>$20</strong></li>
 				</ul>
 
 				<form class="card p-2">
 					<div class="input-group">
 						<input type="text" class="form-control" placeholder="Promo code">
-						<button type="submit" class="btn btn-secondary">Redeem</button>
+						<button type="submit" class="btn btn-secondary">Applica</button>
 					</div>
 				</form>
 			</div>
 			<div class="col-md-7 col-lg-8">
-				<h4 class="mb-3">Billing address</h4>
+				<h4 class="mb-3">Inidirizzo di spedizione</h4>
 				<form class="needs-validation" novalidate="">
 					<div class="row g-3">
 						<div class="col-sm-6">
-							<label for="firstName" class="form-label">First name</label> <input
+							<label for="firstName" class="form-label">Nome</label> <input
 								type="text" class="form-control" id="firstName" placeholder=""
 								value="" required="">
 							<div class="invalid-feedback">Valid first name is required.
@@ -218,7 +88,7 @@
 						</div>
 
 						<div class="col-sm-6">
-							<label for="lastName" class="form-label">Last name</label> <input
+							<label for="lastName" class="form-label">Congnome</label> <input
 								type="text" class="form-control" id="lastName" placeholder=""
 								value="" required="">
 							<div class="invalid-feedback">Valid last name is required.</div>
@@ -235,15 +105,15 @@
 						</div>
 
 						<div class="col-12">
-							<label for="email" class="form-label">Email <span
-								class="text-muted">(Optional)</span></label> <input type="email"
-								class="form-control" id="email" placeholder="you@example.com">
+							<label for="email" class="form-label">Email</label> <input
+								type="email" class="form-control" id="email"
+								placeholder="you@example.com">
 							<div class="invalid-feedback">Please enter a valid email
 								address for shipping updates.</div>
 						</div>
 
 						<div class="col-12">
-							<label for="address" class="form-label">Address</label> <input
+							<label for="address" class="form-label">Indirizzo</label> <input
 								type="text" class="form-control" id="address"
 								placeholder="1234 Main St" required="">
 							<div class="invalid-feedback">Please enter your shipping
@@ -251,16 +121,16 @@
 						</div>
 
 						<div class="col-12">
-							<label for="address2" class="form-label">Address 2 <span
+							<label for="address2" class="form-label">Indirizzo 2 <span
 								class="text-muted">(Optional)</span></label> <input type="text"
 								class="form-control" id="address2"
 								placeholder="Apartment or suite">
 						</div>
 
 						<div class="col-md-5">
-							<label for="country" class="form-label">Country</label> <select
+							<label for="country" class="form-label">Paese</label> <select
 								class="form-select" id="country" required="">
-								<option value="">Choose...</option>
+								<option value="">Scegli...</option>
 								<option>United States</option>
 							</select>
 							<div class="invalid-feedback">Please select a valid
@@ -268,7 +138,7 @@
 						</div>
 
 						<div class="col-md-4">
-							<label for="state" class="form-label">State</label> <select
+							<label for="state" class="form-label">Regione</label> <select
 								class="form-select" id="state" required="">
 								<option value="">Choose...</option>
 								<option>California</option>
@@ -278,10 +148,10 @@
 						</div>
 
 						<div class="col-md-3">
-							<label for="zip" class="form-label">Zip</label> <input
+							<label for="zip" class="form-label">CAP</label> <input
 								type="text" class="form-control" id="zip" placeholder=""
 								required="">
-							<div class="invalid-feedback">Zip code required.</div>
+							<div class="invalid-feedback">CAP code required.</div>
 						</div>
 					</div>
 
@@ -289,30 +159,30 @@
 
 					<div class="form-check">
 						<input type="checkbox" class="form-check-input" id="same-address">
-						<label class="form-check-label" for="same-address">Shipping
-							address is the same as my billing address</label>
+						<label class="form-check-label" for="same-address">L'indirizzo
+							di spedizione coincide con l'indirizzo di fatturazione</label>
 					</div>
 
 					<div class="form-check">
 						<input type="checkbox" class="form-check-input" id="save-info">
-						<label class="form-check-label" for="save-info">Save this
-							information for next time</label>
+						<label class="form-check-label" for="save-info">Salva
+							queste informazioni per la prossima volta</label>
 					</div>
 
 					<hr class="my-4">
 
-					<h4 class="mb-3">Payment</h4>
+					<h4 class="mb-3">Pagamento</h4>
 
 					<div class="my-3">
 						<div class="form-check">
 							<input id="credit" name="paymentMethod" type="radio"
 								class="form-check-input" checked="" required=""> <label
-								class="form-check-label" for="credit">Credit card</label>
+								class="form-check-label" for="credit">Carta di credito</label>
 						</div>
 						<div class="form-check">
 							<input id="debit" name="paymentMethod" type="radio"
 								class="form-check-input" required=""> <label
-								class="form-check-label" for="debit">Debit card</label>
+								class="form-check-label" for="debit">Carta di debito</label>
 						</div>
 						<div class="form-check">
 							<input id="paypal" name="paymentMethod" type="radio"
@@ -323,7 +193,7 @@
 
 					<div class="row gy-3">
 						<div class="col-md-6">
-							<label for="cc-name" class="form-label">Name on card</label> <input
+							<label for="cc-name" class="form-label">Nome Titolare</label> <input
 								type="text" class="form-control" id="cc-name" placeholder=""
 								required=""> <small class="text-muted">Full name
 								as displayed on card</small>
@@ -331,9 +201,9 @@
 						</div>
 
 						<div class="col-md-6">
-							<label for="cc-number" class="form-label">Credit card
-								number</label> <input type="text" class="form-control" id="cc-number"
-								placeholder="" required="">
+							<label for="cc-number" class="form-label">Numero della
+								carta di credito </label> <input type="text" class="form-control"
+								id="cc-number" placeholder="" required="">
 							<div class="invalid-feedback">Credit card number is
 								required</div>
 						</div>
@@ -355,12 +225,15 @@
 
 					<hr class="my-4">
 
-					<button class="w-100 btn btn-primary btn-lg" type="submit">Continue
-						to checkout</button>
+					<button class="w-100 btn btn-primary btn-lg" type="submit">Paga</button>
 				</form>
 			</div>
 		</div>
 	</div>
+	<br>
+	<br>
+	<!-- Footer -->
+	<%@ include file="../fragments/footer.jsp"%>
 	<script>
 $('.btn-number').click(function(e){
     e.preventDefault();
@@ -433,6 +306,15 @@ $(".input-number").keydown(function (e) {
             e.preventDefault();
         }
     });
-   </script>
+   
+$(document).ready(function() {
+	$("#flexSwitchCheckDefault").click(function(event) {
+
+		$("#giftSection").toggleClass("d-none");
+
+	});
+	
+});
+</script>
 </body>
 </html>
