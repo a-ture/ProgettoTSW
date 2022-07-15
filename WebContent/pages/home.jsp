@@ -199,54 +199,73 @@
 		<h1>Cosa puoi fare</h1>
 		<br> <br>
 	</div>
-	<!-- Cards -->
-	<div class="container">
-		<div class="row row-cols-1 row-cols-md-4 g-4">
-			<div class="card-group   w-100">
-				<div class="card">
+	<!-- Cards  <div class="row row-cols-1 row-cols-md-4 g-4 d-flex justify-content-between" >-->
+	<div class="container" style="background-color: #93c572;">
+		<div
+			class="row row-cols-1 row-cols-md-4 g-4 d-flex justify-content-between">
+			<div class="col">
+				<div
+					class="card text-center shadow-lg p-3 mb-5 bg-white rounded h-100"
+					style="max-width: 14rem;">
 					<img src="../resources/img/cosaPuoiFare/whatucando-gift-icon.png"
-						class="card-img-top">
+						class="card-img-top" width="206px" height="206px">
 					<div class="card-body">
-						<h5 class="card-title">Regala</h5>
+						<h5 class="card-title fw-bold">Regala</h5>
 						<p class="card-text">Un regalo originale per l’ambiente e per
 							le persone a cui vuoi bene</p>
+						<a class="btn btn-primary" href="#">Regala</a>
 					</div>
 				</div>
-				<div class="card">
+			</div>
+			<div class="col">
+				<div
+					class="card  text-center shadow-lg p-3 mb-5 bg-white rounded h-100"
+					style="max-width: 14rem;">
 					<img
 						src="../resources/img/cosaPuoiFare/whatucando-discover-icon.png"
-						class="card-img-top">
+						class="card-img-top" width="206px" height="206px">
 					<div class="card-body">
-						<h5 class="card-title text-center">Pianta</h5>
+						<h5 class="card-title fw-bold">Pianta</h5>
 						<p class="card-text">Tante specie ognuna con le sue
 							caratteristiche ed i suoi poteri</p>
+						<a class="btn btn-primary" href="#">Pianta</a>
 					</div>
 				</div>
-				<div class="card">
+			</div>
+			<div class="col">
+				<div
+					class="card text-center shadow-lg p-3 mb-5 bg-white rounded h-100"
+					style="max-width: 14rem;">
 					<img
 						src="../resources/img/cosaPuoiFare/whatucando-subscription-icon.png"
-						class="card-img-top" alt="...">
+						class="card-img-top" width="206px" height="206px">
 					<div class="card-body">
-						<h5 class="card-title">Abbonati</h5>
+						<h5 class="card-title fw-bold">Abbonati</h5>
 						<p class="card-text">Pianta alberi ogni mese e inizia il tuo
 							percorso green</p>
-
+						<a class="btn btn-primary" href="#">Abbonati</a>
 					</div>
 				</div>
-				<div class="card">
+			</div>
+			<div class="col">
+				<div
+					class="card text-center shadow-lg p-3 mb-5 bg-white rounded h-100"
+					style="max-width: 14rem;">
 					<img src="../resources/img/chiSiamoPage/info_trees.svg"
-						class="card-img-top">
+						class="card-img-top" width="206px" height="206px">
 					<div class="card-body">
-						<h5 class="card-title">Crea il tuo WoodLot</h5>
+						<h5 class="card-title fw-bold">Crea il tuo WoodLot</h5>
 						<p class="card-text">Pianta alberi ogni mese e inizia il tuo
 							percorso green</p>
+						<a class="btn btn-primary" href="#">Crea</a>
 					</div>
 				</div>
 			</div>
 		</div>
+		<br>
 	</div>
 	<br>
-	<br>
+
 	<!-- Fine Cosa Puoi Fare -->
 
 	<!-- Footer -->
