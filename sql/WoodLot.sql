@@ -38,7 +38,7 @@ CREATE TABLE categorie_prodotti (
         ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-CREATE TABLE users (
+CREATE TABLE utente(
     id BIGINT NOT NULL AUTO_INCREMENT,
     username VARCHAR(45) NOT NULL,
     email VARCHAR(45) NOT NULL UNIQUE,
@@ -61,7 +61,7 @@ CREATE TABLE ordine (
     creatodIl TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
     CONSTRAINT fk_user FOREIGN KEY (uid)
-        REFERENCES users (id)
+        REFERENCES utente (id)
         ON DELETE RESTRICT ON UPDATE RESTRICT
 );
 	
@@ -97,7 +97,7 @@ CREATE TABLE indirizzo (
     PRIMARY KEY (id),
     UNIQUE INDEX cid_preferred (cid , preferred),
     CONSTRAINT FK__useres FOREIGN KEY (cid)
-        REFERENCES users (id)
+        REFERENCES utente (id)
         ON DELETE CASCADE ON UPDATE CASCADE
 );
 
@@ -115,7 +115,13 @@ CREATE TABLE MetodoDiPagamento (
         ON DELETE CASCADE ON UPDATE CASCADE,
     PRIMARY KEY (PasswordUtente , EmailUtente , Numero)
 );*/
-
+INSERT INTO utente (username,password,email,nome,cognome,role) 
+	VALUES ("alessiature","alessiature","alessiature@gmail.com","Alessia","Ture","cliente");
+INSERT INTO utente (username,password,email,nome,cognome,role) 
+	VALUES ("cliente","cliente","cliente@gmail.com","cliente","cliente","cliente");
+INSERT INTO utente (username,password,email,nome,cognome,role) 
+	VALUES ("admin","admin","admin@gmail.com","admin","admin","admin");
+    
 INSERT INTO categoria (nome,descrizione)
 	VALUES ("Sicurezza alimentare", "L’albero assicura una buona produzione di frutti, ricchi di vitamine.");
 INSERT INTO categoria (nome,descrizione)
