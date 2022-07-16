@@ -1,17 +1,17 @@
 package it.unisa.beans;
 
-public class CartProduct {
+public class ProdottoCarrello {
 	private static final long serialVersionUID = 1L;
 	int quantità;
-	private Product prodotto;
+	private Prodotto prodotto;
 
-	public CartProduct(Product prodotto) {
+	public ProdottoCarrello(Prodotto prodotto) {
 		super();
 		this.setQuantità(0);
 		this.prodotto = prodotto;
 	}
 
-	public Product getProdotto() {
+	public Prodotto getProdotto() {
 		return prodotto;
 	}
 
@@ -20,29 +20,29 @@ public class CartProduct {
 	}
 
 	public void setQuantità(int quantità) {
-		this.quantità= quantità;
+		this.quantità = quantità;
 	}
 
-	public void addProd() {
+	public void aggiungiProdotto() {
 		this.setQuantità(this.getQuantità() + 1);
 	}
 
-	public void delProd() {
+	public void rimuoviProdotto() {
 		this.setQuantità(this.getQuantità() - 1);
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		// Se e' lo stesso oggetto ritorna true
+
 		if (obj == this) {
 			return true;
 		}
-		/* Se non e' un istanza di className o obj e' null, ritorna false */
-		if (!(obj instanceof CartProduct)) {
+
+		if (!(obj instanceof ProdottoCarrello)) {
 			return false;
 		}
-		// typecast a className in modo da poterli comparare
-		CartProduct prod = (CartProduct) obj;
+
+		ProdottoCarrello prod = (ProdottoCarrello) obj;
 		return prod.getId() == this.getId();
 	}
 
@@ -50,11 +50,11 @@ public class CartProduct {
 		return this.prodotto.getId();
 	}
 
-	public String getTotalPriceToString() {
-		return String.format("%.0f", getTotalPrice()) + "%";
+	public String getPrezzoTotaleToString() {
+		return String.format("%.0f", getPrezzoTotale()) + "%";
 	}
 
-	public double getTotalPrice() {
+	public double getPrezzoTotale() {
 		return (double) this.prodotto.getPrezzo() * this.getQuantità();
 	}
 

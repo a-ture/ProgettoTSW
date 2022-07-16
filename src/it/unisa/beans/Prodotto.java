@@ -4,13 +4,13 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class Product implements Serializable {
+public class Prodotto implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	// DA VEDERE SE MI SERVE
 	public static int NO_ITEM = -1;
 
-	static boolean isProductInizialize(Product b) {
+	static boolean isProductInizialize(Prodotto b) {
 		return b.getId() != NO_ITEM;
 	}
 
@@ -40,11 +40,11 @@ public class Product implements Serializable {
 		this.paeseDiOrigine = paeseDiOrigine;
 	}
 
-	private Collection<Category> categories;
+	private Collection<Categoria> categorie;
 
-	public Product(int id, String nome, String nomeScientifico, String descrizione, String descrizioneBreve,
+	public Prodotto(int id, String nome, String nomeScientifico, String descrizione, String descrizioneBreve,
 			String paeseDiOrigine, String imagePath, double prezzo, double altezza, double co2, double salvaguardia,
-			int quantità, int onSale, Collection<Category> categories) {
+			int quantità, int onSale, Collection<Categoria> categorie) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -58,11 +58,11 @@ public class Product implements Serializable {
 		this.salvaguardia = salvaguardia;
 		this.quantità = quantità;
 		this.onSale = onSale;
-		this.categories = categories;
+		this.categorie = categorie;
 		this.paeseDiOrigine = paeseDiOrigine;
 	}
 
-	public Product() {
+	public Prodotto() {
 		this.id = NO_ITEM;
 	}
 
@@ -71,7 +71,7 @@ public class Product implements Serializable {
 		return "Product [id=" + id + ", nome=" + nome + ", nomeScientifico=" + nomeScientifico + ", descrizione="
 				+ descrizione + ", descrizioneBreve=" + descrizioneBreve + ", imagePath=" + imagePath + ", prezzo="
 				+ prezzo + ", altezza=" + altezza + ", co2=" + co2 + ", salvaguardia=" + salvaguardia + ", quantità="
-				+ quantità + ", onSale=" + onSale + ", categories=" + categories + "]";
+				+ quantità + ", onSale=" + onSale + ", categories=" + categorie + "]";
 	}
 
 	public int getId() {
@@ -170,21 +170,21 @@ public class Product implements Serializable {
 		this.onSale = onSale;
 	}
 
-	public Collection<Category> getCategories() {
-		if (categories == null)
-			categories = new ArrayList<Category>();
-		return categories;
+	public Collection<Categoria> getCategories() {
+		if (categorie == null)
+			categorie = new ArrayList<Categoria>();
+		return categorie;
 	}
 
-	public void setCategories(Collection<Category> categories) {
-		this.categories = categories;
+	public void setCategories(Collection<Categoria> categories) {
+		this.categorie = categories;
 	}
 
-	public void addCategory(Category category) {
-		if (categories == null)
-			categories = new ArrayList<Category>();
-		if (!categories.contains(category))
-			categories.add(category);
+	public void addCategory(Categoria category) {
+		if (categorie == null)
+			categorie = new ArrayList<Categoria>();
+		if (!categorie.contains(category))
+			categorie.add(category);
 	}
 
 	@Override
@@ -194,7 +194,7 @@ public class Product implements Serializable {
 		long temp;
 		temp = Double.doubleToLongBits(altezza);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + ((categories == null) ? 0 : categories.hashCode());
+		result = prime * result + ((categorie == null) ? 0 : categorie.hashCode());
 		temp = Double.doubleToLongBits(co2);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((descrizione == null) ? 0 : descrizione.hashCode());
@@ -220,13 +220,13 @@ public class Product implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Product other = (Product) obj;
+		Prodotto other = (Prodotto) obj;
 		if (Double.doubleToLongBits(altezza) != Double.doubleToLongBits(other.altezza))
 			return false;
-		if (categories == null) {
-			if (other.categories != null)
+		if (categorie == null) {
+			if (other.categorie != null)
 				return false;
-		} else if (!categories.equals(other.categories))
+		} else if (!categorie.equals(other.categorie))
 			return false;
 		if (Double.doubleToLongBits(co2) != Double.doubleToLongBits(other.co2))
 			return false;

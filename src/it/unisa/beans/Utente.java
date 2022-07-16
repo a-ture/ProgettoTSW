@@ -3,18 +3,18 @@ package it.unisa.beans;
 import java.io.Serializable;
 import java.util.Collection;
 
-public class User implements Cloneable, Serializable {
+public class Utente implements Cloneable, Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private int id;
 	private String nome;
 	private String cognome;
-	private Collection<Address> indirizzi;
+	private Collection<Indirizzo> indirizzi;
 	private String email;
 	private String password;
 	private String role;
 
-	public User(int id, String nome, String cognome, Collection<Address> indirizzi, String email, String password,
+	public Utente(int id, String nome, String cognome, Collection<Indirizzo> indirizzi, String email, String password,
 			String role) {
 		super();
 		this.id = id;
@@ -25,6 +25,8 @@ public class User implements Cloneable, Serializable {
 		this.password = password;
 		this.role = role;
 	}
+	
+	public Utente() {}
 
 	public int getId() {
 		return id;
@@ -50,11 +52,11 @@ public class User implements Cloneable, Serializable {
 		this.cognome = cognome;
 	}
 
-	public Collection<Address> getIndirizzi() {
+	public Collection<Indirizzo> getIndirizzi() {
 		return indirizzi;
 	}
 
-	public void setIndirizzi(Collection<Address> indirizzi) {
+	public void setIndirizzi(Collection<Indirizzo> indirizzi) {
 		this.indirizzi = indirizzi;
 	}
 
@@ -114,7 +116,7 @@ public class User implements Cloneable, Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		User other = (User) obj;
+		Utente other = (Utente) obj;
 		if (cognome == null) {
 			if (other.cognome != null)
 				return false;

@@ -2,32 +2,32 @@ package it.unisa.beans;
 
 import java.util.ArrayList;
 
-public class Category {
+public class Categoria {
 
 	private int id;
 	private String nome, descrizione;
 
-	private ArrayList<Integer> productsId;
+	private ArrayList<Integer> prodottiId;
 
-	public Category() {
-		productsId = new ArrayList<Integer>();
+	public Categoria() {
+		prodottiId = new ArrayList<Integer>();
 	}
 
 	public void addProductId(int code) {
-		if (productsId.contains(code))
-			productsId.add(code);
+		if (prodottiId.contains(code))
+			prodottiId.add(code);
 	}
 
 	public boolean isProductBelongs(int idProduct) {
-		return productsId.contains(idProduct) ? true : false;
+		return prodottiId.contains(idProduct) ? true : false;
 	}
 
 	public ArrayList<Integer> getProductsId() {
-		return productsId;
+		return prodottiId;
 	}
 
 	public void setProductsId(ArrayList<Integer> productsId) {
-		this.productsId = productsId;
+		this.prodottiId = productsId;
 	}
 
 	public int getId() {
@@ -54,17 +54,16 @@ public class Category {
 		this.descrizione = descrizione;
 	}
 
-	public Category(int id, String name, String description, String metaKeywords, String metaTitle,
-			String metaDescription) {
+	public Categoria(int id, String nome, String descrizione) {
 		super();
 		this.id = id;
-		this.nome = name;
-		this.descrizione = description;
+		this.nome = nome;
+		this.descrizione = descrizione;
 
-		productsId = new ArrayList<Integer>();
+		prodottiId = new ArrayList<Integer>();
 	}
 
-	public Category(int id) {
+	public Categoria(int id) {
 		this.setId(id);
 	}
 
@@ -86,7 +85,7 @@ public class Category {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Category other = (Category) obj;
+		Categoria other = (Categoria) obj;
 		if (id != other.id)
 			return false;
 		if (nome == null) {

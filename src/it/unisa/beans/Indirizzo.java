@@ -1,6 +1,6 @@
 package it.unisa.beans;
 
-public class Address {
+public class Indirizzo {
 	private int id;
 	private int uid;
 	private String nome;
@@ -13,9 +13,8 @@ public class Address {
 	private String info;
 	private String alias;
 	private boolean preferred;
-	
-	
-	public Address(int id, int uid, String nome, String cognome, String indirizzo, String cAP, String città,
+
+	public Indirizzo(int id, int uid, String nome, String cognome, String indirizzo, String cAP, String città,
 			String provincia, String telefono, String info, String alias, boolean preferred) {
 		super();
 		this.id = id;
@@ -31,7 +30,6 @@ public class Address {
 		this.alias = alias;
 		this.preferred = preferred;
 	}
-
 
 	@Override
 	public int hashCode() {
@@ -52,7 +50,6 @@ public class Address {
 		return result;
 	}
 
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -61,7 +58,7 @@ public class Address {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Address other = (Address) obj;
+		Indirizzo other = (Indirizzo) obj;
 		if (CAP == null) {
 			if (other.CAP != null)
 				return false;
@@ -116,7 +113,6 @@ public class Address {
 		return true;
 	}
 
-
 	@Override
 	public String toString() {
 		return "Address [id=" + id + ", uid=" + uid + ", nome=" + nome + ", cognome=" + cognome + ", indirizzo="
@@ -124,126 +120,100 @@ public class Address {
 				+ telefono + ", info=" + info + ", alias=" + alias + ", preferred=" + preferred + "]";
 	}
 
-
 	public int getId() {
 		return id;
 	}
-
 
 	public void setId(int id) {
 		this.id = id;
 	}
 
-
 	public int getUid() {
 		return uid;
 	}
-
 
 	public void setUid(int uid) {
 		this.uid = uid;
 	}
 
-
 	public String getNome() {
 		return nome;
 	}
-
 
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
-
 	public String getCognome() {
 		return cognome;
 	}
-
 
 	public void setCognome(String cognome) {
 		this.cognome = cognome;
 	}
 
-
 	public String getIndirizzo() {
 		return indirizzo;
 	}
-
 
 	public void setIndirizzo(String indirizzo) {
 		this.indirizzo = indirizzo;
 	}
 
-
 	public String getCAP() {
 		return CAP;
 	}
-
 
 	public void setCAP(String cAP) {
 		CAP = cAP;
 	}
 
-
 	public String getCittà() {
 		return città;
 	}
-
 
 	public void setCittà(String città) {
 		this.città = città;
 	}
 
-
 	public String getProvincia() {
 		return provincia;
 	}
-
 
 	public void setProvincia(String provincia) {
 		this.provincia = provincia;
 	}
 
-
 	public String getTelefono() {
 		return telefono;
 	}
-
 
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
 
-
 	public String getInfo() {
 		return info;
 	}
-
 
 	public void setInfo(String info) {
 		this.info = info;
 	}
 
-
 	public String getAlias() {
 		return alias;
 	}
-
 
 	public void setAlias(String alias) {
 		this.alias = alias;
 	}
 
-
 	public boolean isPreferred() {
 		return preferred;
 	}
 
-
 	public void setPreferred(boolean preferred) {
 		this.preferred = preferred;
 	}
-	
-	
-	
+
 }

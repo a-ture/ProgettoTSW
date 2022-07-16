@@ -14,11 +14,11 @@ public class Order {
 	private boolean regalo;
 	private String messaggioRegalo;
 	private Collection<OrderItem> items;
-	private User user;
+	private Utente utente;
 	private LocalDateTime createdAt;
 
 	public Order(int id, String destinazione, int totaleProdotti, double totalPagato, String stato, boolean regalo,
-			String messaggioRegalo, Collection<OrderItem> items, User user, LocalDateTime createdAt) {
+			String messaggioRegalo, Collection<OrderItem> items, Utente user, LocalDateTime createdAt) {
 		super();
 		this.id = id;
 		this.destinazione = destinazione;
@@ -28,7 +28,7 @@ public class Order {
 		this.regalo = regalo;
 		this.messaggioRegalo = messaggioRegalo;
 		this.items = items;
-		this.user = user;
+		this.utente = user;
 		this.createdAt = createdAt;
 	}
 
@@ -96,12 +96,12 @@ public class Order {
 		this.items = items;
 	}
 
-	public User getUser() {
-		return user;
+	public Utente getUser() {
+		return utente;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUser(Utente user) {
+		this.utente = user;
 	}
 
 	public LocalDateTime getCreatedAt() {

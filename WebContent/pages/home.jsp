@@ -213,7 +213,7 @@
 						<h5 class="card-title fw-bold">Regala</h5>
 						<p class="card-text">Un regalo originale per l’ambiente e per
 							le persone a cui vuoi bene</p>
-						<a class="btn btn-primary" href="#">Regala</a>
+						<a class="btn btn-primary" href="gift.jsp">Regala</a>
 					</div>
 				</div>
 			</div>

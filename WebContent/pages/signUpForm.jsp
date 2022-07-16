@@ -21,7 +21,7 @@
 <!-- FontAwesome -->
 <script src="https://kit.fontawesome.com/6bd8866cc2.js"
 	crossorigin="anonymous"></script>
-</head>
+<script src="../resources/scripts/signInFormValidation.js"></script>
 </head>
 <body>
 	<section class="vh-100" style="background-color: #eee;">
@@ -36,53 +36,58 @@
 
 									<p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Registrati</p>
 
-									<form class="mx-1 mx-md-4">
-
+									<form action="Login" name="signIn"
+										onsubmit="return formValidation();" method="POST"
+										class="mx-1 mx-md-4">
 										<div class="d-flex flex-row align-items-center mb-4">
 											<i class="fas fa-user fa-lg me-3 fa-fw"></i>
 											<div class="form-outline flex-fill mb-0">
-												<input type="text" id="form3Example1c" class="form-control" />
-												<label class="form-label" for="form3Example1c">Il
-													tuo nome</label>
+												<input type="text" id="nome" class="form-control" /> <label
+													class="form-label" for="nome">Il tuo nome</label>
 											</div>
 										</div>
-
+										<div class="d-flex flex-row align-items-center mb-4">
+											<i class="fas fa-user fa-lg me-3 fa-fw"></i>
+											<div class="form-outline flex-fill mb-0">
+												<input type="text" id="cognome" class="form-control" /> <label
+													class="form-label" for="cognome">Il tuo cognome</label>
+											</div>
+										</div>
 										<div class="d-flex flex-row align-items-center mb-4">
 											<i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
 											<div class="form-outline flex-fill mb-0">
-												<input type="email" id="form3Example3c" class="form-control" />
-												<label class="form-label" for="form3Example3c">La
-													tua e-mail</label>
+												<input type="email" id="email" class="form-control" /> <label
+													class="form-label" for="email">La tua e-mail</label>
 											</div>
 										</div>
 
 										<div class="d-flex flex-row align-items-center mb-4">
 											<i class="fas fa-lock fa-lg me-3 fa-fw"></i>
 											<div class="form-outline flex-fill mb-0">
-												<input type="password" id="form3Example4c"
-													class="form-control" /> <label class="form-label"
-													for="form3Example4c">Password</label>
+												<input type="password" id="password" class="form-control" />
+												<label class="form-label" for="password">Password</label>
 											</div>
 										</div>
 
 										<div class="d-flex flex-row align-items-center mb-4">
 											<i class="fas fa-key fa-lg me-3 fa-fw"></i>
 											<div class="form-outline flex-fill mb-0">
-												<input type="password" id="form3Example4cd"
-													class="form-control" /> <label class="form-label"
-													for="form3Example4cd">Ripeti la tua password</label>
+												<input type="password" id="password1" class="form-control" />
+												<label class="form-label" for="password1">Ripeti la
+													tua password</label>
 											</div>
 										</div>
 
 										<div class="form-check d-flex justify-content-center mb-5">
 											<input class="form-check-input me-2" type="checkbox" value=""
-												id="form2Example3c" /> <label class="form-check-label"
-												for="form2Example3"> Accetto tutte le <a href="condizioni.jsp">condizioni
-													d'utilizzo</a>
+												id="condizioni" required /> <label class="form-check-label"
+												for="condizioni"> Accetto tutte le <a
+												href="condizioni.jsp">condizioni d'utilizzo</a>
 											</label>
 										</div>
 										<div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-											<button type="button" class="btn btn-primary btn-lg">Registrati</button>
+											<div id="errorMessage"></div>
+											<button type="submit" class="btn btn-primary btn-lg">Registrati</button>
 										</div>
 									</form>
 								</div>
@@ -100,5 +105,6 @@
 			</div>
 		</div>
 	</section>
+
 </body>
 </html>
