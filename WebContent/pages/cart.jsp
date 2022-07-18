@@ -1,5 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
+<!-- accesso alla sessione -->
+<%@ page session="true"%>
+
+<!-- pagina per la gestione di errori -->
+<%@ page errorPage="../error/error404.jsp"%>
+
+<!-- import di classi Java -->
+<%@ page import="it.unisa.model.Carrello"%>
+<%@ page import="it.unisa.beans.ProdottoCarrello"%>
+<%@ page import="it.unisa.beans.Prodotto"%>
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
