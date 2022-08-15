@@ -29,7 +29,7 @@
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 		<div class="container-fluid">
 			<button class="btn btn-primary">
-				<img class="navbar-brand" src="../resources/img/logo.png"
+				<img class="navbar-brand" src="./resources/img/logo.png"
 					height="60px">
 			</button>
 			<button class="navbar-toggler collapsed" type="button"
@@ -41,23 +41,24 @@
 
 			<div class="navbar-collapse collapse" id="navbarColor01" style="">
 				<ul class="navbar-nav me-auto">
-					<li class="nav-item"><a class="nav-link active"
-						href="home.jsp">Home <span class="visually-hidden">(current)</span>
+					<li class="nav-item"><a class="nav-link active" href="Home">Home
+							<span class="visually-hidden">(current)</span>
 					</a></li>
-					<li class="nav-item"><a class="nav-link" href="catalogo.jsp">Alberi</a></li>
+					<li class="nav-item"><a class="nav-link" href="Catalogo">Alberi</a></li>
 					<li class="nav-item"><a class="nav-link" href="chiSiamo.jsp">Chi
 							Siamo</a></li>
 					<li class="nav-item"><a class="btn btn-secondary my-2 my-sm-0"
 						href="#">Hai un Treecode?</a></li>
 				</ul>
-
 				<div>
 					<ul class="navbar-nav me-auto">
 						<li class="nav-item"><a
-							class="btn btn-secondary my-2 my-sm-0" href="formLogin.jsp">Accedi</a></li>
-						<li class="nav-item"><a href="cart.jsp"><img class="nav-link img-fluid"
-							src="../resources/img/icons8-carriola-50.png" width="40"
-							height="40"></a></li>
+							class="btn btn-secondary my-2 my-sm-0" href="Login">Accedi</a></li>
+						<li class="nav-item"><a
+							href="Prodotto?action=visualizzaCarrello"><img
+								class="nav-link img-fluid"
+								src="./resources/img/icons8-carriola-50.png" width="40"
+								height="40"></a></li>
 					</ul>
 				</div>
 			</div>

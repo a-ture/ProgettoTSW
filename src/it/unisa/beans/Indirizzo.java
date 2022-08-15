@@ -1,6 +1,10 @@
 package it.unisa.beans;
 
-public class Indirizzo {
+import java.io.Serializable;
+
+public class Indirizzo implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 	private int id;
 	private int uid;
 	private String nome;
@@ -9,13 +13,10 @@ public class Indirizzo {
 	private String CAP;
 	private String città;
 	private String provincia;
-	private String telefono;
-	private String info;
-	private String alias;
 	private boolean preferred;
 
 	public Indirizzo(int id, int uid, String nome, String cognome, String indirizzo, String cAP, String città,
-			String provincia, String telefono, String info, String alias, boolean preferred) {
+			String provincia, boolean preferred) {
 		super();
 		this.id = id;
 		this.uid = uid;
@@ -25,10 +26,11 @@ public class Indirizzo {
 		CAP = cAP;
 		this.città = città;
 		this.provincia = provincia;
-		this.telefono = telefono;
-		this.info = info;
-		this.alias = alias;
 		this.preferred = preferred;
+	}
+
+	public Indirizzo() {
+
 	}
 
 	@Override
@@ -36,16 +38,16 @@ public class Indirizzo {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((CAP == null) ? 0 : CAP.hashCode());
-		result = prime * result + ((alias == null) ? 0 : alias.hashCode());
+
 		result = prime * result + ((città == null) ? 0 : città.hashCode());
 		result = prime * result + ((cognome == null) ? 0 : cognome.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((indirizzo == null) ? 0 : indirizzo.hashCode());
-		result = prime * result + ((info == null) ? 0 : info.hashCode());
+
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		result = prime * result + (preferred ? 1231 : 1237);
 		result = prime * result + ((provincia == null) ? 0 : provincia.hashCode());
-		result = prime * result + ((telefono == null) ? 0 : telefono.hashCode());
+
 		result = prime * result + uid;
 		return result;
 	}
@@ -64,11 +66,7 @@ public class Indirizzo {
 				return false;
 		} else if (!CAP.equals(other.CAP))
 			return false;
-		if (alias == null) {
-			if (other.alias != null)
-				return false;
-		} else if (!alias.equals(other.alias))
-			return false;
+
 		if (città == null) {
 			if (other.città != null)
 				return false;
@@ -86,11 +84,7 @@ public class Indirizzo {
 				return false;
 		} else if (!indirizzo.equals(other.indirizzo))
 			return false;
-		if (info == null) {
-			if (other.info != null)
-				return false;
-		} else if (!info.equals(other.info))
-			return false;
+
 		if (nome == null) {
 			if (other.nome != null)
 				return false;
@@ -103,11 +97,6 @@ public class Indirizzo {
 				return false;
 		} else if (!provincia.equals(other.provincia))
 			return false;
-		if (telefono == null) {
-			if (other.telefono != null)
-				return false;
-		} else if (!telefono.equals(other.telefono))
-			return false;
 		if (uid != other.uid)
 			return false;
 		return true;
@@ -116,8 +105,8 @@ public class Indirizzo {
 	@Override
 	public String toString() {
 		return "Address [id=" + id + ", uid=" + uid + ", nome=" + nome + ", cognome=" + cognome + ", indirizzo="
-				+ indirizzo + ", CAP=" + CAP + ", città=" + città + ", provincia=" + provincia + ", telefono="
-				+ telefono + ", info=" + info + ", alias=" + alias + ", preferred=" + preferred + "]";
+				+ indirizzo + ", CAP=" + CAP + ", città=" + città + ", provincia=" + provincia + ", preferred="
+				+ preferred + "]";
 	}
 
 	public int getId() {
@@ -182,30 +171,6 @@ public class Indirizzo {
 
 	public void setProvincia(String provincia) {
 		this.provincia = provincia;
-	}
-
-	public String getTelefono() {
-		return telefono;
-	}
-
-	public void setTelefono(String telefono) {
-		this.telefono = telefono;
-	}
-
-	public String getInfo() {
-		return info;
-	}
-
-	public void setInfo(String info) {
-		this.info = info;
-	}
-
-	public String getAlias() {
-		return alias;
-	}
-
-	public void setAlias(String alias) {
-		this.alias = alias;
 	}
 
 	public boolean isPreferred() {

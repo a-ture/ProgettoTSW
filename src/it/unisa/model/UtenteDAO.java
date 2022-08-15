@@ -56,7 +56,7 @@ public class UtenteDAO implements GenericDAO<Utente> {
 				bean.setNome(rs.getString("nome"));
 				bean.setPassword(rs.getString("password"));
 				bean.setRole(rs.getString("role"));
-
+				bean.setActive(rs.getBoolean("active"));
 			}
 
 		} finally {
@@ -101,7 +101,7 @@ public class UtenteDAO implements GenericDAO<Utente> {
 				bean.setNome(rs.getString("nome"));
 				bean.setPassword(rs.getString("password"));
 				bean.setRole(rs.getString("role"));
-
+				bean.setActive(rs.getBoolean("active"));
 				beans.add(bean);
 			}
 		} finally {
@@ -129,14 +129,18 @@ public class UtenteDAO implements GenericDAO<Utente> {
 		PreparedStatement preparedStatement = null;
 
 		String insertSQL = "INSERT INTO " + UtenteDAO.TABLE_NAME
-				+ " (nome, nomeScientifico, descrizione, descrizioneBreve, altezza, prezzo,"
-				+ " paeseDiOrigine, quantità, co2, salvaguardia) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				+ " (username,password,email,nome,cognome,role) VALUES (?,?,?,?,?,?)";
 
 		try {
 			connection = ds.getConnection();
 
 			preparedStatement = connection.prepareStatement(insertSQL);
-			preparedStatement.setString(1, item.getNome());
+			preparedStatement.setString(1, item.getUsername());
+			preparedStatement.setString(2, item.getPassword());
+			preparedStatement.setString(3, item.getEmail());
+			preparedStatement.setString(4, item.getNome());
+			preparedStatement.setString(5, item.getCognome());
+			preparedStatement.setString(6, item.getRole());
 
 			preparedStatement.executeUpdate();
 
@@ -227,4 +231,110 @@ public class UtenteDAO implements GenericDAO<Utente> {
 		return bean;
 
 	}
+
+	public int findNumberOfTree(int id) throws SQLException {
+
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		int numberOfTree = 0;
+
+		String selectSQL = "SELECT * FROM ordine" + " WHERE uid=?";
+
+		try {
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setInt(1, id);
+
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+
+				numberOfTree += rs.getInt("totaleProdotti");
+
+			}
+
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null)
+					connection.close();
+			}
+		}
+		return numberOfTree;
+
+	}
+
+	public int findNumberOfGift(int id) throws SQLException {
+
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		int numberOfGift = 0;
+
+		String selectSQL = "SELECT * FROM ordine AS o" + " WHERE uid=?";
+
+		try {
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setInt(1, id);
+
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+
+				numberOfGift += rs.getInt("regalo");
+
+			}
+
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null)
+					connection.close();
+			}
+		}
+		return numberOfGift;
+
+	}
+
+	public double findAmountSpent(int id) throws SQLException {
+
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		double amount = 0;
+
+		String selectSQL = "SELECT * FROM ordine AS o" + " WHERE uid=?";
+
+		try {
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setInt(1, id);
+
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+
+				amount += rs.getDouble("totalePagato");
+
+			}
+
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null)
+					connection.close();
+			}
+		}
+		return amount;
+
+	}
+
 }

@@ -13,8 +13,9 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import it.unisa.beans.Categoria;
+import it.unisa.beans.Indirizzo;
 
-public class CategoriaDAO implements GenericDAO<Categoria> {
+public class IndirizzoDAO implements GenericDAO<Indirizzo> {
 
 	private static DataSource ds;
 
@@ -30,17 +31,17 @@ public class CategoriaDAO implements GenericDAO<Categoria> {
 		}
 	}
 
-	private static final String TABLE_NAME = "categoria";
+	private static final String TABLE_NAME = "indirizzo";
 
 	@Override
-	public Categoria doRetriveByKey(String code) throws SQLException {
+	public Indirizzo doRetriveByKey(String code) throws SQLException {
 
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
-		Categoria bean = new Categoria();
+		Indirizzo bean = new Indirizzo();
 
-		String selectSQL = "SELECT * FROM " + CategoriaDAO.TABLE_NAME + " WHERE CODE = ?";
+		String selectSQL = "SELECT * FROM " + IndirizzoDAO.TABLE_NAME + " WHERE id = ?";
 
 		try {
 			connection = ds.getConnection();
@@ -50,11 +51,16 @@ public class CategoriaDAO implements GenericDAO<Categoria> {
 			ResultSet rs = preparedStatement.executeQuery();
 
 			while (rs.next()) {
-				bean.setDescrizione(rs.getString("descrizione"));
+				bean.setCAP(rs.getString("cap"));
+				bean.setCittà(rs.getString("città"));
+				bean.setCognome(rs.getString("cognome"));
 				bean.setId(rs.getInt("id"));
+				bean.setIndirizzo(rs.getString("indirizzo"));
 				bean.setNome(rs.getString("nome"));
-			}
+				bean.setPreferred(rs.getBoolean("preferred"));
+				bean.setUid(rs.getInt("uid"));
 
+			}
 		} finally {
 			try {
 				if (preparedStatement != null)
@@ -68,15 +74,14 @@ public class CategoriaDAO implements GenericDAO<Categoria> {
 	}
 
 	@Override
-	public Collection<Categoria> doRetriveAll(String order) throws SQLException {
-
+	public Collection<Indirizzo> doRetriveAll(String order) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet rs = null;
 
-		Collection<Categoria> beans = new LinkedList<Categoria>();
+		Collection<Indirizzo> beans = new LinkedList<Indirizzo>();
 
-		String selectSQL = "SELECT * FROM " + CategoriaDAO.TABLE_NAME;
+		String selectSQL = "SELECT * FROM " + IndirizzoDAO.TABLE_NAME;
 
 		if (order != null && !order.equals("")) {
 			selectSQL += " ORDER BY " + order;
@@ -89,14 +94,17 @@ public class CategoriaDAO implements GenericDAO<Categoria> {
 			rs = preparedStatement.executeQuery();
 
 			while (rs.next()) {
-				Categoria bean = new Categoria();
-
-				bean.setDescrizione(rs.getString("descrizione"));
+				Indirizzo bean = new Indirizzo();
+				bean.setCAP(rs.getString("cap"));
+				bean.setCittà(rs.getString("città"));
+				bean.setCognome(rs.getString("cognome"));
 				bean.setId(rs.getInt("id"));
+				bean.setIndirizzo(rs.getString("indirizzo"));
 				bean.setNome(rs.getString("nome"));
+				bean.setPreferred(rs.getBoolean("preferred"));
+				bean.setUid(rs.getInt("uid"));
 
 				beans.add(bean);
-
 			}
 		} finally {
 			try {
@@ -118,47 +126,24 @@ public class CategoriaDAO implements GenericDAO<Categoria> {
 	}
 
 	@Override
-	public void doSave(Categoria item) throws SQLException {
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
+	public void doSave(Indirizzo item) throws SQLException {
 
-		String insertSQL = "INSERT INTO " + CategoriaDAO.TABLE_NAME + " (nome,descrizione)" + " VALUES (?, ?)";
-
-		try {
-			connection = ds.getConnection();
-
-			preparedStatement = connection.prepareStatement(insertSQL);
-			preparedStatement.setString(1, item.getNome());
-			preparedStatement.setString(2, item.getDescrizione());
-
-			preparedStatement.executeUpdate();
-
-			connection.commit();
-		} finally {
-			try {
-				if (preparedStatement != null)
-					preparedStatement.close();
-			} finally {
-				if (connection != null)
-					connection.close();
-			}
-		}
 	}
 
 	@Override
-	public int doUpdate(Categoria item) throws SQLException {
+	public int doUpdate(Indirizzo item) throws SQLException {
 		return 0;
+
 	}
 
 	@Override
-	public boolean doDelete(Categoria item) throws SQLException {
-
+	public boolean doDelete(Indirizzo item) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
 		int result = 0;
 
-		String deleteSQL = "DELETE FROM " + CategoriaDAO.TABLE_NAME + " WHERE id = ?";
+		String deleteSQL = "DELETE FROM " + IndirizzoDAO.TABLE_NAME + " WHERE id = ?";
 
 		try {
 			connection = ds.getConnection();

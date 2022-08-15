@@ -1,6 +1,8 @@
 package it.unisa.beans;
 
-public class ProdottoCarrello {
+import java.io.Serializable;
+
+public class ProdottoCarrello implements Serializable {
 	private static final long serialVersionUID = 1L;
 	int quantità;
 	private Prodotto prodotto;
@@ -48,10 +50,6 @@ public class ProdottoCarrello {
 
 	public int getId() {
 		return this.prodotto.getId();
-	}
-
-	public String getPrezzoTotaleToString() {
-		return String.format("%.0f", getPrezzoTotale()) + "%";
 	}
 
 	public double getPrezzoTotale() {

@@ -4,15 +4,11 @@
 <!-- accesso alla sessione -->
 <%@ page session="true"%>
 
-<!-- pagina per la gestione di errori -->
-<%@ page errorPage="../error/error404.jsp"%>
-
-<!-- import di classi Java -->
-<%@ page import="it.unisa.model.Carrello"%>
-<%@ page import="it.unisa.beans.ProdottoCarrello"%>
-<%@ page import="it.unisa.beans.Prodotto"%>
-
-
+<%@ page
+	import="it.unisa.beans.Prodotto, java.text.*,it.unisa.beans.ProdottoCarrello,it.unisa.model.Carrello,it.unisa.beans.ProdottoCarrello,java.util.*"%>
+<%
+DecimalFormat dFormat = new DecimalFormat("0.00");
+%>
 
 <!DOCTYPE html>
 <html>
@@ -36,11 +32,15 @@
 <script src="https://kit.fontawesome.com/6bd8866cc2.js"
 	crossorigin="anonymous"></script>
 </head>
+
 <body>
 	<!-- Header -->
 	<%@ include file="../fragments/header.jsp"%>
 	<section class="h-100" style="background-color: #d2c9ff;">
 		<div class="container py-5 h-100">
+
+			<jsp:useBean id="carrello" class="it.unisa.model.Carrello"
+				scope="session" />
 			<div
 				class="row d-flex justify-content-center align-items-center h-100">
 				<div class="col-12">
@@ -53,117 +53,62 @@
 										<div
 											class="d-flex justify-content-between align-items-center mb-5">
 											<h1 class="fw-bold mb-0 text-black">Carrello</h1>
-											<h6 class="mb-0 text-muted">3 Alberi</h6>
+											<h6 class="mb-0 text-muted"><%=carrello.getQuantitàTotaleProdotti()%></h6>
 										</div>
+
+										<%
+										ProdottoCarrello[] prodottiCarrello = carrello.getProdotti().toArray(new ProdottoCarrello[0]);
+										for (ProdottoCarrello prodottoCarrello : prodottiCarrello) {
+											Prodotto prodotto = prodottoCarrello.getProdotto();
+										%>
 										<hr class="my-4">
 										<div
 											class="row mb-4 d-flex justify-content-between align-items-center">
 											<div class="col-md-2 col-lg-2 col-xl-2">
-												<img
-													src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img5.webp"
+												<img src="" onerror="this.src='./resources//img/error.jpg'"
 													class="img-fluid rounded-3" alt="Cotton T-shirt">
 											</div>
 											<div class="col-md-3 col-lg-3 col-xl-3">
-												<h6 class="text-muted">Shirt</h6>
-												<h6 class="text-black mb-0">Cotton T-shirt</h6>
+												<h6 class="text-muted"><%=prodotto.getNome()%></h6>
+												<h6 class="text-black mb-0"><%=dFormat.format(prodotto.getPrezzo())%>
+													€ al pezzo
+												</h6>
 											</div>
 											<div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-												<button class="btn btn-link px-2"
-													onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+												<a class="btn btn-link "
+													href="Prodotto?action=aggiornaQuantitàProdotto&quantità=<%=prodottoCarrello.getQuantità()%>&azione=meno&id=<%=prodotto.getId()%>">
 													<i class="fas fa-minus"></i>
-												</button>
-
-												<input id="form1" min="0" name="quantity" value="1"
-													type="number" class="form-control form-control-sm" />
-
-												<button class="btn btn-link px-2"
-													onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+												</a>
+												<p class="form-control form-control"><%=prodottoCarrello.getQuantità()%></p>
+												<a class="btn btn-link"
+													href="Prodotto?action=aggiornaQuantitàProdotto&quantità=<%=prodottoCarrello.getQuantità()%>&azione=più&id=<%=prodotto.getId()%>">
 													<i class="fas fa-plus"></i>
-												</button>
+												</a>
 											</div>
 											<div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-												<h6 class="mb-0">€ 44.00</h6>
+												<h6 class="mb-0"><%=dFormat.format(prodottoCarrello.getPrezzoTotale())%>€
+												</h6>
 											</div>
 											<div class="col-md-1 col-lg-1 col-xl-1 text-end">
-												<a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
+												<a
+													href="Prodotto?action=eliminaProdottoCarrello&id=<%=prodotto.getId()%>"
+													class="text-muted"><i class="fas fa-times"></i></a>
 											</div>
 										</div>
 										<hr class="my-4">
+										<%
+										}
+										%>
 										<div
-											class="row mb-4 d-flex justify-content-between align-items-center">
-											<div class="col-md-2 col-lg-2 col-xl-2">
-												<img
-													src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img6.webp"
-													class="img-fluid rounded-3" alt="Cotton T-shirt">
-											</div>
-											<div class="col-md-3 col-lg-3 col-xl-3">
-												<h6 class="text-muted">Shirt</h6>
-												<h6 class="text-black mb-0">Cotton T-shirt</h6>
-											</div>
-											<div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-												<button class="btn btn-link px-2"
-													onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-													<i class="fas fa-minus"></i>
-												</button>
-
-												<input id="form1" min="0" name="quantity" value="1"
-													type="number" class="form-control form-control-sm" />
-
-												<button class="btn btn-link px-2"
-													onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-													<i class="fas fa-plus"></i>
-												</button>
-											</div>
-											<div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-												<h6 class="mb-0">€ 44.00</h6>
-											</div>
-											<div class="col-md-1 col-lg-1 col-xl-1 text-end">
-												<a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
-											</div>
-										</div>
-
-										<hr class="my-4">
-
-										<div
-											class="row mb-4 d-flex justify-content-between align-items-center">
-											<div class="col-md-2 col-lg-2 col-xl-2">
-												<img
-													src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img7.webp"
-													class="img-fluid rounded-3" alt="Cotton T-shirt">
-											</div>
-											<div class="col-md-3 col-lg-3 col-xl-3">
-												<h6 class="text-muted">Shirt</h6>
-												<h6 class="text-black mb-0">Cotton T-shirt</h6>
-											</div>
-											<div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-												<button class="btn btn-link px-2"
-													onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-													<i class="fas fa-minus"></i>
-												</button>
-
-												<input id="form1" min="0" name="quantity" value="1"
-													type="number" class="form-control form-control-sm" />
-
-												<button class="btn btn-link px-2"
-													onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-													<i class="fas fa-plus"></i>
-												</button>
-											</div>
-											<div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-												<h6 class="mb-0">€ 44.00</h6>
-											</div>
-											<div class="col-md-1 col-lg-1 col-xl-1 text-end">
-												<a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
-											</div>
-										</div>
-
-										<hr class="my-4">
-
-										<div class="pt-5">
+											class="d-flex justify-content-between align-items-center mb-5">
 											<h6 class="mb-0">
-												<a href="catalogo.jsp" class="text-body"><i
+												<a href="Catalogo" class="text-body"><i
 													class="fas fa-long-arrow-alt-left me-2"></i>Continua con lo
 													shopping</a>
+											</h6>
+											<h6 class="mb-0">
+												<a href="Prodotto?action=svuotaCarrello" class="text-body"><i
+													class="fa-solid fa-trash-can"></i> Svuota il carrello</a>
 											</h6>
 										</div>
 									</div>
@@ -172,37 +117,23 @@
 									<div class="p-5">
 										<h3 class="fw-bold mb-5 mt-2 pt-1">Riepilogo</h3>
 										<hr class="my-4">
-										<h5 class="text-uppercase mb-3">Spedizione</h5>
-										<div class="mb-4 pb-2">
-											<select class="form-select">
-												<option value="1">Standard-Delivery- €5.00</option>
-												<option value="2">Two</option>
-												<option value="3">Three</option>
-												<option value="4">Four</option>
-											</select>
-										</div>
-										<hr class="my-4">
 										<div class="d-flex justify-content-between">
 											<p class="mb-2">Totale del carrello (IVA esclusa)</p>
-											<p class="mb-2">$4798.00</p>
+											<p class="mb-2"><%=dFormat.format(carrello.getPrezzoTotaleProdotti())%>
+												€
+											</p>
 										</div>
-
-										<div class="d-flex justify-content-between">
-											<p class="mb-2">Spese di spedizioni</p>
-											<p class="mb-2">$20.00</p>
-										</div>
-
 										<div class="d-flex justify-content-between mb-4">
 											<p class="mb-2">Totale(IVA inclusa)</p>
-											<p class="mb-2">$4818.00</p>
+											<p class="mb-2"><%=dFormat.format(carrello.getPrezzoTotaleProdotti())%>
+												€
+											</p>
 										</div>
-
-										<button type="button" class="btn btn-dark btn-block btn-lg">
-											<div class="d-flex justify-content-between">
-												<span>$4818.00</span> <a href="checkout.jsp">Checkout <i
-													class="fas fa-long-arrow-alt-right ms-2"></i></a>
-											</div>
-										</button>
+										<div class="d-flex justify-content-between">
+											<a href="Login?action=checkout"
+												class="btn btn-dark btn-block btn-lg">Checkout <i
+												class="fas fa-long-arrow-alt-right ms-2"></i></a>
+										</div>
 									</div>
 								</div>
 							</div>

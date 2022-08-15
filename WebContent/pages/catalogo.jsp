@@ -1,5 +1,23 @@
+
+<!-- accesso alla sessione -->
+<%@ page session="true"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
+<%
+Collection<?> prodotti = (Collection<?>) request.getAttribute("prodotti");
+Collection<?> foto = (Collection<?>) request.getAttribute("fotoProdotti");
+Collection<?> categorie = (Collection<?>) request.getAttribute("categorie");
+if (prodotti == null || foto == null || categorie == null) {
+	response.sendRedirect("./Catalogo");
+	return;
+}
+DecimalFormat dFormat = new DecimalFormat("0.00");
+%>
+
+<%@ page contentType="text/html; charset=UTF-8"
+	import="java.util.*,it.unisa.beans.*, java.text.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -53,11 +71,39 @@
 						class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
 						aria-haspopup="true" aria-expanded="false"></button>
 					<div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-						<a class="dropdown-item" href="#">Prezzo più alto</a> <a
-							class="dropdown-item" href="#">Prezzo più basso</a>
+						<a class="dropdown-item" href="Catalogo?sort=prezzo DESC">Prezzo
+							più alto</a> <a class="dropdown-item" href="Catalogo?sort=prezzo ASC">Prezzo
+							più basso</a>
 					</div>
 				</div>
 			</div>
+			<!-- Categoria -->
+
+			<div class="btn-group" role="group"
+				aria-label="Button group with nested dropdown">
+				<button type="button" class="btn btn-primary">Categoria</button>
+				<div class="btn-group" role="group">
+					<button id="btnGroupDrop1" type="button"
+						class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false"></button>
+					<div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+						<%
+						if (categorie != null && categorie.size() != 0) {
+							Iterator<?> it2 = categorie.iterator();
+
+							while (it2.hasNext()) {
+								Categoria cat = (Categoria) it2.next();
+						%>
+						<a class="dropdown-item"
+							href="Catalogo?categoria=<%=cat.getId()%>"><%=cat.getNome()%></a>
+						<%
+						}
+						}
+						%>
+					</div>
+				</div>
+			</div>
+
 			<!-- Tipologia prodotti -->
 			<div class="btn-group" role="group"
 				aria-label="Button group with nested dropdown">
@@ -83,215 +129,51 @@
 						class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
 						aria-haspopup="true" aria-expanded="false"></button>
 					<div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-						<a class="dropdown-item" href="#">Paese 1</a> <a
-							class="dropdown-item" href="#">Paese 2</a> <a
-							class="dropdown-item" href="#">Paese 3</a>
+						<a class="dropdown-item" href="Catalogo?paese=Guatemala">Guatemala</a>
+						<a class="dropdown-item" href="Catalogo?paese=Italia">Italia</a> <a
+							class="dropdown-item" href="Catalogo?paese=Perù">Perù</a>
 					</div>
 				</div>
 			</div>
+
 		</div>
 		<!-- Fine Filtri -->
 
 		<!-- Sezione Prodotti -->
 		<br>
 		<div class="row row-cols-1 row-cols-md-4">
-			<!-- Card 1 -->
-			<div class="col">
-				<div class="card">
-					<img src="../resources/img/alberi/Arancia.png" class="card-img-top"
-						alt="Palm Springs Road" />
+			<%
+			if (prodotti != null && prodotti.size() != 0) {
+				Iterator<?> it = prodotti.iterator();
+				Iterator<?> it1 = foto.iterator();
+				while (it.hasNext() && it1.hasNext()) {
+					Prodotto bean = (Prodotto) it.next();
+					FotoProdotto bean1 = (FotoProdotto) it1.next();
+			%>
+			<!-- Card  -->
+			<div class="col ">
+				<div class="card h-100">
+					<img src="./GetFotoProdotto?idFoto=<%=bean1.getNomeFoto()%>"
+						class="card-img-top" 
+						onerror="this.src='./resources//img/error.jpg'" />
 					<div class="card-body">
-						<h5 class="card-title">Card title</h5>
-						<p class="card-text">This is a longer card with supporting
-							text below as a natural lead-in to additional content. This
-							content is a little bit longer.</p>
+						<h5 class="card-title text-center"><%=bean.getNome()%></h5>
+						<p class="card-text text-center"><%=bean.getDescrizioneBreve()%></p>
+						<p class="card-text text-center"><%=dFormat.format(bean.getPrezzo())%>
+							€
+						</p>
 						<div class="text-center">
-							<a class="btn btn-success" href="paginaProdotto.jsp">Piantalo
+							<a class="btn btn-success"
+								href="Prodotto?action=leggi&id=<%=bean.getId()%>">Piantalo
 								Ora</a>
 						</div>
 					</div>
 				</div>
 			</div>
-			<!-- Card 2 -->
-			<div class="col">
-				<div class="card">
-					<img src="../resources/img/alberi/Avocado.png" class="card-img-top"
-						alt="Palm Springs Road" />
-					<div class="card-body">
-						<h5 class="card-title">Card title</h5>
-						<p class="card-text">This is a longer card with supporting
-							text below as a natural lead-in to additional content. This
-							content is a little bit longer.</p>
-						<div class="text-center">
-							<a class="btn btn-success" href="paginaProdotto.jsp">Piantalo
-								Ora</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- Card 3 -->
-			<div class="col">
-				<div class="card">
-					<img src="../resources/img/alberi/Caoba.png" class="card-img-top"
-						alt="Los Angeles Skyscrapers" />
-					<div class="card-body">
-						<h5 class="card-title">Card title</h5>
-						<p class="card-text">This is a longer card with supporting
-							text below as a natural lead-in to additional content.</p>
-						<div class="text-center">
-							<a class="btn btn-success" href="paginaProdotto.jsp">Piantalo
-								Ora</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- Card 4 -->
-			<div class="col">
-				<div class="card">
-					<img src="../resources/img/alberi/Cedro.png" class="card-img-top"
-						alt="Los Angeles Skyscrapers" />
-					<div class="card-body">
-						<h5 class="card-title">Card title</h5>
-						<p class="card-text">This is a longer card with supporting
-							text below as a natural lead-in to additional content.</p>
-						<div class="text-center">
-							<a class="btn btn-success" href="paginaProdotto.jsp">Piantalo
-								Ora</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- Card 5 -->
-			<div class="col">
-				<div class="card">
-					<img src="../resources/img/alberi/Chico-zapote.png"
-						class="card-img-top" alt="Los Angeles Skyscrapers" />
-					<div class="card-body">
-						<h5 class="card-title">Card title</h5>
-						<p class="card-text">This is a longer card with supporting
-							text below as a natural lead-in to additional content.</p>
-						<div class="text-center">
-							<a class="btn btn-success" href="paginaProdotto.jsp">Piantalo
-								Ora</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- Card 6 -->
-			<div class="col">
-				<div class="card">
-					<img src="../resources/img/alberi/Forestale.png"
-						class="card-img-top" alt="Skyscrapers" />
-					<div class="card-body">
-						<h5 class="card-title">Card title</h5>
-						<p class="card-text">This is a longer card with supporting
-							text below as a natural lead-in to additional content. This
-							content is a little bit longer.</p>
-						<div class="text-center">
-							<a class="btn btn-success" href="paginaProdotto.jsp">Piantalo
-								Ora</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- Card 7 -->
-			<div class="col">
-				<div class="card">
-					<img src="../resources/img/alberi/Lime.png" class="card-img-top"
-						alt="Los Angeles Skyscrapers" />
-					<div class="card-body">
-						<h5 class="card-title">Card title</h5>
-						<p class="card-text">This is a longer card with supporting
-							text below as a natural lead-in to additional content.</p>
-						<div class="text-center">
-							<a class="btn btn-success" href="paginaProdotto.jsp">Piantalo
-								Ora</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- Card 8 -->
-			<div class="col">
-				<div class="card">
-					<img src="../resources/img/alberi/Melo.png" class="card-img-top"
-						alt="Skyscrapers" />
-					<div class="card-body">
-						<h5 class="card-title">Card title</h5>
-						<p class="card-text">This is a longer card with supporting
-							text below as a natural lead-in to additional content. This
-							content is a little bit longer.</p>
-						<div class="text-center">
-							<a class="btn btn-success" href="paginaProdotto.jsp">Piantalo
-								Ora</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- Card 9 -->
-			<div class="col">
-				<div class="card">
-					<img src="../resources/img/alberi/Mango_new.png"
-						class="card-img-top" alt="Los Angeles Skyscrapers" />
-					<div class="card-body">
-						<h5 class="card-title">Card title</h5>
-						<p class="card-text">This is a longer card with supporting
-							text below as a natural lead-in to additional content.</p>
-						<div class="text-center">
-							<a class="btn btn-success" href="paginaProdotto.jsp">Piantalo
-								Ora</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- Card 10 -->
-			<div class="col">
-				<div class="card">
-					<img src="../resources/img/alberi/Pesco.png" class="card-img-top"
-						alt="Los Angeles Skyscrapers" />
-					<div class="card-body">
-						<h5 class="card-title">Card title</h5>
-						<p class="card-text">This is a longer card with supporting
-							text below as a natural lead-in to additional content.</p>
-						<div class="text-center">
-							<a class="btn btn-success" href="paginaProdotto.jsp">Piantalo
-								Ora</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- Card 11 -->
-			<div class="col">
-				<div class="card">
-					<img src="../resources/img/alberi/Pioppo-1.png"
-						class="card-img-top" alt="Los Angeles Skyscrapers" />
-					<div class="card-body">
-						<h5 class="card-title">Card title</h5>
-						<p class="card-text">This is a longer card with supporting
-							text below as a natural lead-in to additional content.</p>
-						<div class="text-center">
-							<a class="btn btn-success" href="paginaProdotto.jsp">Piantalo
-								Ora</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- Card 12 -->
-			<div class="col">
-				<div class="card">
-					<img src="../resources/img/alberi/Pino-1.png" class="card-img-top"
-						alt="Skyscrapers" />
-					<div class="card-body">
-						<h5 class="card-title">Card title</h5>
-						<p class="card-text">This is a longer card with supporting
-							text below as a natural lead-in to additional content. This
-							content is a little bit longer.</p>
-						<div class="text-center">
-							<a class="btn btn-success" href="paginaProdotto.jsp">Piantalo
-								Ora</a>
-						</div>
-					</div>
-				</div>
-			</div>
+			<%
+			}
+			}
+			%>
 		</div>
 		<br> <br>
 		<!-- Fine Sezione Prodotti -->

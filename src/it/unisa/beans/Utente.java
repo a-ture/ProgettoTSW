@@ -13,9 +13,14 @@ public class Utente implements Cloneable, Serializable {
 	private String email;
 	private String password;
 	private String role;
+	private String username;
+	private boolean active;
+
+	public Utente() {
+	}
 
 	public Utente(int id, String nome, String cognome, Collection<Indirizzo> indirizzi, String email, String password,
-			String role) {
+			String role, String username, boolean active) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -24,9 +29,9 @@ public class Utente implements Cloneable, Serializable {
 		this.email = email;
 		this.password = password;
 		this.role = role;
+		this.username = username;
+		this.active = active;
 	}
-	
-	public Utente() {}
 
 	public int getId() {
 		return id;
@@ -90,14 +95,16 @@ public class Utente implements Cloneable, Serializable {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", nome=" + nome + ", cognome=" + cognome + ", indirizzi=" + indirizzi + ", email="
-				+ email + ", password=" + password + ", role=" + role + "]";
+		return "Utente [id=" + id + ", nome=" + nome + ", cognome=" + cognome + ", indirizzi=" + indirizzi + ", email="
+				+ email + ", password=" + password + ", role=" + role + ", username=" + username + ", active=" + active
+				+ "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + (active ? 1231 : 1237);
 		result = prime * result + ((cognome == null) ? 0 : cognome.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + id;
@@ -105,6 +112,7 @@ public class Utente implements Cloneable, Serializable {
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((role == null) ? 0 : role.hashCode());
+		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
 	}
 
@@ -117,6 +125,8 @@ public class Utente implements Cloneable, Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Utente other = (Utente) obj;
+		if (active != other.active)
+			return false;
 		if (cognome == null) {
 			if (other.cognome != null)
 				return false;
@@ -149,7 +159,37 @@ public class Utente implements Cloneable, Serializable {
 				return false;
 		} else if (!role.equals(other.role))
 			return false;
+		if (username == null) {
+			if (other.username != null)
+				return false;
+		} else if (!username.equals(other.username))
+			return false;
 		return true;
 	}
 
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public Indirizzo getPreferredAddress() {
+		if (this.indirizzi == null)
+			return null;
+		for (Indirizzo a : this.indirizzi) {
+			if (a.isPreferred())
+				return a;
+		}
+		return null;
+	}
 }

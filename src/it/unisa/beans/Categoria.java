@@ -1,9 +1,11 @@
 package it.unisa.beans;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Categoria {
+public class Categoria implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private int id;
 	private String nome, descrizione;
 
@@ -46,7 +48,7 @@ public class Categoria {
 		this.nome = nome;
 	}
 
-	public String getDescription() {
+	public String getDescrizione() {
 		return descrizione;
 	}
 

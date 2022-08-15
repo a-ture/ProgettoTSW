@@ -1,18 +1,21 @@
 package it.unisa.beans;
 
-public class OrderItem {
+import java.io.Serializable;
 
+public class ProdottoOrdine implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 	private int id;
 	private int oid;
 	private String nome;
 	private String descrizione;
 	private String breveDescrizione;
-	private int tasse;
+	private double tasse;
 	private double prezzo;
 	private double saldo;
 	private int quantità;
 
-	public OrderItem(int id, int oid, String nome, String descrizione, String breveDescrizione, int tasse,
+	public ProdottoOrdine(int id, int oid, String nome, String descrizione, String breveDescrizione, int tasse,
 			double prezzo, double saldo, int quantità) {
 		super();
 		this.id = id;
@@ -24,6 +27,9 @@ public class OrderItem {
 		this.prezzo = prezzo;
 		this.saldo = saldo;
 		this.quantità = quantità;
+	}
+
+	public ProdottoOrdine() {
 	}
 
 	public int getId() {
@@ -66,12 +72,12 @@ public class OrderItem {
 		this.breveDescrizione = breveDescrizione;
 	}
 
-	public int getTasse() {
+	public double getTasse() {
 		return tasse;
 	}
 
-	public void setTasse(int tasse) {
-		this.tasse = tasse;
+	public void setTasse(double d) {
+		this.tasse = d;
 	}
 
 	public double getPrezzo() {
@@ -113,7 +119,8 @@ public class OrderItem {
 		result = prime * result + quantità;
 		temp = Double.doubleToLongBits(saldo);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + tasse;
+		temp = Double.doubleToLongBits(tasse);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
 		return result;
 	}
 
@@ -125,7 +132,7 @@ public class OrderItem {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		OrderItem other = (OrderItem) obj;
+		ProdottoOrdine other = (ProdottoOrdine) obj;
 		if (breveDescrizione == null) {
 			if (other.breveDescrizione != null)
 				return false;
@@ -151,14 +158,14 @@ public class OrderItem {
 			return false;
 		if (Double.doubleToLongBits(saldo) != Double.doubleToLongBits(other.saldo))
 			return false;
-		if (tasse != other.tasse)
+		if (Double.doubleToLongBits(tasse) != Double.doubleToLongBits(other.tasse))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "OrderItem [id=" + id + ", oid=" + oid + ", nome=" + nome + ", descrizione=" + descrizione
+		return "ProdottoOrdine [id=" + id + ", oid=" + oid + ", nome=" + nome + ", descrizione=" + descrizione
 				+ ", breveDescrizione=" + breveDescrizione + ", tasse=" + tasse + ", prezzo=" + prezzo + ", saldo="
 				+ saldo + ", quantità=" + quantità + "]";
 	}

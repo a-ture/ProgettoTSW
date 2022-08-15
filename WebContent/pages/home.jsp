@@ -207,13 +207,13 @@
 				<div
 					class="card text-center shadow-lg p-3 mb-5 bg-white rounded h-100"
 					style="max-width: 14rem;">
-					<img src="../resources/img/cosaPuoiFare/whatucando-gift-icon.png"
+					<img src="./resources/img/cosaPuoiFare/whatucando-gift-icon.png"
 						class="card-img-top" width="206px" height="206px">
 					<div class="card-body">
 						<h5 class="card-title fw-bold">Regala</h5>
 						<p class="card-text">Un regalo originale per l’ambiente e per
 							le persone a cui vuoi bene</p>
-						<a class="btn btn-primary" href="gift.jsp">Regala</a>
+						<a class="btn btn-primary" href="Catalogo">Regala</a>
 					</div>
 				</div>
 			</div>
@@ -222,13 +222,13 @@
 					class="card  text-center shadow-lg p-3 mb-5 bg-white rounded h-100"
 					style="max-width: 14rem;">
 					<img
-						src="../resources/img/cosaPuoiFare/whatucando-discover-icon.png"
+						src="./resources/img/cosaPuoiFare/whatucando-discover-icon.png"
 						class="card-img-top" width="206px" height="206px">
 					<div class="card-body">
 						<h5 class="card-title fw-bold">Pianta</h5>
 						<p class="card-text">Tante specie ognuna con le sue
 							caratteristiche ed i suoi poteri</p>
-						<a class="btn btn-primary" href="#">Pianta</a>
+						<a class="btn btn-primary" href="Catalogo">Pianta</a>
 					</div>
 				</div>
 			</div>
@@ -237,7 +237,7 @@
 					class="card text-center shadow-lg p-3 mb-5 bg-white rounded h-100"
 					style="max-width: 14rem;">
 					<img
-						src="../resources/img/cosaPuoiFare/whatucando-subscription-icon.png"
+						src="./resources/img/cosaPuoiFare/whatucando-subscription-icon.png"
 						class="card-img-top" width="206px" height="206px">
 					<div class="card-body">
 						<h5 class="card-title fw-bold">Abbonati</h5>
@@ -251,7 +251,7 @@
 				<div
 					class="card text-center shadow-lg p-3 mb-5 bg-white rounded h-100"
 					style="max-width: 14rem;">
-					<img src="../resources/img/chiSiamoPage/info_trees.svg"
+					<img src="./resources/img/chiSiamoPage/info_trees.svg"
 						class="card-img-top" width="206px" height="206px">
 					<div class="card-body">
 						<h5 class="card-title fw-bold">Crea il tuo WoodLot</h5>

@@ -1,12 +1,18 @@
 package it.unisa.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import it.unisa.beans.Prodotto;
 import it.unisa.beans.ProdottoCarrello;
 
-public class Carrello {
+public class Carrello implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	List<ProdottoCarrello> prodotti;
 
 	public Carrello() {
@@ -43,7 +49,7 @@ public class Carrello {
 		return prodotti;
 	}
 
-	public int getQuantitàTotalePrdotti() {
+	public int getQuantitàTotaleProdotti() {
 		var sum = 0;
 		for (ProdottoCarrello prod : prodotti) {
 			sum += prod.getQuantità();
@@ -51,7 +57,7 @@ public class Carrello {
 		return sum;
 	}
 
-	public double getPrezzoTotalePrdotti() {
+	public double getPrezzoTotaleProdotti() {
 		double sum = 0;
 		for (ProdottoCarrello prod : prodotti) {
 			sum += prod.getPrezzoTotale();

@@ -2,7 +2,11 @@
 	pageEncoding="UTF-8"%>
 <!-- pagina per la gestione di errori -->
 <%@ page errorPage="/error/error404.jsp"%>
-
+<%@ page contentType="text/html; charset=UTF-8"
+	import="java.util.*,it.unisa.beans.*, java.text.*"%>
+<%
+Collection<?> errori = (Collection<?>) request.getAttribute("errori");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,11 +14,11 @@
 <title>Accedi</title>
 <!--CSS-->
 <link rel="stylesheet" type="text/css"
-	href="../resources/css/bootstrap.css">
+	href="./resources/css/bootstrap.css">
 <link rel="stylesheet" type="text/css"
-	href="../resources/css/_variables.scss">
+	href="./resources/css/_variables.scss">
 <link rel="stylesheet" type="text/css"
-	href="../resources/css/_bootswatch.scss">
+	href="./resources/css/_bootswatch.scss">
 
 <!-- JavaScript Bundle with Popper -->
 <script
@@ -42,9 +46,10 @@
 							<div class="col-md-6 col-lg-7 d-flex align-items-center">
 								<div class="card-body p-4 p-lg-5 text-black">
 
-									<form method="POST" action="">
+									<form method="POST" action="Login?action=login"
+										enctype="application/x-www-form-urlencoded">
 										<div class="d-flex align-items-center mb-3 pb-1">
-											<img src="../resources/img/logo.png" height="60px"> <span
+											<img src="./resources/img/logo.png" height="60px"> <span
 												class="h1 fw-bold mb-0"> &nbsp &nbsp WoodLot</span>
 										</div>
 
@@ -52,41 +57,64 @@
 											nel tuo account</h5>
 
 										<div class="form-outline mb-4">
-											<input type="email" id="username"
+											<input type="email" id="email" name="email"
 												class="form-control form-control-lg"
 												placeholder="la tua e-mail" /> <label class="form-label"
-												for="username">Email </label>
+												for="email">Email </label>
 										</div>
-
 										<div class="form-outline mb-4">
 											<input type="password" id="password"
-												class="form-control form-control-lg"
+												class="form-control form-control-lg" name="password"
 												placeholder="la tua password" /> <label class="form-label"
 												for="password">Password</label>
 										</div>
-
 										<div class="pt-1 mb-4">
 											<button class="btn btn-dark btn-lg btn-block" type="submit">Login</button>
 										</div>
-										<!-- Button trigger modal -->
-										<a class="small text-muted" data-bs-toggle="modal"
-											data-bs-target="#staticBackdrop">Password Dimenticata?
-											Clicca Qui!</a>
-										<p class="mb-5 pb-lg-2" style="color: #393f81;">
-											Non hai un'account? <a href="signUpForm.jsp"
-												style="color: #393f81;">Registrati qui </a>
-										</p>
-										<a href="condizioni.jsp" class="small text-muted">Condizioni
-											d'uso.</a> <a href="privacy.jsp" class="small text-muted">Privacy
-											policy</a>
 									</form>
+									<!-- Button trigger modal -->
+									<a class="small text-muted" data-bs-toggle="modal"
+										data-bs-target="#staticBackdrop">Password Dimenticata?
+										Clicca Qui!</a>
+									<form action="Login" method="get">
+										<div class="form-group">
+											<input type="hidden" name="action" value="registrazione">
+										</div>
+										<p class="mb-5 pb-lg-2" style="color: #393f81;">
+											Non hai un'account?
+											<button type="submit" class="btn btn-success"
+												style="color: #393f81;">Registrati qui</button>
+										</p>
+									</form>
+									<a href="condizioni.jsp" class="small text-muted">Condizioni
+										d'uso.</a> <a href="privacy.jsp" class="small text-muted">Privacy
+										policy</a>
 
 								</div>
+								<!-- errori -->
+
+
 							</div>
+						</div>
+						<div>
+							<%
+							if (errori != null && errori.size() != 0) {
+								Iterator<?> it = errori.iterator();
+								while (it.hasNext()) {
+							%>
+							<p class="text-center text-danger">
+								<%=it.next()%>
+							</p>
+							<%
+							}
+							}
+							%>
+
 						</div>
 					</div>
 				</div>
 			</div>
+
 		</div>
 	</section>
 
@@ -108,7 +136,7 @@
 						<div class="form-group">
 							<label for="inputResetPasswordEmail">Email</label> <input
 								type="email" class="form-control" id="inputResetPasswordEmail"
-								required=""> <span id="helpResetPasswordEmail"
+								required> <span id="helpResetPasswordEmail"
 								class="form-text small text-muted"> Le istruzioni per il
 								reset della password verrano inviata alla mail indicata </span>
 						</div>

@@ -4,6 +4,11 @@
 	pageEncoding="UTF-8"%>
 <!-- pagina per la gestione di errori -->
 <%@ page errorPage="/error/error404.jsp"%>
+<%@ page contentType="text/html; charset=UTF-8"
+	import="java.util.*,it.unisa.beans.*, java.text.*"%>
+<%
+Collection<?> errori = (Collection<?>) request.getAttribute("errori");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,11 +16,11 @@
 <title>Registrati</title>
 <!--CSS-->
 <link rel="stylesheet" type="text/css"
-	href="../resources/css/bootstrap.css">
+	href="./resources/css/bootstrap.css">
 <link rel="stylesheet" type="text/css"
-	href="../resources/css/_variables.scss">
+	href="./resources/css/_variables.scss">
 <link rel="stylesheet" type="text/css"
-	href="../resources/css/_bootswatch.scss">
+	href="./resources/css/_bootswatch.scss">
 
 <!-- JavaScript Bundle with Popper -->
 <script
@@ -41,26 +46,38 @@
 
 									<p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Registrati</p>
 
-									<form action="Login" name="signIn" method="POST"
-										class="mx-1 mx-md-4 needs-validation" novalidate
+									<form action="Login?action=registrazione" name="signIn"
+										method="POST" class="mx-1 mx-md-4 needs-validation" novalidate
 										autocomplete="off">
+
+										<div class="d-flex flex-row align-items-center mb-4">
+											<i class="fas fa-user fa-lg me-3 fa-fw"></i>
+											<div class="form-outline flex-fill mb-0">
+												<input type="text" id="username" class="form-control"
+													placeholder="il tuo username" required name="username" />
+												<label class="form-label" for="username">Il tuo
+													username</label>
+												<div class="valid-feedback">Looks good!</div>
+												<div class="invalid-feedback">Inserisci un username
+													valido</div>
+											</div>
+										</div>
 										<div class="d-flex flex-row align-items-center mb-4">
 											<i class="fas fa-user fa-lg me-3 fa-fw"></i>
 											<div class="form-outline flex-fill mb-0">
 												<input type="text" id="nome" class="form-control"
-													placeholder="il tuo nome" required /> <label
+													placeholder="il tuo nome" required name="nome" /> <label
 													class="form-label" for="nome">Il tuo nome</label>
 												<div class="valid-feedback">Looks good!</div>
 												<div class="invalid-feedback">Inserisci un nome valido
 												</div>
 											</div>
-
 										</div>
 										<div class="d-flex flex-row align-items-center mb-4">
 											<i class="fas fa-user fa-lg me-3 fa-fw"></i>
 											<div class="form-outline flex-fill mb-0">
 												<input type="text" id="cognome" class="form-control"
-													placeholder="il tuo cognome" required /> <label
+													placeholder="il tuo cognome" required name="cognome" /> <label
 													class="form-label" for="cognome">Il tuo cognome</label>
 												<div class="valid-feedback">Looks good!</div>
 												<div class="invalid-feedback">Inserisci un cognome
@@ -72,7 +89,7 @@
 											<i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
 											<div class="form-outline flex-fill mb-0">
 												<input type="email" id="email" class="form-control"
-													placeholder="la tua e-mail" required /> <label
+													placeholder="la tua e-mail" required name="email" /> <label
 													class="form-label" for="email">La tua e-mail</label>
 												<div class="valid-feedback">Looks good!</div>
 												<div class="invalid-feedback">Inserisci un e-mail
@@ -83,8 +100,9 @@
 										<div class="d-flex flex-row align-items-center mb-4">
 											<i class="fas fa-lock fa-lg me-3 fa-fw"></i>
 											<div class="form-outline flex-fill mb-0">
-												<input type="password" id="password" class="form-control" placeholder="la tua password"
-													required /> <label class="form-label" for="password">Password</label>
+												<input type="password" id="password" class="form-control"
+													placeholder="la tua password" required name="password" />
+												<label class="form-label" for="password">Password</label>
 												<div class="valid-feedback">Looks good!</div>
 												<div class="invalid-feedback">La password è troppo
 													corta.</div>
@@ -96,8 +114,9 @@
 											<i class="fas fa-key fa-lg me-3 fa-fw"></i>
 											<div class="form-outline flex-fill mb-0">
 												<input type="password" id="password1" class="form-control"
-													required placeholder="ripeti password"/> <label class="form-label" for="password1" >Ripeti
-													la tua password</label>
+													required placeholder="ripeti password" name="password1" />
+												<label class="form-label" for="password1">Ripeti la
+													tua password</label>
 												<div class="valid-feedback">Looks good!</div>
 												<div class="invalid-feedback">Le due password non
 													coincidono</div>
@@ -129,6 +148,21 @@
 						</div>
 					</div>
 				</div>
+			</div>
+			<div>
+				<%
+				if (errori != null && errori.size() != 0) {
+					Iterator<?> it = errori.iterator();
+					while (it.hasNext()) {
+				%>
+				<p class="text-center text-danger">
+					<%=it.next()%>
+				</p>
+				<%
+				}
+				}
+				%>
+
 			</div>
 		</div>
 	</section>

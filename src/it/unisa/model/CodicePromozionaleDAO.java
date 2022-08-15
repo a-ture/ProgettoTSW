@@ -1,6 +1,7 @@
 package it.unisa.model;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,9 +13,9 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import it.unisa.beans.Categoria;
+import it.unisa.beans.CodicePromozionale;
 
-public class CategoriaDAO implements GenericDAO<Categoria> {
+public class CodicePromozionaleDAO implements GenericDAO<CodicePromozionale> {
 
 	private static DataSource ds;
 
@@ -29,18 +30,16 @@ public class CategoriaDAO implements GenericDAO<Categoria> {
 			System.out.println("Error:" + e.getMessage());
 		}
 	}
-
-	private static final String TABLE_NAME = "categoria";
+	private static final String TABLE_NAME = "codicePromozionale";
 
 	@Override
-	public Categoria doRetriveByKey(String code) throws SQLException {
-
+	public CodicePromozionale doRetriveByKey(String code) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
-		Categoria bean = new Categoria();
+		CodicePromozionale bean = new CodicePromozionale();
 
-		String selectSQL = "SELECT * FROM " + CategoriaDAO.TABLE_NAME + " WHERE CODE = ?";
+		String selectSQL = "SELECT * FROM " + CodicePromozionaleDAO.TABLE_NAME + " WHERE id = ?";
 
 		try {
 			connection = ds.getConnection();
@@ -52,7 +51,10 @@ public class CategoriaDAO implements GenericDAO<Categoria> {
 			while (rs.next()) {
 				bean.setDescrizione(rs.getString("descrizione"));
 				bean.setId(rs.getInt("id"));
-				bean.setNome(rs.getString("nome"));
+				bean.setCodice(rs.getString("codice"));
+				bean.setDataFineValidità(rs.getDate("dataFineValidità"));
+				bean.setDataInzioValidità(rs.getDate("dataInizioValidità"));
+				bean.setScontoApplicato(rs.getDouble("scontoApplicato"));
 			}
 
 		} finally {
@@ -68,15 +70,15 @@ public class CategoriaDAO implements GenericDAO<Categoria> {
 	}
 
 	@Override
-	public Collection<Categoria> doRetriveAll(String order) throws SQLException {
+	public Collection<CodicePromozionale> doRetriveAll(String order) throws SQLException {
 
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet rs = null;
 
-		Collection<Categoria> beans = new LinkedList<Categoria>();
+		Collection<CodicePromozionale> beans = new LinkedList<CodicePromozionale>();
 
-		String selectSQL = "SELECT * FROM " + CategoriaDAO.TABLE_NAME;
+		String selectSQL = "SELECT * FROM " + CodicePromozionaleDAO.TABLE_NAME;
 
 		if (order != null && !order.equals("")) {
 			selectSQL += " ORDER BY " + order;
@@ -89,11 +91,14 @@ public class CategoriaDAO implements GenericDAO<Categoria> {
 			rs = preparedStatement.executeQuery();
 
 			while (rs.next()) {
-				Categoria bean = new Categoria();
+				CodicePromozionale bean = new CodicePromozionale();
 
 				bean.setDescrizione(rs.getString("descrizione"));
 				bean.setId(rs.getInt("id"));
-				bean.setNome(rs.getString("nome"));
+				bean.setCodice(rs.getString("codice"));
+				bean.setDataFineValidità(rs.getDate("dataFineValidità"));
+				bean.setDataInzioValidità(rs.getDate("dataInizioValidità"));
+				bean.setScontoApplicato(rs.getDouble("scontoApplicato"));
 
 				beans.add(bean);
 
@@ -118,21 +123,26 @@ public class CategoriaDAO implements GenericDAO<Categoria> {
 	}
 
 	@Override
-	public void doSave(Categoria item) throws SQLException {
+	public void doSave(CodicePromozionale item) throws SQLException {
+
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
-		String insertSQL = "INSERT INTO " + CategoriaDAO.TABLE_NAME + " (nome,descrizione)" + " VALUES (?, ?)";
+		String insertSQL = "INSERT INTO " + CodicePromozionaleDAO.TABLE_NAME
+				+ " (codice,dataInizioValidità,dataFineValidità,scontoApplicato,descrizione)"
+				+ " VALUES (?, ?, ?, ?, ?)";
 
 		try {
 			connection = ds.getConnection();
 
 			preparedStatement = connection.prepareStatement(insertSQL);
-			preparedStatement.setString(1, item.getNome());
-			preparedStatement.setString(2, item.getDescrizione());
+			preparedStatement.setString(1, item.getCodice());
+			preparedStatement.setDate(2, (Date) item.getDataInzioValidità());
+			preparedStatement.setDate(3, (Date) item.getDataFineValidità());
+			preparedStatement.setDouble(4, item.getScontoApplicato());
+			preparedStatement.setString(5, item.getDescrizione());
 
 			preparedStatement.executeUpdate();
-
 			connection.commit();
 		} finally {
 			try {
@@ -146,19 +156,20 @@ public class CategoriaDAO implements GenericDAO<Categoria> {
 	}
 
 	@Override
-	public int doUpdate(Categoria item) throws SQLException {
+	public int doUpdate(CodicePromozionale item) throws SQLException {
+		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public boolean doDelete(Categoria item) throws SQLException {
+	public boolean doDelete(CodicePromozionale item) throws SQLException {
 
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
 		int result = 0;
 
-		String deleteSQL = "DELETE FROM " + CategoriaDAO.TABLE_NAME + " WHERE id = ?";
+		String deleteSQL = "DELETE FROM " + CodicePromozionaleDAO.TABLE_NAME + " WHERE id = ?";
 
 		try {
 			connection = ds.getConnection();

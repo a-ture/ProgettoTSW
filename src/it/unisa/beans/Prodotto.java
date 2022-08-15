@@ -20,17 +20,69 @@ public class Prodotto implements Serializable {
 	private String paeseDiOrigine;
 	private String descrizione;
 	private String descrizioneBreve;
-
-	// NON SO A CHE MERDA SERVEEEE
-	private String imagePath;
+	private String sottotitolo;
+	private String doveVienePiantato;
 
 	private double prezzo;
 	private double altezza;
 	private double co2;
 	private double salvaguardia;
+	private double tasse;
+	private double saldo;
 
 	private int quantità;
 	private int onSale;
+
+	private boolean disponibile;
+
+	public Prodotto(int id, String nome, String nomeScientifico, String paeseDiOrigine, String descrizione,
+			String descrizioneBreve, String sottotitolo, String doveVienePiantato, double prezzo, double altezza,
+			double co2, double salvaguardia, double tasse, double saldo, int quantità, int onSale, boolean disponibile,
+			Collection<Categoria> categorie) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.nomeScientifico = nomeScientifico;
+		this.paeseDiOrigine = paeseDiOrigine;
+		this.descrizione = descrizione;
+		this.descrizioneBreve = descrizioneBreve;
+		this.sottotitolo = sottotitolo;
+		this.doveVienePiantato = doveVienePiantato;
+		this.prezzo = prezzo;
+		this.altezza = altezza;
+		this.co2 = co2;
+		this.salvaguardia = salvaguardia;
+		this.tasse = tasse;
+		this.saldo = saldo;
+		this.quantità = quantità;
+		this.onSale = onSale;
+		this.disponibile = disponibile;
+		this.categorie = categorie;
+	}
+
+	public double getTasse() {
+		return tasse;
+	}
+
+	public void setTasse(double tasse) {
+		this.tasse = tasse;
+	}
+
+	public double getSaldo() {
+		return saldo;
+	}
+
+	public void setSaldo(double saldo) {
+		this.saldo = saldo;
+	}
+
+	public boolean isDisponibile() {
+		return disponibile;
+	}
+
+	public void setDisponibile(boolean disponibile) {
+		this.disponibile = disponibile;
+	}
 
 	public String getPaeseDiOrigine() {
 		return paeseDiOrigine;
@@ -42,36 +94,8 @@ public class Prodotto implements Serializable {
 
 	private Collection<Categoria> categorie;
 
-	public Prodotto(int id, String nome, String nomeScientifico, String descrizione, String descrizioneBreve,
-			String paeseDiOrigine, String imagePath, double prezzo, double altezza, double co2, double salvaguardia,
-			int quantità, int onSale, Collection<Categoria> categorie) {
-		super();
-		this.id = id;
-		this.nome = nome;
-		this.nomeScientifico = nomeScientifico;
-		this.descrizione = descrizione;
-		this.descrizioneBreve = descrizioneBreve;
-		this.imagePath = imagePath;
-		this.prezzo = prezzo;
-		this.altezza = altezza;
-		this.co2 = co2;
-		this.salvaguardia = salvaguardia;
-		this.quantità = quantità;
-		this.onSale = onSale;
-		this.categorie = categorie;
-		this.paeseDiOrigine = paeseDiOrigine;
-	}
-
 	public Prodotto() {
 		this.id = NO_ITEM;
-	}
-
-	@Override
-	public String toString() {
-		return "Product [id=" + id + ", nome=" + nome + ", nomeScientifico=" + nomeScientifico + ", descrizione="
-				+ descrizione + ", descrizioneBreve=" + descrizioneBreve + ", imagePath=" + imagePath + ", prezzo="
-				+ prezzo + ", altezza=" + altezza + ", co2=" + co2 + ", salvaguardia=" + salvaguardia + ", quantità="
-				+ quantità + ", onSale=" + onSale + ", categories=" + categorie + "]";
 	}
 
 	public int getId() {
@@ -112,14 +136,6 @@ public class Prodotto implements Serializable {
 
 	public void setDescrizioneBreve(String descrizioneBreve) {
 		this.descrizioneBreve = descrizioneBreve;
-	}
-
-	public String getImagePath() {
-		return imagePath;
-	}
-
-	public void setImagePath(String imagePath) {
-		this.imagePath = imagePath;
 	}
 
 	public double getPrezzo() {
@@ -187,6 +203,30 @@ public class Prodotto implements Serializable {
 			categorie.add(category);
 	}
 
+	public String getSottotitolo() {
+		return sottotitolo;
+	}
+
+	public void setSottotitolo(String sottotitolo) {
+		this.sottotitolo = sottotitolo;
+	}
+
+	public String getDoveVienePiantato() {
+		return doveVienePiantato;
+	}
+
+	public void setDoveVienePiantato(String doveVienePiantato) {
+		this.doveVienePiantato = doveVienePiantato;
+	}
+
+	public Collection<Categoria> getCategorie() {
+		return categorie;
+	}
+
+	public void setCategorie(Collection<Categoria> categorie) {
+		this.categorie = categorie;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -199,15 +239,22 @@ public class Prodotto implements Serializable {
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((descrizione == null) ? 0 : descrizione.hashCode());
 		result = prime * result + ((descrizioneBreve == null) ? 0 : descrizioneBreve.hashCode());
+		result = prime * result + (disponibile ? 1231 : 1237);
+		result = prime * result + ((doveVienePiantato == null) ? 0 : doveVienePiantato.hashCode());
 		result = prime * result + id;
-		result = prime * result + ((imagePath == null) ? 0 : imagePath.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		result = prime * result + ((nomeScientifico == null) ? 0 : nomeScientifico.hashCode());
 		result = prime * result + onSale;
+		result = prime * result + ((paeseDiOrigine == null) ? 0 : paeseDiOrigine.hashCode());
 		temp = Double.doubleToLongBits(prezzo);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + quantità;
+		temp = Double.doubleToLongBits(saldo);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
 		temp = Double.doubleToLongBits(salvaguardia);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((sottotitolo == null) ? 0 : sottotitolo.hashCode());
+		temp = Double.doubleToLongBits(tasse);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		return result;
 	}
@@ -240,12 +287,14 @@ public class Prodotto implements Serializable {
 				return false;
 		} else if (!descrizioneBreve.equals(other.descrizioneBreve))
 			return false;
-		if (id != other.id)
+		if (disponibile != other.disponibile)
 			return false;
-		if (imagePath == null) {
-			if (other.imagePath != null)
+		if (doveVienePiantato == null) {
+			if (other.doveVienePiantato != null)
 				return false;
-		} else if (!imagePath.equals(other.imagePath))
+		} else if (!doveVienePiantato.equals(other.doveVienePiantato))
+			return false;
+		if (id != other.id)
 			return false;
 		if (nome == null) {
 			if (other.nome != null)
@@ -259,12 +308,37 @@ public class Prodotto implements Serializable {
 			return false;
 		if (onSale != other.onSale)
 			return false;
+		if (paeseDiOrigine == null) {
+			if (other.paeseDiOrigine != null)
+				return false;
+		} else if (!paeseDiOrigine.equals(other.paeseDiOrigine))
+			return false;
 		if (Double.doubleToLongBits(prezzo) != Double.doubleToLongBits(other.prezzo))
 			return false;
 		if (quantità != other.quantità)
 			return false;
+		if (Double.doubleToLongBits(saldo) != Double.doubleToLongBits(other.saldo))
+			return false;
 		if (Double.doubleToLongBits(salvaguardia) != Double.doubleToLongBits(other.salvaguardia))
+			return false;
+		if (sottotitolo == null) {
+			if (other.sottotitolo != null)
+				return false;
+		} else if (!sottotitolo.equals(other.sottotitolo))
+			return false;
+		if (Double.doubleToLongBits(tasse) != Double.doubleToLongBits(other.tasse))
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "Prodotto [id=" + id + ", nome=" + nome + ", nomeScientifico=" + nomeScientifico + ", paeseDiOrigine="
+				+ paeseDiOrigine + ", descrizione=" + descrizione + ", descrizioneBreve=" + descrizioneBreve
+				+ ", sottotitolo=" + sottotitolo + ", doveVienePiantato=" + doveVienePiantato + ", prezzo=" + prezzo
+				+ ", altezza=" + altezza + ", co2=" + co2 + ", salvaguardia=" + salvaguardia + ", tasse=" + tasse
+				+ ", saldo=" + saldo + ", quantità=" + quantità + ", onSale=" + onSale + ", disponibile=" + disponibile
+				+ ", categorie=" + categorie + "]";
+	}
+
 }
