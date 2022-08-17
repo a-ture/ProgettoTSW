@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
 
@@ -12,7 +13,6 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import it.unisa.beans.Categoria;
 import it.unisa.beans.Indirizzo;
 
 public class IndirizzoDAO implements GenericDAO<Indirizzo> {
@@ -55,10 +55,11 @@ public class IndirizzoDAO implements GenericDAO<Indirizzo> {
 				bean.setCittà(rs.getString("città"));
 				bean.setCognome(rs.getString("cognome"));
 				bean.setId(rs.getInt("id"));
-				bean.setIndirizzo(rs.getString("indirizzo"));
+				bean.setVia(rs.getString("via"));
 				bean.setNome(rs.getString("nome"));
 				bean.setPreferred(rs.getBoolean("preferred"));
-				bean.setUid(rs.getInt("uid"));
+				bean.setUid(rs.getInt("cid"));
+				bean.setCivico(rs.getString("civico"));
 
 			}
 		} finally {
@@ -71,6 +72,46 @@ public class IndirizzoDAO implements GenericDAO<Indirizzo> {
 			}
 		}
 		return bean;
+	}
+
+	public Collection<Indirizzo> doRetriveByUser(int i) throws SQLException {
+
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		Collection<Indirizzo> beans = new ArrayList<Indirizzo>();
+
+		String selectSQL = "SELECT * FROM " + IndirizzoDAO.TABLE_NAME + " WHERE cid = ?";
+
+		try {
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setInt(1, i);
+
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				Indirizzo bean = new Indirizzo();
+				bean.setCAP(rs.getString("cap"));
+				bean.setCittà(rs.getString("città"));
+				bean.setCognome(rs.getString("cognome"));
+				bean.setId(rs.getInt("id"));
+				bean.setVia(rs.getString("via"));
+				bean.setNome(rs.getString("nome"));
+				bean.setPreferred(rs.getBoolean("preferred"));
+				bean.setUid(rs.getInt("cid"));
+				bean.setCivico(rs.getString("civico"));
+				beans.add(bean);
+			}
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null)
+					connection.close();
+			}
+		}
+		return beans;
 	}
 
 	@Override
@@ -99,10 +140,11 @@ public class IndirizzoDAO implements GenericDAO<Indirizzo> {
 				bean.setCittà(rs.getString("città"));
 				bean.setCognome(rs.getString("cognome"));
 				bean.setId(rs.getInt("id"));
-				bean.setIndirizzo(rs.getString("indirizzo"));
+				bean.setVia(rs.getString("via"));
 				bean.setNome(rs.getString("nome"));
 				bean.setPreferred(rs.getBoolean("preferred"));
-				bean.setUid(rs.getInt("uid"));
+				bean.setUid(rs.getInt("cid"));
+				bean.setCivico(rs.getString("civico"));
 
 				beans.add(bean);
 			}
@@ -128,6 +170,40 @@ public class IndirizzoDAO implements GenericDAO<Indirizzo> {
 	@Override
 	public void doSave(Indirizzo item) throws SQLException {
 
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		String insertSQL = "INSERT INTO " + IndirizzoDAO.TABLE_NAME
+				+ " (cid, nome, cognome, via, cap, città, provincia, civico, preferred)"
+				+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+		try {
+			connection = ds.getConnection();
+			connection.setAutoCommit(false);
+
+			preparedStatement = connection.prepareStatement(insertSQL);
+			preparedStatement.setInt(1, item.getUid());
+			preparedStatement.setString(2, item.getNome());
+			preparedStatement.setString(3, item.getCognome());
+			preparedStatement.setString(4, item.getVia());
+			preparedStatement.setString(5, item.getCAP());
+			preparedStatement.setString(6, item.getCittà());
+			preparedStatement.setString(7, item.getProvincia());
+			preparedStatement.setString(8, item.getCivico());
+			preparedStatement.setBoolean(9, item.isPreferred());
+
+			preparedStatement.executeUpdate();
+
+			connection.commit();
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null)
+					connection.close();
+			}
+		}
 	}
 
 	@Override

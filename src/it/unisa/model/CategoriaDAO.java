@@ -40,7 +40,7 @@ public class CategoriaDAO implements GenericDAO<Categoria> {
 
 		Categoria bean = new Categoria();
 
-		String selectSQL = "SELECT * FROM " + CategoriaDAO.TABLE_NAME + " WHERE CODE = ?";
+		String selectSQL = "SELECT * FROM " + CategoriaDAO.TABLE_NAME + " WHERE id = ?";
 
 		try {
 			connection = ds.getConnection();

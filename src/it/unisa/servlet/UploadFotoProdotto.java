@@ -14,7 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
-import it.unisa.model.FotoPaeseDiOrigineDAO;
+import it.unisa.model.PaeseDiOrigineDAO;
+
+
 
 
 
@@ -59,7 +61,7 @@ public class UploadFotoProdotto extends HttpServlet {
 			if (fileName != null && !fileName.equals("")) {
 				part.write(savePath + File.separator + fileName);
 				try {
-					FotoPaeseDiOrigineDAO.updatePhoto(id, savePath + File.separator + fileName);
+					PaeseDiOrigineDAO.updatePhoto(id, savePath + File.separator + fileName);
 				} catch (SQLException sqlException) {
 					System.out.println(sqlException);
 				}

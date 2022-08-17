@@ -14,6 +14,10 @@ public class PaeseDiOrigine implements Serializable {
 		this.descrizione = descrizione;
 	}
 
+	public PaeseDiOrigine() {
+
+	}
+
 	public String getNome() {
 		return nome;
 	}

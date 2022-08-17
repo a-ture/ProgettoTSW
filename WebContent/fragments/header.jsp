@@ -10,11 +10,11 @@
 
 <!--CSS-->
 <link rel="stylesheet" type="text/css"
-	href="../resources/css/bootstrap.css">
+	href="resources/css/bootstrap.css">
 <link rel="stylesheet" type="text/css"
-	href="../resources/css/_variables.scss">
+	href="resources/css/_variables.scss">
 <link rel="stylesheet" type="text/css"
-	href="../resources/css/_bootswatch.scss">
+	href="resources/css/_bootswatch.scss">
 
 <!-- JavaScript Bundle with Popper -->
 <script
@@ -45,7 +45,7 @@
 							<span class="visually-hidden">(current)</span>
 					</a></li>
 					<li class="nav-item"><a class="nav-link" href="Catalogo">Alberi</a></li>
-					<li class="nav-item"><a class="nav-link" href="chiSiamo.jsp">Chi
+					<li class="nav-item"><a class="nav-link" href="ChiSiamoServlet">Chi
 							Siamo</a></li>
 					<li class="nav-item"><a class="btn btn-secondary my-2 my-sm-0"
 						href="#">Hai un Treecode?</a></li>

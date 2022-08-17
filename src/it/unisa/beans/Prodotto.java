@@ -25,8 +25,8 @@ public class Prodotto implements Serializable {
 
 	private double prezzo;
 	private double altezza;
-	private double co2;
-	private double salvaguardia;
+	private int co2;
+	private int salvaguardia;
 	private double tasse;
 	private double saldo;
 
@@ -37,7 +37,7 @@ public class Prodotto implements Serializable {
 
 	public Prodotto(int id, String nome, String nomeScientifico, String paeseDiOrigine, String descrizione,
 			String descrizioneBreve, String sottotitolo, String doveVienePiantato, double prezzo, double altezza,
-			double co2, double salvaguardia, double tasse, double saldo, int quantità, int onSale, boolean disponibile,
+			int co2, int salvaguardia, double tasse, double saldo, int quantità, int onSale, boolean disponibile,
 			Collection<Categoria> categorie) {
 		super();
 		this.id = id;
@@ -154,19 +154,19 @@ public class Prodotto implements Serializable {
 		this.altezza = altezza;
 	}
 
-	public double getCo2() {
+	public int getCo2() {
 		return co2;
 	}
 
-	public void setCo2(double co2) {
+	public void setCo2(int co2) {
 		this.co2 = co2;
 	}
 
-	public double getSalvaguardia() {
+	public int getSalvaguardia() {
 		return salvaguardia;
 	}
 
-	public void setSalvaguardia(double salvaguardia) {
+	public void setSalvaguardia(int salvaguardia) {
 		this.salvaguardia = salvaguardia;
 	}
 

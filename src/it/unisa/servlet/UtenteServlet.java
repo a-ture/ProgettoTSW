@@ -6,14 +6,17 @@ import java.util.Collection;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import it.unisa.beans.Indirizzo;
 import it.unisa.beans.Ordine;
 import it.unisa.beans.ProdottoOrdine;
 import it.unisa.beans.Utente;
+import it.unisa.model.IndirizzoDAO;
 import it.unisa.model.OrdineDAO;
 import it.unisa.model.ProdottoDAO;
 import it.unisa.model.UtenteDAO;
@@ -34,8 +37,8 @@ public class UtenteServlet extends HttpServlet {
 			throws ServletException, IOException {
 		UtenteDAO model = new UtenteDAO();
 		OrdineDAO model1 = new OrdineDAO();
-
-		String action = request.getParameter("action");
+		IndirizzoDAO model2 = new IndirizzoDAO();
+		
 		Utente utente = (Utente) request.getSession().getAttribute("utente");
 		// devo mettere il redirect al login se utente ==null?
 
@@ -57,6 +60,9 @@ public class UtenteServlet extends HttpServlet {
 
 			Collection<ProdottoOrdine> prodottiOrdini = model1.findProductBuyByUser(utente);
 			request.getSession().setAttribute("prodottiOrdini", prodottiOrdini);
+			
+			Collection<Indirizzo> indirizzi = model2.doRetriveByUser(utente.getId());
+			request.getSession().setAttribute("indirizzi", indirizzi);
 
 		} catch (SQLException e) {
 			e.printStackTrace();

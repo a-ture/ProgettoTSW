@@ -27,11 +27,11 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 <title><%=prodotto.getNome()%></title>
 <!--CSS-->
 <link rel="stylesheet" type="text/css"
-	href="../resources/css/bootstrap.css">
+	href="resources/css/bootstrap.css">
 <link rel="stylesheet" type="text/css"
-	href="../resources/css/_variables.scss">
+	href="resources/css/_variables.scss">
 <link rel="stylesheet" type="text/css"
-	href="../resources/css/_bootswatch.scss">
+	href="resources/css/_bootswatch.scss">
 <!-- JavaScript Bundle with Popper -->
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
@@ -45,6 +45,12 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 	integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
 	crossorigin="anonymous"></script>
 </head>
+<!-- Per cambiare il colore delle stelline -->
+<style>
+.checked {
+	color: orange;
+}
+</style>
 <body>
 	<!-- Header -->
 	<%@ include file="../fragments/header.jsp"%>
@@ -129,7 +135,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 								Categoria cat = (Categoria) it2.next();
 						%>
 						<p class="card-text">
-							<b>Categoria</b>
+							<b>Benefici</b>
 							<%=cat.getNome()%>
 							<%
 							}
@@ -146,18 +152,42 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 
 				</div>
 				<hr>
+
+				<div class="row">
+					<div class="col-6">
+						<p class="card-text">
+							<strong>Nome Scientifico: </strong>
+							<%=prodotto.getNomeScientifico()%></p>
+					</div>
+					<div class="col-6">
+						<p class="card-text">
+							<strong> Altezza media: </strong>
+							<%=prodotto.getAltezza()%>
+							metri
+						</p>
+					</div>
+				</div>
+				<hr>
+				<p>
+					<b>Che albero è?</b>
+				</p>
+				<p><%=prodotto.getDescrizioneBreve()%>
+				<hr>
+
 				<div class="text-center">
 					<a type="button" class="btn btn-primary"
 						href="Prodotto?action=aggiungiCarrello&id=<%=prodotto.getId()%>">Acquista</a>
 				</div>
 			</div>
 		</div>
+
+
 		<!-- Fine Sezione Prodotto -->
 
 		<!-- Dettagli Prodotto -->
 		<!-- Breve Descrizione  -->
 		<br> <br>
-		<div class="row">
+		<div class="row text-center">
 			<div class="col-6">
 				<div class="card" style="background: #c4d89d;">
 					<div class="card-body">
@@ -172,51 +202,53 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						<div class="card-body">
 							<h4 class="card-title">I miei superpoteri</h4>
 							<div class="row">
-								<div class="col-3">
+								<div class="col">
 									<p class="card-text">
 										<i class="fa-solid fa-cloud"></i> <strong>CO2
 											Assorbita</strong>
 									</p>
 								</div>
-								<div class=" col-9 progress">
-									<div class="progress-bar" role="progressbar"
-										style="width: 25%;" aria-valuenow="<%=prodotto.getCo2()%>"
-										aria-valuemin="0" aria-valuemax="100"></div>
+
+								<div class="col">
+									<%
+									int stelleColorateCo2 = prodotto.getCo2();
+									int stelleNonColorateCo2 = 5 - stelleColorateCo2;
+									for (int i = 0; i < stelleColorateCo2; i++) {
+									%>
+									<span class="fa fa-star checked"></span>
+									<%
+									}
+									for (int i = stelleNonColorateCo2; i > 0; i--) {
+									%>
+									<span class="fa fa-star"></span>
+									<%
+									}
+									%>
 								</div>
 							</div>
 							<div class="row">
-								<div class="col-3">
+								<div class="col">
 									<p class="card-text">
 										<i class="fa-solid fa-seedling"></i> <strong>Salvaguardia
 											Ambientale</strong>
 									</p>
 								</div>
-								<div class=" col-9 progress">
-									<div class="progress-bar" role="progressbar"
-										style="width: 25%;"
-										aria-valuenow="<%=prodotto.getSalvaguardia()%>"
-										aria-valuemin="0" aria-valuemax="100"></div>
-								</div>
-							</div>
-
-							<div class="row">
-								<div class="col-6">
-									<p class="card-text">
-										<strong>Nome Scientifico</strong>
-									</p>
-								</div>
-								<div class="col-6">
-									<p class="card-text"><%=prodotto.getNomeScientifico()%></p>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-6">
-									<p class="card-text">
-										<strong> Altezza media </strong>
-									</p>
-								</div>
-								<div class="col-6">
-									<p class="card-text"><%=prodotto.getAltezza()%></p>
+								<!-- Stelle -->
+								<div class="col">
+									<%
+									int stelleColorate = prodotto.getSalvaguardia();
+									int stelleNonColorate = 5 - stelleColorate;
+									for (int i = 0; i < stelleColorate; i++) {
+									%>
+									<span class="fa fa-star checked"></span>
+									<%
+									}
+									for (int i = stelleNonColorate; i > 0; i--) {
+									%>
+									<span class="fa fa-star"></span>
+									<%
+									}
+									%>
 								</div>
 							</div>
 						</div>
@@ -224,9 +256,39 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				</div>
 			</div>
 		</div>
+		<!-- Dove Viene Piantato -->
+		<div class="text-center">
+			<br> <br>
+			<h3>Dove Viene Piantato?</h3>
+			<p class="lead"><%=prodotto.getDoveVienePiantato()%></p>
+		</div>
+		<div class="text-center">
+			<img
+				src="./GetFotoPaeseDiOrigine?idPaese=<%=prodotto.getPaeseDiOrigine()%>"
+				class="img-fluid" height="626px" width="925px">
+		</div>
+		<!-- Perche Categoria -->
+		<div class="text-center">
+			<%
+			if (categorie != null && categorie.size() != 0) {
+				Iterator<?> it2 = categorie.iterator();
+
+				while (it2.hasNext()) {
+					Categoria cat = (Categoria) it2.next();
+			%>
+			<br> <br>
+			<h3>
+				Perchè
+				<%=cat.getNome()%>?
+			</h3>
+			<p class="lead"><%=cat.getDescrizione()%></p>
+			<%
+			}
+			}
+			%>
+		</div>
 		<br> <br>
 		<!-- Cosa Vuol Dire Piantare Un albero con WoodLot -->
-
 		<div class="row text-center">
 			<br> <br>
 			<h2>Cosa vuol dire piantare un albero con WoodLot</h2>
@@ -260,40 +322,6 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					stampando un biglietto da consegnare a mano).</p>
 			</div>
 		</div>
-
-		<!-- Dove Viene Piantato -->
-		<div class="text-center">
-			<br> <br>
-			<h3>Dove Viene Piantato?</h3>
-			<p class="lead"><%=prodotto.getDoveVienePiantato()%></p>
-		</div>
-		<div class="text-center">
-			<img
-				src="./GetFotoPaeseDiOrigine?idPaese=<%=prodotto.getPaeseDiOrigine()%>"
-				class="img-fluid" height="626px" width="925px">
-		</div>
-		<!-- Perche Categoria -->
-		<div class="text-center">
-			<%
-			if (categorie != null && categorie.size() != 0) {
-				Iterator<?> it2 = categorie.iterator();
-
-				while (it2.hasNext()) {
-					Categoria cat = (Categoria) it2.next();
-			%>
-			<br> <br>
-			<h3>
-				Perchè
-				<%=cat.getNome()%>?
-			</h3>
-			<p class="lead"><%=cat.getDescrizione()%></p>
-			<%
-			}
-			}
-			%>
-		</div>
-		<!-- Fine Perchè Categoria -->
-		<!-- Fine Dettagli Prodotto -->
 
 		<!-- Prodotti Consigliati  -->
 		<div class="col-md-12 text-center">
@@ -372,9 +400,9 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			</div>
 			<br> <br>
 		</div>
+
 	</div>
 	<!-- Footer -->
 	<%@ include file="../fragments/footer.jsp"%>
-
 </body>
 </html>

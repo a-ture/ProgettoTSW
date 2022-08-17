@@ -9,48 +9,40 @@ public class Indirizzo implements Serializable {
 	private int uid;
 	private String nome;
 	private String cognome;
-	private String indirizzo;
+	private String via;
 	private String CAP;
 	private String città;
 	private String provincia;
 	private boolean preferred;
-
-	public Indirizzo(int id, int uid, String nome, String cognome, String indirizzo, String cAP, String città,
-			String provincia, boolean preferred) {
-		super();
-		this.id = id;
-		this.uid = uid;
-		this.nome = nome;
-		this.cognome = cognome;
-		this.indirizzo = indirizzo;
-		CAP = cAP;
-		this.città = città;
-		this.provincia = provincia;
-		this.preferred = preferred;
-	}
+	private String civico;
 
 	public Indirizzo() {
 
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((CAP == null) ? 0 : CAP.hashCode());
-
-		result = prime * result + ((città == null) ? 0 : città.hashCode());
-		result = prime * result + ((cognome == null) ? 0 : cognome.hashCode());
-		result = prime * result + id;
-		result = prime * result + ((indirizzo == null) ? 0 : indirizzo.hashCode());
-
-		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
-		result = prime * result + (preferred ? 1231 : 1237);
-		result = prime * result + ((provincia == null) ? 0 : provincia.hashCode());
-
-		result = prime * result + uid;
-		return result;
+	public Indirizzo(int id, int uid, String nome, String cognome, String via, String cAP, String città,
+			String provincia, boolean preferred, String civico) {
+		super();
+		this.id = id;
+		this.uid = uid;
+		this.nome = nome;
+		this.cognome = cognome;
+		this.via = via;
+		CAP = cAP;
+		this.città = città;
+		this.provincia = provincia;
+		this.preferred = preferred;
+		this.civico = civico;
 	}
+
+	@Override
+	public String toString() {
+		return "Indirizzo [id=" + id + ", uid=" + uid + ", nome=" + nome + ", cognome=" + cognome + ", via=" + via
+				+ ", CAP=" + CAP + ", città=" + città + ", provincia=" + provincia + ", preferred=" + preferred
+				+ ", civico=" + civico + "]";
+	}
+
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -66,11 +58,12 @@ public class Indirizzo implements Serializable {
 				return false;
 		} else if (!CAP.equals(other.CAP))
 			return false;
-
 		if (città == null) {
 			if (other.città != null)
 				return false;
 		} else if (!città.equals(other.città))
+			return false;
+		if (civico != other.civico)
 			return false;
 		if (cognome == null) {
 			if (other.cognome != null)
@@ -79,12 +72,11 @@ public class Indirizzo implements Serializable {
 			return false;
 		if (id != other.id)
 			return false;
-		if (indirizzo == null) {
-			if (other.indirizzo != null)
+		if (via == null) {
+			if (other.via != null)
 				return false;
-		} else if (!indirizzo.equals(other.indirizzo))
+		} else if (!via.equals(other.via))
 			return false;
-
 		if (nome == null) {
 			if (other.nome != null)
 				return false;
@@ -100,13 +92,6 @@ public class Indirizzo implements Serializable {
 		if (uid != other.uid)
 			return false;
 		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "Address [id=" + id + ", uid=" + uid + ", nome=" + nome + ", cognome=" + cognome + ", indirizzo="
-				+ indirizzo + ", CAP=" + CAP + ", città=" + città + ", provincia=" + provincia + ", preferred="
-				+ preferred + "]";
 	}
 
 	public int getId() {
@@ -141,12 +126,12 @@ public class Indirizzo implements Serializable {
 		this.cognome = cognome;
 	}
 
-	public String getIndirizzo() {
-		return indirizzo;
+	public String getVia() {
+		return via;
 	}
 
-	public void setIndirizzo(String indirizzo) {
-		this.indirizzo = indirizzo;
+	public void setVia(String via) {
+		this.via = via;
 	}
 
 	public String getCAP() {
@@ -179,6 +164,14 @@ public class Indirizzo implements Serializable {
 
 	public void setPreferred(boolean preferred) {
 		this.preferred = preferred;
+	}
+
+	public String getCivico() {
+		return civico;
+	}
+
+	public void setCivico(String civico) {
+		this.civico = civico;
 	}
 
 }

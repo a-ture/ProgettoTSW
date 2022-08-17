@@ -1,5 +1,9 @@
 package it.unisa.model;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -133,7 +137,7 @@ public class UtenteDAO implements GenericDAO<Utente> {
 
 		try {
 			connection = ds.getConnection();
-
+			connection.setAutoCommit(false);
 			preparedStatement = connection.prepareStatement(insertSQL);
 			preparedStatement.setString(1, item.getUsername());
 			preparedStatement.setString(2, item.getPassword());
@@ -145,6 +149,9 @@ public class UtenteDAO implements GenericDAO<Utente> {
 			preparedStatement.executeUpdate();
 
 			connection.commit();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			connection.rollback();
 		} finally {
 			try {
 				if (preparedStatement != null)
@@ -337,4 +344,78 @@ public class UtenteDAO implements GenericDAO<Utente> {
 
 	}
 
+	public synchronized static byte[] load(int i) {
+
+		Connection connection = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+
+		byte[] bt = null;
+
+		try {
+			connection = ds.getConnection();
+			String sql = "SELECT foto FROM " + UtenteDAO.TABLE_NAME + " WHERE id = ?";
+			stmt = connection.prepareStatement(sql);
+
+			stmt.setInt(1, i);
+			rs = stmt.executeQuery();
+
+			if (rs.next()) {
+				bt = rs.getBytes("foto");
+			}
+
+		} catch (SQLException sqlException) {
+			System.out.println(sqlException);
+		} finally {
+			try {
+				if (stmt != null)
+					stmt.close();
+			} catch (SQLException sqlException) {
+				System.out.println(sqlException);
+			} finally {
+				if (connection != null)
+					try {
+						connection.close();
+					} catch (SQLException e) {
+						System.out.println(e);
+					}
+			}
+		}
+		return bt;
+
+	}
+
+	public synchronized static void updatePhoto(int i, String photo) throws SQLException {
+		Connection con = null;
+		PreparedStatement stmt = null;
+
+		try {
+			con = ds.getConnection();
+			stmt = con.prepareStatement("UPDATE " + UtenteDAO.TABLE_NAME + " SET foto = ? WHERE id = ?");
+
+			File file = new File(photo);
+			try {
+				FileInputStream fis = new FileInputStream(file);
+				stmt.setBinaryStream(1, fis, fis.available());
+				stmt.setInt(2, i);
+
+				stmt.executeUpdate();
+
+			} catch (FileNotFoundException e) {
+				System.out.println(e);
+			} catch (IOException e) {
+				System.out.println(e);
+			}
+		} finally {
+			try {
+				if (stmt != null)
+					stmt.close();
+			} catch (SQLException sqlException) {
+				System.out.println(sqlException);
+			} finally {
+				if (con != null)
+					con.close();
+			}
+		}
+	}
 }

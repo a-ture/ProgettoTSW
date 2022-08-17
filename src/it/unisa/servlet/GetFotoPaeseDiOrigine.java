@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import it.unisa.model.FotoPaeseDiOrigineDAO;
+import it.unisa.model.PaeseDiOrigineDAO;
 
 
 /**
@@ -26,7 +26,7 @@ public class GetFotoPaeseDiOrigine extends HttpServlet {
 			throws ServletException, IOException {
 		String id = (String) request.getParameter("idPaese");
 		if (id != null) {
-			byte[] bt = FotoPaeseDiOrigineDAO.load(id);
+			byte[] bt = PaeseDiOrigineDAO.load(id);
 			System.out.print(bt);
 			
 			ServletOutputStream out = response.getOutputStream();

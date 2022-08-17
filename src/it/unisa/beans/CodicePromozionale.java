@@ -134,4 +134,11 @@ public class CodicePromozionale implements Serializable {
 		return true;
 	}
 
+	public boolean checkValidità() {
+		if (dataInzioValidità.after(new Date()) && dataFineValidità.before(new Date())) {
+			return true;
+		}
+		return false;
+	}
+
 }

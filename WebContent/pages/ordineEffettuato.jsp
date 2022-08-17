@@ -1,5 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<!-- accesso alla sessione -->
+<%@ page session="true"%>
+<%@ page contentType="text/html; charset=UTF-8"
+	import="java.util.*, it.unisa.beans.*,java.text.*"%>
+<%
+Utente utente = (Utente) request.getSession().getAttribute("utente");
+Ordine ordine = (Ordine) request.getSession().getAttribute("ordineUtente");
+if (ordine == null) {
+	response.sendRedirect("Ordini?action=vista");
+	return;
+}
+DecimalFormat dFormat = new DecimalFormat("0.00");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,142 +48,75 @@
 					<div class="card" style="border-radius: 10px;">
 						<div class="card-header px-4 py-5">
 							<h5 class="text-muted mb-0">
-								Thanks for your Order, <span style="color: #a8729a;">Anna</span>!
+								Grazie per il tuo ordine, <span style="color: #a8729a;">
+									<%=utente.getNome()%>
+								</span>!
 							</h5>
 						</div>
 						<div class="card-body p-4">
 							<div
 								class="d-flex justify-content-between align-items-center mb-4">
-								<p class="lead fw-normal mb-0" style="color: #a8729a;">Receipt</p>
-								<p class="small text-muted mb-0">Receipt Voucher :
-									1KAU9-84UIL</p>
+								<p class="lead fw-normal mb-0" style="color: #a8729a;">Il
+									tuo ordine:</p>
+								<p class="small text-muted mb-0">
+									Numero ordine:
+									<%=ordine.getId()%></p>
 							</div>
+							<%
+							Collection<ProdottoOrdine> prodotti = ordine.getItems();
+							Iterator<?> it = prodotti.iterator();
+							while (it.hasNext()) {
+								ProdottoOrdine prodotto = (ProdottoOrdine) it.next();
+							%>
 							<div class="card shadow-0 border mb-4">
 								<div class="card-body">
 									<div class="row">
-										<div class="col-md-2">
-											<img
-												src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/13.webp"
-												class="img-fluid" alt="Phone">
-										</div>
-										<div
-											class="col-md-2 text-center d-flex justify-content-center align-items-center">
-											<p class="text-muted mb-0">Samsung Galaxy</p>
-										</div>
-										<div
-											class="col-md-2 text-center d-flex justify-content-center align-items-center">
-											<p class="text-muted mb-0 small">White</p>
-										</div>
-										<div
-											class="col-md-2 text-center d-flex justify-content-center align-items-center">
-											<p class="text-muted mb-0 small">Capacity: 64GB</p>
-										</div>
-										<div
-											class="col-md-2 text-center d-flex justify-content-center align-items-center">
-											<p class="text-muted mb-0 small">Qty: 1</p>
-										</div>
-										<div
-											class="col-md-2 text-center d-flex justify-content-center align-items-center">
-											<p class="text-muted mb-0 small">$499</p>
-										</div>
-									</div>
-									<hr class="mb-4" style="background-color: #e0e0e0; opacity: 1;">
-									<div class="row d-flex align-items-center">
-										<div class="col-md-2">
-											<p class="text-muted mb-0 small">Track Order</p>
-										</div>
-										<div class="col-md-10">
-											<div class="progress"
-												style="height: 6px; border-radius: 16px;">
-												<div class="progress-bar" role="progressbar"
-													style="width: 65%; border-radius: 16px; background-color: #a8729a;"
-													aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
-											</div>
-											<div class="d-flex justify-content-around mb-1">
-												<p class="text-muted mt-1 mb-0 small ms-xl-5">Out for
-													delivary</p>
-												<p class="text-muted mt-1 mb-0 small ms-xl-5">Delivered</p>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="card shadow-0 border mb-4">
-								<div class="card-body">
-									<div class="row">
-										<div class="col-md-2">
-											<img
-												src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/1.webp"
-												class="img-fluid" alt="Phone">
-										</div>
-										<div
-											class="col-md-2 text-center d-flex justify-content-center align-items-center">
-											<p class="text-muted mb-0">iPad</p>
-										</div>
-										<div
-											class="col-md-2 text-center d-flex justify-content-center align-items-center">
-											<p class="text-muted mb-0 small">Pink rose</p>
-										</div>
-										<div
-											class="col-md-2 text-center d-flex justify-content-center align-items-center">
-											<p class="text-muted mb-0 small">Capacity: 32GB</p>
-										</div>
-										<div
-											class="col-md-2 text-center d-flex justify-content-center align-items-center">
-											<p class="text-muted mb-0 small">Qty: 1</p>
-										</div>
-										<div
-											class="col-md-2 text-center d-flex justify-content-center align-items-center">
-											<p class="text-muted mb-0 small">$399</p>
-										</div>
-									</div>
-									<hr class="mb-4" style="background-color: #e0e0e0; opacity: 1;">
-									<div class="row d-flex align-items-center">
-										<div class="col-md-2">
-											<p class="text-muted mb-0 small">Track Order</p>
-										</div>
-										<div class="col-md-10">
-											<div class="progress"
-												style="height: 6px; border-radius: 16px;">
-												<div class="progress-bar" role="progressbar"
-													style="width: 20%; border-radius: 16px; background-color: #a8729a;"
-													aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-											</div>
-											<div class="d-flex justify-content-around mb-1">
-												<p class="text-muted mt-1 mb-0 small ms-xl-5">Out for
-													delivary</p>
-												<p class="text-muted mt-1 mb-0 small ms-xl-5">Delivered</p>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
 
+										<div
+											class="col-md-2 text-center d-flex justify-content-center align-items-center">
+											<p class="text-muted mb-0"><%=prodotto.getNome()%></p>
+										</div>
+										<div
+											class="col-md-2 text-center d-flex justify-content-center align-items-center">
+											<p class="text-muted mb-0 small">
+												Quantità:
+												<%=prodotto.getQuantità()%></p>
+										</div>
+										<div
+											class="col-md-2 text-center d-flex justify-content-center align-items-center">
+											<p class="text-muted mb-0 small"><%=dFormat.format(prodotto.getPrezzo())%>
+												€
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<%
+							}
+							%>
 							<div class="d-flex justify-content-between pt-2">
-								<p class="fw-bold mb-0">Order Details</p>
+								<p class="fw-bold mb-0">Dettagli ordine</p>
 								<p class="text-muted mb-0">
-									<span class="fw-bold me-4">Total</span> $898.00
+									<span class="fw-bold me-4">Totale</span>
+									<%=ordine.getTotalePagato()%>
 								</p>
 							</div>
 
 							<div class="d-flex justify-content-between pt-2">
-								<p class="text-muted mb-0">Invoice Number : 788152</p>
+								<p class="text-muted mb-0">
+									Numero prodotti :
+									<%=ordine.getTotaleProdotti()%></p>
 								<p class="text-muted mb-0">
 									<span class="fw-bold me-4">Discount</span> $19.00
 								</p>
 							</div>
 
 							<div class="d-flex justify-content-between">
-								<p class="text-muted mb-0">Invoice Date : 22 Dec,2019</p>
+								<p class="text-muted mb-0">
+									Effettuato il :
+									<%=ordine.getCreatoIl()%></p>
 								<p class="text-muted mb-0">
 									<span class="fw-bold me-4">GST 18%</span> 123
-								</p>
-							</div>
-
-							<div class="d-flex justify-content-between mb-5">
-								<p class="text-muted mb-0">Recepits Voucher : 18KU-62IIK</p>
-								<p class="text-muted mb-0">
-									<span class="fw-bold me-4">Delivery Charges</span> Free
 								</p>
 							</div>
 						</div>
@@ -178,13 +124,16 @@
 							style="background-color: #a8729a; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
 							<h5
 								class="d-flex align-items-center justify-content-end text-white text-uppercase mb-0">
-								Total paid: <span class="h2 mb-0 ms-2">$1040</span>
+								Totale: <span class="h2 mb-0 ms-2"><%=dFormat.format(ordine.getTotalePagato())%>€</span>
 							</h5>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+		<p class="text-center">
+			Torna alla <a href="Home">Home</a>
+		</p>
 	</section>
 </body>
 </html>

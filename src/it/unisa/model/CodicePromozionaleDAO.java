@@ -14,6 +14,8 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import it.unisa.beans.CodicePromozionale;
+import it.unisa.beans.Ordine;
+import it.unisa.beans.Utente;
 
 public class CodicePromozionaleDAO implements GenericDAO<CodicePromozionale> {
 
@@ -189,6 +191,42 @@ public class CodicePromozionaleDAO implements GenericDAO<CodicePromozionale> {
 		}
 
 		return (result != 0);
+	}
+
+	public CodicePromozionale doRetriveByName(String codice) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		CodicePromozionale bean = new CodicePromozionale();
+
+		String selectSQL = "SELECT * FROM " + CodicePromozionaleDAO.TABLE_NAME + " WHERE codice = ?";
+
+		try {
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setString(1, codice);
+
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				bean.setDescrizione(rs.getString("descrizione"));
+				bean.setId(rs.getInt("id"));
+				bean.setCodice(rs.getString("codice"));
+				bean.setDataFineValidità(rs.getDate("dataFineValidità"));
+				bean.setDataInzioValidità(rs.getDate("dataInizioValidità"));
+				bean.setScontoApplicato(rs.getDouble("scontoApplicato"));
+			}
+
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null)
+					connection.close();
+			}
+		}
+		return bean;
 	}
 
 }

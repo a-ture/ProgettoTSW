@@ -88,6 +88,7 @@ public class OrdineDAO implements GenericDAO<Ordine> {
 					bean.setRegalo(rs.getBoolean("regalo"));
 					bean.setMessaggioRegalo(rs.getString("messaggioRegalo"));
 					bean.setCreatoIl(rs.getTimestamp("creatoIl").toLocalDateTime());
+					bean.setDestinatarioRegalo(rs.getString("destinatarioRegalo"));
 					ordini.add(bean);
 				}
 			}
@@ -97,8 +98,8 @@ public class OrdineDAO implements GenericDAO<Ordine> {
 
 	@Override
 	public void doSave(Ordine dao) throws SQLException {
-		String insertOrder = "INSERT INTO ordine (uid,  totaleProdotti, totalePagato, regalo, messaggioRegalo) "
-				+ "VALUES (?, ?, ?, ?, ?)";
+		String insertOrder = "INSERT INTO ordine (uid,  totaleProdotti, totalePagato, regalo, messaggioRegalo, destinatarioRegalo) "
+				+ "VALUES (?, ?, ?, ?, ?, ?)";
 		String insertItem = "INSERT INTO prodottoOrdine "
 				+ "(oid, nome, descrizione, breveDescrizione, prezzo, saldo, quantità, tasse) "
 				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
@@ -110,6 +111,7 @@ public class OrdineDAO implements GenericDAO<Ordine> {
 			stmt.setDouble(3, dao.getTotalePagato());
 			stmt.setBoolean(4, dao.isRegalo());
 			stmt.setString(5, dao.getMessaggioRegalo());
+			stmt.setString(6, dao.getDestinatarioRegalo());
 
 			stmt.executeUpdate();
 
@@ -275,6 +277,7 @@ public class OrdineDAO implements GenericDAO<Ordine> {
 					bean.setRegalo(rs.getBoolean("regalo"));
 					bean.setMessaggioRegalo(rs.getString("messaggioRegalo"));
 					bean.setCreatoIl(rs.getTimestamp("creatoIl").toLocalDateTime());
+					bean.setDestinatarioRegalo(rs.getString("destinatarioRegalo"));
 					ordini.add(bean);
 				}
 			}
@@ -317,5 +320,40 @@ public class OrdineDAO implements GenericDAO<Ordine> {
 				return rs.next() ? rs.getInt("c") : 0;
 			}
 		}
+	}
+
+	public Ordine doRetriveByLastUserOrder() throws SQLException {
+
+		String selectSQL = "SELECT * FROM ordine AS o, prodottoOrdine AS p WHERE o.id=p.oid AND o.id=(SELECT max(id) FROM ordine)";
+		Ordine ordine = new Ordine();
+		try (var conn = ds.getConnection()) {
+			try (var stmt = conn.prepareStatement(selectSQL)) {
+				System.out.println(stmt);
+				ResultSet rs = stmt.executeQuery();			
+				if (rs.next()) {
+					ordine.setId(rs.getInt("id"));
+					ordine.setTotaleProdotti(rs.getInt("totaleProdotti"));
+					ordine.setTotalePagato(rs.getDouble("totalePagato"));
+					ordine.setRegalo(rs.getBoolean("regalo"));
+					ordine.setMessaggioRegalo(rs.getString("messaggioRegalo"));
+					ordine.setCreatoIl(rs.getTimestamp("creatoIl").toLocalDateTime());
+				}
+				do {
+					ProdottoOrdine item = new ProdottoOrdine();
+					item.setId(rs.getInt("id"));
+					item.setOid(rs.getInt("oid"));
+					item.setNome(rs.getString("nome"));
+					item.setDescrizione(rs.getString("descrizione"));
+					item.setBreveDescrizione(rs.getString("breveDescrizione"));
+					item.setTasse(rs.getInt("tasse"));
+					item.setPrezzo(rs.getDouble("prezzo"));
+					item.setSaldo(rs.getDouble("saldo"));
+					item.setQuantità(rs.getInt("quantità"));
+
+					ordine.aggiungiPrdotto(item);
+				} while (rs.next());
+			}
+		}
+		return ordine;
 	}
 }

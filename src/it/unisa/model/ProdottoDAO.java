@@ -53,7 +53,7 @@ public class ProdottoDAO implements GenericDAO<Prodotto> {
 			while (rs.next()) {
 
 				bean.setAltezza(rs.getDouble("altezza"));
-				bean.setCo2(rs.getDouble("co2"));
+				bean.setCo2(rs.getInt("co2"));
 				bean.setDescrizione(rs.getString("descrizione"));
 				bean.setDescrizioneBreve(rs.getString("descrizioneBreve"));
 				bean.setId(rs.getInt("id"));
@@ -63,7 +63,7 @@ public class ProdottoDAO implements GenericDAO<Prodotto> {
 				bean.setPaeseDiOrigine(rs.getString("pid"));
 				bean.setPrezzo(rs.getDouble("prezzo"));
 				bean.setQuantità(rs.getInt("quantità"));
-				bean.setSalvaguardia(rs.getDouble("Salvaguardia"));
+				bean.setSalvaguardia(rs.getInt("Salvaguardia"));
 				bean.setCategories(findProductCategory(bean.getId()));
 				bean.setDoveVienePiantato(rs.getString("doveVienePiantato"));
 				bean.setSottotitolo(rs.getString("sottotitolo"));
@@ -108,7 +108,7 @@ public class ProdottoDAO implements GenericDAO<Prodotto> {
 				Prodotto bean = new Prodotto();
 
 				bean.setAltezza(rs.getDouble("altezza"));
-				bean.setCo2(rs.getDouble("co2"));
+				bean.setCo2(rs.getInt("co2"));
 				bean.setDescrizione(rs.getString("descrizione"));
 				bean.setDescrizioneBreve(rs.getString("descrizioneBreve"));
 				bean.setId(rs.getInt("id"));
@@ -118,7 +118,7 @@ public class ProdottoDAO implements GenericDAO<Prodotto> {
 				bean.setPaeseDiOrigine(rs.getString("pid"));
 				bean.setPrezzo(rs.getDouble("prezzo"));
 				bean.setQuantità(rs.getInt("quantità"));
-				bean.setSalvaguardia(rs.getDouble("Salvaguardia"));
+				bean.setSalvaguardia(rs.getInt("Salvaguardia"));
 				bean.setCategories(findProductCategory(bean.getId()));
 				bean.setDoveVienePiantato(rs.getString("doveVienePiantato"));
 				bean.setSottotitolo(rs.getString("sottotitolo"));
@@ -278,7 +278,7 @@ public class ProdottoDAO implements GenericDAO<Prodotto> {
 				Prodotto bean = new Prodotto();
 
 				bean.setAltezza(rs.getDouble("altezza"));
-				bean.setCo2(rs.getDouble("co2"));
+				bean.setCo2(rs.getInt("co2"));
 				bean.setDescrizione(rs.getString("descrizione"));
 				bean.setDescrizioneBreve(rs.getString("descrizioneBreve"));
 				bean.setId(rs.getInt("id"));
@@ -288,7 +288,7 @@ public class ProdottoDAO implements GenericDAO<Prodotto> {
 				bean.setPaeseDiOrigine(rs.getString("pid"));
 				bean.setPrezzo(rs.getDouble("prezzo"));
 				bean.setQuantità(rs.getInt("quantità"));
-				bean.setSalvaguardia(rs.getDouble("Salvaguardia"));
+				bean.setSalvaguardia(rs.getInt("Salvaguardia"));
 				bean.setCategories(findProductCategory(bean.getId()));
 				bean.setDoveVienePiantato(rs.getString("doveVienePiantato"));
 				bean.setSottotitolo(rs.getString("sottotitolo"));
@@ -327,7 +327,7 @@ public class ProdottoDAO implements GenericDAO<Prodotto> {
 				Prodotto bean = new Prodotto();
 
 				bean.setAltezza(rs.getDouble("altezza"));
-				bean.setCo2(rs.getDouble("co2"));
+				bean.setCo2(rs.getInt("co2"));
 				bean.setDescrizione(rs.getString("descrizione"));
 				bean.setDescrizioneBreve(rs.getString("descrizioneBreve"));
 				bean.setId(rs.getInt("id"));
@@ -337,7 +337,7 @@ public class ProdottoDAO implements GenericDAO<Prodotto> {
 				bean.setPaeseDiOrigine(rs.getString("pid"));
 				bean.setPrezzo(rs.getDouble("prezzo"));
 				bean.setQuantità(rs.getInt("quantità"));
-				bean.setSalvaguardia(rs.getDouble("Salvaguardia"));
+				bean.setSalvaguardia(rs.getInt("Salvaguardia"));
 				bean.setCategories(findProductCategory(bean.getId()));
 				bean.setDoveVienePiantato(rs.getString("doveVienePiantato"));
 				bean.setSottotitolo(rs.getString("sottotitolo"));

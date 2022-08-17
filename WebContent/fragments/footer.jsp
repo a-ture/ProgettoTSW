@@ -57,8 +57,8 @@
 		</section>
 		<!-- Section: Social media -->
 		<ul class="list-inline">
-			<li class="list-inline-item"><a href="catalogo.jsp">Alberi</a></li>
-			<li class="list-inline-item"><a href="chiSiamo.jsp">Chi
+			<li class="list-inline-item"><a href="Catalogo">Alberi</a></li>
+			<li class="list-inline-item"><a href="ChiSiamoServlet">Chi
 					Siamo</a></li>
 			<li class="list-inline-item">
 				<!-- Button trigger modal cookie --> <a href="#"

@@ -47,7 +47,8 @@ Collection<?> errori = (Collection<?>) request.getAttribute("errori");
 									<p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Registrati</p>
 
 									<form action="Login?action=registrazione" name="signIn"
-										method="POST" class="mx-1 mx-md-4 needs-validation" novalidate
+										enctype='multipart/form-data' method="POST"
+										class="mx-1 mx-md-4 needs-validation" novalidate
 										autocomplete="off">
 
 										<div class="d-flex flex-row align-items-center mb-4">
@@ -122,6 +123,14 @@ Collection<?> errori = (Collection<?>) request.getAttribute("errori");
 													coincidono</div>
 											</div>
 										</div>
+										<div class="d-flex flex-row align-items-center mb-4">
+											<i class="fa-solid fa-camera  fa-lg me-3 fa-fw"></i>
+											<div class="form-outline flex-fill mb-0">
+												<input class="form-control" type="file" id="formFile"
+													name="formFile"><label for="formFile"
+													class="form-label">Inserisci una foto profilo </label>
+											</div>
+										</div>
 										<div class="form-check align-items-center">
 											<input class="form-check-input" type="checkbox" value=""
 												id="condizioni" aria-describedby="invalidCheck3Feedback"
@@ -168,6 +177,7 @@ Collection<?> errori = (Collection<?>) request.getAttribute("errori");
 	</section>
 
 	<script type="text/javascript">
+
 
 			var email = document.signIn.email;
 			var password = document.signIn.password;
@@ -230,7 +240,7 @@ Collection<?> errori = (Collection<?>) request.getAttribute("errori");
 				var password_lengh= password.value.length;
 				var password_lengh1= password1.value.length;
 				
-			    if (password_lengh ==0 || password_lengh < 3 || password_lengh > 10) { 
+			    if (password_lengh ==0 || password_lengh < 3 || password_lengh > 20) { 
 			    	password.classList.add("is-invalid");
 			        validPassword = false;
 			    } else {
@@ -268,17 +278,19 @@ Collection<?> errori = (Collection<?>) request.getAttribute("errori");
 			});
 			
 			let submit = document.getElementById("submit");
-			submit.addEventListener("click", (e) => {
+			submit.addEventListener("submit", (e) => {
 			    e.preventDefault();
 			    if (validEmail && validNome && validCognome && validPassword1 && validPassword && validCondizioni) {
 			        form.classList.add("was-validated");
+			
 			        return true ;
 			    } else {
 			    	form.classList.add("was-validated");
 			        return false; 
 			    }
+			    
 			});
-		
+	
 	</script>
 </body>
 </html>

@@ -7,9 +7,11 @@
 	import="java.util.*, it.unisa.beans.*,java.text.*"%>
 <%
 Utente utente = (Utente) request.getSession().getAttribute("utente");
-Indirizzo indirizzo = (Indirizzo) request.getSession().getAttribute("indirizzo");
+Collection<?> indirizzi = (Collection<?>) request.getSession().getAttribute("indirizzi");
+
 Collection<?> ordini = (Collection<?>) request.getSession().getAttribute("ordiniUtente");
 Collection<?> prodottiOrdini = (Collection<?>) request.getSession().getAttribute("prodottiOrdini");
+
 int numeroAlberiAcquistati = (int) request.getSession().getAttribute("numeroDiAlberiAcquistati");
 int numeroDiRegali = (int) request.getSession().getAttribute("numeroDiRegali");
 double totaleSpeso = (double) request.getSession().getAttribute("totaleSpeso");
@@ -29,11 +31,11 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 <title>Profilo</title>
 <!--CSS-->
 <link rel="stylesheet" type="text/css"
-	href="./resources/css/bootstrap.css">
+	href="resources/css/bootstrap.css">
 <link rel="stylesheet" type="text/css"
-	href="./resources/css/_variables.scss">
+	href="resources/css/_variables.scss">
 <link rel="stylesheet" type="text/css"
-	href="./resources/css/_bootswatch.scss">
+	href="resources/css/_bootswatch.scss">
 
 <!-- JavaScript Bundle with Popper -->
 <script
@@ -62,7 +64,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 	<div class="container">
 		<div class="row d-flex">
 			<div class="col-2">
-				<img src=""
+				<img src="GetFotoUtente?idUtente=<%=utente.getId()%>"
 					onerror="this.src='./resources/img/placeholderProfile.png'"
 					class="rounded-circle mb-3" style="width: 150px;" />
 			</div>
@@ -147,7 +149,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 							<div class="card overflow-hidden">
 								<!-- Cover image -->
 								<div class="h-50px"
-									style="background-image: url(assets/images/bg/01.jpg); background-position: center; background-size: cover; background-repeat: no-repeat;"></div>
+									style="background-image: url(); background-position: center; background-size: cover; background-repeat: no-repeat;"></div>
 								<!-- Card body START -->
 								<div class="card-body pt-0">
 									<!-- Side Nav START -->
@@ -169,11 +171,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 										<li class="nav-item"><a class="nav-link"
 											href="#indirizzo" id="indirizzoButton"> <i
 												class="fa-solid fa-map-location-dot"></i><span>
-													Indirizzo </span></a></li>
-										<li class="nav-item"><a class="nav-link"
-											href="#metodoDiPagamento" id="metodoDiPagamentoButton"> <i
-												class="fa-solid fa-credit-card"></i> <span>Metodo Di
-													Pagamento </span></a></li>
+													Indirizzi </span></a></li>
 										<li class="nav-item"><a class="nav-link" href="#logout"
 											id="logoutButton"> <i
 												class="fa-solid fa-right-from-bracket"></i><span>Logout
@@ -326,7 +324,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					%>
 					<p class="text-center">Qui puoi trovare il riepilogo degli
 						ordini fatti nel nostro shop</p>
-					<table class="table table-hover">
+					<table class="table table-hover ">
 						<thead>
 							<tr>
 								<th scope="col">Numero Ordine</th>
@@ -476,20 +474,75 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					</div>
 					<div class="mb-5"></div>
 				</div>
-				
+
 				<!-- Indirizzo -->
 				<div id="indirizzo" class="row d-none">
-					<h1 class="text-center">Il tuo indirizzo</h1>
+					<h1 class="text-center">I tuoi indirizzi</h1>
+					<%
+					if (indirizzi != null && indirizzi.size() != 0) {
+						Iterator<?> it = indirizzi.iterator();
+						while (it.hasNext()) {
+							Indirizzo indirizzo = (Indirizzo) it.next();
+					%>
+
+					<div class="card col-4 p-3 mb-5 text-center">
+						<div class="card-body">
+							<h4 class="card-title">Indirizzo Di Fatturazione</h4>
+							<p class="card-text">
+								<b>Nome: </b>
+								<%=indirizzo.getNome()%>
+							</p>
+							<p class="card-text">
+								<b>Cognome: </b>
+								<%=indirizzo.getCognome()%>
+							</p>
+							<p class="card-text">
+								<b>Via: </b>
+								<%=indirizzo.getVia()%>
+							</p>
+							<p class="card-text">
+								<b>Civico:</b>
+								<%=indirizzo.getCivico()%>
+							</p>
+							<p class="card-text">
+								<b>Città: </b>
+								<%=indirizzo.getCittà()%>
+							</p>
+							<p class="card-text">
+								<b>Cap: </b>
+								<%=indirizzo.getCAP()%>
+							</p>
+							<p class="card-text">
+								<b>Provincia:</b>
+								<%=indirizzo.getProvincia()%>
+							</p>
+							<p class="card-text">
+								<b>Prefferd:</b>
+								<%=indirizzo.isPreferred()%>
+							</p>
+							<form>
+								<input class="form-check-input" type="checkbox" value=""
+									id="condizioni" aria-describedby="invalidCheck3Feedback"
+									required> <label class="form-check-label"
+									for="condizioni"> Rendi preferito </label>
+							</form>
+						</div>
+					</div>
+
+					<%
+					}
+					}
+					%>
 				</div>
-				
-				<!-- Metodo Di Pagamento -->
-				<div id="metodoDiPagamento" class="row d-none">
-					<h1 class="text-center">Il tuo metodo di pagamento</h1>
-				</div>
-			
+
 				<!-- Logout -->
-				<div id="logout" class="row d-none"></div>
-				
+				<div id="logout" class="row d-none">
+					<p>
+						Clicca <a href="Login?action=logout">qui</a> per effettuare il
+						logout
+					</p>
+				</div>
+
 				<!-- Modifica Informazioni -->
 				<div class="row d-none" id="modificaInformazioni">
 					<h4 class="mb-3">Modifica Informazioni</h4>
@@ -705,7 +758,6 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				$("#woodLot").addClass("d-none");
 				$("#news").addClass("d-none");
 				$("#indirizzo").addClass("d-none");
-				$("#metodoDiPagamento").addClass("d-none");
 				$("#logout").addClass("d-none");
 				$("#modificaIndormazioni").addClass("d-none");
 			});
@@ -716,7 +768,6 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				$("#woodLot").addClass("d-none");
 				$("#news").addClass("d-none");
 				$("#indirizzo").addClass("d-none");
-				$("#metodoDiPagamento").addClass("d-none");
 				$("#logout").addClass("d-none");
 				$("#modificaIndormazioni").addClass("d-none");
 			});
@@ -727,7 +778,6 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				$("#ordini").addClass("d-none");
 				$("#news").addClass("d-none");
 				$("#indirizzo").addClass("d-none");
-				$("#metodoDiPagamento").addClass("d-none");
 				$("#logout").addClass("d-none");
 				$("#modificaIndormazioni").addClass("d-none");
 			});
@@ -738,7 +788,6 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				$("#ordini").addClass("d-none");
 				$("#woodLot").addClass("d-none");
 				$("#indirizzo").addClass("d-none");
-				$("#metodoDiPagamento").addClass("d-none");
 				$("#logout").addClass("d-none");
 				$("#modificaIndormazioni").addClass("d-none");
 			});
@@ -749,18 +798,6 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				$("#ordini").addClass("d-none");
 				$("#woodLot").addClass("d-none");
 				$("#news").addClass("d-none");
-				$("#metodoDiPagamento").addClass("d-none");
-				$("#logout").addClass("d-none");
-				$("#modificaIndormazioni").addClass("d-none");
-			});
-
-			$("#metodoDiPagamentoButton").click(function(event) {
-				$("#metodoDiPagamento").removeClass("d-none");
-				$("#badge").addClass("d-none");
-				$("#ordini").addClass("d-none");
-				$("#woodLot").addClass("d-none");
-				$("#news").addClass("d-none");
-				$("#indirizzo").addClass("d-none");
 				$("#logout").addClass("d-none");
 				$("#modificaIndormazioni").addClass("d-none");
 			});
@@ -773,7 +810,16 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				$("#news").addClass("d-none");
 				$("#indirizzo").addClass("d-none");
 				$("#logout").addClass("d-none");
-				$("#metodoDiPagamento").addClass("d-none");
+			});
+
+			$("#logoutButton").click(function(event) {
+				$("#logout").removeClass("d-none");
+				$("#badge").addClass("d-none");
+				$("#ordini").addClass("d-none");
+				$("#woodLot").addClass("d-none");
+				$("#news").addClass("d-none");
+				$("#indirizzo").addClass("d-none");
+				$("#modificaInformazioni").addClass("d-none");
 			});
 		});
 	</script>

@@ -25,11 +25,11 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 <title>Catalogo</title>
 <!--CSS-->
 <link rel="stylesheet" type="text/css"
-	href="../resources/css/bootstrap.css">
+	href="resources/css/bootstrap.css">
 <link rel="stylesheet" type="text/css"
-	href="../resources/css/_variables.scss">
+	href="resources/css/_variables.scss">
 <link rel="stylesheet" type="text/css"
-	href="../resources/css/_bootswatch.scss">
+	href="resources/css/_bootswatch.scss">
 
 <!-- JavaScript Bundle with Popper -->
 <script
@@ -154,7 +154,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			<div class="col ">
 				<div class="card h-100">
 					<img src="./GetFotoProdotto?idFoto=<%=bean1.getNomeFoto()%>"
-						class="card-img-top" 
+						class="card-img-top"
 						onerror="this.src='./resources//img/error.jpg'" />
 					<div class="card-body">
 						<h5 class="card-title text-center"><%=bean.getNome()%></h5>
