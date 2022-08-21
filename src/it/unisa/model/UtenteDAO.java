@@ -16,9 +16,11 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import it.unisa.beans.Indirizzo;
 import it.unisa.beans.Utente;
 
 public class UtenteDAO implements GenericDAO<Utente> {
+
 	private static DataSource ds;
 
 	static {
@@ -38,38 +40,40 @@ public class UtenteDAO implements GenericDAO<Utente> {
 	@Override
 	public Utente doRetriveByKey(String code) throws SQLException {
 
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
-
 		Utente bean = new Utente();
 
-		String selectSQL = "SELECT * FROM " + UtenteDAO.TABLE_NAME + " WHERE id = ?";
+		String selectSQL = "SELECT * FROM " + UtenteDAO.TABLE_NAME
+				+ "AS u, indirizzo  AS i WHERE u.id = i.cid AND u.id=?";
 
-		try {
-			connection = ds.getConnection();
-			preparedStatement = connection.prepareStatement(selectSQL);
-			preparedStatement.setInt(1, Integer.parseInt(code));
-
-			ResultSet rs = preparedStatement.executeQuery();
-
-			while (rs.next()) {
-
-				bean.setCognome(rs.getString("cognome"));
-				bean.setEmail(rs.getString("email"));
-				bean.setId(rs.getInt("id"));
-				bean.setNome(rs.getString("nome"));
-				bean.setPassword(rs.getString("password"));
-				bean.setRole(rs.getString("role"));
-				bean.setActive(rs.getBoolean("active"));
-			}
-
-		} finally {
-			try {
-				if (preparedStatement != null)
-					preparedStatement.close();
-			} finally {
-				if (connection != null)
-					connection.close();
+		try (var conn = ds.getConnection()) {
+			try (var stmt = conn.prepareStatement(selectSQL)) {
+				stmt.setInt(1, Integer.parseInt(code));
+				ResultSet rs = stmt.executeQuery();
+				if (rs.next()) {
+					bean.setNome(rs.getString("nome"));
+					bean.setCognome(rs.getString("cognome"));
+					bean.setId(rs.getInt("id"));
+					bean.setEmail(rs.getString("email"));
+					bean.setPassword(rs.getString("password"));
+					bean.setRole(rs.getString("role"));
+					bean.setActive(rs.getBoolean("active"));
+				}
+				// in this case there are at least one address
+				if (rs.getInt("id") != 0) {
+					do {
+						Indirizzo addr = new Indirizzo();
+						addr.setId(rs.getInt("id"));
+						addr.setNome(rs.getString("nome"));
+						addr.setCognome(rs.getString("cognome"));
+						addr.setVia(rs.getString("via"));
+						addr.setCAP(rs.getString("cap"));
+						addr.setCittà(rs.getString("città"));
+						addr.setProvincia(rs.getString("provincia"));
+						addr.setCivico(rs.getString("civico"));
+						addr.setPreferred(rs.getBoolean("preferred"));
+						bean.aggiungiIndirizzo(addr);
+					} while (rs.next());
+				}
 			}
 		}
 		return bean;
@@ -166,6 +170,35 @@ public class UtenteDAO implements GenericDAO<Utente> {
 	@Override
 	public int doUpdate(Utente item) throws SQLException {
 
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		String insertSQL = "UPDATE " + UtenteDAO.TABLE_NAME + " SET nome = ?, cognome = ?, username = ?, email = ?"
+				+ " WHERE id = ? ";
+
+		try {
+			connection = ds.getConnection();
+			connection.setAutoCommit(false);
+
+			preparedStatement = connection.prepareStatement(insertSQL);
+			preparedStatement.setString(1, item.getNome());
+			preparedStatement.setString(2, item.getCognome());
+			preparedStatement.setString(3, item.getUsername());
+			preparedStatement.setString(4, item.getEmail());
+			preparedStatement.setInt(5, item.getId());
+			preparedStatement.executeUpdate();
+
+			connection.commit();
+
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null)
+					connection.close();
+			}
+		}
 		return 0;
 	}
 
@@ -222,8 +255,8 @@ public class UtenteDAO implements GenericDAO<Utente> {
 				bean.setId(rs.getInt("id"));
 				bean.setNome(rs.getString("nome"));
 				bean.setPassword(rs.getString("password"));
+				bean.setUsername(rs.getString("username"));
 				bean.setRole(rs.getString("role"));
-
 			}
 
 		} finally {

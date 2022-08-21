@@ -60,6 +60,7 @@ public class IndirizzoDAO implements GenericDAO<Indirizzo> {
 				bean.setPreferred(rs.getBoolean("preferred"));
 				bean.setUid(rs.getInt("cid"));
 				bean.setCivico(rs.getString("civico"));
+				bean.setProvincia(rs.getString("provincia"));
 
 			}
 		} finally {
@@ -100,6 +101,7 @@ public class IndirizzoDAO implements GenericDAO<Indirizzo> {
 				bean.setPreferred(rs.getBoolean("preferred"));
 				bean.setUid(rs.getInt("cid"));
 				bean.setCivico(rs.getString("civico"));
+				bean.setProvincia(rs.getString("provincia"));
 				beans.add(bean);
 			}
 		} finally {
@@ -208,8 +210,43 @@ public class IndirizzoDAO implements GenericDAO<Indirizzo> {
 
 	@Override
 	public int doUpdate(Indirizzo item) throws SQLException {
-		return 0;
 
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		String insertSQL = "UPDATE " + IndirizzoDAO.TABLE_NAME
+				+ " SET nome = ?, cognome = ?, via = ?, cap = ?, città = ?, provincia = ?,"
+				+ " civico = ?, preferred = ?  WHERE id = ? ";
+
+		try {
+			connection = ds.getConnection();
+			connection.setAutoCommit(false);
+
+			preparedStatement = connection.prepareStatement(insertSQL);
+			preparedStatement.setString(1, item.getNome());
+			preparedStatement.setString(2, item.getCognome());
+			preparedStatement.setString(3, item.getVia());
+			preparedStatement.setString(4, item.getCAP());
+			preparedStatement.setString(5, item.getCittà());
+			preparedStatement.setString(6, item.getProvincia());
+			preparedStatement.setString(7, item.getCivico());
+			preparedStatement.setBoolean(8, item.isPreferred());
+			preparedStatement.setInt(9, item.getId());
+			
+			preparedStatement.executeUpdate();
+
+			connection.commit();
+			
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null)
+					connection.close();
+			}
+		}
+		return 0;
 	}
 
 	@Override

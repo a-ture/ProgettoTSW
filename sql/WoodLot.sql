@@ -116,16 +116,16 @@ CREATE TABLE indirizzo (
     città VARCHAR(60) NOT NULL,
     provincia VARCHAR(50) NOT NULL,
     civico INT NOT NULL,
-    preferred TINYINT NULL DEFAULT NULL,
+    preferred BOOLEAN DEFAULT NULL,
     PRIMARY KEY (id),
-    /*UNIQUE INDEX cid_preferred (cid , preferred),*/
+    UNIQUE INDEX cid_preferred (cid , preferred),
     CONSTRAINT FK__useres FOREIGN KEY (cid)
         REFERENCES utente (id)
         ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-CREATE TABLE codicePromozionale(
-	id BIGINT AUTO_INCREMENT,
+CREATE TABLE codicePromozionale (
+    id BIGINT AUTO_INCREMENT,
     codice VARCHAR(45) NOT NULL UNIQUE,
     dataInizioValidità DATE,
     dataFineValidità DATE,
@@ -133,6 +133,7 @@ CREATE TABLE codicePromozionale(
     descrizione VARCHAR(45),
     PRIMARY KEY (id)
 );
+
 
 INSERT INTO paeseDiOrigine (nome)
 	VALUES ("Guatemala");
@@ -205,6 +206,7 @@ L’intero progetto della fattoria nasce appunto per ridurre il dissesto idrogeo
 In questo Agriasilo, i piccoli imparano a prendersi cura di piante ed animali nel loro campo, orto e pollaio didattico, oltre che abituarsi a uno stile alimentare basato su prodotti di stagione coltivati in azienda.");
 INSERT INTO prodotto (nome, nomeScientifico, descrizione, sottotitolo, altezza, prezzo, pid, quantità, co2, salvaguardia,descrizioneBreve, doveVienePiantato) 
 	VALUES ("Amazzonia da frutto", "Huicungo", "Alberi il cui solo nome è impronunciabile che producono frutti nativi della foresta più grande del mondo. Dobbiamo ancora scoprirne tutti i sapori. Aiutaci a piantarli!", "50 Kg/anno di frutta prodott", 20.00, 35.00, "Perù", 10, 4, 3,"Alberi il cui solo nome è impronunciabile che producono frutti nativi della foresta più grande del mondo.Dobbiamo ancora scoprirne tutti i sapoti. Auitaci a piantarli!","In Perù, all’interno dell’Amazzonia peruviana. Piantiamo diverse specie di alberi da frutto autoctoni con lo scopo di proteggere e rigenerare la biodiversità, salvaguardare la cultura e le usanze indigene e assicurare uno sviluppo sostenibile tra società e foreste.");
+
 
 INSERT INTO categorie_prodotti(pid,cid) 
 	VALUES (1,1);

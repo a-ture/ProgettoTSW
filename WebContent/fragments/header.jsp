@@ -45,10 +45,10 @@
 							<span class="visually-hidden">(current)</span>
 					</a></li>
 					<li class="nav-item"><a class="nav-link" href="Catalogo">Alberi</a></li>
-					<li class="nav-item"><a class="nav-link" href="ChiSiamoServlet">Chi
-							Siamo</a></li>
-					<li class="nav-item"><a class="btn btn-secondary my-2 my-sm-0"
-						href="#">Hai un Treecode?</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="ChiSiamoServlet">Chi Siamo</a></li>
+					<li class="nav-item"><a class="btn btn-secondary my-2 my-sm-0">
+							Hai un Treecode?</a></li>
 				</ul>
 				<div>
 					<ul class="navbar-nav me-auto">
@@ -65,7 +65,6 @@
 
 		</div>
 	</nav>
-
 
 </body>
 </html>

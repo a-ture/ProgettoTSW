@@ -114,9 +114,9 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
 						aria-haspopup="true" aria-expanded="false"></button>
 					<div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-						<a class="dropdown-item" href="#">Tutti</a> <a
-							class="dropdown-item" href="#">Alberi</a> <a
-							class="dropdown-item" href="#">Certificati</a>
+						<a class="dropdown-item" href="Catalogo">Tutti</a> <a
+							class="dropdown-item" href="Catalogo?action=saldi">Prodotti
+							in Saldo</a> <a class="dropdown-item" href="#">Certificati</a>
 					</div>
 				</div>
 			</div>
@@ -157,21 +157,40 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						class="card-img-top"
 						onerror="this.src='./resources//img/error.jpg'" />
 					<div class="card-body">
-						<h5 class="card-title text-center"><%=bean.getNome()%></h5>
+						<h5 class="card-title text-center"><%=bean.getNome()%>
+							<%
+							if (bean.getOnSale() != 0) {
+							%><span class="badge mx-2 bg-secondary">In Saldo</span>
+							<%
+							}
+							%>
+						</h5>
 						<p class="card-text text-center"><%=bean.getDescrizioneBreve()%></p>
 						<p class="card-text text-center"><%=dFormat.format(bean.getPrezzo())%>
 							€
 						</p>
 						<div class="text-center">
-							<a class="btn btn-success"
+							<a class="btn btn-success position-relative"
 								href="Prodotto?action=leggi&id=<%=bean.getId()%>">Piantalo
-								Ora</a>
+								Ora <%
+							if (bean.getOnSale() != 0) {
+							%><span
+								class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+									<span class="visually-hidden">In Saldo</span>
+							</span> <%
+ }
+ %>
+							</a>
 						</div>
 					</div>
 				</div>
 			</div>
 			<%
 			}
+			} else {
+			%>
+			<p > Non ci sono prodotti che corrispondo alla tua ricerca =( Riporva!!</p> 
+			<%
 			}
 			%>
 		</div>

@@ -147,6 +147,64 @@ public class ProdottoDAO implements GenericDAO<Prodotto> {
 		return beans;
 	}
 
+	public synchronized Collection<Prodotto> doRetriveBySale() throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet rs = null;
+
+		Collection<Prodotto> beans = new LinkedList<Prodotto>();
+
+		String selectSQL = "SELECT * FROM " + ProdottoDAO.TABLE_NAME + " WHERE saldo=1";
+
+		try {
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+
+			rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				Prodotto bean = new Prodotto();
+
+				bean.setAltezza(rs.getDouble("altezza"));
+				bean.setCo2(rs.getInt("co2"));
+				bean.setDescrizione(rs.getString("descrizione"));
+				bean.setDescrizioneBreve(rs.getString("descrizioneBreve"));
+				bean.setId(rs.getInt("id"));
+				bean.setNome(rs.getString("nome"));
+				bean.setNomeScientifico(rs.getString("nomeScientifico"));
+				bean.setOnSale(rs.getInt("onSale"));
+				bean.setPaeseDiOrigine(rs.getString("pid"));
+				bean.setPrezzo(rs.getDouble("prezzo"));
+				bean.setQuantità(rs.getInt("quantità"));
+				bean.setSalvaguardia(rs.getInt("Salvaguardia"));
+				bean.setCategories(findProductCategory(bean.getId()));
+				bean.setDoveVienePiantato(rs.getString("doveVienePiantato"));
+				bean.setSottotitolo(rs.getString("sottotitolo"));
+				bean.setSaldo(rs.getDouble("saldo"));
+				bean.setTasse(rs.getDouble("tasse"));
+				bean.setDisponibile(rs.getBoolean("disponibile"));
+
+				beans.add(bean);
+			}
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				try {
+					if (connection != null) {
+						connection.close();
+					}
+				} finally {
+					if (rs != null)
+						rs.close();
+				}
+			}
+		}
+
+		return beans;
+	}
+
 	@Override
 	public synchronized void doSave(Prodotto item) throws SQLException {
 

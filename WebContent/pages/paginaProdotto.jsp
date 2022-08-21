@@ -12,7 +12,10 @@ Prodotto prodotto = (Prodotto) request.getAttribute("prodotto");
 FotoProdotto[] foto = (FotoProdotto[]) request.getSession().getAttribute("prodottoFoto");
 Collection<?> categorie = (Collection<?>) request.getAttribute("categorieProdotto");
 
-if (prodotto == null || foto == null || categorie == null) {
+Collection<?> prodotti = (Collection<?>) request.getAttribute("prodotti");
+Collection<?> fotoProdotti = (Collection<?>) request.getAttribute("fotoProdotti");
+
+if (prodotto == null || foto == null || categorie == null || fotoProdotti == null || prodotti == null) {
 	response.sendRedirect("./Prodotto");
 	return;
 }
@@ -32,6 +35,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 	href="resources/css/_variables.scss">
 <link rel="stylesheet" type="text/css"
 	href="resources/css/_bootswatch.scss">
+<link rel="stylesheet" type="text/css" href="resources/css/style.css">
 <!-- JavaScript Bundle with Popper -->
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
@@ -45,6 +49,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 	integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
 	crossorigin="anonymous"></script>
 </head>
+
 <!-- Per cambiare il colore delle stelline -->
 <style>
 .checked {
@@ -58,15 +63,12 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 	<br>
 
 	<!-- Sezione Prodotto -->
-	<div class="container">
-		<br>
+	<div class="container-fluid">
 		<!-- Foto Prodotto -->
 		<div class="row">
 			<div class=" col-5">
-
 				<!-- Carousel -->
 				<div id="demo" class="carousel slide" data-bs-ride="carousel">
-
 					<!-- Indicators/dots -->
 					<div class="carousel-indicators">
 						<button type="button" data-bs-target="#demo" data-bs-slide-to="0"
@@ -180,14 +182,9 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				</div>
 			</div>
 		</div>
-
-
-		<!-- Fine Sezione Prodotto -->
-
 		<!-- Dettagli Prodotto -->
 		<!-- Breve Descrizione  -->
-		<br> <br>
-		<div class="row text-center">
+		<div class="row text-center m-4">
 			<div class="col-6">
 				<div class="card" style="background: #c4d89d;">
 					<div class="card-body">
@@ -256,8 +253,9 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				</div>
 			</div>
 		</div>
+
 		<!-- Dove Viene Piantato -->
-		<div class="text-center">
+		<div class="text-center m-4">
 			<br> <br>
 			<h3>Dove Viene Piantato?</h3>
 			<p class="lead"><%=prodotto.getDoveVienePiantato()%></p>
@@ -268,7 +266,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				class="img-fluid" height="626px" width="925px">
 		</div>
 		<!-- Perche Categoria -->
-		<div class="text-center">
+		<div class="text-center m-5">
 			<%
 			if (categorie != null && categorie.size() != 0) {
 				Iterator<?> it2 = categorie.iterator();
@@ -287,14 +285,14 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			}
 			%>
 		</div>
-		<br> <br>
+		<div class="row b-example-divider"></div>
 		<!-- Cosa Vuol Dire Piantare Un albero con WoodLot -->
-		<div class="row text-center">
+		<div class="row text-center m-5">
 			<br> <br>
 			<h2>Cosa vuol dire piantare un albero con WoodLot</h2>
 			<div class="col-4">
 				<h1>
-					<i class="fa-solid fa-location-dot"></i>
+					<i class="fa-solid fa-location-dot text-info"></i>
 				</h1>
 				<h4>Trasparenza e tracciabilità</h4>
 				<p>Tutti gli Alberi sono geolocalizzati e fotografati quando
@@ -304,7 +302,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			</div>
 			<div class="col-4">
 				<h1>
-					<i class="fa-solid fa-book"></i>
+					<i class="fa-solid fa-book text-warning"></i>
 				</h1>
 				<h4>Un racconto che dura nel tempo</h4>
 				<p>Ogni albero ha il proprio Diario, una pagina online dove
@@ -313,7 +311,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			</div>
 			<div class="col-4">
 				<h1>
-					<i class="fa-solid fa-gift"></i>
+					<i class="fa-solid fa-gift text-danger"></i>
 				</h1>
 				<h4>Un regalo originale</h4>
 				<p>Regalare un albero è semplicissimo. Puoi farlo durante la
@@ -322,85 +320,57 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					stampando un biglietto da consegnare a mano).</p>
 			</div>
 		</div>
-
+		<div class="row b-example-divider"></div>
 		<!-- Prodotti Consigliati  -->
-		<div class="col-md-12 text-center">
-			<h1>Pianta altri alberi</h1>
-			<br> <br>
-
-			<div class="row row-cols-1 row-cols-md-4">
-				<!-- Card 1 -->
-				<div class="col">
-					<div class="card h-100">
-						<img src="./GetFotoProdotto?idFoto=1" class="card-img-top"
-							onerror="this.src='./resources//img/error.jpg'" />
-						<div class="card-body">
-							<h5 class="card-title">Card title</h5>
-							<p class="card-text">This is a longer card with supporting
-								text below as a natural lead-in to additional content. This
-								content is a little bit longer.</p>
-							<div class="text-center">
-								<a class="btn btn-success" href="paginaProdotto.jsp">Piantalo
-									Ora</a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- Card 1 -->
-				<div class="col">
-					<div class="card h-100">
-						<img src="./GetFotoProdotto?idFoto=1" class="card-img-top"
-							onerror="this.src='./resources//img/error.jpg'" />
-						<div class="card-body">
-							<h5 class="card-title">Card title</h5>
-							<p class="card-text">This is a longer card with supporting
-								text below as a natural lead-in to additional content. This
-								content is a little bit longer.</p>
-							<div class="text-center">
-								<a class="btn btn-success" href="paginaProdotto.jsp">Piantalo
-									Ora</a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- Card 1 -->
-				<div class="col">
-					<div class="card h-100">
-						<img src="./GetFotoProdotto?idFoto=1" class="card-img-top"
-							onerror="this.src='./resources//img/error.jpg'" />
-						<div class="card-body">
-							<h5 class="card-title">Card title</h5>
-							<p class="card-text">This is a longer card with supporting
-								text below as a natural lead-in to additional content. This
-								content is a little bit longer.</p>
-							<div class="text-center">
-								<a class="btn btn-success" href="paginaProdotto.jsp">Piantalo
-									Ora</a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- Card 1 -->
-				<div class="col">
-					<div class="card h-100">
-						<img src="./GetFotoProdotto?idFoto=1" class="card-img-top"
-							onerror="this.src='./resources//img/error.jpg'" />
-						<div class="card-body">
-							<h5 class="card-title">Card title</h5>
-							<p class="card-text">This is a longer card with supporting
-								text below as a natural lead-in to additional content. This
-								content is a little bit longer.</p>
-							<div class="text-center">
-								<a class="btn btn-success" href="paginaProdotto.jsp">Piantalo
-									Ora</a>
-							</div>
+		<h1 class="m-3 text-center">Pianta altri alberi</h1>
+		<div class="row row-cols-1 row-cols-md-4 mb-5 text-center">
+			<%
+			if (prodotti != null && prodotti.size() != 0) {
+				Iterator<?> it = prodotti.iterator();
+				Iterator<?> it1 = fotoProdotti.iterator();
+				for (int i = 0; i < 4; i++) {
+					Prodotto bean = (Prodotto) it.next();
+					FotoProdotto bean1 = (FotoProdotto) it1.next();
+			%>
+			<div class="col">
+				<div class="card h-100">
+					<img src="./GetFotoProdotto?idFoto=<%=bean1.getNomeFoto()%>"
+						class="card-img-top"
+						onerror="this.src='./resources//img/error.jpg'" />
+					<div class="card-body">
+						<h5 class="card-title"><%=bean.getNome()%>
+							<%
+							if (bean.getOnSale() != 0) {
+							%><span class="badge mx-2 bg-secondary">In Saldo</span>
+							<%
+							}
+							%>
+						</h5>
+						<p class="card-text"><%=bean.getDescrizioneBreve()%></p>
+						<p class="card-text text-center"><%=dFormat.format(bean.getPrezzo())%>
+							€
+						</p>
+						<div class="text-center">
+							<a class="btn btn-success position-relative"
+								href="Prodotto?action=leggi&id=<%=bean.getId()%>">Piantalo
+								Ora <%
+							if (bean.getOnSale() != 0) {
+							%><span
+								class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+									<span class="visually-hidden">In Saldo</span>
+							</span> <%
+ }
+ %>
+							</a>
 						</div>
 					</div>
 				</div>
 			</div>
-			<br> <br>
+			<%
+			}
+			}
+			%>
 		</div>
-
 	</div>
 	<!-- Footer -->
 	<%@ include file="../fragments/footer.jsp"%>

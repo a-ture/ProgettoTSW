@@ -56,6 +56,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 	filter: grayscale(100%);
 }
 </style>
+
 </head>
 <body>
 	<!-- Header -->
@@ -217,7 +218,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					<%
 					} else {
 					%>
-					<div class="mb-5" style="width: 65rem;">
+					<div class="mb-5 px-5" style="width: 65rem;">
 
 						<h5 class="card-title text-center">
 							<b>Benvenuto nel tuo profilo</b>
@@ -317,14 +318,14 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					</div>
 				</div>
 				<!-- Ordini -->
-				<div id="ordini" class="row d-none">
+				<div id="ordini" class="row d-none px-5">
 					<h1 class="text-center">I tuoi ordini</h1>
 					<%
 					if (numeroDiOrdini != 0 && ordini != null) {
 					%>
 					<p class="text-center">Qui puoi trovare il riepilogo degli
 						ordini fatti nel nostro shop</p>
-					<table class="table table-hover ">
+					<table class="table table-hover text-center">
 						<thead>
 							<tr>
 								<th scope="col">Numero Ordine</th>
@@ -340,7 +341,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 								Ordine ordine = (Ordine) it.next();
 							%>
 							<tr>
-								<th scope="row"><%=ordine.getId()%></th>
+								<th scope="row"><a href="#riepilogoOrdine"><%=ordine.getId()%></a></th>
 								<td><%=dFormat.format(ordine.getTotalePagato())%> €</td>
 								<td><%=ordine.getTotaleProdotti()%></td>
 								<td><%=ordine.getCreatoIl()%></td>
@@ -350,6 +351,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 							%>
 						</tbody>
 					</table>
+
 					<%
 					} else if (numeroDiOrdini == 0) {
 					%>
@@ -357,14 +359,13 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						Non hai ancora effettuato alcun ordine. Rimedia subito! Vai al <a
 							href="Catalogo">catalogo</a>
 					</p>
-
 					<%
 					}
 					%>
 				</div>
 				<!-- WoodLot -->
 				<div id="woodLot" class="row d-none">
-					<h1 class="text-center mb-5">Il tuo WoodLot</h1>
+					<h1 class="text-center">Il tuo WoodLot</h1>
 					<%
 					if (numeroAlberiAcquistati == 0) {
 					%>
@@ -373,10 +374,16 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					</p>
 					<%
 					} else if (numeroAlberiAcquistati >= 1) {
-
+					%>
+					<p class="text-center mb-3">Qui puoi visualizzare tutti i tuoi
+						alberi!</p>
+					<%
+					}
 					Iterator<?> it1 = prodottiOrdini.iterator();
+
 					while (it1.hasNext()) {
-						ProdottoOrdine prodottoOrdine = (ProdottoOrdine) it1.next();
+
+					ProdottoOrdine prodottoOrdine = (ProdottoOrdine) it1.next();
 					%>
 					<div class="card text-center mb-5">
 						<div class="card-header">
@@ -390,10 +397,10 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						</div>
 						<div class="card-footer text-muted">
 							Nell' ordine numero:
-							<%=prodottoOrdine.getOid()%></div>
+							<%=prodottoOrdine.getOid()%>
+						</div>
 					</div>
 					<%
-					}
 					}
 					%>
 				</div>
@@ -401,7 +408,6 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				<div class="row d-none" id="badge">
 					<h1 class="text-center">I tuoi badge</h1>
 					<div class="row row-cols-1 row-cols-md-3 g-3 text-center">
-						<div class="card-group w-100"></div>
 						<!-- Astrologo -->
 						<div class="card">
 							<img src="./resources/img/badge/astrologo.png"
@@ -415,7 +421,8 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						<!-- benefattore -->
 						<div class="card">
 							<img src="./resources/img/badge/benefattore.png"
-								class="card-img-top badgeImg" alt="...">
+								class="card-img-top <%if (numeroDiRegali == 0) {%> badgeImg"
+								<%}%>>
 							<div class="card-body">
 								<h5 class="card-title">Benefattore</h5>
 								<a href="#!" class="btn btn-primary" data-bs-toggle="modal"
@@ -442,7 +449,8 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 								<%
 								if (numeroAlberiAcquistati == 0) {
 								%>
-
+								<a href="#!" class="btn btn-primary" data-bs-toggle="modal"
+									data-bs-target="#matricolaModal">Sblocca</a>
 								<%
 								} else {
 								%>
@@ -471,24 +479,31 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 									data-bs-target="#tarzanModal">Sblocca</a>
 							</div>
 						</div>
+						<div class="mb-5"></div>
 					</div>
-					<div class="mb-5"></div>
 				</div>
 
 				<!-- Indirizzo -->
-				<div id="indirizzo" class="row d-none">
+				<div id="indirizzo" class="row d-none px-5  pb-5">
 					<h1 class="text-center">I tuoi indirizzi</h1>
 					<%
 					if (indirizzi != null && indirizzi.size() != 0) {
 						Iterator<?> it = indirizzi.iterator();
-						while (it.hasNext()) {
-							Indirizzo indirizzo = (Indirizzo) it.next();
 					%>
+					<p class="text-center">Qui puoi trovare un riepilogo degli
+						indirizzi che hai salvato</p>
 
-					<div class="card col-4 p-3 mb-5 text-center">
+					<%
+					while (it.hasNext()) {
+						Indirizzo indirizzo = (Indirizzo) it.next();
+					%>
+					<div class="card col-4 text-center">
+						<a href="Utente?action=elimina&idIndirizzo=<%=indirizzo.getId()%>"
+							class="text-end text-danger p-2"><i
+							class="fa-solid fa-xmark "></i> </a>
 						<div class="card-body">
-							<h4 class="card-title">Indirizzo Di Fatturazione</h4>
-							<p class="card-text">
+							<h4 class="card-title">Indirizzo</h4>
+							<p class="card-text ">
 								<b>Nome: </b>
 								<%=indirizzo.getNome()%>
 							</p>
@@ -517,22 +532,93 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 								<%=indirizzo.getProvincia()%>
 							</p>
 							<p class="card-text">
-								<b>Prefferd:</b>
+								<b>Preferred:</b>
 								<%=indirizzo.isPreferred()%>
 							</p>
-							<form>
-								<input class="form-check-input" type="checkbox" value=""
-									id="condizioni" aria-describedby="invalidCheck3Feedback"
-									required> <label class="form-check-label"
-									for="condizioni"> Rendi preferito </label>
+							<form
+								action="Utente?action=preferred&idIndirizzo=<%=indirizzo.getId()%>"
+								method="POST">
+								<input class="form-check-input" type="submit" value=""
+									id="preferred"> <label class="form-check-label"
+									for="preferred"> Rendi preferito </label>
 							</form>
 						</div>
 					</div>
-
 					<%
 					}
+					} else {
+					%>
+					<p class="text-center">Non hai salvato nessun indirizzo di
+						fatturazione! Potrai salvare il tuo primo indirizzo in fase di
+						checkout</p>
+					<%
 					}
 					%>
+					<div class="row text-center m-5 ">
+						<a href="#showIndirizzo" class="btn btn-primary btn-lg"
+							id="addIndirizzo">Aggiungi un indirizzo</a>
+					</div>
+					<div id="showIndirizzo" class="d-none">
+						<h4 class="mb-3">Inidirizzo di fatturazione</h4>
+						<form class="needs-validation" novalidate autocomplete="off"
+							name="salvaIndirizzo" action="" id="salvaIndirizzo">
+							<div class="row g-3">
+								<div class="col-sm-6">
+									<label for="nome" class="form-label">Nome</label> <input
+										name="nome" type="text" class="form-control" id="nome"
+										placeholder="Mario" required value="">
+									<div class="invalid-feedback">Inserisci il tuo nome.</div>
+								</div>
+								<div class="col-sm-6">
+									<label for="cognome" class="form-label">Cognome</label> <input
+										name="cognome" type="text" class="form-control" id="cognome"
+										placeholder="Rossi" value="" required>
+									<div class="invalid-feedback">Inserisci il tuo cognome.</div>
+								</div>
+								<div class="col-md-5">
+									<label for="via" class="form-label">Via</label> <input
+										name="via" type="text" class="form-control" id="via"
+										placeholder="Via Roma" required>
+									<div class="invalid-feedback">Inserisci un indirizzo
+										valido</div>
+								</div>
+								<div class="col-md-3">
+									<label for="civico" class="form-label">Civico</label> <input
+										name="civico" type="text" class="form-control" id="civico"
+										placeholder="100" required>
+									<div class="invalid-feedback">Inserisci un civico valido</div>
+								</div>
+								<div class="col-md-3">
+									<label for="citta" class="form-label">Città</label> <input
+										type="text" class="form-control" id="citta" name="citta"
+										placeholder="Roma" required>
+									<div class="invalid-feedback">Inserisci una città valida</div>
+								</div>
+								<div class="col-md-3">
+									<label for="provincia" class="form-label">Provincia</label> <input
+										name="provincia" type="text" class="form-control"
+										id="provincia" placeholder="RO" required>
+									<div class="invalid-feedback">Inserisci una provincia
+										valida</div>
+								</div>
+								<div class="col-md-3">
+									<label for="cap" class="form-label">CAP</label> <input
+										name="cap" type="text" class="form-control" id="cap"
+										placeholder="00123" required>
+									<div class="invalid-feedback">Inserisci un CAP valido.</div>
+								</div>
+							</div>
+							<hr class="my-4">
+							<div class="form-check mb-2">
+								<input type="checkbox" class="form-check-input"
+									id="preferredAddress" name="preferredAddress"> <label
+									class="form-check-label" for="preferredAddress">Salva
+									queste informazioni per la prossima volta</label>
+							</div>
+							<button class="w-100 btn btn-primary btn-lg mb-5" type="submit"
+								id="salva">Salva</button>
+						</form>
+					</div>
 				</div>
 
 				<!-- Logout -->
@@ -544,30 +630,33 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				</div>
 
 				<!-- Modifica Informazioni -->
-				<div class="row d-none" id="modificaInformazioni">
+				<div class="row d-none p-5" id="modificaInformazioni">
 					<h4 class="mb-3">Modifica Informazioni</h4>
 					<form class="needs-validation" novalidate autocomplete="off"
-						name="checkout" action="Ordini?action=compra" method="POST">
+						name="modificaInformazioni"
+						action="Utente?action=modificaInformazioni&idUtente=<%=utente.getId()%>"
+						method="POST" enctype="multipart/form-data">
 						<div class="row g-3">
 							<div class="col-sm-6">
 								<label for="nome" class="form-label">Nome</label> <input
 									type="text" class="form-control" id="nome" placeholder="Mario"
-									required value="">
+									value="<%=utente.getNome()%>" name="nome">
 								<div class="invalid-feedback">Inserisci il tuo nome.</div>
 							</div>
 							<div class="col-sm-6">
 								<label for="cognome" class="form-label">Congnome</label> <input
 									type="text" class="form-control" id="cognome"
-									placeholder="Rossi" value="" required>
+									placeholder="Rossi" value="<%=utente.getCognome()%>"
+									name="cognome">
 								<div class="invalid-feedback">Inserisci il tuo cognome.</div>
 							</div>
 						</div>
 						<div class="col-12">
 							<label for="username" class="form-label">Username</label>
 							<div class="input-group has-validation">
-								<span class="input-group-text">@</span> <input type="text"
-									class="form-control" id="username" placeholder="mariorossi"
-									required>
+								<input type="text" class="form-control" id="username"
+									placeholder="mariorossi" value="<%=utente.getUsername()%>"
+									name="username">
 								<div class="invalid-feedback">Inserisci il tuo username</div>
 							</div>
 						</div>
@@ -575,18 +664,21 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						<div class="col-12">
 							<label for="email" class="form-label">Email</label> <input
 								type="email" class="form-control" id="email"
-								placeholder="you@example.com">
+								placeholder="you@example.com" value=<%=utente.getEmail()%>
+								name="email">
 							<div class="invalid-feedback">Inserisci una email valida
 								per ricere tutti gli aggiornamenti sul tuo ordine.</div>
 						</div>
 
-						<div class="col-12 md-5">
+						<div class="col-12 mb-5">
 							<div class="form-group">
 								<label for="formFile" class="form-label mt-4">Inserisci
 									una nuova foto profilo </label> <input class="form-control" type="file"
-									id="formFile">
+									id="formFile" name="formFile">
 							</div>
 						</div>
+						<button class="w-100 btn btn-primary btn-lg" type="submit"
+							id="modifica">Modifica</button>
 					</form>
 				</div>
 				<!-- Row END -->
@@ -759,7 +851,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				$("#news").addClass("d-none");
 				$("#indirizzo").addClass("d-none");
 				$("#logout").addClass("d-none");
-				$("#modificaIndormazioni").addClass("d-none");
+				$("#modificaInformazioni").addClass("d-none");
 			});
 
 			$("#badgeButton").click(function(event) {
@@ -769,7 +861,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				$("#news").addClass("d-none");
 				$("#indirizzo").addClass("d-none");
 				$("#logout").addClass("d-none");
-				$("#modificaIndormazioni").addClass("d-none");
+				$("#modificaInformazioni").addClass("d-none");
 			});
 
 			$("#woodLotButton").click(function(event) {
@@ -779,7 +871,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				$("#news").addClass("d-none");
 				$("#indirizzo").addClass("d-none");
 				$("#logout").addClass("d-none");
-				$("#modificaIndormazioni").addClass("d-none");
+				$("#modificaInformazioni").addClass("d-none");
 			});
 
 			$("#newsButton").click(function(event) {
@@ -789,7 +881,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				$("#woodLot").addClass("d-none");
 				$("#indirizzo").addClass("d-none");
 				$("#logout").addClass("d-none");
-				$("#modificaIndormazioni").addClass("d-none");
+				$("#modificaInformazioni").addClass("d-none");
 			});
 
 			$("#indirizzoButton").click(function(event) {
@@ -799,7 +891,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				$("#woodLot").addClass("d-none");
 				$("#news").addClass("d-none");
 				$("#logout").addClass("d-none");
-				$("#modificaIndormazioni").addClass("d-none");
+				$("#modificaInformazioni").addClass("d-none");
 			});
 
 			$("#modificaInformazioniButton").click(function(event) {
@@ -821,6 +913,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				$("#indirizzo").addClass("d-none");
 				$("#modificaInformazioni").addClass("d-none");
 			});
+
 		});
 	</script>
 </body>

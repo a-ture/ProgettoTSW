@@ -8,7 +8,9 @@
 	import="it.unisa.beans.*, java.text.*,it.unisa.model.Carrello,java.util.*"%>
 <%
 Indirizzo indirizzo = (Indirizzo) request.getSession().getAttribute("indirizzo");
+
 CodicePromozionale codicePromo = (CodicePromozionale) request.getSession().getAttribute("codice");
+Utente utente = (Utente) request.getSession().getAttribute("utente");
 
 DecimalFormat dFormat = new DecimalFormat("0.00");
 %>
@@ -37,6 +39,47 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 <script src="https://code.jquery.com/jquery-3.6.0.js"
 	integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
 	crossorigin="anonymous"></script>
+
+<script>
+//When DOM is loaded this 
+// function will get executed
+$(() => {
+	// function will get executed 
+    // on click of submit button
+    $("#procedi").click(function(ev) {
+        var form = $("#checkoutIndirizzo");
+        var url = form.attr('action');
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: form.serialize(),
+            success: function(data) {
+                alert("Form Submited Successfully");
+            },
+            error: function(data) {
+                alert("some Error");
+            }
+        });
+    });
+	
+    $("#procedi").click(function(ev) {
+        var form = $("#checkoutIndirizzo");
+        var url = form.attr('action');
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: form.serialize(),
+            success: function(data) {
+                alert("Form Submited Successfully");
+            },
+            error: function(data) {
+                alert("some Error");
+            }
+        });
+    });
+    
+});
+</script>
 </head>
 <body>
 	<!-- Header -->
@@ -106,9 +149,13 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				</form>
 			</div>
 			<div class="col-md-7 col-lg-8">
+				<%
+				if (indirizzo == null) {
+				%>
 				<h4 class="mb-3">Inidirizzo di fatturazione</h4>
 				<form class="needs-validation" novalidate autocomplete="off"
-					name="checkout" action="Ordini?action=compra" method="POST">
+					name="checkoutIndirizzo" action="Ordini?action=indirizzo"
+					id="checkoutIndirizzo">
 					<div class="row g-3">
 						<div class="col-sm-6">
 							<label for="nome" class="form-label">Nome</label> <input
@@ -155,14 +202,69 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						</div>
 					</div>
 					<hr class="my-4">
-					<div class="form-check">
+					<div class="form-check mb-2">
 						<input type="checkbox" class="form-check-input"
 							id="preferredAddress" name="preferredAddress"> <label
 							class="form-check-label" for="preferredAddress">Salva
 							queste informazioni per la prossima volta</label>
 					</div>
+					<button class="w-100 btn btn-primary btn-lg mb-5" type="submit"
+						id="procedi">Paga</button>
+				</form>
+				<%
+				} else {
+				%>
+				<h4 class="mb-3">Inidirizzo di fatturazione</h4>
+				<p class="mb-3">
+					Hai già impostato il tuo indirizzo di fatturazione, per cambiare i
+					dati o aggingere un nuovo indirizzo <a href="Utente">vai al tuo
+						profilo</a> (sezione: indirizzi)
+				</p>
 
-					<hr class="my-4">
+				<div class="card  text-center">
+					<div class="row g-3">
+						<div class="col-md-3">
+							<b>Nome: </b>
+							<%=indirizzo.getNome()%>
+						</div>
+						<div class="col-md-3">
+							<b>Cognome: </b>
+							<%=indirizzo.getCognome()%>
+						</div>
+					</div>
+					<div class="row g-3">
+						<div class="card-text col-md-2">
+							<b>Via: </b>
+							<%=indirizzo.getVia()%>
+						</div>
+						<div class="card-text col-md-2">
+							<b>Civico:</b>
+							<%=indirizzo.getCivico()%>
+						</div>
+						<div class="card-text col-md-2">
+							<b>Città: </b>
+							<%=indirizzo.getCittà()%>
+						</div>
+						<div class="card-text col-md-2">
+							<b>Cap: </b>
+							<%=indirizzo.getCAP()%>
+						</div>
+						<div class="card-text col-md-3">
+							<b>Provincia:</b>
+							<%=indirizzo.getProvincia()%>
+						</div>
+					</div>
+				</div>
+				<a class="w-100 btn btn-primary btn-lg my-5"
+					id="procediPagamentoButton">Procedi Al Pagamento</a>
+
+				<%
+				}
+				%>
+
+				<form class="needs-validation d-none" novalidate autocomplete="off"
+					name="checkoutOrdine" action="Ordini?action=compra" method="POST"
+					id="pagamento">
 					<h4 class="mb-3">Pagamento</h4>
 					<div class="my-3">
 						<div class="form-check">
@@ -290,15 +392,18 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			$("#regalo").click(function(event) {
 				$("#giftSection").toggleClass("d-none");
 			});
-
+			$("#procediPagamentoButton").click(function(event) {
+				$("#pagamento").removeClass("d-none");
+			});
 		});
 	</script>
-	<script>
-	
-			var nome = document.checkout.nome;
-			var cognome = document.checkout.cognome;
-			var form= document.checkout;
-			var cap = document.checkout.cap;
+	<script>	
+			var nome = document.checkoutIndirizzo.nome;
+			var cognome = document.checkoutIndirizzo.cognome;
+			var form= document.checkoutIndirizzo;
+			var cap = document.checkoutIndirizzo.cap;
+			
+			
 			var nomeTitolare = document.checkout.nomeTitolare;
 			var cartaCreditoNumero=document.checkout.cartaCreditoNumero;
 			var cartaMastercard = document.getElementById("cc-mastercard");
@@ -470,8 +575,6 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			        return false; 
 			    }
 			});
-			
-		
 	</script>
 </body>
 </html>

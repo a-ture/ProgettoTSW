@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -74,10 +75,10 @@ public class ProdottoServlet extends HttpServlet {
 						carrello.aggiornaProdotti(model.doRetriveByKey(id), quantità - 1);
 					}
 					redirectPage = "/pages/cart.jsp";
-				}
-				if (action.equalsIgnoreCase("visualizzaCarrello")) {
+				} else if (action.equalsIgnoreCase("visualizzaCarrello")) {
 					redirectPage = "/pages/cart.jsp";
 				} else if (action.equalsIgnoreCase("leggi")) {
+
 					String id = request.getParameter("id");
 					request.removeAttribute("prodotto");
 					request.setAttribute("prodotto", model.doRetriveByKey(id));
@@ -99,6 +100,30 @@ public class ProdottoServlet extends HttpServlet {
 					request.removeAttribute("prodottoFoto");
 					request.getSession().setAttribute("prodottoFoto", ph);
 
+					Collection<Prodotto> prodotti = new ArrayList<Prodotto>();
+					try {
+						prodotti = model.doRetriveAll("");
+					} catch (SQLException e1) {
+						e1.printStackTrace();
+					}
+					request.setAttribute("prodotti", prodotti);
+					if (prodotti != null && prodotti.size() != 0) {
+
+						Collection<FotoProdotto> photos = new ArrayList<FotoProdotto>();
+						Iterator<?> it = prodotti.iterator();
+						while (it.hasNext()) {
+							Prodotto beanProd = (Prodotto) it.next();
+							int idProdotto = beanProd.getId();
+							try {
+								FotoProdotto beanPhoto = model1.doRetriveOne(idProdotto);
+								photos.add(beanPhoto);
+							} catch (SQLException e) {
+								System.out.print(e);
+							}
+						}
+						request.removeAttribute("fotoProdotti");
+						request.setAttribute("fotoProdotti", photos);
+					}
 				} else if (action.equalsIgnoreCase("eliminaProdottoCatalogo")) {
 					String id = request.getParameter("id");
 					model.doDelete(model.doRetriveByKey(id));

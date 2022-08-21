@@ -19,6 +19,7 @@ import it.unisa.beans.ProdottoCarrello;
 import it.unisa.beans.ProdottoOrdine;
 import it.unisa.model.Carrello;
 import it.unisa.model.CodicePromozionaleDAO;
+
 import it.unisa.model.IndirizzoDAO;
 import it.unisa.model.OrdineDAO;
 
@@ -44,15 +45,12 @@ public class Ordini extends HttpServlet {
 		if (action != null) {
 
 			if (action.equals("vista")) {
-				/*OrdineDAO dao = new OrdineDAO();
-				Ordine ordine;
-				try {
-					ordine = dao.doRetriveByLastUserOrder();
-					request.setAttribute("ordineUtente", ordine);
-					redirectPage = "/pages/ordineEffettuato.jsp";
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}*/
+				/*
+				 * OrdineDAO dao = new OrdineDAO(); Ordine ordine; try { ordine =
+				 * dao.doRetriveByLastUserOrder(); request.setAttribute("ordineUtente", ordine);
+				 * redirectPage = "/pages/ordineEffettuato.jsp"; } catch (SQLException e) {
+				 * e.printStackTrace(); }
+				 */
 
 			} else if (action.equals("checkout")) {
 				if (carrello == null || ((Carrello) carrello).getQuantitàTotaleProdotti() <= 0) {
@@ -68,21 +66,30 @@ public class Ordini extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
 		String action = request.getParameter("action");
 		Utente utente = (Utente) request.getSession().getAttribute("utente");
+
 		if (action != null) {
 			if (action.equals("crea")) { // non so a che merda serve
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/orders/summary.jsp");
 				dispatcher.forward(request, response);
 				return;
+
 			} else if (action.equals("compra")) {
+				compra(request, response);
+				return;
+			} else if (action.equals("indirizzo")) {
 				if (request.getParameter("preferredAddress") != null) {
 					salvaIndirizzo(request, response);
+				} else {
+					Indirizzo indirizzo = utente.getPreferredAddress();
+					request.setAttribute("indirizzo", indirizzo);
 				}
-				compra(request, response);
 				return;
 			} else if (action.equals("codicePromozionale")) {
 				usaCodicePromozionale(request, response);
+
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/checkout.jsp");
 				dispatcher.forward(request, response);
 			}
@@ -104,6 +111,7 @@ public class Ordini extends HttpServlet {
 		indirizzo.setProvincia(request.getParameter("provincia"));
 		indirizzo.setUid(utente.getId());
 		indirizzo.setCivico(request.getParameter("civico"));
+		indirizzo.setPreferred(false);
 
 		try {
 			model.doSave(indirizzo);
@@ -138,7 +146,9 @@ public class Ordini extends HttpServlet {
 				});
 			}
 
-		} catch (SQLException e) {
+		} catch (
+
+		SQLException e) {
 			e.printStackTrace();
 		}
 	}
@@ -150,7 +160,7 @@ public class Ordini extends HttpServlet {
 		Indirizzo indirizzo = (Indirizzo) request.getSession().getAttribute("indirizzo");
 		CodicePromozionale code = (CodicePromozionale) request.getSession().getAttribute("codice");
 
-		if (carrello == null /* || indirizzo == null */) {
+		if (carrello == null || indirizzo == null) {
 			response.sendError(500);
 			return;
 		}
@@ -165,7 +175,6 @@ public class Ordini extends HttpServlet {
 		ordine.setTotaleProdotti(carrello.getQuantitàTotaleProdotti());
 		ordine.setUtente(utente);
 
-		System.out.print(request.getParameter("regalo"));
 		if (request.getParameter("regalo") != null) {
 			ordine.setRegalo(true);
 			ordine.setMessaggioRegalo(request.getParameter("messaggioRegalo"));
@@ -183,8 +192,9 @@ public class Ordini extends HttpServlet {
 			bean.setNome(prod.getProdotto().getNome());
 			bean.setPrezzo(prod.getPrezzoTotale());
 			bean.setQuantità(prod.getQuantità());
-			bean.setBreveDescrizione(prod.getProdotto().getDescrizione());
+			bean.setBreveDescrizione(prod.getProdotto().getDescrizioneBreve());
 			bean.setTasse(prod.getProdotto().getTasse());
+
 			ordine.aggiungiPrdotto(bean);
 		}
 
@@ -193,7 +203,9 @@ public class Ordini extends HttpServlet {
 		try {
 			dao.doSave(ordine);
 
-		} catch (SQLException e) {
+		} catch (
+
+		SQLException e) {
 			e.printStackTrace();
 			response.sendError(500);
 			return;

@@ -20,11 +20,11 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 <title>Ordine Effettuato</title>
 <!--CSS-->
 <link rel="stylesheet" type="text/css"
-	href="./resources/css/bootstrap.css">
+	href="resources/css/bootstrap.css">
 <link rel="stylesheet" type="text/css"
-	href="./resources/css/_variables.scss">
+	href="resources/css/_variables.scss">
 <link rel="stylesheet" type="text/css"
-	href="./resources/css/_bootswatch.scss">
+	href="resources/css/_bootswatch.scss">
 
 <!-- JavaScript Bundle with Popper -->
 <script

@@ -47,6 +47,7 @@ public class ChiSiamoServlet extends HttpServlet {
 
 		Collection<Utente> utenti = new ArrayList<Utente>();
 		Utente[] utentiAcquisti = new Utente[3];
+		
 		try {
 			utenti = dao.doRetriveAll("");
 			utentiTotali = utenti.size();

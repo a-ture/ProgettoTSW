@@ -1,6 +1,7 @@
 package it.unisa.beans;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 
 public class Utente implements Cloneable, Serializable {
@@ -191,5 +192,11 @@ public class Utente implements Cloneable, Serializable {
 				return a;
 		}
 		return null;
+	}
+
+	public void aggiungiIndirizzo(Indirizzo addr) {
+		if (this.indirizzi == null)
+			this.indirizzi = new ArrayList<Indirizzo>();
+		this.indirizzi.add(addr);
 	}
 }

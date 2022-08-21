@@ -75,6 +75,7 @@ public class Catalogo extends HttpServlet {
 			request.removeAttribute("fotoProdotti");
 			request.setAttribute("fotoProdotti", photos);
 		}
+
 		String paese = request.getParameter("paese");
 		if (paese != null) {
 			try {
@@ -96,8 +97,19 @@ public class Catalogo extends HttpServlet {
 			request.removeAttribute("prodotti");
 			request.setAttribute("prodotti", prodotti);
 		}
+		String action = request.getParameter("action");
+		if (action != null) {
+			if (action.equals("saldi")) {
+				try {
+					prodotti = model.doRetriveBySale();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				request.removeAttribute("prodotti");
+				request.setAttribute("prodotti", prodotti);
+			}
+		}
 		String redirectPage = "/pages/catalogo.jsp";
-		System.out.println(redirectPage);
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(redirectPage);
 		dispatcher.forward(request, response);
 	}

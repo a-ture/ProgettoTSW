@@ -125,7 +125,6 @@ public class FotoProdottoDAO {
 				FotoProdotto bean = new FotoProdotto();
 				bean.setIdProdotto(rs.getInt("pid"));
 				bean.setNomeFoto(rs.getInt("nomeFoto"));
-				System.out.println(bean.getNomeFoto());
 
 				photos.add(bean);
 			}
@@ -168,8 +167,7 @@ public class FotoProdottoDAO {
 
 			bean.setIdProdotto(rs.getInt("pid"));
 			bean.setNomeFoto(rs.getInt("nomeFoto"));
-		
-			
+
 		} finally {
 			try {
 				if (preparedStatement != null)

@@ -1,5 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8"
+	import="java.util.*,it.unisa.beans.*, java.text.*"%>
+<%
+Collection<?> prodotti = (Collection<?>) request.getAttribute("prodotti");
+Collection<?> foto = (Collection<?>) request.getAttribute("fotoProdotti");
+
+if (prodotti == null || foto == null) {
+	response.sendRedirect("./Home");
+	return;
+}
+
+DecimalFormat dFormat = new DecimalFormat("0.00");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -129,18 +142,23 @@
 		</div>
 	</div>
 
-	<!-- Jumbotron -->
-	<div
-		class="bg-image p-5 text-center shadow-1-strong rounded mb-5 text-white"
-		style="background-image: url('https://mdbcdn.b-cdn.net/img/new/slides/003.webp');">
-		<h1 class="mb-3 h2">Jumbotron</h1>
+	<div class="b-example-divider"></div>
 
-		<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-			Repellendus praesentium labore accusamus sequi, voluptate debitis
-			tenetur in deleniti possimus modi voluptatum neque maiores dolorem
-			unde? Aut dolorum quod excepturi fugit.</p>
-	</div>
-
+	<section class="py-5 text-center container">
+		<div class="row py-lg-5">
+			<div class="col-lg-6 col-md-8 mx-auto">
+				<h1 class="fw-light">Album example</h1>
+				<p class="lead text-muted">Something short and leading about the
+					collection below—its contents, the creator, etc. Make it short and
+					sweet, but not too short so folks don’t simply skip over it
+					entirely.</p>
+				<p>
+					<a href="#" class="btn btn-primary my-2">Main call to action</a> <a
+						href="#" class="btn btn-secondary my-2">Secondary action</a>
+				</p>
+			</div>
+		</div>
+	</section>
 
 	<br>
 	<br>
@@ -221,8 +239,8 @@
 		<div class="row g-4 py-5 row-cols-1 row-cols-lg-4">
 			<div class="col d-flex align-items-start">
 				<div class="icon-square bg-light text-dark flex-shrink-0 me-3">
-					<svg class="bi" xmlns="http://www.w3.org/2000/svg" id="fir"
-						width="1em" height="1em" viewBox="0 0 91.378 121.841">
+					<svg class="bi text-success" xmlns="http://www.w3.org/2000/svg"
+						id="fir" width="1em" height="1em" viewBox="0 0 91.378 121.841">
 						<path class="a"
 							d="M1467.421,812.41h7.288a5.407,5.407,0,0,0,4.945-3.108,5.247,5.247,0,0,0-.78-5.723l-18.592-21.628h6.874a5.392,5.392,0,0,0,4.964-3.239,5.293,5.293,0,0,0-1.009-5.73l-26.24-27.956a3.919,3.919,0,0,0-5.549,0l-26.243,27.956a5.3,5.3,0,0,0-1.009,5.73,5.4,5.4,0,0,0,4.967,3.239h6.874l-18.594,21.633a5.254,5.254,0,0,0-.778,5.72,5.406,5.406,0,0,0,4.945,3.106h7.289l-19.011,21.533a5.259,5.259,0,0,0-.847,5.773,5.517,5.517,0,0,0,5,3.153h32.568v5.818l-7.208,11.517a3.809,3.809,0,0,0,3.4,5.512h22.835a3.809,3.809,0,0,0,3.4-5.512l-7.208-11.517v-5.818h32.57a5.518,5.518,0,0,0,5-3.153,5.26,5.26,0,0,0-.847-5.773Z"
 							transform="translate(-1396.409 -743.875)"></path></svg>
@@ -235,8 +253,9 @@
 			</div>
 			<div class="col d-flex align-items-start">
 				<div class="icon-square bg-light text-dark flex-shrink-0 me-3">
-					<svg class="bi" id="farmer" xmlns="http://www.w3.org/2000/svg"
-						width="1em" height="1em" viewBox="0 0 93.873 129.498">
+					<svg class="bi text-warning" id="farmer"
+						xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+						viewBox="0 0 93.873 129.498">
 						<g transform="translate(-740.832 -408.461)">
 						<path class="a"
 							d="M787.762,446.318c-9.98.04-16.575-6.647-16.494-16.733a16.582,16.582,0,0,1,15.992-16.621A17.224,17.224,0,0,1,804.6,429.458,16.8,16.8,0,0,1,787.762,446.318Z"></path>
@@ -255,8 +274,8 @@
 			</div>
 			<div class="col d-flex align-items-start">
 				<div class="icon-square bg-light text-dark flex-shrink-0 me-3">
-					<svg class="bi" xmlns="http://www.w3.org/2000/svg" id="orange"
-						width="1em" height="1em" viewBox="0 0 84.039 109.034">
+					<svg class="bi text-danger" xmlns="http://www.w3.org/2000/svg"
+						id="orange" width="1em" height="1em" viewBox="0 0 84.039 109.034">
 						<g transform="translate(-106.631 -2042.16)">
 						<path class="a"
 							d="M186.888,2042.16a17.125,17.125,0,0,1-7.05,22.548,15.96,15.96,0,0,1-2.36,1.07c-3.026,1.057-6.077,2.057-9.109,3.1-.141.048-.288.076-.5.134a21.555,21.555,0,0,1-1.673-6.709,17,17,0,0,1,11.384-17.039c2.89-.995,5.786-1.963,8.682-2.939C186.471,2042.257,186.694,2042.209,186.888,2042.16Z"></path>
@@ -271,7 +290,8 @@
 			</div>
 			<div class="col d-flex align-items-start">
 				<div class="icon-square bg-light text-dark flex-shrink-0 me-3">
-					<i class="icon awesome fas fa-qrcode bi" aria-hidden="true"></i>
+					<i class="icon awesome fas fa-qrcode bi text-info"
+						aria-hidden="true"></i>
 				</div>
 				<div>
 					<h3>Tu lo vedi crescere</h3>
@@ -295,80 +315,61 @@
 				del progetto di cui farà parte.</p>
 			<br> <br>
 		</div>
+
 		<div class="row row-cols-1 row-cols-md-4">
-			<!-- Card 1 -->
+			<%
+			if (prodotti != null && prodotti.size() != 0) {
+				Iterator<?> it = prodotti.iterator();
+				Iterator<?> it1 = foto.iterator();
+				for (int i = 0; i < 4; i++) {
+					Prodotto bean = (Prodotto) it.next();
+					FotoProdotto bean1 = (FotoProdotto) it1.next();
+			%>
 			<div class="col">
 				<div class="card h-100">
-					<img src="../resources/img/alberi/Arancia.png" class="card-img-top"
+					<img src="./GetFotoProdotto?idFoto=<%=bean1.getNomeFoto()%>"
+						class="card-img-top"
 						onerror="this.src='./resources//img/error.jpg'" />
 					<div class="card-body">
-						<h5 class="card-title">Card title</h5>
-						<p class="card-text">This is a longer card with supporting
-							text below as a natural lead-in to additional content. This
-							content is a little bit longer.</p>
+						<h5 class="card-title"><%=bean.getNome()%>
+							<%
+							if (bean.getOnSale() != 0) {
+							%><span class="badge mx-2 bg-secondary">In Saldo</span>
+							<%
+							}
+							%>
+						</h5>
+						<p class="card-text"><%=bean.getDescrizioneBreve()%></p>
+						<p class="card-text text-center"><%=dFormat.format(bean.getPrezzo())%>
+							€
+						</p>
 						<div class="text-center">
-							<a class="btn btn-success" href="paginaProdotto.jsp">Piantalo
-								Ora</a>
+							<a class="btn btn-success position-relative"
+								href="Prodotto?action=leggi&id=<%=bean.getId()%>">Piantalo
+								Ora <%
+							if (bean.getOnSale() != 0) {
+							%><span
+								class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+									<span class="visually-hidden">In Saldo</span>
+							</span> <%
+ }
+ %>
+							</a>
 						</div>
 					</div>
 				</div>
 			</div>
-			<!-- Card 2 -->
-			<div class="col">
-				<div class="card h-100">
-					<img src="../resources/img/alberi/Avocado.png" class="card-img-top"
-						onerror="this.src='./resources//img/error.jpg'" />
-					<div class="card-body">
-						<h5 class="card-title">Card title</h5>
-						<p class="card-text">This is a longer card with supporting
-							text below as a natural lead-in to additional content. This
-							content is a little bit longer.</p>
-						<div class="text-center">
-							<a class="btn btn-success" href="paginaProdotto.jsp">Piantalo
-								Ora</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- Card 3 -->
-			<div class="col">
-				<div class="card h-100">
-					<img src="../resources/img/alberi/Caoba.png" class="card-img-top"
-						onerror="this.src='./resources//img/error.jpg'" />
-					<div class="card-body">
-						<h5 class="card-title">Card title</h5>
-						<p class="card-text">This is a longer card with supporting
-							text below as a natural lead-in to additional content.</p>
-						<div class="text-center">
-							<a class="btn btn-success" href="paginaProdotto.jsp">Piantalo
-								Ora</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- Card 4 -->
-			<div class="col">
-				<div class="card h-100">
-					<img src="../resources/img/alberi/Cedro.png" class="card-img-top"
-						onerror="this.src='./resources//img/error.jpg'" />
-					<div class="card-body">
-						<h5 class="card-title">Card title</h5>
-						<p class="card-text">This is a longer card with supporting
-							text below as a natural lead-in to additional content.</p>
-						<div class="text-center">
-							<a class="btn btn-success" href="paginaProdotto.jsp">Piantalo
-								Ora</a>
-						</div>
-					</div>
-				</div>
-			</div>
+			<%
+			}
+			}
+			%>
 		</div>
 	</div>
 	<br>
 	<br>
 	<!-- Bottone  Vedi Altri -->
 	<div class="col-md-12 text-center mb-5">
-		<a type="button" class="btn btn-primary btn-lg" href="catalogo.jsp">Scopri
+		<a type="button" class="btn btn-primary btn-lg" href="Catalogo">Scopri
 			tutti gli alberi!</a>
 	</div>
 	<div class="b-example-divider"></div>
@@ -378,7 +379,8 @@
 		<div
 			class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 g-4 py-5">
 			<div class="col d-flex align-items-start">
-				<i class="fs-1 fa-solid fa-money-bill-wave bi  flex-shrink-0 me-3"></i>
+				<i
+					class="fs-1 fa-solid fa-money-bill-wave bi  flex-shrink-0 me-3 text-success"></i>
 				<div>
 					<h4 class="fw-bold mb-0">Sì, lo paghi una volta sola</h4>
 					<p>Non ti chiediamo ulteriori pagamenti, ci serve solo un primo
@@ -386,7 +388,8 @@
 				</div>
 			</div>
 			<div class="col d-flex align-items-start">
-				<i class="fa-solid fa-house-chimney flex-shrink-0 me-3 bi fs-1"></i>
+				<i
+					class="fa-solid fa-house-chimney flex-shrink-0 me-3 bi fs-1 text-warning"></i>
 				<div>
 					<h4 class="fw-bold mb-0">No, non ti arriva a casa l’albero</h4>
 					<p>Il germoglio crescerà nel vivaio e poi verrà donato a una
@@ -394,7 +397,8 @@
 				</div>
 			</div>
 			<div class="col d-flex align-items-start">
-				<i class="fa-solid fa-apple-whole flex-shrink-0 me-3 bi fs-1"></i>
+				<i
+					class="fa-solid fa-apple-whole flex-shrink-0 me-3 bi fs-1 text-danger"></i>
 				<div>
 					<h4 class="fw-bold mb-0">No, non ti arriva a casa la frutta</h4>
 					<p>Saranno di sostentamento alle famiglie che si prendono cura
@@ -403,7 +407,7 @@
 			</div>
 			<div class="col d-flex align-items-start">
 				<i
-					class="fa-solid fa-hand-holding-droplet flex-shrink-0 me-3 bi fs-1"></i>
+					class="fa-solid fa-hand-holding-droplet flex-shrink-0 me-3 bi fs-1 text-info"></i>
 				<div>
 					<h4 class="fw-bold mb-0">Sì, lo piantiamo davvero</h4>
 					<p>E puoi vederlo da subito, dai primi giorni che trascorre nel
@@ -411,7 +415,8 @@
 				</div>
 			</div>
 			<div class="col d-flex align-items-start">
-				<i class="fa-solid fa-seedling flex-shrink-0 me-3 bi fs-1"></i>
+				<i
+					class="fa-solid fa-seedling flex-shrink-0 me-3 bi fs-1 text-primary"></i>
 				<div>
 					<h4 class="fw-bold mb-0">Sì, lo vedrai crescere online</h4>
 					<p>Potrai monitorarlo tramite il nostro sistema esclusivo di
@@ -419,7 +424,8 @@
 				</div>
 			</div>
 			<div class="col d-flex align-items-start">
-				<i class="fa-solid fa-envelope-open-text flex-shrink-0 me-3 bi fs-1"></i>
+				<i class="fa-solid fa-envelope-open-text flex-shrink-0 me-3 bi fs-1"
+					style="color: #6f42c1"></i>
 				<div>
 					<h4 class="fw-bold mb-0">Sì, ricevi un certificato PDF</h4>
 					<p>Al momento dell’acquisto riceverai un attestato che attesta
