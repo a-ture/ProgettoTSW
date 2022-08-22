@@ -379,10 +379,9 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						alberi!</p>
 					<%
 					}
+
 					Iterator<?> it1 = prodottiOrdini.iterator();
-
 					while (it1.hasNext()) {
-
 					ProdottoOrdine prodottoOrdine = (ProdottoOrdine) it1.next();
 					%>
 					<div class="card text-center mb-5">
@@ -406,7 +405,9 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				</div>
 				<!-- Badge -->
 				<div class="row d-none" id="badge">
+
 					<h1 class="text-center">I tuoi badge</h1>
+
 					<div class="row row-cols-1 row-cols-md-3 g-3 text-center">
 						<!-- Astrologo -->
 						<div class="card">
@@ -421,22 +422,41 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						<!-- benefattore -->
 						<div class="card">
 							<img src="./resources/img/badge/benefattore.png"
-								class="card-img-top <%if (numeroDiRegali == 0) {%> badgeImg"
-								<%}%>>
+								class="card-img-top <%if (numeroDiRegali == 0)%> badgeImg"
+								alt="...">
 							<div class="card-body">
 								<h5 class="card-title">Benefattore</h5>
+								<%if (numeroDiRegali == 0) {%>
 								<a href="#!" class="btn btn-primary" data-bs-toggle="modal"
 									data-bs-target="#benefattoreModal">Sblocca</a>
+								<%
+								} else {
+								%>
+								<p class="text-center text-success">Hai fatto il tuo primo
+									regalo</p>
+								<%
+								}
+								%>
 							</div>
 						</div>
 						<!-- Giramondo -->
 						<div class="card">
 							<img src="./resources/img/badge/giramondo.png"
-								class="card-img-top badgeImg" alt="...">
+								class="card-img-top <%if (numeroAlberiAcquistati < 3)%>badgeImg"
+								alt="...">
 							<div class="card-body">
 								<h5 class="card-title">Giramondo</h5>
+								<%if (numeroDiRegali == 0) {%>
 								<a href="#!" class="btn btn-primary" data-bs-toggle="modal"
 									data-bs-target="#giramondoModal">Sblocca</a>
+								<%
+								} else {
+								%>
+								<p class="text-center text-success">Hai creato la tua
+									foresta!</p>
+								<%
+								}
+								%>
 							</div>
 						</div>
 						<!-- Matricola -->
@@ -708,27 +728,6 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			</div>
 		</div>
 	</div>
-	<!-- Modal Astrologo -->
-	<div class="modal fade" id="astrologoModal" tabindex="-1"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Astrologo</h5>
-					<button type="button" class="btn-close" data-bs-dismiss="modal"
-						aria-label="Close"></button>
-				</div>
-				<div class="modal-body">Mira alle stelle e pianta l'albero del
-					tuo segno zodiacale.</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary"
-						data-bs-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary"
-						data-bs-dismiss="modal">Ok</button>
-				</div>
-			</div>
-		</div>
-	</div>
 	<!-- Modal Benefattore -->
 	<div class="modal fade" id="benefattoreModal" tabindex="-1"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -742,7 +741,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				<div class="modal-body">Sii generoso e regala almeno un
 					albero. Otterrai il riconoscimento quando la persona a cui hai
 					regalato l'albero, lo riscatterà, diventandone così custode e
-					iniziando a seguirne la storia..</div>
+					iniziando a seguirne la storia.</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
 						data-bs-dismiss="modal">Close</button>
@@ -826,8 +825,8 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					<button type="button" class="btn-close" data-bs-dismiss="modal"
 						aria-label="Close"></button>
 				</div>
-				<div class="modal-body">Non essere timido e pubblica la tua
-					prima foresta.</div>
+				<div class="modal-body">Non essere timido e crea la tua prima
+					foresta.</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
 						data-bs-dismiss="modal">Close</button>

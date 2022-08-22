@@ -51,6 +51,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			<button type="button" data-bs-target="#myCarousel"
 				data-bs-slide-to="2" aria-label="Slide 3" class=""></button>
 		</div>
+		
 		<div class="carousel-inner">
 			<div class="carousel-item active">
 				<svg class="bd-placeholder-img" width="100%" height="100%"
@@ -69,6 +70,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					</div>
 				</div>
 			</div>
+			<!-- Seconda Slide -->
 			<div class="carousel-item">
 				<svg class="bd-placeholder-img" width="100%" height="100%"
 					xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
@@ -86,6 +88,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					</div>
 				</div>
 			</div>
+			
 			<div class="carousel-item">
 				<svg class="bd-placeholder-img" width="100%" height="100%"
 					xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
@@ -168,8 +171,8 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 	<!-- Scritta -->
 
 
-	<!-- Cards  <div class="row row-cols-1 row-cols-md-4 g-4 d-flex justify-content-between" >-->
-	<div class="container" style="background-color: #93c572;">
+	<!-- Cards  Cosa puoi fare-->
+	<div class="container" id="cosaPuoiFare">
 		<div class="col-md-12 text-center pt-5">
 			<h1>Cosa puoi fare</h1>
 			<br> <br>
@@ -233,6 +236,8 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 		</div>
 		<br>
 	</div>
+	
+	
 	<div class="b-example-divider"></div>
 	<div class="container px-4 py-5" id="hanging-icons">
 		<h2 class="pb-2 border-bottom">Come Funziona?</h2>
@@ -304,6 +309,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 	<!-- Card Section -->
 	<br>
 	<div class="b-example-divider"></div>
+	
 	<!-- Scritta -->
 	<div class="container">
 		<div class="col-md-12 text-center mt-5">
@@ -316,7 +322,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			<br> <br>
 		</div>
 
-		<div class="row row-cols-1 row-cols-md-4">
+		<div class="row row-cols-1 row-cols-md-4" id="scegliIlTuoAlbero">
 			<%
 			if (prodotti != null && prodotti.size() != 0) {
 				Iterator<?> it = prodotti.iterator();

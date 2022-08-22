@@ -43,7 +43,7 @@ public class UtenteDAO implements GenericDAO<Utente> {
 		Utente bean = new Utente();
 
 		String selectSQL = "SELECT * FROM " + UtenteDAO.TABLE_NAME
-				+ "AS u, indirizzo  AS i WHERE u.id = i.cid AND u.id=?";
+				+ " AS u, indirizzo  AS i WHERE u.id = i.cid AND u.id=?";
 
 		try (var conn = ds.getConnection()) {
 			try (var stmt = conn.prepareStatement(selectSQL)) {
@@ -57,6 +57,7 @@ public class UtenteDAO implements GenericDAO<Utente> {
 					bean.setPassword(rs.getString("password"));
 					bean.setRole(rs.getString("role"));
 					bean.setActive(rs.getBoolean("active"));
+					bean.setUsername(rs.getString("username"));
 				}
 				// in this case there are at least one address
 				if (rs.getInt("id") != 0) {
@@ -110,6 +111,46 @@ public class UtenteDAO implements GenericDAO<Utente> {
 				bean.setPassword(rs.getString("password"));
 				bean.setRole(rs.getString("role"));
 				bean.setActive(rs.getBoolean("active"));
+				beans.add(bean);
+			}
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				try {
+					if (connection != null) {
+						connection.close();
+					}
+				} finally {
+					if (rs != null)
+						rs.close();
+				}
+			}
+		}
+
+		return beans;
+	}
+
+	public Collection<Utente> doRetriveByOrder() throws SQLException {
+
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet rs = null;
+
+		Collection<Utente> beans = new LinkedList<Utente>();
+
+		String selectSQL = "SELECT uid, COUNT(*) AS count  FROM ordine  group by uid ORDER BY count DESC";
+
+		try {
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+
+			rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				Utente bean = new Utente();
+				bean.setId(rs.getInt("uid"));
 				beans.add(bean);
 			}
 		} finally {

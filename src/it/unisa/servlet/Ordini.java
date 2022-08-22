@@ -40,6 +40,7 @@ public class Ordini extends HttpServlet {
 		var action = request.getParameter("action");
 
 		Utente utente = (Utente) request.getSession().getAttribute("utente");
+
 		Carrello carrello = (Carrello) request.getSession().getAttribute("carrello");
 		String redirectPage = "/pages/checkout.jsp";
 		if (action != null) {
@@ -82,6 +83,8 @@ public class Ordini extends HttpServlet {
 			} else if (action.equals("indirizzo")) {
 				if (request.getParameter("preferredAddress") != null) {
 					salvaIndirizzo(request, response);
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/checkout.jsp");
+					dispatcher.forward(request, response);
 				} else {
 					Indirizzo indirizzo = utente.getPreferredAddress();
 					request.setAttribute("indirizzo", indirizzo);
@@ -202,9 +205,7 @@ public class Ordini extends HttpServlet {
 
 		try {
 			dao.doSave(ordine);
-
 		} catch (
-
 		SQLException e) {
 			e.printStackTrace();
 			response.sendError(500);

@@ -93,7 +93,9 @@ public class UtenteServlet extends HttpServlet {
 					}
 				}
 			}
+			request.removeAttribute(action);
 		}
+
 		String redirectPage = "/pages/profilo.jsp";
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(redirectPage);
 		dispatcher.forward(request, response);
@@ -131,15 +133,12 @@ public class UtenteServlet extends HttpServlet {
 				UtenteDAO dao = new UtenteDAO();
 				String id = request.getParameter("idUtente");
 				if (id != null) {
-
 					utente.setCognome(request.getParameter("cognome"));
 					utente.setNome(request.getParameter("nome"));
 					utente.setEmail(request.getParameter("email"));
 					utente.setUsername(request.getParameter("username"));
-
 				}
 
-				System.out.print("ee");
 				salvaFotoProfilo(request, utente);
 
 				try {
@@ -151,6 +150,7 @@ public class UtenteServlet extends HttpServlet {
 					e.printStackTrace();
 				}
 			}
+			request.removeAttribute(action);
 			String redirectPage = "/pages/profilo.jsp";
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(redirectPage);
 			dispatcher.forward(request, response);

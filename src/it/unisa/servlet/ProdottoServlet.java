@@ -56,7 +56,12 @@ public class ProdottoServlet extends HttpServlet {
 			if (action != null) {
 				if (action.equalsIgnoreCase("aggiungiCarrello")) {
 					String id = request.getParameter("id");
-					carrello.aggiungiProdotto(model.doRetriveByKey(id));
+					Prodotto prod = model.doRetriveByKey(id);
+					if (!prod.isDisponibile()) {
+						response.sendError(500);
+						return;
+					}
+					carrello.aggiungiProdotto(prod);
 					redirectPage = "/pages/cart.jsp";
 				} else if (action.equalsIgnoreCase("eliminaProdottoCarrello")) {
 					String id = request.getParameter("id");
@@ -161,7 +166,6 @@ public class ProdottoServlet extends HttpServlet {
 		} catch (SQLException e) {
 			System.out.println("Error:" + e.getMessage());
 		}
-		System.out.println(redirectPage);
 
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(redirectPage);
 		dispatcher.forward(request, response);

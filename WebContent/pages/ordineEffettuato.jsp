@@ -58,9 +58,6 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 								class="d-flex justify-content-between align-items-center mb-4">
 								<p class="lead fw-normal mb-0" style="color: #a8729a;">Il
 									tuo ordine:</p>
-								<p class="small text-muted mb-0">
-									Numero ordine:
-									<%=ordine.getId()%></p>
 							</div>
 							<%
 							Collection<ProdottoOrdine> prodotti = ordine.getItems();
@@ -68,10 +65,9 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 							while (it.hasNext()) {
 								ProdottoOrdine prodotto = (ProdottoOrdine) it.next();
 							%>
-							<div class="card shadow-0 border mb-4">
+							<div class="card shadow-0 border mb-4 text-center">
 								<div class="card-body">
 									<div class="row">
-
 										<div
 											class="col-md-2 text-center d-flex justify-content-center align-items-center">
 											<p class="text-muted mb-0"><%=prodotto.getNome()%></p>
@@ -96,28 +92,11 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 							%>
 							<div class="d-flex justify-content-between pt-2">
 								<p class="fw-bold mb-0">Dettagli ordine</p>
-								<p class="text-muted mb-0">
-									<span class="fw-bold me-4">Totale</span>
-									<%=ordine.getTotalePagato()%>
-								</p>
 							</div>
-
 							<div class="d-flex justify-content-between pt-2">
 								<p class="text-muted mb-0">
 									Numero prodotti :
 									<%=ordine.getTotaleProdotti()%></p>
-								<p class="text-muted mb-0">
-									<span class="fw-bold me-4">Discount</span> $19.00
-								</p>
-							</div>
-
-							<div class="d-flex justify-content-between">
-								<p class="text-muted mb-0">
-									Effettuato il :
-									<%=ordine.getCreatoIl()%></p>
-								<p class="text-muted mb-0">
-									<span class="fw-bold me-4">GST 18%</span> 123
-								</p>
 							</div>
 						</div>
 						<div class="card-footer border-0 px-4 py-5"

@@ -6,11 +6,16 @@ public class ProdottoCarrello implements Serializable {
 	private static final long serialVersionUID = 1L;
 	int quantità;
 	private Prodotto prodotto;
+	double sconto;
 
 	public ProdottoCarrello(Prodotto prodotto) {
 		super();
 		this.setQuantità(0);
 		this.prodotto = prodotto;
+		if (prodotto.getOnSale() != 0)
+			this.sconto = prodotto.getSaldo();
+		else
+			this.sconto = 0;
 	}
 
 	public Prodotto getProdotto() {
@@ -53,7 +58,21 @@ public class ProdottoCarrello implements Serializable {
 	}
 
 	public double getPrezzoTotale() {
-		return (double) this.prodotto.getPrezzo() * this.getQuantità();
+		double prezzo;
+		if (sconto != 0) {
+			double s = (this.prodotto.getPrezzo() * sconto) / 100;
+			prezzo = this.prodotto.getPrezzo() - s;
+		} else
+			prezzo = this.prodotto.getPrezzo();
+		return prezzo * this.getQuantità();
+	}
+
+	public double getSconto() {
+		return sconto;
+	}
+
+	public void setSconto(double sconto) {
+		this.sconto = sconto;
 	}
 
 }

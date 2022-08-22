@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import it.unisa.beans.Ordine;
 import it.unisa.beans.ProdottoOrdine;
 import it.unisa.beans.Utente;
 import it.unisa.model.OrdineDAO;
@@ -46,21 +45,34 @@ public class ChiSiamoServlet extends HttpServlet {
 		int prodottiTotali = 0;
 
 		Collection<Utente> utenti = new ArrayList<Utente>();
-		Utente[] utentiAcquisti = new Utente[3];
-		
+		Collection<Utente> utentiAcquisti = new ArrayList<Utente>();
+		Collection<ProdottoOrdine> prodottiVenduti = new ArrayList<ProdottoOrdine>();
+
 		try {
+
 			utenti = dao.doRetriveAll("");
 			utentiTotali = utenti.size();
 			request.setAttribute("utentiTotali", utentiTotali);
-			
+
 			paesiTotali = dao1.doRetriveAll("").size();
 			request.setAttribute("paesiTotali", paesiTotali);
 
 			prodottiTotali = dao2.doRetriveAll("").size();
 			request.setAttribute("prodottiTotali", prodottiTotali);
 
-		} catch (SQLException e) {
+			prodottiVenduti = dao3.findBestSellingProducts();
+			System.out.print(prodottiVenduti);
+			request.setAttribute("prodottiVenduti", prodottiVenduti);
 
+			utenti = dao.doRetriveByOrder();
+			Iterator<Utente> it = utenti.iterator();
+			while (it.hasNext()) {
+				Utente utente = it.next();
+				utentiAcquisti.add(dao.doRetriveByKey("" + utente.getId()));
+			}
+			request.setAttribute("utentiAcquisti", utentiAcquisti);
+
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 

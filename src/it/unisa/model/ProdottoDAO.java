@@ -154,7 +154,7 @@ public class ProdottoDAO implements GenericDAO<Prodotto> {
 
 		Collection<Prodotto> beans = new LinkedList<Prodotto>();
 
-		String selectSQL = "SELECT * FROM " + ProdottoDAO.TABLE_NAME + " WHERE saldo=1";
+		String selectSQL = "SELECT * FROM " + ProdottoDAO.TABLE_NAME + " WHERE onSale=1";
 
 		try {
 			connection = ds.getConnection();

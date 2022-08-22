@@ -17,11 +17,11 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 <title>Carrello</title>
 <!--CSS-->
 <link rel="stylesheet" type="text/css"
-	href="../resources/css/bootstrap.css">
+	href="resources/css/bootstrap.css">
 <link rel="stylesheet" type="text/css"
-	href="../resources/css/_variables.scss">
+	href="resources/css/_variables.scss">
 <link rel="stylesheet" type="text/css"
-	href="../resources/css/_bootswatch.scss">
+	href="resources/css/_bootswatch.scss">
 
 <!-- JavaScript Bundle with Popper -->
 <script
@@ -31,6 +31,41 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 <!-- FontAwesome -->
 <script src="https://kit.fontawesome.com/6bd8866cc2.js"
 	crossorigin="anonymous"></script>
+
+<style>
+.checked { /*<!-- Per cambiare il colore delle stelline -->*/
+	color: orange;
+}
+
+#btnCkt {
+	transition: all 0.5s;
+}
+
+#btnCkt span {
+	cursor: pointer;
+	display: inline-block;
+	position: relative;
+	transition: 0.5s;
+}
+
+#btnCkt span:after {
+	content: '\2192';
+	position: absolute;
+	opacity: 0;
+	top: 0;
+	right: -20px;
+	transition: 0.5s;
+}
+
+#btnCkt:hover span {
+	padding-right: 25px;
+}
+
+#btnCkt:hover span:after {
+	opacity: 1;
+	right: 0;
+}
+</style>
 </head>
 
 <body>
@@ -57,6 +92,11 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 										</div>
 
 										<%
+										if (carrello.isEmpty()) {
+										%>
+										<p>OPS! Il tuo carrello è vuoto</p>
+										<%
+										} else {
 										ProdottoCarrello[] prodottiCarrello = carrello.getProdotti().toArray(new ProdottoCarrello[0]);
 										for (ProdottoCarrello prodottoCarrello : prodottiCarrello) {
 											Prodotto prodotto = prodottoCarrello.getProdotto();
@@ -98,6 +138,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 										<hr class="my-4">
 										<%
 										}
+										}
 										%>
 										<div
 											class="d-flex justify-content-between align-items-center mb-5">
@@ -131,8 +172,8 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 										</div>
 										<div class="d-flex justify-content-between">
 											<a href="Login?action=checkout"
-												class="btn btn-dark btn-block btn-lg">Checkout <i
-												class="fas fa-long-arrow-alt-right ms-2"></i></a>
+												class="btn btn-dark btn-block btn-lg" id="btnCkt"><span>Checkout</span>
+											</a>
 										</div>
 									</div>
 								</div>

@@ -12,6 +12,10 @@ Indirizzo indirizzo = (Indirizzo) request.getSession().getAttribute("indirizzo")
 CodicePromozionale codicePromo = (CodicePromozionale) request.getSession().getAttribute("codice");
 Utente utente = (Utente) request.getSession().getAttribute("utente");
 
+if (indirizzo == null) {
+	indirizzo = utente.getPreferredAddress();
+}
+
 DecimalFormat dFormat = new DecimalFormat("0.00");
 %>
 <!DOCTYPE html>
@@ -39,47 +43,6 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 <script src="https://code.jquery.com/jquery-3.6.0.js"
 	integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
 	crossorigin="anonymous"></script>
-
-<script>
-//When DOM is loaded this 
-// function will get executed
-$(() => {
-	// function will get executed 
-    // on click of submit button
-    $("#procedi").click(function(ev) {
-        var form = $("#checkoutIndirizzo");
-        var url = form.attr('action');
-        $.ajax({
-            type: "POST",
-            url: url,
-            data: form.serialize(),
-            success: function(data) {
-                alert("Form Submited Successfully");
-            },
-            error: function(data) {
-                alert("some Error");
-            }
-        });
-    });
-	
-    $("#procedi").click(function(ev) {
-        var form = $("#checkoutIndirizzo");
-        var url = form.attr('action');
-        $.ajax({
-            type: "POST",
-            url: url,
-            data: form.serialize(),
-            success: function(data) {
-                alert("Form Submited Successfully");
-            },
-            error: function(data) {
-                alert("some Error");
-            }
-        });
-    });
-    
-});
-</script>
 </head>
 <body>
 	<!-- Header -->
@@ -155,7 +118,7 @@ $(() => {
 				<h4 class="mb-3">Inidirizzo di fatturazione</h4>
 				<form class="needs-validation" novalidate autocomplete="off"
 					name="checkoutIndirizzo" action="Ordini?action=indirizzo"
-					id="checkoutIndirizzo">
+					method="POST" id="checkoutIndirizzo">
 					<div class="row g-3">
 						<div class="col-sm-6">
 							<label for="nome" class="form-label">Nome</label> <input
@@ -387,6 +350,7 @@ $(() => {
 	<br>
 	<!-- Footer -->
 	<%@ include file="../fragments/footer.jsp"%>
+
 	<script>
 		$(document).ready(function() {
 			$("#regalo").click(function(event) {
@@ -397,22 +361,23 @@ $(() => {
 			});
 		});
 	</script>
-	<script>	
+
+	<script>
+	
 			var nome = document.checkoutIndirizzo.nome;
 			var cognome = document.checkoutIndirizzo.cognome;
 			var form= document.checkoutIndirizzo;
 			var cap = document.checkoutIndirizzo.cap;
 			
-			
-			var nomeTitolare = document.checkout.nomeTitolare;
-			var cartaCreditoNumero=document.checkout.cartaCreditoNumero;
+			var nomeTitolare = document.checkoutOrdine.nomeTitolare;
+			var cartaCreditoNumero=document.checkoutOrdine.cartaCreditoNumero;
 			var cartaMastercard = document.getElementById("cc-mastercard");
 			var cartaVisa = document.getElementById("cc-visa");
 			var cartaAmericanExpress = document.getElementById("cc-amex");
-			var dataScadenza = document.checkout.dataScadenza;
-			var cvv= document.checkout.cvv;
-			var nomeRegalo = document.checkout.nomeRegalo;
-			var mailRegalo = document.checkout.mailRegalo;
+			var dataScadenza = document.checkoutOrdine.dataScadenza;
+			var cvv= document.checkoutOrdine.cvv;
+			var nomeRegalo = document.checkoutOrdine.nomeRegalo;
+			var mailRegalo = document.checkoutOrdine.mailRegalo;
 			
 			let validNome = false;
 			let validCognome = false;

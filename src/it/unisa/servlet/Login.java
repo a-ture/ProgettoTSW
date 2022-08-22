@@ -164,7 +164,6 @@ public class Login extends HttpServlet {
 
 			} catch (IOException | SQLException e) {
 				e.printStackTrace();
-				System.out.println(e.getMessage());
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/pages/signUpForm.jsp");
 				dispatcher.forward(request, response);
 			}

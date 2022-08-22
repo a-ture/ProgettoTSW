@@ -1,5 +1,6 @@
 package it.unisa.model;
 
+import java.beans.Beans;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -312,6 +313,22 @@ public class OrdineDAO implements GenericDAO<Ordine> {
 		return prodotti;
 	}
 
+	public Collection<ProdottoOrdine> findBestSellingProducts() throws SQLException {
+		Collection<ProdottoOrdine> prodotti = new LinkedList<ProdottoOrdine>();
+		String selectSQL = "SELECT nome, COUNT(*) AS count FROM prodottoOrdine  GROUP BY nome ORDER BY count DESC";
+		try (var conn = ds.getConnection()) {
+			try (var stmt = conn.prepareStatement(selectSQL)) {
+				ResultSet rs = stmt.executeQuery();
+				while (rs.next()) {
+					ProdottoOrdine bean = new ProdottoOrdine();
+					bean.setNome(rs.getString("nome"));
+					prodotti.add(bean);
+				}
+			}
+		}
+		return prodotti;
+	}
+
 	public int doRetrieveCount() throws SQLException {
 		String sql = "SELECT COUNT(*) AS c FROM " + TABLE_NAME;
 		try (var conn = ds.getConnection()) {
@@ -329,7 +346,7 @@ public class OrdineDAO implements GenericDAO<Ordine> {
 		try (var conn = ds.getConnection()) {
 			try (var stmt = conn.prepareStatement(selectSQL)) {
 				System.out.println(stmt);
-				ResultSet rs = stmt.executeQuery();			
+				ResultSet rs = stmt.executeQuery();
 				if (rs.next()) {
 					ordine.setId(rs.getInt("id"));
 					ordine.setTotaleProdotti(rs.getInt("totaleProdotti"));

@@ -50,10 +50,39 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 	crossorigin="anonymous"></script>
 </head>
 
-<!-- Per cambiare il colore delle stelline -->
+
 <style>
-.checked {
+.checked { /*<!-- Per cambiare il colore delle stelline -->*/
 	color: orange;
+}
+
+#btnCart {
+	transition: all 0.5s;
+}
+
+#btnCart span {
+	cursor: pointer;
+	display: inline-block;
+	position: relative;
+	transition: 0.5s;
+}
+
+#btnCart span:after {
+	content: '\002B';
+	position: absolute;
+	opacity: 0;
+	top: 0;
+	right: -20px;
+	transition: 0.5s;
+}
+
+#btnCart:hover span {
+	padding-right: 25px;
+}
+
+#btnCart:hover span:after {
+	opacity: 1;
+	right: 0;
 }
 </style>
 <body>
@@ -110,7 +139,19 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			<!-- Dettagli Prodotto -->
 			<div class="col">
 				<div class="row">
-					<h1 class="font-monospace"><%=prodotto.getNome()%></h1>
+					<h1 class="font-monospace"><%=prodotto.getNome()%>
+						<%
+						if (!prodotto.isDisponibile()) {
+						%>
+						<span class="badge mx-2 bg-dark">Sold Out</span>
+						<%
+						} else if (prodotto.getOnSale() != 0) {
+						%>
+						<span class="badge mx-2 bg-dark">In saldo</span>
+						<%
+						}
+						%>
+					</h1>
 				</div>
 				<div class="row">
 					<div class="col">
@@ -146,9 +187,24 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						
 					</div>
 					<div class="col">
+						<p class="text-danger">
+							<%
+							if (prodotto.getOnSale() != 0) {
+								double sconto = (prodotto.getPrezzo() * prodotto.getSaldo()) / 100;
+								double prezzo = prodotto.getPrezzo() - sconto;
+							%><span class="badge mx-2 bg-secondary">-<%=prodotto.getSaldo()%>%
+							</span> <i class="fa-solid fa-coins"></i>
+							<%=dFormat.format(prezzo)%>€
+						</p>
+						<%
+						} else {
+						%>
 						<p>
 							<i class="fa-solid fa-coins"></i>
 							<%=dFormat.format(prodotto.getPrezzo())%>€
+							<%
+							}
+							%>
 						</p>
 					</div>
 
@@ -177,8 +233,19 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				<hr>
 
 				<div class="text-center">
+					<%
+					if (prodotto.isDisponibile()) {
+					%>
 					<a type="button" class="btn btn-primary"
-						href="Prodotto?action=aggiungiCarrello&id=<%=prodotto.getId()%>">Acquista</a>
+						href="Prodotto?action=aggiungiCarrello&id=<%=prodotto.getId()%>"
+						id="btnCart"><span>Acquista</span></a>
+					<%
+					} else {
+					%>
+					<a type="button" class="btn btn-dark"> Prodotto Sold Out</a>
+					<%
+					}
+					%>
 				</div>
 			</div>
 		</div>
@@ -263,7 +330,8 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 		<div class="text-center">
 			<img
 				src="./GetFotoPaeseDiOrigine?idPaese=<%=prodotto.getPaeseDiOrigine()%>"
-				class="img-fluid" height="626px" width="925px">
+				class="img-fluid" height="626px" width="925px"
+				onerror="this.src='./resources//img/error.jpg'">
 		</div>
 		<!-- Perche Categoria -->
 		<div class="text-center m-5">

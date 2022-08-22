@@ -7,6 +7,9 @@ int utentiTotali = (int) request.getAttribute("utentiTotali");
 int paesiTotali = (int) request.getAttribute("paesiTotali");
 int prodottiTotali = (int) request.getAttribute("prodottiTotali");
 
+Collection<?> utenti = (Collection<?>) request.getAttribute("utentiAcquisti");
+Collection<?> prodotti = (Collection<?>) request.getAttribute("prodottiVenduti");
+
 DecimalFormat dFormat = new DecimalFormat("0.00");
 %>
 <!DOCTYPE html>
@@ -39,7 +42,6 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 	<%@ include file="../fragments/header.jsp"%>
 	<!-- HERO -->
 	<div class="px-4 py-5 my-5 text-center">
-
 		<h1 class="display-5 fw-bold">Chi Siamo</h1>
 		<div class="col-lg-6 mx-auto">
 			<p class="lead mb-4">La riforestazione è una delle azioni più
@@ -53,6 +55,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			</div>
 		</div>
 	</div>
+
 	<!-- Divider -->
 	<div class="b-example-divider"></div>
 
@@ -170,46 +173,76 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				</div>
 			</div>
 		</div>
+
 		<h4>Scopri chi ha piantato più alberi.</h4>
-		<table class="table ">
+		<table class="table m-3">
 			<thead>
 				<tr>
-					<th scope="col">#</th>
-					<th scope="col">First</th>
-					<th scope="col">Last</th>
-					<th scope="col">Handle</th>
+					<th scope="col">Posizione</th>
+					<th scope="col">Username</th>
+					<th scope="col">Nome</th>
+					<th scope="col">Cognome</th>
 				</tr>
 			</thead>
 			<tbody>
+				<%
+				if (utenti != null && utenti.size() != 0) {
+					Iterator<?> it = utenti.iterator();
+					int i = 0;
+					while (it.hasNext() && i < 3) {
+						i++;
+						Utente utente = (Utente) it.next();
+				%>
 				<tr>
-					<th scope="row">1</th>
-					<td>Mark</td>
-					<td>Otto</td>
-					<td>@mdo</td>
+					<th scope="row"><%=i%></th>
+					<td><%=utente.getUsername()%></td>
+					<td><%=utente.getNome()%></td>
+					<td><%=utente.getCognome()%></td>
 				</tr>
-				<tr>
-					<th scope="row">2</th>
-					<td>Jacob</td>
-					<td>Thornton</td>
-					<td>@fat</td>
-				</tr>
-				<tr>
-					<th scope="row">3</th>
-					<td colspan="2">Larry the Bird</td>
-					<td>@twitter</td>
-				</tr>
+				<%
+				}
+				}
+				%>
 			</tbody>
 		</table>
-		<button type="button" class="btn btn-primary mb-5">Partecipa
-			anche tu!</button>
-		<h4>Dove stanno piantando di più?</h4>
-		<button type="button" class="btn btn-primary mb-5">Partecipa
-			anche tu!</button>
+		<a type="button" class="btn btn-primary my-5" href="Catalogo">Partecipa
+			anche tu!</a>
+
+
+		<h4 class="m-3">Dove stanno piantando di più?</h4>
+		<a type="button" class="btn btn-primary m-3" href="Catalogo">Partecipa
+			anche tu!</a>
+	
 		<h4>Felici di questi risultati</h4>
 		<h5 class="text-muted">Top 10 degli alberi più piantati</h5>
-
-		<button type="button" class="btn btn-primary mb-5">Partecipa
-			anche tu!</button>
+		<table class="table m-3">
+			<thead>
+				<tr>
+					<th scope="col">Posizione</th>
+					<th scope="col">Nome</th>
+				</tr>
+			</thead>
+			<tbody>
+				<%
+				if (prodotti != null && prodotti.size() != 0) {
+					Iterator<?> it1 = prodotti.iterator();
+					int i = 0;
+					while (it1.hasNext() && i < 10) {
+						i++;
+						ProdottoOrdine prodotto = (ProdottoOrdine) it1.next();
+				%>
+				<tr>
+					<th scope="row"><%=i%></th>
+					<td><%=prodotto.getNome()%></td>
+				</tr>
+				<%
+				}
+				}
+				%>
+			</tbody>
+		</table>
+		<a type="button" class="btn btn-primary mb-5" href="Catalogo">Partecipa
+			anche tu!</a>
 	</div>
 
 	<div class="container marketing">
@@ -217,7 +250,9 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 		<p class="text-center mb-5 border-bottom">WoodLot riunisce una
 			squadra piena di idee, di molta passione e che ha voglia di cambiare
 			il mondo. Conosciamoci meglio!</p>
+
 		<div class="row text-center">
+
 			<div class="col-lg-4">
 				<svg class="bd-placeholder-img rounded-circle" width="140"
 					height="140" xmlns="http://www.w3.org/2000/svg" role="img"
@@ -245,8 +280,10 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				<p>Another exciting bit of representative placeholder content.
 					This time, we've moved on to the second column.</p>
 			</div>
+
 		</div>
 	</div>
+
 	<div class="b-example-divider"></div>
 	<!-- /.row -->
 	<!-- START THE FEATURETTES -->
@@ -388,14 +425,16 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						<text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
 			</div>
 		</div>
+
 		<hr class="featurette-divider">
 
-		<!-- /END THE FEATURETTES -->
-
 		<div class="container px-4 py-5" id="custom-cards">
+
 			<h2 class="pb-2 border-bottom">I progetti attivi nel mondo</h2>
+
 			<p>Tutto è iniziato in Guatemala. Abbiamo poi messo nuove radici
 				nell’amazzonia peruviana ed in tutte le regioni italiane</p>
+
 			<div
 				class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
 				<div class="col">
@@ -432,6 +471,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						</div>
 					</div>
 				</div>
+
 			</div>
 			<div class="row m-5">
 				<h3>Perchè tutto è iniziato dal Guatemala?</h3>
@@ -518,5 +558,6 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 	<div class="b-example-divider"></div>
 	<!-- Footer -->
 	<%@ include file="../fragments/footer.jsp"%>
+
 </body>
 </html>
