@@ -1,6 +1,5 @@
 package it.unisa.model;
 
-import java.beans.Beans;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -345,7 +344,7 @@ public class OrdineDAO implements GenericDAO<Ordine> {
 		Ordine ordine = new Ordine();
 		try (var conn = ds.getConnection()) {
 			try (var stmt = conn.prepareStatement(selectSQL)) {
-				System.out.println(stmt);
+
 				ResultSet rs = stmt.executeQuery();
 				if (rs.next()) {
 					ordine.setId(rs.getInt("id"));

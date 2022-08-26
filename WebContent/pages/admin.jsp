@@ -152,9 +152,9 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					<tbody>
 						<%
 						if (prodotti != null && prodotti.size() != 0) {
-							Iterator<?> it6 = prodotti.iterator();
-							while (it6.hasNext()) {
-								Prodotto bean = (Prodotto) it6.next();
+											Iterator<?> it6 = prodotti.iterator();
+											while (it6.hasNext()) {
+												Albero bean = (Albero) it6.next();
 						%>
 						<tr>
 							<th scope="row"><%=bean.getId()%></th>

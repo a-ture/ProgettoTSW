@@ -13,12 +13,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import it.unisa.beans.Categoria;
 import it.unisa.beans.FotoProdotto;
-import it.unisa.beans.Prodotto;
+import it.unisa.beans.KitAlberi;
+import it.unisa.beans.Albero;
 import it.unisa.model.Carrello;
+import it.unisa.model.CategoriaDAO;
 import it.unisa.model.FotoProdottoDAO;
-import it.unisa.model.ProdottoDAO;
+import it.unisa.model.KitAlberiDAO;
+import it.unisa.model.AlberoDAO;
+import it.unisa.model.UsoLocaleDAO;
 
 /**
  * Servlet implementation class Prodotto
@@ -41,7 +44,11 @@ public class ProdottoServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		ProdottoDAO model = new ProdottoDAO();
+		AlberoDAO model = new AlberoDAO();
+		FotoProdottoDAO model1 = new FotoProdottoDAO();
+		KitAlberiDAO model2 = new KitAlberiDAO();
+		UsoLocaleDAO model3 = new UsoLocaleDAO();
+		CategoriaDAO model4 = new CategoriaDAO();
 
 		Carrello carrello = (Carrello) request.getSession().getAttribute("carrello");
 		if (carrello == null) {
@@ -56,12 +63,26 @@ public class ProdottoServlet extends HttpServlet {
 			if (action != null) {
 				if (action.equalsIgnoreCase("aggiungiCarrello")) {
 					String id = request.getParameter("id");
-					Prodotto prod = model.doRetriveByKey(id);
+					Albero prod = model.doRetriveByKey(id);
 					if (!prod.isDisponibile()) {
 						response.sendError(500);
 						return;
 					}
 					carrello.aggiungiProdotto(prod);
+					redirectPage = "/pages/cart.jsp";
+				} else if (action.equalsIgnoreCase("aggiungiCarrelloKit")) {
+					String id = request.getParameter("idKit");
+					KitAlberi kit = model2.doRetriveByKey(id);
+					System.out.println("Sono lo sconto nel servlet"+kit.getSaldo());
+					Collection<Albero> alberi = kit.getAlberi();
+					if (alberi != null && alberi.size() != 0) {
+						Iterator<Albero> it = alberi.iterator();
+						while (it.hasNext()) {
+							Albero albero = it.next();
+							albero.setSaldo(kit.getSaldo());
+							carrello.aggiungiProdotto(albero);
+						}
+					}
 					redirectPage = "/pages/cart.jsp";
 				} else if (action.equalsIgnoreCase("eliminaProdottoCarrello")) {
 					String id = request.getParameter("id");
@@ -82,13 +103,12 @@ public class ProdottoServlet extends HttpServlet {
 					redirectPage = "/pages/cart.jsp";
 				} else if (action.equalsIgnoreCase("visualizzaCarrello")) {
 					redirectPage = "/pages/cart.jsp";
-				} else if (action.equalsIgnoreCase("leggi")) {
+				} else if (action.equalsIgnoreCase("leggiProdotto")) {
 
 					String id = request.getParameter("id");
 					request.removeAttribute("prodotto");
 					request.setAttribute("prodotto", model.doRetriveByKey(id));
-					// devo prendere le foto
-					FotoProdottoDAO model1 = new FotoProdottoDAO();
+
 					Collection<FotoProdotto> photo = null;
 					try {
 						photo = model1.doRetriveAll(id);
@@ -96,16 +116,11 @@ public class ProdottoServlet extends HttpServlet {
 						System.out.println(e);
 					}
 
-					Collection<Categoria> categorie = new ArrayList<Categoria>();
-					categorie = model.findProductCategory(Integer.parseInt(id));
-					request.removeAttribute("categorieProdotto");
-					request.setAttribute("categorieProdotto", categorie);
-
 					FotoProdotto[] ph = photo.toArray(FotoProdotto[]::new);
 					request.removeAttribute("prodottoFoto");
 					request.getSession().setAttribute("prodottoFoto", ph);
 
-					Collection<Prodotto> prodotti = new ArrayList<Prodotto>();
+					Collection<Albero> prodotti = new ArrayList<Albero>();
 					try {
 						prodotti = model.doRetriveAll("");
 					} catch (SQLException e1) {
@@ -117,7 +132,7 @@ public class ProdottoServlet extends HttpServlet {
 						Collection<FotoProdotto> photos = new ArrayList<FotoProdotto>();
 						Iterator<?> it = prodotti.iterator();
 						while (it.hasNext()) {
-							Prodotto beanProd = (Prodotto) it.next();
+							Albero beanProd = (Albero) it.next();
 							int idProdotto = beanProd.getId();
 							try {
 								FotoProdotto beanPhoto = model1.doRetriveOne(idProdotto);
@@ -129,6 +144,42 @@ public class ProdottoServlet extends HttpServlet {
 						request.removeAttribute("fotoProdotti");
 						request.setAttribute("fotoProdotti", photos);
 					}
+
+					request.setAttribute("usiLocali", model3.doRetriveAll(null));
+					request.setAttribute("categorie", model4.doRetriveAll(null));
+
+				} else if (action.equalsIgnoreCase("leggiKit")) {
+					String id = request.getParameter("idKit");
+
+					request.removeAttribute("kit");
+					request.setAttribute("kit", model2.doRetriveByKey(id));
+
+					Collection<Albero> prodotti = new ArrayList<Albero>();
+					try {
+						prodotti = model.doRetriveAll("");
+					} catch (SQLException e1) {
+						e1.printStackTrace();
+					}
+					request.setAttribute("prodotti", prodotti);
+					if (prodotti != null && prodotti.size() != 0) {
+
+						Collection<FotoProdotto> photos = new ArrayList<FotoProdotto>();
+						Iterator<?> it = prodotti.iterator();
+						while (it.hasNext()) {
+							Albero beanProd = (Albero) it.next();
+							int idProdotto = beanProd.getId();
+							try {
+								FotoProdotto beanPhoto = model1.doRetriveOne(idProdotto);
+								photos.add(beanPhoto);
+							} catch (SQLException e) {
+								System.out.print(e);
+							}
+						}
+						request.removeAttribute("fotoProdotti");
+						request.setAttribute("fotoProdotti", photos);
+					}
+
+					redirectPage = "/pages/paginaKit.jsp";
 				} else if (action.equalsIgnoreCase("eliminaProdottoCatalogo")) {
 					String id = request.getParameter("id");
 					model.doDelete(model.doRetriveByKey(id));
@@ -145,7 +196,7 @@ public class ProdottoServlet extends HttpServlet {
 					int co2 = Integer.parseInt(request.getParameter("co2"));
 					int salvaguardia = Integer.parseInt(request.getParameter("salvaguardia"));
 
-					Prodotto bean = new Prodotto();
+					Albero bean = new Albero();
 					bean.setAltezza(altezza);
 					// bean.setCategories();
 					bean.setCo2(co2);

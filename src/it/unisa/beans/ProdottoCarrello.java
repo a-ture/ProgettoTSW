@@ -5,20 +5,19 @@ import java.io.Serializable;
 public class ProdottoCarrello implements Serializable {
 	private static final long serialVersionUID = 1L;
 	int quantità;
-	private Prodotto prodotto;
+	private Albero prodotto;
 	double sconto;
 
-	public ProdottoCarrello(Prodotto prodotto) {
+	public ProdottoCarrello(Albero prodotto) {
 		super();
 		this.setQuantità(0);
 		this.prodotto = prodotto;
-		if (prodotto.getOnSale() != 0)
-			this.sconto = prodotto.getSaldo();
-		else
-			this.sconto = 0;
+
+		this.sconto = prodotto.getSaldo();
+
 	}
 
-	public Prodotto getProdotto() {
+	public Albero getProdotto() {
 		return prodotto;
 	}
 
@@ -59,6 +58,7 @@ public class ProdottoCarrello implements Serializable {
 
 	public double getPrezzoTotale() {
 		double prezzo;
+
 		if (sconto != 0) {
 			double s = (this.prodotto.getPrezzo() * sconto) / 100;
 			prezzo = this.prodotto.getPrezzo() - s;

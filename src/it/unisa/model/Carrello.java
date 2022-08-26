@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import it.unisa.beans.Prodotto;
+import it.unisa.beans.Albero;
 import it.unisa.beans.ProdottoCarrello;
 
 public class Carrello implements Serializable {
@@ -19,7 +19,7 @@ public class Carrello implements Serializable {
 		prodotti = new ArrayList<>();
 	}
 
-	public void aggiungiProdotto(Prodotto product) {
+	public void aggiungiProdotto(Albero product) {
 		ProdottoCarrello cartProd = new ProdottoCarrello(product);
 		if (prodotti.contains(cartProd)) {
 			var prod = prodotti.get(prodotti.indexOf(cartProd));
@@ -31,7 +31,7 @@ public class Carrello implements Serializable {
 		}
 	}
 
-	public void rimuoviProdotto(Prodotto product) {
+	public void rimuoviProdotto(Albero product) {
 		ProdottoCarrello cartProd = new ProdottoCarrello(product);
 		for (ProdottoCarrello prod : prodotti) {
 			if (prod.equals(cartProd)) {
@@ -70,7 +70,7 @@ public class Carrello implements Serializable {
 
 	}
 
-	public void aggiornaProdotti(Prodotto prodotto, int quantità) {
+	public void aggiornaProdotti(Albero prodotto, int quantità) {
 		ProdottoCarrello cartProd = new ProdottoCarrello(prodotto);
 		if (prodotti.contains(cartProd)) {
 			var prod = prodotti.get(prodotti.indexOf(cartProd));

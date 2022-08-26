@@ -63,8 +63,8 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				<ul class="list-group mb-3">
 					<%
 					ProdottoCarrello[] prodottiCarrello = carrello.getProdotti().toArray(new ProdottoCarrello[0]);
-					for (ProdottoCarrello prodottoCarrello : prodottiCarrello) {
-						Prodotto prodotto = prodottoCarrello.getProdotto();
+								for (ProdottoCarrello prodottoCarrello : prodottiCarrello) {
+									Albero prodotto = prodottoCarrello.getProdotto();
 					%>
 					<li
 						class="list-group-item d-flex justify-content-between lh-condensed">

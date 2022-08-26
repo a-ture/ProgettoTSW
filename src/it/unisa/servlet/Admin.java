@@ -13,11 +13,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import it.unisa.beans.Ordine;
-import it.unisa.beans.Prodotto;
+import it.unisa.beans.Albero;
 
 import it.unisa.beans.Utente;
 import it.unisa.model.OrdineDAO;
-import it.unisa.model.ProdottoDAO;
+import it.unisa.model.AlberoDAO;
 import it.unisa.model.UtenteDAO;
 
 /**
@@ -35,12 +35,12 @@ public class Admin extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		ProdottoDAO dao = new ProdottoDAO();
+		AlberoDAO dao = new AlberoDAO();
 		OrdineDAO dao1 = new OrdineDAO();
 		UtenteDAO dao2 = new UtenteDAO();
 
 		try {
-			Collection<Prodotto> prodotti = dao.doRetriveAll("");
+			Collection<Albero> prodotti = dao.doRetriveAll("");
 			request.setAttribute("prodotti", prodotti);
 
 			Collection<Ordine> ordini = dao1.doRetriveAll("");

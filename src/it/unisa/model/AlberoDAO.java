@@ -13,9 +13,11 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import it.unisa.beans.Categoria;
-import it.unisa.beans.Prodotto;
+import it.unisa.beans.UsoLocale;
+import it.unisa.beans.Albero;
+import it.unisa.beans.Beneficio;
 
-public class ProdottoDAO implements GenericDAO<Prodotto> {
+public class AlberoDAO implements GenericDAO<Albero> {
 
 	private static DataSource ds;
 
@@ -34,14 +36,14 @@ public class ProdottoDAO implements GenericDAO<Prodotto> {
 	private static final String TABLE_NAME = "prodotto";
 
 	@Override
-	public synchronized Prodotto doRetriveByKey(String code) throws SQLException {
+	public synchronized Albero doRetriveByKey(String code) throws SQLException {
 
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
-		Prodotto bean = new Prodotto();
+		Albero bean = new Albero();
 
-		String selectSQL = "SELECT * FROM " + ProdottoDAO.TABLE_NAME + " WHERE id = ?";
+		String selectSQL = "SELECT * FROM " + AlberoDAO.TABLE_NAME + " WHERE id = ?";
 
 		try {
 			connection = ds.getConnection();
@@ -70,6 +72,9 @@ public class ProdottoDAO implements GenericDAO<Prodotto> {
 				bean.setSaldo(rs.getDouble("saldo"));
 				bean.setTasse(rs.getDouble("tasse"));
 				bean.setDisponibile(rs.getBoolean("disponibile"));
+				bean.setBenefici(findProductBenefits(bean.getId()));
+				bean.setCategorie(findProductCategory(bean.getId()));
+				bean.setUsiLocali(findProductUsiLocali(bean.getId()));
 			}
 
 		} finally {
@@ -85,14 +90,14 @@ public class ProdottoDAO implements GenericDAO<Prodotto> {
 	}
 
 	@Override
-	public synchronized Collection<Prodotto> doRetriveAll(String order) throws SQLException {
+	public synchronized Collection<Albero> doRetriveAll(String order) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet rs = null;
 
-		Collection<Prodotto> beans = new LinkedList<Prodotto>();
+		Collection<Albero> beans = new LinkedList<Albero>();
 
-		String selectSQL = "SELECT * FROM " + ProdottoDAO.TABLE_NAME;
+		String selectSQL = "SELECT * FROM " + AlberoDAO.TABLE_NAME;
 
 		if (order != null && !order.equals("")) {
 			selectSQL += " ORDER BY " + order;
@@ -105,7 +110,7 @@ public class ProdottoDAO implements GenericDAO<Prodotto> {
 			rs = preparedStatement.executeQuery();
 
 			while (rs.next()) {
-				Prodotto bean = new Prodotto();
+				Albero bean = new Albero();
 
 				bean.setAltezza(rs.getDouble("altezza"));
 				bean.setCo2(rs.getInt("co2"));
@@ -125,7 +130,9 @@ public class ProdottoDAO implements GenericDAO<Prodotto> {
 				bean.setSaldo(rs.getDouble("saldo"));
 				bean.setTasse(rs.getDouble("tasse"));
 				bean.setDisponibile(rs.getBoolean("disponibile"));
-
+				bean.setCategorie(findProductCategory(bean.getId()));
+				bean.setUsiLocali(findProductUsiLocali(bean.getId()));
+				bean.setBenefici(findProductBenefits(bean.getId()));
 				beans.add(bean);
 			}
 		} finally {
@@ -147,14 +154,14 @@ public class ProdottoDAO implements GenericDAO<Prodotto> {
 		return beans;
 	}
 
-	public synchronized Collection<Prodotto> doRetriveBySale() throws SQLException {
+	public synchronized Collection<Albero> doRetriveBySale() throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet rs = null;
 
-		Collection<Prodotto> beans = new LinkedList<Prodotto>();
+		Collection<Albero> beans = new LinkedList<Albero>();
 
-		String selectSQL = "SELECT * FROM " + ProdottoDAO.TABLE_NAME + " WHERE onSale=1";
+		String selectSQL = "SELECT * FROM " + AlberoDAO.TABLE_NAME + " WHERE onSale=1";
 
 		try {
 			connection = ds.getConnection();
@@ -163,7 +170,7 @@ public class ProdottoDAO implements GenericDAO<Prodotto> {
 			rs = preparedStatement.executeQuery();
 
 			while (rs.next()) {
-				Prodotto bean = new Prodotto();
+				Albero bean = new Albero();
 
 				bean.setAltezza(rs.getDouble("altezza"));
 				bean.setCo2(rs.getInt("co2"));
@@ -183,7 +190,10 @@ public class ProdottoDAO implements GenericDAO<Prodotto> {
 				bean.setSaldo(rs.getDouble("saldo"));
 				bean.setTasse(rs.getDouble("tasse"));
 				bean.setDisponibile(rs.getBoolean("disponibile"));
-
+				bean.setCategorie(findProductCategory(bean.getId()));
+				bean.setUsiLocali(findProductUsiLocali(bean.getId()));
+				bean.setBenefici(findProductBenefits(bean.getId()));
+				
 				beans.add(bean);
 			}
 		} finally {
@@ -205,13 +215,14 @@ public class ProdottoDAO implements GenericDAO<Prodotto> {
 		return beans;
 	}
 
+	// quando viene inserito devo vedere bene pure quali tab si modificano
 	@Override
-	public synchronized void doSave(Prodotto item) throws SQLException {
+	public synchronized void doSave(Albero item) throws SQLException {
 
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
-		String insertSQL = "INSERT INTO " + ProdottoDAO.TABLE_NAME
+		String insertSQL = "INSERT INTO " + AlberoDAO.TABLE_NAME
 				+ " (nome, nomeScientifico, descrizione, descrizioneBreve, altezza, prezzo,"
 				+ " pid, quantità, co2, salvaguardia, sottotitolo, doveVienePiantato) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,?,?)";
 
@@ -248,19 +259,19 @@ public class ProdottoDAO implements GenericDAO<Prodotto> {
 
 	// se serve la faccioo
 	@Override
-	public int doUpdate(Prodotto item) throws SQLException {
+	public int doUpdate(Albero item) throws SQLException {
 		return 0;
 
 	}
 
 	@Override
-	public synchronized boolean doDelete(Prodotto item) throws SQLException {
+	public synchronized boolean doDelete(Albero item) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
 		int result = 0;
 
-		String deleteSQL = "DELETE FROM " + ProdottoDAO.TABLE_NAME + " WHERE id = ?";
+		String deleteSQL = "DELETE FROM " + AlberoDAO.TABLE_NAME + " WHERE id = ?";
 
 		try {
 			connection = ds.getConnection();
@@ -282,13 +293,50 @@ public class ProdottoDAO implements GenericDAO<Prodotto> {
 		return (result != 0);
 	}
 
+	public synchronized Collection<Beneficio> findProductBenefits(int id) throws SQLException {
+
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		Collection<Beneficio> cats = new LinkedList<Beneficio>();
+		String selectSQL = "SELECT * FROM benefici AS b, benefici_prodotti AS cp" + " WHERE cp.cid=b.id AND pid=? ";
+
+		try {
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setInt(1, id);
+
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				Beneficio bean = new Beneficio();
+
+				bean.setId(rs.getInt("id"));
+				bean.setNome(rs.getString("nome"));
+				bean.setDescrizione(rs.getString("descrizione"));
+				bean.setPercentuale(rs.getDouble("percentuale"));
+
+				cats.add(bean);
+			}
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null)
+					connection.close();
+			}
+		}
+		return cats;
+	}
+
 	public synchronized Collection<Categoria> findProductCategory(int id) throws SQLException {
 
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
 		Collection<Categoria> cats = new LinkedList<Categoria>();
-		String selectSQL = "SELECT * FROM categoria WHERE id IN (SELECT cid FROM categorie_prodotti WHERE pid=?) ";
+		String selectSQL = "SELECT * FROM categoria AS c, categorie_prodotti AS cp\n" + " WHERE cp.cid=c.id AND pid=? ";
 
 		try {
 			connection = ds.getConnection();
@@ -318,12 +366,48 @@ public class ProdottoDAO implements GenericDAO<Prodotto> {
 		return cats;
 	}
 
-	public synchronized Collection<Prodotto> findProductCountry(String country) throws SQLException {
+	public synchronized Collection<UsoLocale> findProductUsiLocali(int id) throws SQLException {
 
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
-		Collection<Prodotto> prods = new LinkedList<Prodotto>();
+		Collection<UsoLocale> cats = new LinkedList<UsoLocale>();
+		String selectSQL = "SELECT * FROM usiLocali WHERE id IN (SELECT uid FROM albero_usiLocali WHERE pid=?) ";
+
+		try {
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setInt(1, id);
+
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				UsoLocale bean = new UsoLocale();
+
+				bean.setId(rs.getInt("id"));
+				bean.setNome(rs.getString("nome"));
+				bean.setDescrizione(rs.getString("descrizione"));
+
+				cats.add(bean);
+			}
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null)
+					connection.close();
+			}
+		}
+		return cats;
+	}
+
+	public synchronized Collection<Albero> findProductCountry(String country) throws SQLException {
+
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		Collection<Albero> prods = new LinkedList<Albero>();
 		String selectSQL = "SELECT * FROM prodotto WHERE pid=?";
 		try {
 			connection = ds.getConnection();
@@ -333,7 +417,7 @@ public class ProdottoDAO implements GenericDAO<Prodotto> {
 			ResultSet rs = preparedStatement.executeQuery();
 
 			while (rs.next()) {
-				Prodotto bean = new Prodotto();
+				Albero bean = new Albero();
 
 				bean.setAltezza(rs.getDouble("altezza"));
 				bean.setCo2(rs.getInt("co2"));
@@ -368,11 +452,11 @@ public class ProdottoDAO implements GenericDAO<Prodotto> {
 		return prods;
 	}
 
-	public synchronized Collection<Prodotto> findProducbyCategory(int category) throws SQLException {
+	public synchronized Collection<Albero> findProducbyCategory(int category) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
-		Collection<Prodotto> prods = new LinkedList<Prodotto>();
+		Collection<Albero> prods = new LinkedList<Albero>();
 		String selectSQL = "SELECT * FROM categorie_prodotti AS c, prodotto AS p WHERE cid=? AND (c.pid=p.id)";
 		try {
 			connection = ds.getConnection();
@@ -382,7 +466,7 @@ public class ProdottoDAO implements GenericDAO<Prodotto> {
 			ResultSet rs = preparedStatement.executeQuery();
 
 			while (rs.next()) {
-				Prodotto bean = new Prodotto();
+				Albero bean = new Albero();
 
 				bean.setAltezza(rs.getDouble("altezza"));
 				bean.setCo2(rs.getInt("co2"));

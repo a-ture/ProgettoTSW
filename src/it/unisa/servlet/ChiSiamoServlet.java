@@ -17,7 +17,7 @@ import it.unisa.beans.ProdottoOrdine;
 import it.unisa.beans.Utente;
 import it.unisa.model.OrdineDAO;
 import it.unisa.model.PaeseDiOrigineDAO;
-import it.unisa.model.ProdottoDAO;
+import it.unisa.model.AlberoDAO;
 import it.unisa.model.UtenteDAO;
 
 /**
@@ -37,7 +37,7 @@ public class ChiSiamoServlet extends HttpServlet {
 
 		UtenteDAO dao = new UtenteDAO();
 		PaeseDiOrigineDAO dao1 = new PaeseDiOrigineDAO();
-		ProdottoDAO dao2 = new ProdottoDAO();
+		AlberoDAO dao2 = new AlberoDAO();
 		OrdineDAO dao3 = new OrdineDAO();
 
 		int utentiTotali = 0;
@@ -61,7 +61,6 @@ public class ChiSiamoServlet extends HttpServlet {
 			request.setAttribute("prodottiTotali", prodottiTotali);
 
 			prodottiVenduti = dao3.findBestSellingProducts();
-			System.out.print(prodottiVenduti);
 			request.setAttribute("prodottiVenduti", prodottiVenduti);
 
 			utenti = dao.doRetriveByOrder();

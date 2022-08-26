@@ -76,6 +76,7 @@ public class Categoria implements Serializable {
 		result = prime * result + ((descrizione == null) ? 0 : descrizione.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		result = prime * result + ((prodottiId == null) ? 0 : prodottiId.hashCode());
 		return result;
 	}
 
@@ -88,6 +89,11 @@ public class Categoria implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Categoria other = (Categoria) obj;
+		if (descrizione == null) {
+			if (other.descrizione != null)
+				return false;
+		} else if (!descrizione.equals(other.descrizione))
+			return false;
 		if (id != other.id)
 			return false;
 		if (nome == null) {
@@ -95,11 +101,17 @@ public class Categoria implements Serializable {
 				return false;
 		} else if (!nome.equals(other.nome))
 			return false;
+		if (prodottiId == null) {
+			if (other.prodottiId != null)
+				return false;
+		} else if (!prodottiId.equals(other.prodottiId))
+			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Category [id=" + id + ", nome=" + nome + ", descrizione=" + descrizione + "]";
+		return "Categoria [id=" + id + ", nome=" + nome + ", descrizione=" + descrizione + ", prodottiId=" + prodottiId
+				+ "]";
 	}
 }

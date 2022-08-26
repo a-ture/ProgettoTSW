@@ -51,7 +51,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			<button type="button" data-bs-target="#myCarousel"
 				data-bs-slide-to="2" aria-label="Slide 3" class=""></button>
 		</div>
-		
+
 		<div class="carousel-inner">
 			<div class="carousel-item active">
 				<svg class="bd-placeholder-img" width="100%" height="100%"
@@ -88,7 +88,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					</div>
 				</div>
 			</div>
-			
+
 			<div class="carousel-item">
 				<svg class="bd-placeholder-img" width="100%" height="100%"
 					xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
@@ -236,8 +236,8 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 		</div>
 		<br>
 	</div>
-	
-	
+
+
 	<div class="b-example-divider"></div>
 	<div class="container px-4 py-5" id="hanging-icons">
 		<h2 class="pb-2 border-bottom">Come Funziona?</h2>
@@ -309,7 +309,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 	<!-- Card Section -->
 	<br>
 	<div class="b-example-divider"></div>
-	
+
 	<!-- Scritta -->
 	<div class="container">
 		<div class="col-md-12 text-center mt-5">
@@ -328,7 +328,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				Iterator<?> it = prodotti.iterator();
 				Iterator<?> it1 = foto.iterator();
 				for (int i = 0; i < 4; i++) {
-					Prodotto bean = (Prodotto) it.next();
+					Albero bean = (Albero) it.next();
 					FotoProdotto bean1 = (FotoProdotto) it1.next();
 			%>
 			<div class="col">
@@ -351,7 +351,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						</p>
 						<div class="text-center">
 							<a class="btn btn-success position-relative"
-								href="Prodotto?action=leggi&id=<%=bean.getId()%>">Piantalo
+								href="Prodotto?action=leggiProdotto&id=<%=bean.getId()%>">Piantalo
 								Ora <%
 							if (bean.getOnSale() != 0) {
 							%><span

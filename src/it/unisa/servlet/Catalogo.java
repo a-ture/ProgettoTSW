@@ -15,10 +15,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import it.unisa.beans.Categoria;
 import it.unisa.beans.FotoProdotto;
-import it.unisa.beans.Prodotto;
+import it.unisa.beans.KitAlberi;
+import it.unisa.beans.UsoLocale;
+import it.unisa.beans.Albero;
 import it.unisa.model.CategoriaDAO;
 import it.unisa.model.FotoProdottoDAO;
-import it.unisa.model.ProdottoDAO;
+import it.unisa.model.KitAlberiDAO;
+import it.unisa.model.AlberoDAO;
+import it.unisa.model.UsoLocaleDAO;
 
 /**
  * Servlet implementation class Catalogo
@@ -35,21 +39,33 @@ public class Catalogo extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		ProdottoDAO model = new ProdottoDAO();
 		String sort = request.getParameter("sort");
-		Collection<Prodotto> prodotti = new ArrayList<Prodotto>();
 
+		Collection<Albero> prodotti = new ArrayList<Albero>();
+		Collection<KitAlberi> kits = new ArrayList<KitAlberi>();
 		Collection<Categoria> categorie = new ArrayList<Categoria>();
+		Collection<UsoLocale> usiLocali = new ArrayList<UsoLocale>();
 
+		AlberoDAO model = new AlberoDAO();
 		CategoriaDAO model2 = new CategoriaDAO();
-		request.removeAttribute("categorie");
+		KitAlberiDAO model3 = new KitAlberiDAO();
+		UsoLocaleDAO model4 = new UsoLocaleDAO();
+
 		try {
 			categorie = model2.doRetriveAll(null);
+			request.removeAttribute("categorie");
 			request.setAttribute("categorie", categorie);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
+		try {
+			usiLocali = model4.doRetriveAll(null);
+			request.removeAttribute("usiLocali");
+			request.setAttribute("usiLocali", usiLocali);
+		} catch (SQLException e2) {
+			e2.printStackTrace();
+		}
 		try {
 			prodotti = model.doRetriveAll(sort);
 		} catch (SQLException e1) {
@@ -63,7 +79,7 @@ public class Catalogo extends HttpServlet {
 			Collection<FotoProdotto> photos = new ArrayList<FotoProdotto>();
 			Iterator<?> it = prodotti.iterator();
 			while (it.hasNext()) {
-				Prodotto beanProd = (Prodotto) it.next();
+				Albero beanProd = (Albero) it.next();
 				int id = beanProd.getId();
 				try {
 					FotoProdotto beanPhoto = model1.doRetriveOne(id);
@@ -75,6 +91,14 @@ public class Catalogo extends HttpServlet {
 			request.removeAttribute("fotoProdotti");
 			request.setAttribute("fotoProdotti", photos);
 		}
+
+		try {
+			kits = model3.doRetriveAll(sort);
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+		request.removeAttribute("kits");
+		request.setAttribute("kits", kits);
 
 		String paese = request.getParameter("paese");
 		if (paese != null) {

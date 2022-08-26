@@ -5,7 +5,7 @@
 <%@ page session="true"%>
 
 <%@ page
-	import="it.unisa.beans.Prodotto, java.text.*,it.unisa.beans.ProdottoCarrello,it.unisa.model.Carrello,it.unisa.beans.ProdottoCarrello,java.util.*"%>
+	import="it.unisa.beans.Albero,java.text.*,it.unisa.beans.ProdottoCarrello,it.unisa.model.Carrello,it.unisa.beans.ProdottoCarrello,java.util.*"%>
 <%
 DecimalFormat dFormat = new DecimalFormat("0.00");
 %>
@@ -99,7 +99,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 										} else {
 										ProdottoCarrello[] prodottiCarrello = carrello.getProdotti().toArray(new ProdottoCarrello[0]);
 										for (ProdottoCarrello prodottoCarrello : prodottiCarrello) {
-											Prodotto prodotto = prodottoCarrello.getProdotto();
+											Albero prodotto = prodottoCarrello.getProdotto();
 										%>
 										<hr class="my-4">
 										<div
@@ -125,6 +125,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 													<i class="fas fa-plus"></i>
 												</a>
 											</div>
+
 											<div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
 												<h6 class="mb-0"><%=dFormat.format(prodottoCarrello.getPrezzoTotale())%>€
 												</h6>

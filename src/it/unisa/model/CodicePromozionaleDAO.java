@@ -14,8 +14,6 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import it.unisa.beans.CodicePromozionale;
-import it.unisa.beans.Ordine;
-import it.unisa.beans.Utente;
 
 public class CodicePromozionaleDAO implements GenericDAO<CodicePromozionale> {
 

@@ -212,7 +212,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 		<h4 class="m-3">Dove stanno piantando di più?</h4>
 		<a type="button" class="btn btn-primary m-3" href="Catalogo">Partecipa
 			anche tu!</a>
-	
+
 		<h4>Felici di questi risultati</h4>
 		<h5 class="text-muted">Top 10 degli alberi più piantati</h5>
 		<table class="table m-3">

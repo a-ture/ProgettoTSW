@@ -14,9 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import it.unisa.beans.FotoProdotto;
-import it.unisa.beans.Prodotto;
+import it.unisa.beans.Albero;
 import it.unisa.model.FotoProdottoDAO;
-import it.unisa.model.ProdottoDAO;
+import it.unisa.model.AlberoDAO;
 
 /**
  * Servlet implementation class Home
@@ -35,8 +35,8 @@ public class Home extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		ProdottoDAO model = new ProdottoDAO();
-		Collection<Prodotto> prodotti = new ArrayList<Prodotto>();
+		AlberoDAO model = new AlberoDAO();
+		Collection<Albero> prodotti = new ArrayList<Albero>();
 
 		try {
 			prodotti = model.doRetriveAll("");
@@ -50,7 +50,7 @@ public class Home extends HttpServlet {
 			Collection<FotoProdotto> photos = new ArrayList<FotoProdotto>();
 			Iterator<?> it = prodotti.iterator();
 			while (it.hasNext()) {
-				Prodotto beanProd = (Prodotto) it.next();
+				Albero beanProd = (Albero) it.next();
 				int id = beanProd.getId();
 				try {
 					FotoProdotto beanPhoto = model1.doRetriveOne(id);

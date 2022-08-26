@@ -8,14 +8,16 @@
 <%@ page contentType="text/html; charset=UTF-8"
 	import="java.util.*, it.unisa.beans.*, it.unisa.model.Carrello, java.text.*"%>
 <%
-Prodotto prodotto = (Prodotto) request.getAttribute("prodotto");
+Albero prodotto = (Albero) request.getAttribute("prodotto");
+Collection<?> usiLocaliAll = (Collection<?>) request.getAttribute("usiLocali");
+Collection<?> categorieAll = (Collection<?>) request.getAttribute("categorie");
+
 FotoProdotto[] foto = (FotoProdotto[]) request.getSession().getAttribute("prodottoFoto");
-Collection<?> categorie = (Collection<?>) request.getAttribute("categorieProdotto");
 
 Collection<?> prodotti = (Collection<?>) request.getAttribute("prodotti");
 Collection<?> fotoProdotti = (Collection<?>) request.getAttribute("fotoProdotti");
 
-if (prodotto == null || foto == null || categorie == null || fotoProdotti == null || prodotti == null) {
+if (prodotto == null || foto == null || fotoProdotti == null || prodotti == null) {
 	response.sendRedirect("./Prodotto");
 	return;
 }
@@ -83,6 +85,109 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 #btnCart:hover span:after {
 	opacity: 1;
 	right: 0;
+}
+
+.avatar {
+	width: 68px;
+	height: 68px;
+	border-radius: 50%;
+}
+
+.years-5 {
+	height: 98px;
+	text-align: center;
+	width: 98px;
+	border-radius: 100%;
+	border-style: solid;
+	border-width: 14px;
+	border-bottom-color: #5e7250;
+	border-left-color: #5e7250;
+	border-right-color: #5e7250;
+	border-top-color: #5e7250;
+}
+
+.years-4 {
+	height: 98px;
+	text-align: center;
+	width: 98px;
+	border-radius: 100%;
+	border-style: solid;
+	border-width: 14px;
+	border-bottom-color: #e5c59c;
+	border-left-color: #5e7250;
+	border-right-color: #5e7250;
+	border-top-color: #5e7250;
+}
+
+.years-3 {
+	height: 98px;
+	text-align: center;
+	width: 98px;
+	border-radius: 100%;
+	border-style: solid;
+	border-width: 14px;
+	border-bottom-color: #e5c59c;
+	border-left-color: #e5c59c;
+	border-right-color: #5e7250;
+	border-top-color: #5e7250;
+}
+
+.years-2 {
+	height: 98px;
+	text-align: center;
+	width: 98px;
+	border-radius: 100%;
+	border-style: solid;
+	border-width: 14px;
+	border-bottom-color: #e5c59c;
+	border-left-color: #e5c59c;
+	border-right-color: #e5c59c;
+	border-top-color: #5e7250;
+}
+
+.years-1 {
+	height: 98px;
+	text-align: center;
+	width: 98px;
+	border-radius: 100%;
+	border-style: solid;
+	border-width: 14px;
+	border-bottom-color: #e5c59c;
+	border-left-color: #e5c59c;
+	border-right-color: #e5c59c;
+	border-top-color: #e5c59c;
+}
+
+.box {
+	color: white;
+	background: #c4d89d;
+	width: 500px;
+	height: max-content;
+	border-bottom-right-radius: 20px;
+	border-top-left-radius: 20px;
+	padding: 20px;
+	padding-right: 60px;
+	box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px
+		-12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px
+		12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+#imageCategorie {
+	width: 550px;
+	z-index: 23062002;
+	margin-top: 100px;
+	margin-left: -40px;
+	border-bottom-left-radius: 20px;
+	border-top-right-radius: 20px;
+	box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px
+		-12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px
+		12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+#categorie {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 </style>
 <body>
@@ -156,70 +261,56 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				<div class="row">
 					<div class="col">
 						<p>
-							<i class="fa-solid fa-tree"></i><%=prodotto.getSottotitolo()%>
-						</p>
-					</div>
-					<div class="col">
-						<p>
-							<i class="fa-solid fa-location-dot"></i>
-							<%=prodotto.getPaeseDiOrigine()%>
+							<i class="fa-solid fa-tree"></i>
+							<%=prodotto.getSottotitolo()%>
 						</p>
 					</div>
 				</div>
 				<hr>
-				<div class="row"></div>
 				<div class="row">
 					<div class="col">
-						<%
-						if (categorie != null && categorie.size() != 0) {
-							Iterator<?> it2 = categorie.iterator();
 
-							while (it2.hasNext()) {
-								Categoria cat = (Categoria) it2.next();
-						%>
-						<p class="card-text">
-							<b>Benefici</b>
-							<%=cat.getNome()%>
-							<%
-							}
-							}
-							%>
-						
-					</div>
-					<div class="col">
-						<p class="text-danger">
-							<%
-							if (prodotto.getOnSale() != 0) {
-								double sconto = (prodotto.getPrezzo() * prodotto.getSaldo()) / 100;
-								double prezzo = prodotto.getPrezzo() - sconto;
-							%><span class="badge mx-2 bg-secondary">-<%=prodotto.getSaldo()%>%
+						<%
+						if (prodotto.getOnSale() != 0) {
+							double sconto = (prodotto.getPrezzo() * prodotto.getSaldo()) / 100;
+							double prezzo = prodotto.getPrezzo() - sconto;
+						%><p class="text-danger">
+							<span class="badge mx-2 bg-secondary">-<%=prodotto.getSaldo()%>%
 							</span> <i class="fa-solid fa-coins"></i>
 							<%=dFormat.format(prezzo)%>€
 						</p>
+
 						<%
 						} else {
 						%>
 						<p>
-							<i class="fa-solid fa-coins"></i>
+							<i class="fa-solid fa-coins"></i> <strong>Prezzo: </strong>
 							<%=dFormat.format(prodotto.getPrezzo())%>€
 							<%
 							}
 							%>
 						</p>
 					</div>
-
+					<div class="col">
+						<p>
+							<i class="fa-solid fa-location-dot"></i><strong> Paese:
+							</strong>
+							<%=prodotto.getPaeseDiOrigine()%>
+						</p>
+					</div>
 				</div>
 				<hr>
-
 				<div class="row">
 					<div class="col-6">
 						<p class="card-text">
-							<strong>Nome Scientifico: </strong>
+							<i class="fa-solid fa-seedling"></i><strong> Nome
+								Scientifico: </strong>
 							<%=prodotto.getNomeScientifico()%></p>
 					</div>
 					<div class="col-6">
 						<p class="card-text">
-							<strong> Altezza media: </strong>
+							<i class="fa-solid fa-arrow-up-long"></i> <strong>
+								Altezza media: </strong>
 							<%=prodotto.getAltezza()%>
 							metri
 						</p>
@@ -227,7 +318,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				</div>
 				<hr>
 				<p>
-					<b>Che albero è?</b>
+					<i class="fa-solid fa-circle-question"></i> <b>Che albero è?</b>
 				</p>
 				<p><%=prodotto.getDescrizioneBreve()%>
 				<hr>
@@ -251,7 +342,8 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 		</div>
 		<!-- Dettagli Prodotto -->
 		<!-- Breve Descrizione  -->
-		<div class="row text-center m-4">
+		<div
+			class="row text-center m-4 g-4 row-cols-1 row-cols-xs-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-2">
 			<div class="col-6">
 				<div class="card" style="background: #c4d89d;">
 					<div class="card-body">
@@ -319,6 +411,77 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					</div>
 				</div>
 			</div>
+			<div class="col-6">
+				<div class="card" style="background: #c4d89d;">
+					<div class="card-body">
+						<h4 class="card-title">
+							Usi Locali<a class="card-link" data-bs-toggle="modal"
+								data-bs-target="#informazioniUsiLocali"><i
+								class="fa-solid fa-circle-info text-end p-2"></i></a>
+						</h4>
+						<ul class="d-grid list-unstyled">
+							<%
+							Collection<UsoLocale> usiLocali = prodotto.getUsiLocali();
+							if (usiLocali != null && usiLocali.size() != 0) {
+								Iterator<UsoLocale> it = usiLocali.iterator();
+								while (it.hasNext()) {
+									UsoLocale uso = (UsoLocale) it.next();
+							%>
+							<li class="d-flex gap-4"><img
+								class="bi text-muted flex-shrink-0 rounded-circle" width="98"
+								height="98" onerror="this.src='./resources//img/error.jpg'"
+								src="./GetFotoUsoLocale?idUsoLocale=<%=uso.getId()%>">
+								<div>
+									<h5 class="mb-0"><%=uso.getNome()%></h5>
+									<%=uso.getDescrizione()%>
+								</div></li>
+							<%
+							}
+							}
+							%>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="col-6">
+				<div class="card" style="background: #c4d89d;">
+
+					<div class="card-body">
+						<h4 class="card-title">
+							Benefici <a class="card-link" data-bs-toggle="modal"
+								data-bs-target="#informazioniBenefici"><i
+								class="fa-solid fa-circle-info text-end p-2"></i></a>
+						</h4>
+
+						<ul class="list-group list-group-horizontal-md text-center">
+							<%
+							Collection<Beneficio> benefici = prodotto.getBenefici();
+							if (benefici != null && benefici.size() != 0) {
+								Iterator<?> it2 = benefici.iterator();
+
+								while (it2.hasNext()) {
+									Beneficio cat = (Beneficio) it2.next();
+							%>
+							<li class="list-group-item">
+								<div class="years-<%=(int) cat.getPercentuale()%> m-2">
+									<img onerror="this.src='./resources//img/error.jpg'"
+										src="./GetFotoBenefici?idBeneficio=<%=cat.getId()%>"
+										class="avatar">
+								</div>
+
+								<h5><%=cat.getNome()%></h5>
+								<p><%=cat.getPercentuale()%>/5
+								</p>
+							</li>
+							<%
+							}
+							}
+							%>
+
+						</ul>
+					</div>
+				</div>
+			</div>
 		</div>
 
 		<!-- Dove Viene Piantato -->
@@ -333,26 +496,33 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				class="img-fluid" height="626px" width="925px"
 				onerror="this.src='./resources//img/error.jpg'">
 		</div>
-		<!-- Perche Categoria -->
-		<div class="text-center m-5">
-			<%
-			if (categorie != null && categorie.size() != 0) {
-				Iterator<?> it2 = categorie.iterator();
 
-				while (it2.hasNext()) {
-					Categoria cat = (Categoria) it2.next();
-			%>
-			<br> <br>
-			<h3>
-				Perchè
-				<%=cat.getNome()%>?
-			</h3>
-			<p class="lead"><%=cat.getDescrizione()%></p>
-			<%
-			}
-			}
-			%>
+		<!-- Categorie -->
+		<%
+		Collection<Categoria> cat = prodotto.getCategorie();
+		if (cat != null && cat.size() != 0) {
+			Iterator<Categoria> it = cat.iterator();
+			while (it.hasNext()) {
+				Categoria c = it.next();
+		%>
+
+		<div id="categorie">
+			<div class="box">
+				<h1 class="text-center">
+					Perchè
+					<%=c.getNome()%>?
+				</h1><%=c.getDescrizione()%></div>
+
+			<img id="imageCategorie"
+				onerror="this.src='./resources//img/error.jpg'"
+				src="./GetFotoCategoria?idCategoria=<%=c.getId()%>"
+				alt="img-200-300">
 		</div>
+		<%
+		}
+		}
+		%>
+		<div class="m-5"></div>
 		<div class="row b-example-divider"></div>
 		<!-- Cosa Vuol Dire Piantare Un albero con WoodLot -->
 		<div class="row text-center m-5">
@@ -388,6 +558,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					stampando un biglietto da consegnare a mano).</p>
 			</div>
 		</div>
+
 		<div class="row b-example-divider"></div>
 		<!-- Prodotti Consigliati  -->
 		<h1 class="m-3 text-center">Pianta altri alberi</h1>
@@ -397,7 +568,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				Iterator<?> it = prodotti.iterator();
 				Iterator<?> it1 = fotoProdotti.iterator();
 				for (int i = 0; i < 4; i++) {
-					Prodotto bean = (Prodotto) it.next();
+					Albero bean = (Albero) it.next();
 					FotoProdotto bean1 = (FotoProdotto) it1.next();
 			%>
 			<div class="col">
@@ -420,7 +591,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						</p>
 						<div class="text-center">
 							<a class="btn btn-success position-relative"
-								href="Prodotto?action=leggi&id=<%=bean.getId()%>">Piantalo
+								href="Prodotto?action=leggiProdotto&id=<%=bean.getId()%>">Piantalo
 								Ora <%
 							if (bean.getOnSale() != 0) {
 							%><span
@@ -438,6 +609,77 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			}
 			}
 			%>
+		</div>
+		<div class="col-md-12 text-center">
+			<a class="btn btn-primary m-3" href="Catalogo" role="button">Vedi
+				tutti gli alberi</a>
+		</div>
+	</div>
+	<!-- Modal Informazioni Usi Locali -->
+	<div class="modal fade" id="informazioniUsiLocali" tabindex="-1"
+		aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-body p-5">
+					<h2 class="fw-bold mb-0">Usi Locali</h2>
+					<ul class="d-grid gap-4 my-5 list-unstyled">
+						<%
+						if (usiLocaliAll != null && usiLocaliAll.size() != 0) {
+							Iterator<?> it = usiLocaliAll.iterator();
+							while (it.hasNext()) {
+								UsoLocale uso = (UsoLocale) it.next();
+						%>
+						<li class="d-flex gap-4"><img
+							class="bi text-muted flex-shrink-0" width="98" height="98"
+							onerror="this.src='./resources//img/error.jpg'"
+							src="./GetFotoUsoLocale?idUsoLocale=<%=uso.getId()%>">
+							<div>
+								<h5 class="mb-0"><%=uso.getNome()%></h5>
+								<%=uso.getDescrizione()%>
+							</div></li>
+						<%
+						}
+						}
+						%>
+					</ul>
+					<button type="button" class="btn btn-lg btn-primary mt-5 w-100"
+						data-bs-dismiss="modal">Ho capito!</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Modal Informazioni Benefici -->
+	<div class="modal fade" id="informazioniBenefici" tabindex="-1"
+		aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-body p-5">
+					<h2 class="fw-bold mb-0">Benefici</h2>
+					<ul class="d-grid gap-4 my-5 list-unstyled">
+						<%
+						Collection<Beneficio> beneficiAll = prodotto.getBenefici();
+						if (beneficiAll != null && beneficiAll.size() != 0) {
+							Iterator<?> it = beneficiAll.iterator();
+							while (it.hasNext()) {
+								Beneficio ben = (Beneficio) it.next();
+						%>
+						<li class="d-flex gap-4"><img
+							class="bi text-muted flex-shrink-0" width="48" height="48"
+							onerror="this.src='./resources//img/error.jpg'"
+							src="./GetFotoBeneficio?idBeneficio=<%=ben.getId()%>">
+							<div>
+								<h5 class="mb-0"><%=ben.getNome()%></h5>
+								<%=ben.getDescrizione()%>
+							</div></li>
+						<%
+						}
+						}
+						%>
+					</ul>
+					<button type="button" class="btn btn-lg btn-primary mt-5 w-100"
+						data-bs-dismiss="modal">Ho capito!</button>
+				</div>
+			</div>
 		</div>
 	</div>
 	<!-- Footer -->

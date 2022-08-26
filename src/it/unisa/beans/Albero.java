@@ -4,13 +4,13 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class Prodotto implements Serializable {
+public class Albero implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	// DA VEDERE SE MI SERVE
 	public static int NO_ITEM = -1;
 
-	static boolean isProductInizialize(Prodotto b) {
+	static boolean isProductInizialize(Albero b) {
 		return b.getId() != NO_ITEM;
 	}
 
@@ -35,10 +35,14 @@ public class Prodotto implements Serializable {
 
 	private boolean disponibile;
 
-	public Prodotto(int id, String nome, String nomeScientifico, String paeseDiOrigine, String descrizione,
+	private Collection<UsoLocale> usiLocali;
+	private Collection<Categoria> categorie;
+	private Collection<Beneficio> benefici; 
+
+	public Albero(int id, String nome, String nomeScientifico, String paeseDiOrigine, String descrizione,
 			String descrizioneBreve, String sottotitolo, String doveVienePiantato, double prezzo, double altezza,
 			int co2, int salvaguardia, double tasse, double saldo, int quantità, int onSale, boolean disponibile,
-			Collection<Categoria> categorie) {
+			Collection<UsoLocale> usiLocali, Collection<Categoria> categorie) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -57,6 +61,7 @@ public class Prodotto implements Serializable {
 		this.quantità = quantità;
 		this.onSale = onSale;
 		this.disponibile = disponibile;
+		this.usiLocali = usiLocali;
 		this.categorie = categorie;
 	}
 
@@ -92,9 +97,7 @@ public class Prodotto implements Serializable {
 		this.paeseDiOrigine = paeseDiOrigine;
 	}
 
-	private Collection<Categoria> categorie;
-
-	public Prodotto() {
+	public Albero() {
 		this.id = NO_ITEM;
 	}
 
@@ -227,6 +230,14 @@ public class Prodotto implements Serializable {
 		this.categorie = categorie;
 	}
 
+	public Collection<Beneficio> getBenefici() {
+		return benefici;
+	}
+
+	public void setBenefici(Collection<Beneficio> benefici) {
+		this.benefici = benefici;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -234,9 +245,9 @@ public class Prodotto implements Serializable {
 		long temp;
 		temp = Double.doubleToLongBits(altezza);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((benefici == null) ? 0 : benefici.hashCode());
 		result = prime * result + ((categorie == null) ? 0 : categorie.hashCode());
-		temp = Double.doubleToLongBits(co2);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + co2;
 		result = prime * result + ((descrizione == null) ? 0 : descrizione.hashCode());
 		result = prime * result + ((descrizioneBreve == null) ? 0 : descrizioneBreve.hashCode());
 		result = prime * result + (disponibile ? 1231 : 1237);
@@ -251,11 +262,11 @@ public class Prodotto implements Serializable {
 		result = prime * result + quantità;
 		temp = Double.doubleToLongBits(saldo);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
-		temp = Double.doubleToLongBits(salvaguardia);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + salvaguardia;
 		result = prime * result + ((sottotitolo == null) ? 0 : sottotitolo.hashCode());
 		temp = Double.doubleToLongBits(tasse);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((usiLocali == null) ? 0 : usiLocali.hashCode());
 		return result;
 	}
 
@@ -267,15 +278,20 @@ public class Prodotto implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Prodotto other = (Prodotto) obj;
+		Albero other = (Albero) obj;
 		if (Double.doubleToLongBits(altezza) != Double.doubleToLongBits(other.altezza))
+			return false;
+		if (benefici == null) {
+			if (other.benefici != null)
+				return false;
+		} else if (!benefici.equals(other.benefici))
 			return false;
 		if (categorie == null) {
 			if (other.categorie != null)
 				return false;
 		} else if (!categorie.equals(other.categorie))
 			return false;
-		if (Double.doubleToLongBits(co2) != Double.doubleToLongBits(other.co2))
+		if (co2 != other.co2)
 			return false;
 		if (descrizione == null) {
 			if (other.descrizione != null)
@@ -319,7 +335,7 @@ public class Prodotto implements Serializable {
 			return false;
 		if (Double.doubleToLongBits(saldo) != Double.doubleToLongBits(other.saldo))
 			return false;
-		if (Double.doubleToLongBits(salvaguardia) != Double.doubleToLongBits(other.salvaguardia))
+		if (salvaguardia != other.salvaguardia)
 			return false;
 		if (sottotitolo == null) {
 			if (other.sottotitolo != null)
@@ -328,17 +344,30 @@ public class Prodotto implements Serializable {
 			return false;
 		if (Double.doubleToLongBits(tasse) != Double.doubleToLongBits(other.tasse))
 			return false;
+		if (usiLocali == null) {
+			if (other.usiLocali != null)
+				return false;
+		} else if (!usiLocali.equals(other.usiLocali))
+			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Prodotto [id=" + id + ", nome=" + nome + ", nomeScientifico=" + nomeScientifico + ", paeseDiOrigine="
+		return "Albero [id=" + id + ", nome=" + nome + ", nomeScientifico=" + nomeScientifico + ", paeseDiOrigine="
 				+ paeseDiOrigine + ", descrizione=" + descrizione + ", descrizioneBreve=" + descrizioneBreve
 				+ ", sottotitolo=" + sottotitolo + ", doveVienePiantato=" + doveVienePiantato + ", prezzo=" + prezzo
 				+ ", altezza=" + altezza + ", co2=" + co2 + ", salvaguardia=" + salvaguardia + ", tasse=" + tasse
 				+ ", saldo=" + saldo + ", quantità=" + quantità + ", onSale=" + onSale + ", disponibile=" + disponibile
-				+ ", categorie=" + categorie + "]";
+				+ ", usiLocali=" + usiLocali + ", categorie=" + categorie + ", benefici=" + benefici + "]";
+	}
+
+	public Collection<UsoLocale> getUsiLocali() {
+		return usiLocali;
+	}
+
+	public void setUsiLocali(Collection<UsoLocale> usiLocali) {
+		this.usiLocali = usiLocali;
 	}
 
 }
