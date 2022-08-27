@@ -366,6 +366,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				<!-- WoodLot -->
 				<div id="woodLot" class="row d-none">
 					<h1 class="text-center">Il tuo WoodLot</h1>
+
 					<%
 					if (numeroAlberiAcquistati == 0) {
 					%>
@@ -379,7 +380,6 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						alberi!</p>
 					<%
 					}
-
 					Iterator<?> it1 = prodottiOrdini.iterator();
 					while (it1.hasNext()) {
 					ProdottoOrdine prodottoOrdine = (ProdottoOrdine) it1.next();
@@ -402,6 +402,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					<%
 					}
 					%>
+
 				</div>
 				<!-- Badge -->
 				<div class="row d-none" id="badge">

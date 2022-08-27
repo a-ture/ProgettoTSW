@@ -253,7 +253,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 
 		<div class="row text-center">
 
-			<div class="col-lg-4">
+			<div class="col-lg-6">
 				<svg class="bd-placeholder-img rounded-circle" width="140"
 					height="140" xmlns="http://www.w3.org/2000/svg" role="img"
 					aria-label="Placeholder: 140x140"
@@ -267,7 +267,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					of text below the carousel. This is the first column.</p>
 			</div>
 
-			<div class="col-lg-4">
+			<div class="col-lg-6">
 				<svg class="bd-placeholder-img rounded-circle" width="140"
 					height="140" xmlns="http://www.w3.org/2000/svg" role="img"
 					aria-label="Placeholder: 140x140"

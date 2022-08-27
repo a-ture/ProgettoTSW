@@ -27,7 +27,7 @@ public class GetFotoKit extends HttpServlet {
 		String id = (String) request.getParameter("idKit");
 		if (id != null) {
 			byte[] bt = KitAlberiDAO.load(id);
-			System.out.print(bt);
+
 			
 			ServletOutputStream out = response.getOutputStream();
 			if (bt != null) {

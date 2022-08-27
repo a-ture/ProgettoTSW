@@ -73,7 +73,7 @@ public class ProdottoServlet extends HttpServlet {
 				} else if (action.equalsIgnoreCase("aggiungiCarrelloKit")) {
 					String id = request.getParameter("idKit");
 					KitAlberi kit = model2.doRetriveByKey(id);
-					System.out.println("Sono lo sconto nel servlet"+kit.getSaldo());
+
 					Collection<Albero> alberi = kit.getAlberi();
 					if (alberi != null && alberi.size() != 0) {
 						Iterator<Albero> it = alberi.iterator();
@@ -151,8 +151,29 @@ public class ProdottoServlet extends HttpServlet {
 				} else if (action.equalsIgnoreCase("leggiKit")) {
 					String id = request.getParameter("idKit");
 
+					KitAlberi kit = model2.doRetriveByKey(id);
 					request.removeAttribute("kit");
-					request.setAttribute("kit", model2.doRetriveByKey(id));
+					request.setAttribute("kit", kit);
+
+					FotoProdotto[] fotoKit = new FotoProdotto[kit.getAlberi().size()];
+
+					Iterator<?> it1 = kit.getAlberi().iterator();
+					int i = 0;
+					while (it1.hasNext()) {
+						Albero beanProd = (Albero) it1.next();
+						int idProdotto = beanProd.getId();
+						try {
+							FotoProdotto beanPhoto = model1.doRetriveOne(idProdotto);
+							fotoKit[i] = beanPhoto;
+
+							i++;
+
+						} catch (SQLException e) {
+							System.out.print(e);
+						}
+					}
+					request.removeAttribute("fotoKit");
+					request.setAttribute("fotoKit", fotoKit);
 
 					Collection<Albero> prodotti = new ArrayList<Albero>();
 					try {
@@ -162,7 +183,6 @@ public class ProdottoServlet extends HttpServlet {
 					}
 					request.setAttribute("prodotti", prodotti);
 					if (prodotti != null && prodotti.size() != 0) {
-
 						Collection<FotoProdotto> photos = new ArrayList<FotoProdotto>();
 						Iterator<?> it = prodotti.iterator();
 						while (it.hasNext()) {
@@ -214,7 +234,9 @@ public class ProdottoServlet extends HttpServlet {
 					model.doSave(bean);
 				}
 			}
-		} catch (SQLException e) {
+		} catch (
+
+		SQLException e) {
 			System.out.println("Error:" + e.getMessage());
 		}
 

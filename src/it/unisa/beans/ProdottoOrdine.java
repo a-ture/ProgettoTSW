@@ -121,6 +121,7 @@ public class ProdottoOrdine implements Serializable {
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		temp = Double.doubleToLongBits(tasse);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
+
 		return result;
 	}
 
@@ -160,6 +161,7 @@ public class ProdottoOrdine implements Serializable {
 			return false;
 		if (Double.doubleToLongBits(tasse) != Double.doubleToLongBits(other.tasse))
 			return false;
+
 		return true;
 	}
 

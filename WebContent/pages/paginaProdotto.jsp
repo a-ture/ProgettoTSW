@@ -465,7 +465,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 							<li class="list-group-item">
 								<div class="years-<%=(int) cat.getPercentuale()%> m-2">
 									<img onerror="this.src='./resources//img/error.jpg'"
-										src="./GetFotoBenefici?idBeneficio=<%=cat.getId()%>"
+										src="./GetFotoBeneficio?idBeneficio=<%=cat.getId()%>"
 										class="avatar">
 								</div>
 

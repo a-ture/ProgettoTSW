@@ -93,7 +93,7 @@ public class Catalogo extends HttpServlet {
 		}
 
 		try {
-			kits = model3.doRetriveAll(sort);
+			kits = model3.doRetriveAll(null);
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		}

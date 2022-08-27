@@ -305,6 +305,7 @@ public class OrdineDAO implements GenericDAO<Ordine> {
 					bean.setQuantità(rs.getInt("quantità"));
 					bean.setSaldo(rs.getDouble("saldo"));
 					bean.setTasse(rs.getDouble("tasse"));
+					
 					prodotti.add(bean);
 				}
 			}

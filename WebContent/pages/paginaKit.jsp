@@ -8,7 +8,7 @@
 	import="java.util.*, it.unisa.beans.*, it.unisa.model.Carrello, java.text.*"%>
 <%
 KitAlberi kit = (KitAlberi) request.getAttribute("kit");
-
+FotoProdotto[] foto = (FotoProdotto[]) request.getAttribute("fotoKit");
 Collection<?> prodotti = (Collection<?>) request.getAttribute("prodotti");
 Collection<?> fotoProdotti = (Collection<?>) request.getAttribute("fotoProdotti");
 
@@ -80,9 +80,10 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 
 .cardKit {
 	position: relative;
-	max-width: 300px;
-	max-height: 500px;
+	width: 500px;
+	height: 500px;
 	margin: 10px;
+	max-height: 500px;
 }
 
 .cardKit img {
@@ -96,10 +97,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 .overlay {
 	position: absolute;
 	bottom: 0;
-	background: rgb(0, 0, 0);
-	background: rgba(0, 0, 0, 0.5);
-	color: #f1f1f1;
-	width: 100%;
+	width: 90%;
 	transition: .5s ease;
 	opacity: 0;
 	color: white;
@@ -129,29 +127,53 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				<div id="demo" class="carousel slide" data-bs-ride="carousel">
 					<!-- Indicators/dots -->
 					<div class="carousel-indicators">
-						<button type="button" data-bs-target="#demo" data-bs-slide-to="0"
-							class="active"></button>
-						<button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
-						<button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+						<%
+						for (int y = 0; y < foto.length; y++) {
+						%>
+						<%
+						if (y == 0) {
+						%>
+						<button type="button" data-bs-target="#demo"
+							data-bs-slide-to="<%=y%>" class="active"></button>
+						<%
+						} else {
+						%>
+						<button type="button" data-bs-target="#demo"
+							data-bs-slide-to="<%=y%>"></button>
+						<%
+						}
+						}
+						%>
+
 					</div>
 
 					<!-- The slideshow/carousel -->
 					<div class="carousel-inner">
+						<%
+						for (int y = 0; y < foto.length; y++) {
+						%>
+						<%
+						if (y == 0) {
+						%>
+
 						<div class="carousel-item active">
-							<img src="./GetFotoProdotto?idFoto="
+							<img src="./GetFotoProdotto?idFoto=<%=foto[y].getNomeFoto()%>"
 								class="d-block w-100 img-fluid"
 								onerror="this.src='./resources/img/error.jpg'">
 						</div>
+						<%
+						} else {
+						%>
 						<div class="carousel-item">
-							<img src="./GetFotoProdotto?idFoto="
+							<img src="./GetFotoProdotto?idFoto=<%=foto[y].getNomeFoto()%>"
 								class="d-block w-100 img-fluid"
 								onerror="this.src='./resources/img/error.jpg'">
 						</div>
-						<div class="carousel-item">
-							<img src="./GetFotoProdotto?idFoto="
-								class="d-block w-100 img-fluid"
-								onerror="this.src='./resources//img/error.jpg'">
-						</div>
+						<%
+						}
+						}
+						%>
+
 					</div>
 
 					<!-- Left and right controls/icons -->
@@ -248,23 +270,26 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 
 			</div>
 		</div>
-		<div class="layout m-5">
+		<div class="layout   row row-cols-1 row-cols-md-6">
 			<%
+			int z = 0;
 			Collection<Albero> alberi = kit.getAlberi();
 			if (alberi != null && alberi.size() != 0) {
+
 				Iterator<Albero> it = alberi.iterator();
 				while (it.hasNext()) {
 					Albero albero = it.next();
 			%>
 			<div class="cardKit">
-				<img
-					src="https://i.pinimg.com/736x/a5/5a/31/a55a3167f0a068894620b8ef69fd9040.jpg"
-					alt="Avatar" class="image">
+				<img src="./GetFotoProdotto?idFoto=<%=foto[z].getNomeFoto()%>"
+					onerror="this.src='./resources/img/error.jpg'" alt="Avatar"
+					class="image">
 				<div class="overlay">
 					<a href="Prodotto?action=leggiProdotto&id=<%=albero.getId()%>"><%=albero.getNome()%></a>
 				</div>
 			</div>
 			<%
+			z++;
 			}
 			}
 			%>
@@ -319,11 +344,10 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			}
 			%>
 		</div>
-		<div class="tex-center">
-			<a class="btn btn-primary text-center" href="Catalogo" role="button">Vedi
-				tutti gli alberi</a>
+		<div class="col-md-12 text-center">
+			<a class="btn btn-primary text-center m-3" href="Catalogo"
+				role="button">Vedi tutti gli alberi</a>
 		</div>
-
 	</div>
 
 	<!-- Footer -->

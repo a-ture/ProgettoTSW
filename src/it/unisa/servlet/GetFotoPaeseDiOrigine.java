@@ -27,7 +27,7 @@ public class GetFotoPaeseDiOrigine extends HttpServlet {
 		String id = (String) request.getParameter("idPaese");
 		if (id != null) {
 			byte[] bt = PaeseDiOrigineDAO.load(id);
-			System.out.print(bt);
+
 			
 			ServletOutputStream out = response.getOutputStream();
 			if (bt != null) {

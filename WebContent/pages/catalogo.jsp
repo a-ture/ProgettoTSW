@@ -7,6 +7,7 @@
 <%
 Collection<?> prodotti = (Collection<?>) request.getAttribute("prodotti");
 Collection<?> foto = (Collection<?>) request.getAttribute("fotoProdotti");
+
 Collection<?> categorie = (Collection<?>) request.getAttribute("categorie");
 Collection<?> kits = (Collection<?>) request.getAttribute("kits");
 Collection<?> usiLocali = (Collection<?>) request.getAttribute("usiLocali");
@@ -77,6 +78,11 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 .badgeImg {
 	-webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
 	filter: grayscale(100%);
+}
+
+#zodiaco img:hover {
+	border-color: #E1EBEE;
+	box-shadow: 0px 0px 10px 2px rgb(13, 110, 253);
 }
 </style>
 </head>
@@ -609,7 +615,8 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 
 	<div class="b-example-divider"></div>
 
-	<div class=" container text-white" style="background-color: #191970;">
+	<div class=" container text-white" style="background-color: #191970;"
+		id="zodiaco">
 		<h1 class="text-center">Di che albero sei?</h1>
 		<p class="text-center mb-5 border-bottom">Ogni segno zodiacale ha
 			il proprio albero. Sono gli Alberi dell’Oroscopo. Scopri il tuo,

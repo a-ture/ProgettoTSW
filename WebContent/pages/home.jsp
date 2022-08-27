@@ -178,23 +178,23 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			<br> <br>
 		</div>
 		<div
-			class="row row-cols-1 row-cols-md-4 g-4 d-flex justify-content-between">
-			<div class="col p-5">
+			class="row row-cols-1 row-cols-md-5 g-4 d-flex justify-content-between mb-5">
+			<div class="col">
 				<div class="card text-center shadow-lg bg-white rounded h-100"
-					style="max-width: 14rem;">
+					style="max-width: 18rem;">
 					<img src="./resources/img/cosaPuoiFare/whatucando-gift-icon.png"
 						class="card-img-top" width="206px" height="206px">
 					<div class="card-body">
 						<h5 class="card-title fw-bold">Regala</h5>
 						<p class="card-text">Un regalo originale per l’ambiente e per
 							le persone a cui vuoi bene</p>
-						<a class="btn btn-primary" href="Catalogo">Regala</a>
+						<a class="btn btn-primary" href="Catalogo#regali">Regala</a>
 					</div>
 				</div>
 			</div>
-			<div class="col p-5">
+			<div class="col">
 				<div class="card  text-center shadow-lg bg-white rounded h-100"
-					style="max-width: 14rem;">
+					style="max-width: 18rem;">
 					<img
 						src="./resources/img/cosaPuoiFare/whatucando-discover-icon.png"
 						class="card-img-top" width="206px" height="206px">
@@ -206,9 +206,9 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					</div>
 				</div>
 			</div>
-			<div class="col p-5">
+			<div class="col">
 				<div class="card text-center shadow-lg bg-white rounded h-100"
-					style="max-width: 14rem;">
+					style="max-width: 18rem;">
 					<img
 						src="./resources/img/cosaPuoiFare/whatucando-subscription-icon.png"
 						class="card-img-top" width="206px" height="206px">
@@ -216,13 +216,13 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						<h5 class="card-title fw-bold">Abbonati</h5>
 						<p class="card-text">Pianta alberi ogni mese e inizia il tuo
 							percorso green</p>
-						<a class="btn btn-primary" href="#">Abbonati</a>
+						<a class="btn btn-primary" href="Catalogo#sezioneKit">Abbonati</a>
 					</div>
 				</div>
 			</div>
-			<div class="col p-5">
+			<div class="col">
 				<div class="card text-center shadow-lg bg-white rounded h-100"
-					style="max-width: 14rem;">
+					style="max-width: 18rem;">
 					<img src="./resources/img/chiSiamoPage/info_trees.svg"
 						class="card-img-top" width="206px" height="206px">
 					<div class="card-body">
@@ -230,6 +230,20 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						<p class="card-text">Pianta alberi ogni mese e inizia il tuo
 							percorso green</p>
 						<a class="btn btn-primary" href="#">Crea</a>
+					</div>
+				</div>
+			</div>
+			<div class="col">
+				<div class="card text-center shadow-lg bg-white rounded h-100"
+					style="max-width: 18rem;">
+					<img
+						src="./resources/img/cosaPuoiFare/whatucando-horoscope-icon-2.png"
+						class="card-img-top" width="206px" height="206px">
+					<div class="card-body">
+						<h5 class="card-title fw-bold">Scopri</h5>
+						<p class="card-text">Ogni segno zodiacale ha il proprio
+							albero, tu di che segno sei?</p>
+						<a class="btn btn-primary" href="Catalogo#zodiaco">Scopri</a>
 					</div>
 				</div>
 			</div>
