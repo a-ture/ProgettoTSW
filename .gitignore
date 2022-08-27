@@ -1,1 +1,13 @@
 /build/
+.DS_Store
+.settings/org.eclipse.jdt.core.prefs
+.settings/org.eclipse.wst.common.component
+.settings/org.eclipse.wst.common.project.facet.core.xml
+documentazioneProgetto/.DS_Store
+lineeGuida/.DS_Store
+sql/.DS_Store
+src/.DS_Store
+src/it/.DS_Store
+src/it/unisa/.DS_Store
+WebContent/.DS_Store
+WebContent/META-INF/context.xml
