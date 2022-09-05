@@ -81,6 +81,8 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 	box-shadow: 0px 0px 10px 2px rgb(13, 110, 253);
 }
 </style>
+<!-- Favicon -->
+<link rel="icon" type="image/x-icon" href="resources/img/logo.png">
 </head>
 <body>
 	<!-- Header -->

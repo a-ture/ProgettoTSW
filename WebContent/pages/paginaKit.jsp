@@ -111,6 +111,8 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 	opacity: 1;
 }
 </style>
+<!-- Favicon -->
+<link rel="icon" type="image/x-icon" href="resources/img/logo.png">
 </head>
 
 <body>
