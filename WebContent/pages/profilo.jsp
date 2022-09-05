@@ -159,7 +159,8 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 	color: grey;
 }
 </style>
-
+<!-- Favicon -->
+<link rel="icon" type="image/x-icon" href="resources/img/logo.png">
 </head>
 <body>
 	<!-- Header -->

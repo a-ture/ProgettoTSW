@@ -21,6 +21,9 @@
 <!-- FontAwesome -->
 <script src="https://kit.fontawesome.com/6bd8866cc2.js"
 	crossorigin="anonymous"></script>
+<!-- Favicon -->
+<link rel="icon" type="image/x-icon" href="resources/img/logo.png">
+
 </head>
 <body>
 	<!-- Header -->

@@ -18,6 +18,8 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 <head>
 <meta charset="UTF-8">
 <title>WoodLot</title>
+<!-- Favicon -->
+<link rel="icon" type="image/x-icon" href="resources/img/logo.png">
 <!--CSS-->
 <link rel="stylesheet" type="text/css"
 	href="resources/css/bootstrap.css">
@@ -92,6 +94,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
     to {color: yellow;}
 }
 </style>
+
 </head>
 
 <body>

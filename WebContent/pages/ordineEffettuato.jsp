@@ -38,6 +38,8 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 <script src="https://code.jquery.com/jquery-3.6.0.js"
 	integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
 	crossorigin="anonymous"></script>
+<!-- Favicon -->
+<link rel="icon" type="image/x-icon" href="resources/img/logo.png">
 </head>
 <body>
 	<section class="h-100 gradient-custom">

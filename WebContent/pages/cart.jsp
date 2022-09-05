@@ -66,6 +66,8 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 	right: 0;
 }
 </style>
+<!-- Favicon -->
+<link rel="icon" type="image/x-icon" href="resources/img/logo.png">
 </head>
 
 <body>

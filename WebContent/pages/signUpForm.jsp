@@ -30,8 +30,8 @@ Collection<?> errori = (Collection<?>) request.getAttribute("errori");
 <!-- FontAwesome -->
 <script src="https://kit.fontawesome.com/6bd8866cc2.js"
 	crossorigin="anonymous"></script>
-<!-- JS -->
-
+<!-- Favicon -->
+<link rel="icon" type="image/x-icon" href="resources/img/logo.png">
 </head>
 <body>
 	<section class="h-100" style="background-color: #eee;">

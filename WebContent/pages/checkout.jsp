@@ -74,6 +74,8 @@ input.invalid {
 	background-color: #04AA6D;
 }
 </style>
+<!-- Favicon -->
+<link rel="icon" type="image/x-icon" href="resources/img/logo.png">
 </head>
 
 <body>
