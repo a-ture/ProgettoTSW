@@ -135,6 +135,22 @@ public class OrdineDAO implements GenericDAO<Ordine> {
 		}
 	}
 
+	public void doUpdateProduct(int id, String stato) throws SQLException {
+		String updateItem = "UPDATE  prodottoOrdine SET stato=? " + "WHERE id = ?";
+		var conn = ds.getConnection();
+
+		try {
+			var stmt = conn.prepareStatement(updateItem);
+			stmt.setString(1, stato);
+			stmt.setInt(2, id);
+
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+		}
+	}
+
 	@Override
 	public int doUpdate(Ordine dao) throws SQLException {
 		String updateOrder = "UPDATE  ordine SET(totaleProdotti = ?, totalePagato =?, regalo=?, messaggioRegalo=?) "
@@ -337,8 +353,8 @@ public class OrdineDAO implements GenericDAO<Ordine> {
 				ResultSet rs = stmt.executeQuery();
 				while (rs.next()) {
 					ProdottoOrdine bean = new ProdottoOrdine();
-					bean.setId(rs.getInt("count")); 
-					bean.setNome(rs.getString("nome")); 
+					bean.setId(rs.getInt("count"));
+					bean.setNome(rs.getString("nome"));
 					prodotti.add(bean);
 				}
 			}
@@ -425,7 +441,7 @@ public class OrdineDAO implements GenericDAO<Ordine> {
 
 	}
 
-	public synchronized void updatePhoto(String idA, String photo) throws SQLException {
+	public synchronized static void updatePhoto(int idA, String photo) throws SQLException {
 		Connection con = null;
 		PreparedStatement stmt = null;
 
@@ -437,7 +453,7 @@ public class OrdineDAO implements GenericDAO<Ordine> {
 			try {
 				FileInputStream fis = new FileInputStream(file);
 				stmt.setBinaryStream(1, fis, fis.available());
-				stmt.setInt(2, Integer.parseInt(idA));
+				stmt.setInt(2, idA);
 
 				stmt.executeUpdate();
 				con.commit();
@@ -458,7 +474,5 @@ public class OrdineDAO implements GenericDAO<Ordine> {
 			}
 		}
 	}
-	
-	
 
 }

@@ -47,8 +47,8 @@ public class UtenteServlet extends HttpServlet {
 		IndirizzoDAO model2 = new IndirizzoDAO();
 
 		String action = request.getParameter("action");
-
 		Utente utente = (Utente) request.getSession().getAttribute("utente");
+
 		if (utente == null) {
 			response.sendRedirect("./Login");
 			return;

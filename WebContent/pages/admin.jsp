@@ -155,7 +155,8 @@ input.invalid {
 					<div class="box">
 						<div class="right-side">
 							<div class="box-topic">Totale Incassi</div>
-							<div class="number"><%=totale%></div>
+							<div class="number"><%=dFormat.format(totale)%>€
+							</div>
 
 						</div>
 						<i class='bx bxs-cart-download cart four'><i
@@ -244,10 +245,8 @@ input.invalid {
 								<td class="nProdotti"><%=o.getTotaleProdotti()%></td>
 								<td class="data"><%=o.getCreatoIl()%></td>
 								<td><a class="botteneIdOrdine"> <i
-										class="fa-solid fa-eye"></i></a> <a
-									class="botteneIdOrdineModifica"><i
-										class="fa-solid fa-pen-to-square"></i></a> <a
-									class="vediFotoOrdine"><i class="fa-solid fa-images"></i></a></td>
+										class="fa-solid fa-eye"></i></a> <a class="vediFotoOrdine"><i
+										class="fa-solid fa-images"></i></a></td>
 
 							</tr>
 							<%
@@ -291,10 +290,23 @@ input.invalid {
 					</div>
 				</div>
 				<div class="row">
-					<ul id="ordineFoto"></ul>
-				</div>
-				<div class="row">
-					<a class="btn btn-primary my-3 uploadFotoOrdine"> Upload Foto</a>
+					<table class="table">
+						<thead>
+							<tr>
+								<th scope="col">Id</th>
+								<th scope="col">Nome</th>
+								<th scope="col">Prezzo</th>
+								<th scope="col">Saldo</th>
+								<th scope="col">Quantità</th>
+								<th scope="col">Stato</th>
+								<th scope="col">Foto</th>
+								<th scope="col">Azioni</th>
+							</tr>
+						</thead>
+						<tbody id="tableBody">
+
+						</tbody>
+					</table>
 				</div>
 			</div>
 
@@ -339,7 +351,7 @@ input.invalid {
 									id="dropdownMenuButton2" data-bs-toggle="dropdown"
 									aria-expanded="false">Ordina Per</button>
 								<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
-									<li><a class="dropdown-item" href="#">Disponibile</a></li>
+
 									<li onclick="sortTableNumb('myTable2',5)"><a
 										class="dropdown-item">Saldo</a></li>
 									<li onclick="sortTableNumb('myTable2',6)"><a
@@ -431,16 +443,33 @@ input.invalid {
 					</div>
 				</div>
 				<div class="row">
-					<img src="" class="rounded float-start col-4" alt="..." id="foto1"
-						onerror="this.src='./resources//img/error.jpg'"> <img src=""
-						class="rounded float-center col-4" alt="..." id="foto2"
-						onerror="this.src='./resources//img/error.jpg'"> <img src=""
-						class="rounded float-end col-4" alt="..." id="foto3"
-						onerror="this.src='./resources//img/error.jpg'">
+					<div class="col-4">
+						<div class="row">
+							<img src="" class="rounded " alt="..." id="foto1"
+								onerror="this.src='./resources//img/error.jpg'">
+						</div>
+						<p id="fotoCodice1">Foto n.</p>
+						<a class="btn btn-primary my-3 uploadFoto-1"> Upload Foto</a>
+					</div>
+					<div class="col-4">
+						<div class="row">
+							<img src="" class="rounded  " alt="..." id="foto2"
+								onerror="this.src='./resources//img/error.jpg'">
+						</div>
+						<p id="fotoCodice2">Foto n.</p>
+						<a class="btn btn-primary my-3 uploadFoto-2"> Upload Foto</a>
+
+					</div>
+					<div class="col-4">
+						<div class="row">
+							<img src="" class="rounded  " alt="..." id="foto3"
+								onerror="this.src='./resources//img/error.jpg'">
+						</div>
+						<p id="fotoCodice3">Foto n.</p>
+						<a class="btn btn-primary my-3 uploadFoto-3"> Upload Foto</a>
+					</div>
 				</div>
-				<div class="row">
-					<a class="btn btn-primary my-3 uploadFoto"> Upload Foto</a>
-				</div>
+
 			</div>
 
 			<div class="row d-flex justify-content-center my-5">
@@ -570,7 +599,7 @@ input.invalid {
 						<tr>
 							<td scope="row"><%=u.getId()%></td>
 							<td><%=u.getUsername()%></td>
-							<td><%=u.getEmail()%>€</td>
+							<td><%=u.getEmail()%></td>
 							<td><%=u.getNome()%></td>
 							<td><%=u.getCognome()%></td>
 
@@ -590,6 +619,7 @@ input.invalid {
 
 		<div class="form  my-5">
 			<form action="Prodotto?action=inserisciAlbero"
+				class="needs-validation" novalidate autocomplete="off"
 				enctype="multipart/form-data" method="POST" id="prodottoForm">
 
 				<div class="tab">
@@ -604,6 +634,7 @@ input.invalid {
 						<div class="col-9">
 							<input class="form-control" type="text"
 								placeholder="Inserisci nome" name="nome">
+							<div class="invalid-feedback">Inserisci un nome valido</div>
 						</div>
 					</div>
 					<div class="row align-items-center">
@@ -613,6 +644,7 @@ input.invalid {
 						<div class="col-9">
 							<input class="form-control" type="text"
 								placeholder="Inserisci nome scientifico" name="nomeScientifico">
+							<div class="invalid-feedback">Inserisci un nome valido</div>
 						</div>
 					</div>
 					<div class="row align-items-center">
@@ -622,6 +654,7 @@ input.invalid {
 						<div class="col-9">
 							<input class="form-control" type="text"
 								placeholder="Inserisci il prezzo" name="prezzo">
+							<div class="invalid-feedback">Inserisci un prezzo valido</div>
 						</div>
 					</div>
 					<div class="row align-items-center">
@@ -631,6 +664,8 @@ input.invalid {
 						<div class="col-9">
 							<input class="form-control" type="text"
 								placeholder="Inserisci sottotitolo" name="sottotitolo">
+							<div class="invalid-feedback">Inserisci un sottotitolo
+								valido</div>
 						</div>
 					</div>
 					<div class="row">
@@ -640,6 +675,7 @@ input.invalid {
 						<div class="col-9">
 							<textarea class="form-control"
 								placeholder="Inserisci la descrizione" name="descrizioneBreve"> </textarea>
+							<div class="invalid-feedback">Inserisci una descrizione</div>
 						</div>
 					</div>
 					<div class="row">
@@ -649,7 +685,9 @@ input.invalid {
 						<div class="col-9">
 							<textarea class="form-control"
 								placeholder="Inserisci la descrizione" name="descrizione"> </textarea>
+							<div class="invalid-feedback">Inserisci una descrizione</div>
 						</div>
+
 					</div>
 					<div class="row align-items-center">
 						<div class="col-3 ">
@@ -658,6 +696,8 @@ input.invalid {
 						<div class="col-9">
 							<input class="form-control" type="text"
 								placeholder="Inserisci nome" name="co2">
+							<div class="invalid-feedback">Inserisci un numero tra 1 e 5
+							</div>
 						</div>
 					</div>
 					<div class="row align-items-center">
@@ -667,6 +707,8 @@ input.invalid {
 						<div class="col-9">
 							<input class="form-control" type="text"
 								placeholder="Inserisci nome" name="salvaguardia">
+							<div class="invalid-feedback">Inserisci un numero tra 1 e 5
+							</div>
 						</div>
 					</div>
 					<div class="row align-items-center">
@@ -675,7 +717,8 @@ input.invalid {
 						</div>
 						<div class="col-9">
 							<input class="form-control" type="text"
-								placeholder="Inserisci nome" name="altezza">
+								placeholder="Inserisci l'altezza dell'albero " name="altezza">
+							<div class="invalid-feedback">Inserisci un'altezza</div>
 						</div>
 					</div>
 				</div>
@@ -689,7 +732,10 @@ input.invalid {
 						</div>
 						<div class="col-9">
 							<input class="form-control" type="text"
-								placeholder="Inserisci nome" name="onSale">
+								placeholder="Inserisci 1 per indicare onSale, 0 viceversa"
+								name="onSale">
+							<div class="invalid-feedback">Inserisci 1 per indicare
+								onSale, 0 viceversa</div>
 						</div>
 					</div>
 					<div class="row align-items-center">
@@ -698,7 +744,8 @@ input.invalid {
 						</div>
 						<div class="col-9">
 							<input class="form-control" type="text"
-								placeholder="Inserisci nome scientifico" name="saldo">
+								placeholder="Inserisci il saldo " name="saldo">
+							<div class="invalid-feedback">Inserisci un importo valido</div>
 						</div>
 					</div>
 					<div class="row align-items-center">
@@ -708,6 +755,7 @@ input.invalid {
 						<div class="col-9">
 							<input class="form-control" type="text"
 								placeholder="Inserisci nome scientifico" name="quantità">
+							<div class="invalid-feedback">Inserisci una quantità valida</div>
 						</div>
 					</div>
 					<div class="row align-items-center">
@@ -717,6 +765,7 @@ input.invalid {
 						<div class="col-9">
 							<input class="form-control" type="text"
 								placeholder="Inserisci nome" name="tasse">
+							<div class="invalid-feedback">Inserisci un importo valido</div>
 						</div>
 					</div>
 				</div>
@@ -744,6 +793,7 @@ input.invalid {
 							<input class="form-control" type="text"
 								placeholder="Inserisci nome scientifico"
 								name="doveVienePiantato">
+							<div class="invalid-feedback">Inserisci una descrizione</div>
 						</div>
 					</div>
 				</div>
@@ -758,6 +808,7 @@ input.invalid {
 						<div class="col-9">
 							<input class="form-control" type="text"
 								placeholder="Inserisci nome" name="ben1">
+							<div class="invalid-feedback">Inserisci un numero da 1 a 5</div>
 						</div>
 					</div>
 					<div class="row align-items-center">
@@ -767,6 +818,7 @@ input.invalid {
 						<div class="col-9">
 							<input class="form-control" type="text"
 								placeholder="Inserisci nome scientifico" name="ben2">
+							<div class="invalid-feedback">Inserisci un numero da 1 a 5</div>
 						</div>
 					</div>
 					<div class="row align-items-center">
@@ -776,6 +828,7 @@ input.invalid {
 						<div class="col-9">
 							<input class="form-control" type="text"
 								placeholder="Inserisci nome scientifico" name="ben4">
+							<div class="invalid-feedback">Inserisci un numero da 1 a 5</div>
 						</div>
 					</div>
 					<div class="row align-items-center">
@@ -785,6 +838,7 @@ input.invalid {
 						<div class="col-9">
 							<input class="form-control" type="text"
 								placeholder="Inserisci nome" name="ben3">
+							<div class="invalid-feedback">Inserisci un numero da 1 a 5</div>
 						</div>
 					</div>
 				</div>
@@ -890,7 +944,8 @@ input.invalid {
 			</div>
 		</div>
 		<div class="form my-5 d-none" id="uploadFoto">
-			<form>
+			<form action="Prodotto?action=aggiornaFotoAlbero"
+				enctype="multipart/form-data" method="POST">
 				<div class="fw-bold h3">Upload Foto</div>
 				<hr>
 				<div class="row">
@@ -904,29 +959,11 @@ input.invalid {
 				</div>
 				<div class="row">
 					<div class="col-3">
-						<h5>Prima Foto:</h5>
+						<h5>Foto:</h5>
 					</div>
 					<div class="col-9">
 						<input type="file" class="form-control" id="inputGroupFile01"
 							name="foto1">
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-3">
-						<h5>Seconda Foto:</h5>
-					</div>
-					<div class="col-9">
-						<input type="file" class="form-control" id="inputGroupFile02"
-							name="foto2">
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-3">
-						<h5>Terza Foto:</h5>
-					</div>
-					<div class="col-9">
-						<input type="file" class="form-control" id="inputGroupFile03"
-							name="foto3">
 					</div>
 				</div>
 				<br />
@@ -940,7 +977,8 @@ input.invalid {
 
 	<div class="form my-5">
 		<form action="Prodotto?action=inserisciKit" method="POST"
-			enctype="multipart/form-data" id="kitForm">
+			enctype="multipart/form-data" id="kitForm" name="kitForm"
+			onSubmit="return validateKit();">
 			<div class="fw-bold h3">Kit</div>
 			<hr>
 			<div class="row align-items-center d-none" id="idKitForm">
@@ -949,7 +987,8 @@ input.invalid {
 				</div>
 				<div class="col-9">
 					<input class="form-control " type="text"
-						placeholder="Inserisci nome" name="idKit">
+						placeholder="Inserisci nome" name="idKit" >
+
 				</div>
 			</div>
 			<div class="row align-items-center">
@@ -959,6 +998,7 @@ input.invalid {
 				<div class="col-9">
 					<input class="form-control" type="text"
 						placeholder="Inserisci nome" name="nomeKit">
+					<div class="invalid-feedback">Inserisci un nome valido</div>
 				</div>
 			</div>
 			<div class="row">
@@ -968,6 +1008,8 @@ input.invalid {
 				<div class="col-9">
 					<textarea class="form-control"
 						placeholder="Inserisci la descrizione" name="descrizioneKit"> </textarea>
+					<div class="invalid-feedback">Inserisci una descrizione
+						adeguata</div>
 				</div>
 			</div>
 			<div class="row">
@@ -985,6 +1027,7 @@ input.invalid {
 				<div class="col-9">
 					<input class="form-control" type="text"
 						placeholder="Inserisci saldo " name="saldoKit">
+					<div class="invalid-feedback">Inserisci un importo valido</div>
 				</div>
 			</div>
 			<div class="row align-items-center">
@@ -1018,10 +1061,44 @@ input.invalid {
 	<!-- Sezione Ordine -->
 	<div id="ordine" class="text-center fw-bold h3">Gestione Ordine</div>
 	<div class="form  my-5 d-none" id="uploadFotoOrdineForm">
-		<form action="" enctype="multipart/form-data" method="GET">
+		<form action="Admin?action=aggiornaProdottoOrdine"
+			enctype="multipart/form-data" method="POST">
 			<div class="fw-bold h3">Aggiornamento Alberi</div>
 			<hr>
-			<div class="uploadFotoOrdinerow"></div>
+			<div class="row">
+				<div class="col-3">
+					<h5>Codice:</h5>
+				</div>
+				<div class="col-9">
+					<input type="text" class="form-control" name="codice"
+						id="codiceProdottoUpload">
+				</div>
+			</div>
+			<div class="row align-items-center">
+				<div class="col-3 ">
+					<h5>Stato:</h5>
+				</div>
+				<div class="col-9">
+					<select class="form-select form-select-sm" name="stato">
+						<option selected value="seme">Seme</option>
+						<option value="vivaio">Vivaio</option>
+						<option value="piantato">Piantato</option>
+						<option value="fotografato">Fotografato</option>
+					</select>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-3">
+					<h5>Foto:</h5>
+				</div>
+				<div class="col-9">
+					<input type="file" class="form-control" id="inputGroupFile02"
+						name="foto">
+				</div>
+			</div>
+			<div class="row justify-content-center mt-4">
+				<button type="submit" class="col-3 btn btn-outline-dark">Aggiorna</button>
+			</div>
 		</form>
 	</div>
 	<!-- Modal di log out -->
@@ -1040,7 +1117,7 @@ input.invalid {
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
 						data-bs-dismiss="modal">Annulla</button>
-					<a href="Logout" class="btn btn-dark"> Procedi </a>
+					<a href="Login?action=logout" class="btn btn-dark"> Procedi </a>
 				</div>
 			</div>
 		</div>
@@ -1055,7 +1132,7 @@ input.invalid {
 			
 			var x = document.getElementsByClassName("tab");
 			x[n].style.display = "block";
-			
+	
 			if (n == 0) {
 				document.getElementById("prevBtn").style.display = "none";
 			} else {
@@ -1087,14 +1164,103 @@ input.invalid {
 			var x, y, i, valid = true;
 			x = document.getElementsByClassName("tab");
 			y = x[currentTab].getElementsByTagName("input");
-	
-			for (i = 0; i < y.length; i++) {
-				if (y[i].value == "") {	
-					y[i].className += " invalid";
-					valid = false;
+			z = x[currentTab].getElementsByTagName("textarea");
+			
+			for (r = 0; r < z.length; r++) {
+				if(z[r].name ==  "descrizione" || z[r].name == "descrizioneBreve" ){
+					if (z[r].value != "" && z[r].lenght != 0) {
+						z[r].classList.add("was-validated");
+						z[r].classList.add("is-valid");
+					}
+					else {
+						z[r].classList.add("is-invalid");
+						valid = false;
+					}
 				}
 			}
 			
+			for (i = 0; i < y.length; i++) {
+			
+				if(y[i].name ==  "nome" ){
+					if (validateNome(y[i])) {
+						y[i].classList.add("was-validated");
+						y[i].classList.add("is-valid");
+					}
+					else {
+						y[i].classList.add("is-invalid");
+						valid = false;
+					}
+				}
+					
+				if( y[i].name == "sottotitolo" || y[i].name == "nomeScientifico" || y[i].name=="doveVienePiantato" ){
+					if (y[i].value == "") {
+						y[i].classList.add("is-invalid");
+						valid = false;
+					} else {
+						y[i].classList.add("is-valid");
+						y[i].classList.add("was-validated");
+					}
+				}
+				
+				if(y[i].name ==  "prezzo" ){
+					if (validatePrice(y[i])) {
+						y[i].classList.add("was-validated");
+						y[i].classList.add("is-valid");
+					}
+					else {
+						y[i].classList.add("is-invalid");
+						valid = false;
+					}
+				}
+				
+				if(y[i].name ==  "co2" || y[i].name ==  "salvaguardia" || y[i].name == "ben1"  ||  y[i].name == "ben2"
+						||  y[i].name == "ben3" ||  y[i].name == "ben4"){
+					if (validate5(y[i])) {
+						y[i].classList.add("was-validated");
+						y[i].classList.add("is-valid");
+					}
+					else {
+						y[i].classList.add("is-invalid");
+						valid = false;
+					}
+				}
+				
+				if(y[i].name ==  "altezza"){
+					if (validateHeight(y[i])) {
+						y[i].classList.add("was-validated");
+						y[i].classList.add("is-valid");
+					}
+					else {
+						y[i].classList.add("is-invalid");
+						valid = false;
+					}
+				}
+				
+				if(y[i].name ==  "tasse" || y[i].name ==  "saldo" || y[i].name=="quantità"){
+					if (validateNumber(y[i])) {
+						y[i].classList.add("was-validated");
+						y[i].classList.add("is-valid");
+					}
+					else {
+						y[i].classList.add("is-invalid");
+						valid = false;
+					}
+				}
+				
+				if(y[i].name ==  "onSale"){
+					if (validateOnSale(y[i])) {
+						y[i].classList.add("was-validated");
+						y[i].classList.add("is-valid");
+					}
+					else {
+						y[i].classList.add("is-invalid");
+						valid = false;
+					}
+				}
+			}
+			if (valid) {
+				document.getElementsByClassName("step")[currentTab].className += " finish";
+			}
 			return valid; 
 		}
 
@@ -1106,6 +1272,110 @@ input.invalid {
 			x[n].className += " active";
 		}
 		
+	
+		function validateOnSale(y) {
+			let regex = /^[01]+$/;
+			let str = y.value;
+			if (str.match(regex) && str != "") {
+				return true;
+			} else {
+				return false;
+			}
+		}
+		function validateHeight(y) {
+			let regex = /^\d{0,9}(\.\d{0,2}){0,1}$/;
+			let str = y.value;
+			if (str.match(regex) && str != "") {
+				return true;
+			} else {
+				return false;
+			}
+		}
+		
+		function validateNome(y) {
+			let regex = /^[A-Za-z_ ]+$/;
+			let str = y.value;
+			if (str.match(regex)) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+		
+		function validate5(y) {
+			let str = y.value;
+			if (str>0 && str<=5) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+		
+		function validatePrice(y) {
+			let regex = /^\d+(?:[.,]\d+)*$/;
+			let str = y.value;
+			if (str.match(regex)) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+		
+		function validateText(y) {
+			let regex = /^[a-zA-Z]([0-9a-zA-Z]){1,10}$/;
+			let str = y.value;
+			if (regex.test(str)) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+		
+		function validateNumber(y) {
+			let regex = /^[0-9]+$/;
+			let str = y.value;
+			if (str.match(regex)) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+		
+		function validateKit (){
+			var nome =document.kitForm.nomeKit;
+			var descrizione =document.kitForm.descrizioneKit;
+			var saldo =document.kitForm.saldoKit;
+			var valid= true; 
+			
+			if(!validateNome(nome)){
+				nome.classList.add("was-validated");
+				nome.classList.add("is-invalid");
+				valid=false;
+			}else {
+				nome.classList.add("was-validated");
+				nome.classList.add("is-valid");
+			}
+			if (descrizione.value == ""){
+				descrizione.classList.add("was-validated");
+				descrizione.classList.add("is-invalid");
+				valid=false;
+			}
+			else {
+				descrizione.classList.add("was-validated");
+				descrizione.classList.add("is-valid");
+			}
+			
+			if (!validateNumber(saldo)){
+				saldo.classList.add("was-validated");
+				saldo.classList.add("is-invalid");
+				valid=false;
+			}
+			else {
+				saldo.classList.add("was-validated");
+				saldo.classList.add("is-valid");
+			}
+			return valid;
+		}
 		
 	</script>
 	<script>
@@ -1140,10 +1410,22 @@ $(document).ready(function() {
 				alert("Request failed.");
 			});	
 			
-			$(".uploadFoto").click(function() {	
-				$("#codiceFotoUpload").val($id);
+			$(".uploadFoto-1").click(function() {	
+				var $nomeFoto = $("#fotoCodice1").html().substring(7);
+				$("#codiceFotoUpload").val($nomeFoto);
 				$("#uploadFoto").removeClass("d-none")
 			});
+			$(".uploadFoto-2").click(function() {	
+				var $nomeFoto = $("#fotoCodice2").html().substring(7);
+				$("#codiceFotoUpload").val($nomeFoto);
+				$("#uploadFoto").removeClass("d-none")
+			});
+			$(".uploadFoto-3").click(function() {	
+				var $nomeFoto = $("#fotoCodice3").html().substring(7);
+				$("#codiceFotoUpload").val($nomeFoto);
+				$("#uploadFoto").removeClass("d-none")
+			});
+			
 		});
 		
 		$(".vediFotoOrdine").click(function() {			
@@ -1204,30 +1486,27 @@ $(document).ready(function() {
 			 $("#prodottoFotoAlert").addClass("d-none");
 		});
 		
+		$("#closeOrdineFotoAlert").click(function() {
+			 $("#ordineFotoAlert").addClass("d-none");
 		});
+		
+		});
+		function uploadFotoAlbero(id){
+			$("#uploadFotoOrdineForm").removeClass("d-none");
+			$("#codiceProdottoUpload").val(id);
+		}
 		function printFotoOrdine (j){
 			var i=0; 
-			onerror="this.src='./resources//img/error.jpg'";
 			$("#ordineFotoAlert").removeClass("d-none");
-			$("#ordineFotoIdAlert").empty().append("<h4>Foto prodotti ordine"+"</h4>")
-		
-			$("#ordineFoto").empty();
-			j.items.forEach((e) => {
-				$("#ordineFoto").append("<li>"+ "<img src='./GetFotoProdottoOrdine?idProdottoOrdine="+e.id+"'"+">"+e.nome+"</li>");
-			});
 			
-			$(".uploadFotoOrdineForm").remove();
-			$(".uploadFotoOrdine").click(function() {	
-				j.items.forEach((e) => {
-					$(".uploadFotoOrdinerow").append('<div class="row align-items-center"><div class="col-3 "> <h5>Codice:</h5> </div>'
-						+'<div class="col-9"> <input class="form-control codiceFotoUpload" type="text" placeholder="Inserisci nome" name="nome" value="'+e.id+'"> </div>	</div>'
-						+'<div class="row align-items-center">	<div class="col-3 "> <h5>Stato:</h5> </div>	<div class="col-9"> <select class="form-select form-select-sm" name="categoria">'
-						+'<option selected="" value="Seme">Seme</option> <option value="Vivaio">Vivaio</option>	<option value="Piantato">Piantato</option>'
-						+'<option value="Fotografato">Fotografato</option> </select> </div>	</div>'
-						+'<div class="row mb-3"> <div class="col-3"> <h5>Upload Foto:</h5> </div> <div class="col-9"><input type="file" class="form-control" id="inputGroupFile01" name="foto1"> </div> </div>');
-				});
-				$("#uploadFotoOrdineForm").removeClass("d-none");
+			$("#tableBody").empty();
+			j.items.forEach((e) => {
+				$("#tableBody").append('<tr><td class="nrOrder">'+e.id+'</td><td>'+e.nome+'</td>'+
+						'<td>'+e.prezzo+'</td><td>'+e.saldo+'</td><td>'+e.quantità+
+						'</td><td>'+e.stato+'</td><td><img src="./GetFotoProdottoOrdine?idProdottoOrdine='+e.id
+						+'" class="img-thumbnail bg-secondary bg-gradient" style="max-width:60px;"></td> <td><a class="aggiornaAlbero" onclick="uploadFotoAlbero('+e.id+')"><i class="fa-solid fa-pen-to-square"></i></a></td></tr>');
 			});
+		
 		}
 		
 		function printDettagliOrdine(json) {
@@ -1289,6 +1568,7 @@ $(document).ready(function() {
 			j.forEach((e)=> {
 				i++; 
 				$("#foto"+i).attr("src","./GetFotoProdotto?idFoto="+e.nomeFoto);
+				$("#fotoCodice"+i).empty().append("Foto n."+e.nomeFoto);	
 			});
 		}
 		
@@ -1305,9 +1585,9 @@ $(document).ready(function() {
 		}
 		
 		function printProdottoForm(j) {
-			$('#tab2').addClass("d-none")
+			
 			$('#tab1').append('<div class="row align-items-center" id="codiceProdotto">	<div class="col-3 "> <h5>Codice:</h5>'
-					+' </div>	<div class="col-9">	<input class="form-control " type="text"	placeholder="Inserisci nome" name="codiceProdotto"> </div> </div>');
+					+' </div>	<div class="col-9">	<input class="form-control " type="text" name="codiceProdotto"> </div> </div>');
 			$('input[name="codiceProdotto"]').val(j.id); 
 			$('input[name="nome"]').val(j.nome); 
 			$('input[name="nomeScientifico"]').val(j.nomeScientifico); 
@@ -1338,8 +1618,8 @@ $(document).ready(function() {
 				$('select[name=usi] option[value="uso'+e.id+'"]').attr("selected", 1);	
 			});
 			
-			$('prodottoForm').attr("action","Prodotto?action=aggiornaAlbero");
-			$('prodottoForm').remove("#tab2");
+			$('#prodottoForm').attr("action","Prodotto?action=aggiornaAlbero");
+			$('#tab2').remove();
 			
 		}
 			

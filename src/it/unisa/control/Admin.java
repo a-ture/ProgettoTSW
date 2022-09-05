@@ -1,5 +1,6 @@
 package it.unisa.control;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Collection;
@@ -7,10 +8,12 @@ import java.util.Iterator;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import it.unisa.beans.Ordine;
 import it.unisa.beans.UsoLocale;
@@ -29,6 +32,9 @@ import it.unisa.model.UtenteDAO;
  * Servlet implementation class Admin
  */
 @WebServlet("/Admin")
+@MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, // 2MB
+		maxFileSize = 1024 * 1024 * 10, // 10MB
+		maxRequestSize = 1024 * 1024 * 50) // 50MB
 public class Admin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -45,8 +51,13 @@ public class Admin extends HttpServlet {
 		UtenteDAO dao2 = new UtenteDAO();
 		KitAlberiDAO dao3 = new KitAlberiDAO();
 		CategoriaDAO dao4 = new CategoriaDAO();
-		UsoLocaleDAO dao5= new  UsoLocaleDAO();
+		UsoLocaleDAO dao5 = new UsoLocaleDAO();
 
+		Utente admin = (Utente) request.getSession().getAttribute("admin");
+		if (admin == null) {
+			response.sendRedirect("./Login");
+			return;
+		}
 		try {
 			Collection<Albero> prodotti = dao.doRetriveAll("");
 			request.setAttribute("prodotti", prodotti);
@@ -73,10 +84,10 @@ public class Admin extends HttpServlet {
 
 			Collection<Categoria> categorie = dao4.doRetriveAll(null);
 			request.setAttribute("categorie", categorie);
-			
+
 			Collection<UsoLocale> usi = dao5.doRetriveAll(null);
 			request.setAttribute("usi", usi);
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -87,7 +98,62 @@ public class Admin extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		doGet(request, response);
+		OrdineDAO dao = new OrdineDAO();
+		String action = request.getParameter("action");
+		if (action != null) {
+			if (action.equals("aggiornaProdottoOrdine")) {
+
+				String id = request.getParameter("codice");
+				String stato = request.getParameter("stato");
+				System.out.println(id + " " + stato);
+				try {
+					dao.doUpdateProduct(Integer.parseInt(id), stato);
+				} catch (NumberFormatException e) {
+					e.printStackTrace();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				salvaFotoProdottoOrdine(request, Integer.parseInt(id));
+
+			}
+		}
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/pages/admin.jsp");
+		dispatcher.forward(request, response);
 	}
 
+	private void salvaFotoProdottoOrdine(HttpServletRequest request, int id) throws IOException, ServletException {
+
+		String SAVE_DIR = "/uploadTemp";
+
+		String appPath = request.getServletContext().getRealPath("");
+		String savePath = appPath + File.separator + SAVE_DIR;
+
+		File fileSaveDir = new File(savePath);
+		if (!fileSaveDir.exists()) {
+			fileSaveDir.mkdir();
+		}
+
+		for (Part part : request.getParts()) {
+			String fileName = extractFileName(part);
+			if (fileName != null && !fileName.equals("")) {
+				part.write(savePath + File.separator + fileName);
+				try {
+					OrdineDAO.updatePhoto(id, savePath + File.separator + fileName);
+				} catch (SQLException sqlException) {
+					System.out.println(sqlException);
+				}
+			}
+		}
+	}
+
+	private String extractFileName(Part part) {
+		String contentDisp = part.getHeader("content-disposition");
+		String[] items = contentDisp.split(";");
+		for (String s : items) {
+			if (s.trim().startsWith("filename")) {
+				return s.substring(s.indexOf("=") + 2, s.length() - 1);
+			}
+		}
+		return "";
+	}
 }
