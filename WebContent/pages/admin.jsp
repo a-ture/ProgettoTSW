@@ -882,7 +882,7 @@ input.invalid {
 							onclick="nextPrev(1)">Next</button>
 					</div>
 				</div>
-				<div style="text-align: center; margin-top: 40px;"><div class="tab"></div>
+				<div style="text-align: center; margin-top: 40px;">
 					<span class="step"></span> <span class="step"></span> <span
 						class="step"></span> <span class="step"></span> <span class="step"></span><span
 						class="step"></span>
@@ -1338,7 +1338,10 @@ $(document).ready(function() {
 				$('select[name=usi] option[value="uso'+e.id+'"]').attr("selected", 1);	
 			});
 			
-			}
+			$('prodottoForm').attr("action","Prodotto?action=aggiornaAlbero");
+			$('prodottoForm').remove("#tab2");
+			
+		}
 			
 			function printKitForm(j) {
 				$('#kitForm').attr("action","Prodotto?action=aggiornaKit")

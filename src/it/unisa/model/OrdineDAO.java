@@ -337,7 +337,8 @@ public class OrdineDAO implements GenericDAO<Ordine> {
 				ResultSet rs = stmt.executeQuery();
 				while (rs.next()) {
 					ProdottoOrdine bean = new ProdottoOrdine();
-
+					bean.setId(rs.getInt("count")); 
+					bean.setNome(rs.getString("nome")); 
 					prodotti.add(bean);
 				}
 			}

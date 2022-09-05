@@ -233,11 +233,16 @@ public class AlberoDAO implements GenericDAO<Albero> {
 				+ "altezza=?, pid=?, onSale=?, quantità=?, co2=?, salvaguardia=?, tasse=?, saldo=?, disponibile=?) "
 				+ "WHERE id = ? ";
 
+		String updateBenfit = "UPDATE benefici_prodotti  SET percentuale =?  WHERE  pid =? AND cid=?";
+
+		String deleteCat = "DELETE FROM categorie_prodotti WHERE pid=?";
+		String insertCat = "INSERT INTO categorie_prodotti (pid,cid) VALUES (?,?)";
+
+		String insertUso = "INSERT INTO albero_usiLocali (pid,uid) VALUES (?,?)";
+		String deleteUso = "DELETE FROM albero_usiLocali WHERE pid=?";
 		var conn = ds.getConnection();
-
-		try {
-
-			var stmt = conn.prepareStatement(update);
+		conn.setAutoCommit(false);
+		try (var stmt = conn.prepareStatement(update, Statement.RETURN_GENERATED_KEYS)) {
 			stmt.setString(1, item.getNome());
 			stmt.setString(2, item.getNomeScientifico());
 			stmt.setString(3, item.getDescrizione());
@@ -257,7 +262,32 @@ public class AlberoDAO implements GenericDAO<Albero> {
 			stmt.setInt(16, item.getId());
 
 			stmt.executeUpdate();
+			ResultSet rs = stmt.getGeneratedKeys();
+			if (rs.next()) {
+				int lastInsertedId = rs.getInt(1);
 
+				for (Beneficio b : item.getBenefici()) {
+					var stmt2 = conn.prepareStatement(updateBenfit);
+					stmt2.setInt(1, lastInsertedId);
+					stmt2.setInt(2, b.getId());
+					stmt2.setDouble(3, b.getPercentuale());
+
+					stmt2.execute();
+				}
+
+				var stmt2 = conn.prepareStatement(deleteCat);
+				stmt2.setInt(1, item.getId());
+				stmt2.execute();
+
+				for (Categoria c : item.getCategorie()) {
+					var stmt3 = conn.prepareStatement(insertCat);
+					stmt3.setInt(1, lastInsertedId);
+					stmt3.setInt(2, c.getId());
+
+					stmt3.execute();
+				}
+			}
+			conn.commit();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			conn.rollback();
