@@ -38,7 +38,7 @@ public class Albero implements Serializable {
 	private Collection<UsoLocale> usiLocali;
 	private Collection<Categoria> categorie;
 	private Collection<Beneficio> benefici; 
-
+	
 	public Albero(int id, String nome, String nomeScientifico, String paeseDiOrigine, String descrizione,
 			String descrizioneBreve, String sottotitolo, String doveVienePiantato, double prezzo, double altezza,
 			int co2, int salvaguardia, double tasse, double saldo, int quantità, int onSale, boolean disponibile,

@@ -14,6 +14,7 @@ public class ProdottoOrdine implements Serializable {
 	private double prezzo;
 	private double saldo;
 	private int quantità;
+	private String stato;
 
 	public ProdottoOrdine(int id, int oid, String nome, String descrizione, String breveDescrizione, int tasse,
 			double prezzo, double saldo, int quantità) {
@@ -104,6 +105,14 @@ public class ProdottoOrdine implements Serializable {
 		this.quantità = quantità;
 	}
 
+	public String getStato() {
+		return stato;
+	}
+
+	public void setStato(String stato) {
+		this.stato = stato;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -119,9 +128,9 @@ public class ProdottoOrdine implements Serializable {
 		result = prime * result + quantità;
 		temp = Double.doubleToLongBits(saldo);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((stato == null) ? 0 : stato.hashCode());
 		temp = Double.doubleToLongBits(tasse);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
-
 		return result;
 	}
 
@@ -159,9 +168,13 @@ public class ProdottoOrdine implements Serializable {
 			return false;
 		if (Double.doubleToLongBits(saldo) != Double.doubleToLongBits(other.saldo))
 			return false;
+		if (stato == null) {
+			if (other.stato != null)
+				return false;
+		} else if (!stato.equals(other.stato))
+			return false;
 		if (Double.doubleToLongBits(tasse) != Double.doubleToLongBits(other.tasse))
 			return false;
-
 		return true;
 	}
 
@@ -169,7 +182,7 @@ public class ProdottoOrdine implements Serializable {
 	public String toString() {
 		return "ProdottoOrdine [id=" + id + ", oid=" + oid + ", nome=" + nome + ", descrizione=" + descrizione
 				+ ", breveDescrizione=" + breveDescrizione + ", tasse=" + tasse + ", prezzo=" + prezzo + ", saldo="
-				+ saldo + ", quantità=" + quantità + "]";
+				+ saldo + ", quantità=" + quantità + ", stato=" + stato + "]";
 	}
 
 }

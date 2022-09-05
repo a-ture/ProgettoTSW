@@ -33,7 +33,7 @@ public class FotoProdottoDAO {
 		}
 	}
 
-	public synchronized void updatePhoto(int idA, String photo) throws SQLException {
+	public synchronized static void updatePhoto(int idA, String photo) throws SQLException {
 		Connection con = null;
 		PreparedStatement stmt = null;
 

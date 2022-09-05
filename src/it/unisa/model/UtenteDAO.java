@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
 
@@ -42,8 +43,7 @@ public class UtenteDAO implements GenericDAO<Utente> {
 
 		Utente bean = new Utente();
 
-		String selectSQL = "SELECT * FROM " + UtenteDAO.TABLE_NAME
-				+ " AS u, indirizzo  AS i WHERE u.id = i.cid AND u.id=?";
+		String selectSQL = "SELECT * FROM " + UtenteDAO.TABLE_NAME + " WHERE id=?";
 
 		try (var conn = ds.getConnection()) {
 			try (var stmt = conn.prepareStatement(selectSQL)) {
@@ -58,23 +58,9 @@ public class UtenteDAO implements GenericDAO<Utente> {
 					bean.setRole(rs.getString("role"));
 					bean.setActive(rs.getBoolean("active"));
 					bean.setUsername(rs.getString("username"));
+					bean.setIndirizzi(doRetriveByUser(bean.getId()));
 				}
-				// in this case there are at least one address
-				if (rs.getInt("id") != 0) {
-					do {
-						Indirizzo addr = new Indirizzo();
-						addr.setId(rs.getInt("id"));
-						addr.setNome(rs.getString("nome"));
-						addr.setCognome(rs.getString("cognome"));
-						addr.setVia(rs.getString("via"));
-						addr.setCAP(rs.getString("cap"));
-						addr.setCittà(rs.getString("città"));
-						addr.setProvincia(rs.getString("provincia"));
-						addr.setCivico(rs.getString("civico"));
-						addr.setPreferred(rs.getBoolean("preferred"));
-						bean.aggiungiIndirizzo(addr);
-					} while (rs.next());
-				}
+
 			}
 		}
 		return bean;
@@ -313,28 +299,35 @@ public class UtenteDAO implements GenericDAO<Utente> {
 
 	}
 
-	public int findNumberOfTree(int id) throws SQLException {
+	public Collection<Indirizzo> doRetriveByUser(int i) throws SQLException {
 
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
+		Collection<Indirizzo> beans = new ArrayList<Indirizzo>();
 
-		int numberOfTree = 0;
-
-		String selectSQL = "SELECT * FROM ordine" + " WHERE uid=?";
+		String selectSQL = "SELECT * FROM  indirizzo  WHERE cid = ?";
 
 		try {
 			connection = ds.getConnection();
 			preparedStatement = connection.prepareStatement(selectSQL);
-			preparedStatement.setInt(1, id);
+			preparedStatement.setInt(1, i);
 
 			ResultSet rs = preparedStatement.executeQuery();
 
 			while (rs.next()) {
-
-				numberOfTree += rs.getInt("totaleProdotti");
-
+				Indirizzo bean = new Indirizzo();
+				bean.setCAP(rs.getString("cap"));
+				bean.setCittà(rs.getString("città"));
+				bean.setCognome(rs.getString("cognome"));
+				bean.setId(rs.getInt("id"));
+				bean.setVia(rs.getString("via"));
+				bean.setNome(rs.getString("nome"));
+				bean.setPreferred(rs.getBoolean("preferred"));
+				bean.setUid(rs.getInt("cid"));
+				bean.setCivico(rs.getString("civico"));
+				bean.setProvincia(rs.getString("provincia"));
+				beans.add(bean);
 			}
-
 		} finally {
 			try {
 				if (preparedStatement != null)
@@ -344,78 +337,7 @@ public class UtenteDAO implements GenericDAO<Utente> {
 					connection.close();
 			}
 		}
-		return numberOfTree;
-
-	}
-
-	public int findNumberOfGift(int id) throws SQLException {
-
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
-
-		int numberOfGift = 0;
-
-		String selectSQL = "SELECT * FROM ordine AS o" + " WHERE uid=?";
-
-		try {
-			connection = ds.getConnection();
-			preparedStatement = connection.prepareStatement(selectSQL);
-			preparedStatement.setInt(1, id);
-
-			ResultSet rs = preparedStatement.executeQuery();
-
-			while (rs.next()) {
-
-				numberOfGift += rs.getInt("regalo");
-
-			}
-
-		} finally {
-			try {
-				if (preparedStatement != null)
-					preparedStatement.close();
-			} finally {
-				if (connection != null)
-					connection.close();
-			}
-		}
-		return numberOfGift;
-
-	}
-
-	public double findAmountSpent(int id) throws SQLException {
-
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
-
-		double amount = 0;
-
-		String selectSQL = "SELECT * FROM ordine AS o" + " WHERE uid=?";
-
-		try {
-			connection = ds.getConnection();
-			preparedStatement = connection.prepareStatement(selectSQL);
-			preparedStatement.setInt(1, id);
-
-			ResultSet rs = preparedStatement.executeQuery();
-
-			while (rs.next()) {
-
-				amount += rs.getDouble("totalePagato");
-
-			}
-
-		} finally {
-			try {
-				if (preparedStatement != null)
-					preparedStatement.close();
-			} finally {
-				if (connection != null)
-					connection.close();
-			}
-		}
-		return amount;
-
+		return beans;
 	}
 
 	public synchronized static byte[] load(int i) {
@@ -492,4 +414,5 @@ public class UtenteDAO implements GenericDAO<Utente> {
 			}
 		}
 	}
+
 }

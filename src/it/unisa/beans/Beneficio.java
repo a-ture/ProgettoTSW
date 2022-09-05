@@ -21,6 +21,11 @@ public class Beneficio implements Serializable {
 
 	}
 
+	public Beneficio(int id, double percentuale) {
+		this.id = id;
+		this.percentuale = percentuale;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

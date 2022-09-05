@@ -26,6 +26,9 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 <link rel="stylesheet" type="text/css"
 	href="resources/css/_bootswatch.scss">
 <link rel="stylesheet" type="text/css" href="resources/css/style.css">
+<link
+	href="https://fonts.googleapis.com/css?family=Do+Hyeon|Frijole|Josefin+Sans:300,400,400i,600,700|Viga"
+	rel="stylesheet">
 <!-- JavaScript Bundle with Popper -->
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
@@ -34,7 +37,61 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 <!-- FontAwesome -->
 <script src="https://kit.fontawesome.com/6bd8866cc2.js"
 	crossorigin="anonymous"></script>
+	<!-- jQuey -->
+<script src="https://code.jquery.com/jquery-3.6.0.js"
+	integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+	crossorigin="anonymous"></script>
+<style>/* Ex6 Styling  */
+/* Ex2 Styling  */ 
+.Banner2{
+  display:none;
+}
 
+.Mega, .ShopNowEx2,.SalesEx2 {/* ex 2 texts  */
+ display:none;
+}
+
+.BannerBorderLineEx2, .BannerBorderEx2{
+   display:none;
+}
+
+.BannerHolderEx2{
+ display:none;
+}
+
+.BorderAnimationEx2 {
+  stroke-dasharray: 20;
+  stroke-dashoffset: 20;
+  animation:BannerBorder 50s linear alternate infinite;
+  animation-delay: 0s;
+}
+
+ /* Global Border Animation   */ 
+@keyframes BannerBorder {
+  from {
+    stroke-dashoffset: 2000;
+  }
+  to {
+    stroke-dashoffset: 1;
+  }
+}
+
+@-webkit-keyframes fadeinout {
+  0%,100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+@keyframes fadeinout {
+  0%,100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+
+@keyframes example {
+    from {color: red;}
+    to {color: yellow;}
+}
+</style>
 </head>
 
 <body>
@@ -72,10 +129,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			</div>
 			<!-- Seconda Slide -->
 			<div class="carousel-item">
-				<svg class="bd-placeholder-img" width="100%" height="100%"
-					xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
-					preserveAspectRatio="xMidYMid slice" focusable="false">
-						<rect width="100%" height="100%" fill="#777"></rect></svg>
+				<img class="bd-placeholder-img" width="100%" height="100%">
 
 				<div class="container">
 					<div class="carousel-caption">
@@ -90,11 +144,8 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			</div>
 
 			<div class="carousel-item">
-				<svg class="bd-placeholder-img" width="100%" height="100%"
-					xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
-					preserveAspectRatio="xMidYMid slice" focusable="false">
-						<rect width="100%" height="100%" fill="#777"></rect></svg>
-
+				<img class="bd-placeholder-img" width="100%" height="100%"
+					src="resources/img/autumn-leaves.jpg">
 				<div class="container">
 					<div class="carousel-caption text-end">
 						<h1>One more for good measure.</h1>
@@ -103,6 +154,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						<p>
 							<a class="btn btn-lg btn-primary" href="#">Browse gallery</a>
 						</p>
+
 					</div>
 				</div>
 			</div>
@@ -138,9 +190,42 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					<button type="button" class="btn btn-outline-secondary btn-lg px-4">Default</button>
 				</div>
 			</div>
-			<div class="col-lg-4 offset-lg-1 p-0 overflow-hidden shadow-lg">
-				<img class="rounded-lg-3" src="bootstrap-docs.png" alt=""
-					width="720">
+			<div class="col-lg-3 p-0 ">
+				<div id="wrapper">
+  
+     <svg class="Banner2" height="220" width="450"> 
+
+       <polygon class="BorderAnimationEx2 BannerBorderEx2" stroke-miterlimit="10" points="30 5, 20 200, 440 170, 440 55" style="fill:none; stroke:#000; stroke-width:5" />  
+
+       <polygon class="BannerHolderEx2" points="5 31, 5 185, 410 205, 430 10" style="opacity:0.2;fill:#000;" />
+       <polygon class="BannerHolderEx2" points="5 31, 5 180, 410 200, 430 10" style="opacity:1;fill:#0ADBB3;" />  
+    
+       <text class="SalesEx2" font-family="Viga" font-size="65" >
+         <tspan fill="#000" opacity="0.8" x="43" y="120" font-family="Viga" font-size="65" opacity="1" >OFFER</tspan>
+         <tspan  x="43" y="117" font-family="Viga" font-size="65" opacity="1" fill="#fff">OFFER</tspan>
+       </text>
+
+     <text class="Mega"font-weight="300" font-family="Josefin Sans" font-size="23" fill="#000">
+         <tspan font-weight="700" x="280" y="60">MEGA</tspan>
+         <tspan x="280" y="97">SALES</tspan>
+         <tspan font-weight="700" x="270" y="136">LIMITED</tspan>
+         <tspan x="260" y="175">QUANTITY</tspan>
+       </text>
+
+
+       <text class="ShopNowEx2"   font-family="Josefin Sans" font-weight="700" font-size="20" fill="#fff">
+         <tspan  fill="#000"x="65" y="157">S H O P&nbsp; &nbsp;N O W</tspan>
+       <tspan x="65" y="155">S H O P&nbsp; &nbsp;N O W</tspan>
+           
+           </text>
+
+       <polyline class="BorderAnimationEx2 BannerBorderLineEx2" points="30 3, 20 200" style="fill:none; stroke:#000; stroke-width:4.5;" /> 
+
+
+  Sorry, your browser does not support inline SVG.
+</svg>
+
+				</div>
 			</div>
 		</div>
 	</div>
@@ -209,20 +294,6 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			<div class="col">
 				<div class="card text-center shadow-lg bg-white rounded h-100"
 					style="max-width: 18rem;">
-					<img
-						src="./resources/img/cosaPuoiFare/whatucando-subscription-icon.png"
-						class="card-img-top" width="206px" height="206px">
-					<div class="card-body">
-						<h5 class="card-title fw-bold">Abbonati</h5>
-						<p class="card-text">Pianta alberi ogni mese e inizia il tuo
-							percorso green</p>
-						<a class="btn btn-primary" href="Catalogo#sezioneKit">Abbonati</a>
-					</div>
-				</div>
-			</div>
-			<div class="col">
-				<div class="card text-center shadow-lg bg-white rounded h-100"
-					style="max-width: 18rem;">
 					<img src="./resources/img/chiSiamoPage/info_trees.svg"
 						class="card-img-top" width="206px" height="206px">
 					<div class="card-body">
@@ -250,8 +321,6 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 		</div>
 		<br>
 	</div>
-
-
 	<div class="b-example-divider"></div>
 	<div class="container px-4 py-5" id="hanging-icons">
 		<h2 class="pb-2 border-bottom">Come Funziona?</h2>
@@ -457,6 +526,24 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 
 	<!-- Footer -->
 	<%@ include file="../fragments/footer.jsp"%>
-
+<script>
+/* Ex2 */
+$(".Banner2").delay(6000).fadeIn(500);
+$(".BannerHolderEx2").delay(6500).fadeIn(500);
+$(".BannerBorderEx2,.BannerBorderLineEx2").delay(7000).fadeIn(500);
+$(".SalesEx2").delay(7300).fadeIn(500);
+$(".Mega").delay(8500).fadeIn(500);
+$(".ShopNowEx2").delay(9000).fadeIn(500);
+/* Ex2 */
+$( ".Banner2" ).click(function() {
+$(".BannerHolderEx2,.BannerBorderEx2,.BannerBorderLineEx2,.SalesEx2,.Mega,.ShopNowEx2").delay(0).fadeOut(500);  
+$(".Banner2").delay(1000).fadeIn(500);
+$(".BannerHolderEx2").delay(1500).fadeIn(500);
+$(".BannerBorderEx2,.BannerBorderLineEx2").delay(2000).fadeIn(500);
+$(".SalesEx2").delay(2300).fadeIn(500);
+$(".Mega").delay(3500).fadeIn(500);
+$(".ShopNowEx2").delay(4000).fadeIn(500);
+});
+</script>
 </body>
 </html>

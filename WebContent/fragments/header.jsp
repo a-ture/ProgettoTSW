@@ -3,11 +3,11 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-
 <!--CSS-->
 <link rel="stylesheet" type="text/css"
 	href="resources/css/bootstrap.css">
@@ -47,8 +47,8 @@
 					<li class="nav-item"><a class="nav-link" href="Catalogo">Alberi</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="ChiSiamoServlet">Chi Siamo</a></li>
-					<li class="nav-item"><a class="btn btn-secondary my-2 my-sm-0">
-							Hai un Treecode?</a></li>
+					<li class="nav-item"><a class="btn btn-secondary my-2 my-sm-0"
+						class="btn btn-primary" href="Regalo"> Hai un Treecode?</a></li>
 				</ul>
 				<div>
 					<ul class="navbar-nav me-auto">
@@ -65,6 +65,5 @@
 
 		</div>
 	</nav>
-
 </body>
 </html>

@@ -1,5 +1,11 @@
 package it.unisa.model;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -36,38 +42,24 @@ public class OrdineDAO implements GenericDAO<Ordine> {
 	@Override
 	public Ordine doRetriveByKey(String code) throws SQLException {
 
-		String selectSQL = "SELECT o.id AS orderId, o.uid, o.destination, o.totalProducts, o.totalPaid, o.trackNumber, o.gift, o.giftMessage, o.createdAt,s.* FROM "
-				+ TABLE_NAME + " o LEFT JOIN prodotto_ordine s ON  s.oid = o.id WHERE o.id = ?";
+		String selectSQL = "SELECT * FROM ordine WHERE id=?";
 		Ordine ordine = new Ordine();
+		UtenteDAO dao = new UtenteDAO();
 		try (var conn = ds.getConnection()) {
 			try (var stmt = conn.prepareStatement(selectSQL)) {
 				stmt.setInt(1, Integer.parseInt(code));
-				System.out.println(stmt);
 				ResultSet rs = stmt.executeQuery();
 				if (rs.next()) {
-
 					ordine.setId(rs.getInt("id"));
 					ordine.setTotaleProdotti(rs.getInt("totaleProdotti"));
 					ordine.setTotalePagato(rs.getDouble("totalePagato"));
 					ordine.setRegalo(rs.getBoolean("regalo"));
 					ordine.setMessaggioRegalo(rs.getString("messaggioRegalo"));
 					ordine.setCreatoIl(rs.getTimestamp("creatoIl").toLocalDateTime());
-
+					ordine.setDestinatarioRegalo(rs.getString("destinatarioRegalo"));
+					ordine.setUtente(dao.doRetriveByKey(rs.getInt("uid") + ""));
+					ordine.setItems(findProductOrder(ordine.getId()));
 				}
-				do {
-					ProdottoOrdine item = new ProdottoOrdine();
-					item.setId(rs.getInt("id"));
-					item.setOid(rs.getInt("oid"));
-					item.setNome(rs.getString("nome"));
-					item.setDescrizione(rs.getString("descrizione"));
-					item.setBreveDescrizione(rs.getString("breveDescrizione"));
-					item.setTasse(rs.getInt("tasse"));
-					item.setPrezzo(rs.getDouble("prezzo"));
-					item.setSaldo(rs.getDouble("saldo"));
-					item.setQuantità(rs.getInt("quantità"));
-
-					ordine.aggiungiPrdotto(item);
-				} while (rs.next());
 			}
 		}
 		return ordine;
@@ -76,33 +68,36 @@ public class OrdineDAO implements GenericDAO<Ordine> {
 	@Override
 	public Collection<Ordine> doRetriveAll(String order) throws SQLException {
 		Collection<Ordine> ordini = new LinkedList<>();
-		String selectSQL = "SELECT * FROM " + TABLE_NAME;
+		String selectSQL = "SELECT * FROM ordine AS o";
+		UtenteDAO dao = new UtenteDAO();
 		try (var conn = ds.getConnection()) {
 			try (var stmt = conn.prepareStatement(selectSQL)) {
+
 				ResultSet rs = stmt.executeQuery();
 				while (rs.next()) {
-					Ordine bean = new Ordine();
-					bean.setId(rs.getInt("id"));
-					bean.setTotaleProdotti(rs.getInt("totaleProdotti"));
-					bean.setTotalePagato(rs.getDouble("totalePagato"));
-					bean.setRegalo(rs.getBoolean("regalo"));
-					bean.setMessaggioRegalo(rs.getString("messaggioRegalo"));
-					bean.setCreatoIl(rs.getTimestamp("creatoIl").toLocalDateTime());
-					bean.setDestinatarioRegalo(rs.getString("destinatarioRegalo"));
-					ordini.add(bean);
+					Ordine ordine = new Ordine();
+					ordine.setId(rs.getInt("id"));
+					ordine.setTotaleProdotti(rs.getInt("totaleProdotti"));
+					ordine.setTotalePagato(rs.getDouble("totalePagato"));
+					ordine.setRegalo(rs.getBoolean("regalo"));
+					ordine.setMessaggioRegalo(rs.getString("messaggioRegalo"));
+					ordine.setCreatoIl(rs.getTimestamp("creatoIl").toLocalDateTime());
+					ordine.setUtente(dao.doRetriveByKey(rs.getInt("uid") + ""));
+					ordine.setDestinatarioRegalo(rs.getString("destinatarioRegalo"));
+					ordine.setItems(findProductOrder(ordine.getId()));
+					ordini.add(ordine);
 				}
 			}
 		}
 		return ordini;
 	}
 
-	@Override
 	public void doSave(Ordine dao) throws SQLException {
 		String insertOrder = "INSERT INTO ordine (uid,  totaleProdotti, totalePagato, regalo, messaggioRegalo, destinatarioRegalo) "
 				+ "VALUES (?, ?, ?, ?, ?, ?)";
 		String insertItem = "INSERT INTO prodottoOrdine "
-				+ "(oid, nome, descrizione, breveDescrizione, prezzo, saldo, quantità, tasse) "
-				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+				+ "(oid, nome, descrizione, breveDescrizione, prezzo, saldo, quantità, tasse, stato) "
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		var conn = ds.getConnection();
 		conn.setAutoCommit(false);
 		try (var stmt = conn.prepareStatement(insertOrder, Statement.RETURN_GENERATED_KEYS)) {
@@ -128,6 +123,8 @@ public class OrdineDAO implements GenericDAO<Ordine> {
 					stmt2.setDouble(6, item.getSaldo());
 					stmt2.setInt(7, item.getQuantità());
 					stmt2.setDouble(8, item.getTasse());
+					stmt2.setString(9, item.getStato());
+
 					stmt2.execute();
 				}
 			}
@@ -175,6 +172,26 @@ public class OrdineDAO implements GenericDAO<Ordine> {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			conn.rollback();
+		}
+
+		return 0;
+	}
+
+	public int doUpdateMexGift(Ordine dao) throws SQLException {
+		String updateOrder = "UPDATE  ordine SET messaggioRegalo=? " + "WHERE  id = ? ";
+
+		var conn = ds.getConnection();
+
+		try {
+			var stmt = conn.prepareStatement(updateOrder);
+
+			stmt.setString(1, dao.getMessaggioRegalo());
+			stmt.setInt(2, dao.getId());
+			stmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+
 		}
 
 		return 0;
@@ -255,6 +272,7 @@ public class OrdineDAO implements GenericDAO<Ordine> {
 					bean.setRegalo(rs.getBoolean("regalo"));
 					bean.setMessaggioRegalo(rs.getString("messaggioRegalo"));
 					bean.setCreatoIl(rs.getTimestamp("creatoIl").toLocalDateTime());
+					bean.setDestinatarioRegalo(rs.getString("destinatarioRegalo"));
 				}
 			}
 		}
@@ -263,54 +281,52 @@ public class OrdineDAO implements GenericDAO<Ordine> {
 
 	public Collection<Ordine> doRetriveByUser(Utente userBean) throws SQLException {
 		Collection<Ordine> ordini = new LinkedList<Ordine>();
-		String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE uid=?";
+		String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE uid=? ";
 		try (var conn = ds.getConnection()) {
 			try (var stmt = conn.prepareStatement(selectSQL)) {
+
 				stmt.setInt(1, userBean.getId());
 				ResultSet rs = stmt.executeQuery();
 				while (rs.next()) {
-					Ordine bean = new Ordine();
-
-					bean.setId(rs.getInt("id"));
-					bean.setTotaleProdotti(rs.getInt("totaleProdotti"));
-					bean.setTotalePagato(rs.getDouble("totalePagato"));
-					bean.setRegalo(rs.getBoolean("regalo"));
-					bean.setMessaggioRegalo(rs.getString("messaggioRegalo"));
-					bean.setCreatoIl(rs.getTimestamp("creatoIl").toLocalDateTime());
-					bean.setDestinatarioRegalo(rs.getString("destinatarioRegalo"));
-					ordini.add(bean);
+					Ordine ordine = new Ordine();
+					ordine.setId(rs.getInt("id"));
+					ordine.setTotaleProdotti(rs.getInt("totaleProdotti"));
+					ordine.setTotalePagato(rs.getDouble("totalePagato"));
+					ordine.setRegalo(rs.getBoolean("regalo"));
+					ordine.setMessaggioRegalo(rs.getString("messaggioRegalo"));
+					ordine.setDestinatarioRegalo(rs.getString("destinatarioRegalo"));
+					ordine.setCreatoIl(rs.getTimestamp("creatoIl").toLocalDateTime());
+					ordine.setUtente(userBean);
+					ordine.setItems(findProductOrder(ordine.getId()));
+					ordini.add(ordine);
 				}
 			}
 		}
 		return ordini;
 	}
 
-	public Collection<ProdottoOrdine> findProductBuyByUser(Utente userBean) throws SQLException {
-		Collection<ProdottoOrdine> prodotti = new LinkedList<ProdottoOrdine>();
-		String selectSQL = "SELECT * FROM " + TABLE_NAME + " AS o, prodottoOrdine AS p "
-				+ " WHERE uid=? AND p.oid=o.id";
+	public Collection<Ordine> findGiftForUser(Utente userBean) throws SQLException {
+		Collection<Ordine> ordini = new LinkedList<Ordine>();
+		String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE destinatarioRegalo=? ";
 		try (var conn = ds.getConnection()) {
 			try (var stmt = conn.prepareStatement(selectSQL)) {
-				stmt.setInt(1, userBean.getId());
+				Ordine ordine = new Ordine();
+				stmt.setString(1, userBean.getEmail());
 				ResultSet rs = stmt.executeQuery();
 				while (rs.next()) {
-					ProdottoOrdine bean = new ProdottoOrdine();
-
-					bean.setBreveDescrizione(rs.getString("breveDescrizione"));
-					bean.setDescrizione(rs.getString("descrizione"));
-					bean.setId(rs.getInt("id"));
-					bean.setNome(rs.getString("nome"));
-					bean.setOid(rs.getInt("oid"));
-					bean.setPrezzo(rs.getDouble("prezzo"));
-					bean.setQuantità(rs.getInt("quantità"));
-					bean.setSaldo(rs.getDouble("saldo"));
-					bean.setTasse(rs.getDouble("tasse"));
-					
-					prodotti.add(bean);
+					ordine.setId(rs.getInt("id"));
+					ordine.setTotaleProdotti(rs.getInt("totaleProdotti"));
+					ordine.setTotalePagato(rs.getDouble("totalePagato"));
+					ordine.setRegalo(rs.getBoolean("regalo"));
+					ordine.setMessaggioRegalo(rs.getString("messaggioRegalo"));
+					ordine.setCreatoIl(rs.getTimestamp("creatoIl").toLocalDateTime());
+					ordine.setUtente(userBean);
+					ordine.setItems(findProductOrder(ordine.getId()));
+					ordini.add(ordine);
 				}
 			}
 		}
-		return prodotti;
+		return ordini;
 	}
 
 	public Collection<ProdottoOrdine> findBestSellingProducts() throws SQLException {
@@ -321,8 +337,36 @@ public class OrdineDAO implements GenericDAO<Ordine> {
 				ResultSet rs = stmt.executeQuery();
 				while (rs.next()) {
 					ProdottoOrdine bean = new ProdottoOrdine();
-					bean.setNome(rs.getString("nome"));
+
 					prodotti.add(bean);
+				}
+			}
+		}
+		return prodotti;
+	}
+
+	public Collection<ProdottoOrdine> findProductOrder(int code) throws SQLException {
+		Collection<ProdottoOrdine> prodotti = new LinkedList<ProdottoOrdine>();
+		String selectSQL = "SELECT * FROM prodottoOrdine AS p LEFT JOIN ordine AS o ON p.oid=o.id WHERE o.id=? ";
+		try (var conn = ds.getConnection()) {
+			try (var stmt = conn.prepareStatement(selectSQL)) {
+				stmt.setInt(1, code);
+				ResultSet rs = stmt.executeQuery();
+				while (rs.next()) {
+					ProdottoOrdine item = new ProdottoOrdine();
+
+					item.setId(rs.getInt("id"));
+					item.setOid(rs.getInt("oid"));
+					item.setNome(rs.getString("nome"));
+					item.setDescrizione(rs.getString("descrizione"));
+					item.setBreveDescrizione(rs.getString("breveDescrizione"));
+					item.setTasse(rs.getInt("tasse"));
+					item.setPrezzo(rs.getDouble("prezzo"));
+					item.setSaldo(rs.getDouble("saldo"));
+					item.setQuantità(rs.getInt("quantità"));
+					item.setStato(rs.getString("stato"));
+
+					prodotti.add(item);
 				}
 			}
 		}
@@ -339,38 +383,81 @@ public class OrdineDAO implements GenericDAO<Ordine> {
 		}
 	}
 
-	public Ordine doRetriveByLastUserOrder() throws SQLException {
+	public synchronized static byte[] load(String id) {
 
-		String selectSQL = "SELECT * FROM ordine AS o, prodottoOrdine AS p WHERE o.id=p.oid AND o.id=(SELECT max(id) FROM ordine)";
-		Ordine ordine = new Ordine();
-		try (var conn = ds.getConnection()) {
-			try (var stmt = conn.prepareStatement(selectSQL)) {
+		Connection connection = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
 
-				ResultSet rs = stmt.executeQuery();
-				if (rs.next()) {
-					ordine.setId(rs.getInt("id"));
-					ordine.setTotaleProdotti(rs.getInt("totaleProdotti"));
-					ordine.setTotalePagato(rs.getDouble("totalePagato"));
-					ordine.setRegalo(rs.getBoolean("regalo"));
-					ordine.setMessaggioRegalo(rs.getString("messaggioRegalo"));
-					ordine.setCreatoIl(rs.getTimestamp("creatoIl").toLocalDateTime());
-				}
-				do {
-					ProdottoOrdine item = new ProdottoOrdine();
-					item.setId(rs.getInt("id"));
-					item.setOid(rs.getInt("oid"));
-					item.setNome(rs.getString("nome"));
-					item.setDescrizione(rs.getString("descrizione"));
-					item.setBreveDescrizione(rs.getString("breveDescrizione"));
-					item.setTasse(rs.getInt("tasse"));
-					item.setPrezzo(rs.getDouble("prezzo"));
-					item.setSaldo(rs.getDouble("saldo"));
-					item.setQuantità(rs.getInt("quantità"));
+		byte[] bt = null;
 
-					ordine.aggiungiPrdotto(item);
-				} while (rs.next());
+		try {
+			connection = ds.getConnection();
+			String sql = "SELECT foto FROM prodottoOrdine  WHERE id = ?";
+			stmt = connection.prepareStatement(sql);
+
+			stmt.setInt(1, Integer.parseInt(id));
+			rs = stmt.executeQuery();
+
+			if (rs.next()) {
+				bt = rs.getBytes("foto");
+			}
+
+		} catch (SQLException sqlException) {
+			System.out.println(sqlException);
+		} finally {
+			try {
+				if (stmt != null)
+					stmt.close();
+			} catch (SQLException sqlException) {
+				System.out.println(sqlException);
+			} finally {
+				if (connection != null)
+					try {
+						connection.close();
+					} catch (SQLException e) {
+						System.out.println(e);
+					}
 			}
 		}
-		return ordine;
+		return bt;
+
 	}
+
+	public synchronized void updatePhoto(String idA, String photo) throws SQLException {
+		Connection con = null;
+		PreparedStatement stmt = null;
+
+		try {
+			con = ds.getConnection();
+			stmt = con.prepareStatement("UPDATE prodottoOrdine SET foto = ? WHERE id= ?");
+
+			File file = new File(photo);
+			try {
+				FileInputStream fis = new FileInputStream(file);
+				stmt.setBinaryStream(1, fis, fis.available());
+				stmt.setInt(2, Integer.parseInt(idA));
+
+				stmt.executeUpdate();
+				con.commit();
+			} catch (FileNotFoundException e) {
+				System.out.println(e);
+			} catch (IOException e) {
+				System.out.println(e);
+			}
+		} finally {
+			try {
+				if (stmt != null)
+					stmt.close();
+			} catch (SQLException sqlException) {
+				System.out.println(sqlException);
+			} finally {
+				if (con != null)
+					con.close();
+			}
+		}
+	}
+	
+	
+
 }

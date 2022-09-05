@@ -11,10 +11,6 @@ Collection<?> foto = (Collection<?>) request.getAttribute("fotoProdotti");
 Collection<?> categorie = (Collection<?>) request.getAttribute("categorie");
 Collection<?> kits = (Collection<?>) request.getAttribute("kits");
 Collection<?> usiLocali = (Collection<?>) request.getAttribute("usiLocali");
-if (prodotti == null || foto == null || categorie == null) {
-	response.sendRedirect("./Catalogo");
-	return;
-}
 
 DecimalFormat dFormat = new DecimalFormat("0.00");
 %>
@@ -123,9 +119,11 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
 						aria-haspopup="true" aria-expanded="false"></button>
 					<div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-						<a class="dropdown-item" href="Catalogo?sort=prezzo DESC">Prezzo
-							più alto</a> <a class="dropdown-item" href="Catalogo?sort=prezzo ASC">Prezzo
-							più basso</a>
+						<a class="dropdown-item"
+							href="Catalogo?action=prezzo&sort=prezzo DESC">Prezzo più
+							alto</a> <a class="dropdown-item"
+							href="Catalogo?action=prezzo&sort=prezzo ASC">Prezzo più
+							basso</a>
 					</div>
 				</div>
 			</div>
@@ -140,14 +138,14 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						aria-haspopup="true" aria-expanded="false"></button>
 					<div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
 						<%
-						if (categorie != null && categorie.size() != 0) {
+						if (categorie != null || categorie.size() != 0) {
 							Iterator<?> it2 = categorie.iterator();
 
 							while (it2.hasNext()) {
 								Categoria cat = (Categoria) it2.next();
 						%>
 						<a class="dropdown-item"
-							href="Catalogo?categoria=<%=cat.getId()%>"><%=cat.getNome()%></a>
+							href="Catalogo?action=categoria&categoria=<%=cat.getId()%>"><%=cat.getNome()%></a>
 						<%
 						}
 						}
@@ -170,8 +168,8 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 							class="dropdown-item" href="Catalogo?action=saldi">Prodotti
 							in Saldo</a>
 						<hr class="dropdown-divider">
-						<a class="dropdown-item" href="#">Kit</a><a class="dropdown-item"
-							href="#">Alberi</a>
+						<a class="dropdown-item" href="Catalogo?action=vediKit">Kit</a><a
+							class="dropdown-item" href="Catalogo?action=vediAlberi">Alberi</a>
 					</div>
 				</div>
 			</div>
@@ -184,12 +182,14 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
 						aria-haspopup="true" aria-expanded="false"></button>
 					<div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-						<a class="dropdown-item" href="Catalogo?paese=Guatemala">Guatemala</a>
-						<a class="dropdown-item" href="Catalogo?paese=Italia">Italia</a> <a
-							class="dropdown-item" href="Catalogo?paese=Perù">Perù</a>
+						<a class="dropdown-item"
+							href="Catalogo?action=paese&paese=Guatemala">Guatemala</a> <a
+							class="dropdown-item" href="Catalogo?action=paese&paese=Italia">Italia</a>
+						<a class="dropdown-item" href="Catalogo?action=paese&paese=Perù">Perù</a>
 					</div>
 				</div>
 			</div>
+
 			<!-- Usi -->
 			<div class="btn-group" role="group"
 				aria-label="Button group with nested dropdown">
@@ -207,7 +207,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 								UsoLocale uso = (UsoLocale) it3.next();
 						%>
 						<a class="dropdown-item"
-							href="Catalogo?usoLocale=<%=uso.getId()%>"><%=uso.getNome()%></a>
+							href="Catalogo?action=usoLocale&usoLocale=<%=uso.getNome()%>"><%=uso.getNome()%></a>
 						<%
 						}
 						}
@@ -223,6 +223,14 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			<h1 class="text-center">Alberi</h1>
 			<p class="text-muted text-center">Anche tu puoi fare la tua parte
 				creando la tua foresta. Inizia piantando il primo albero!</p>
+			<%
+			if (prodotti == null || prodotti.size() == 0) {
+			%>
+			<p class="text-danger m-5">Non ci sono alberi che corrispondono
+				alla tua ricerca</p>
+			<%
+			}
+			%>
 			<div class="row row-cols-1 row-cols-md-4 g-3" id="catalogo">
 				<%
 				if (prodotti != null && prodotti.size() != 0) {
@@ -278,11 +286,6 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				</div>
 				<%
 				}
-				} else {
-				%>
-				<p>Non ci sono prodotti che corrispondo alla tua ricerca =(
-					Riporva!!</p>
-				<%
 				}
 				%>
 			</div>
@@ -294,6 +297,14 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			<p class="text-muted text-center">Paghi una sola volta e dai vita
 				alla tua foresta. Potrai seguire la crescita di ogni singolo albero.
 			</p>
+			<%
+			if (kits == null || kits.size() == 0) {
+			%>
+			<p class="text-danger m-5">Non ci sono kit che corrispondono alla
+				tua ricerca</p>
+			<%
+			}
+			%>
 			<div class="row row-cols-1 row-cols-md-4 g-3">
 				<%
 				if (kits != null && kits.size() != 0) {
@@ -629,75 +640,110 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				<img class="bd-placeholder-img rounded-circle" width="140"
 					style="background-color: #00008B;" height="140"
 					src="resources/img/catalogo/segniZodiacali/aries.png">
-				<p class="m-1">Albero dell'ariete</p>
+				<p class="m-1">
+					<a href="Catalogo?action=vediAlbero&s=Albero dell'ariete">Albero
+						dell'ariete</a>
+				</p>
 			</div>
 			<div class="col">
 				<img class="bd-placeholder-img rounded-circle" width="140"
 					style="background-color: #00008B;" height="140"
 					src="resources/img/catalogo/segniZodiacali/taurus.png">
-				<p class="m-1">Albero dell'Toro</p>
+				<p class="m-1">
+					<a href="Catalogo?action=vediAlbero&s=Albero del toro">Albero
+						del Toro</a>
+				</p>
 			</div>
 			<div class="col">
 				<img class="bd-placeholder-img rounded-circle" width="140"
 					style="background-color: #00008B;" height="140"
 					src="resources/img/catalogo/segniZodiacali/gemini.png">
-				<p class="m-1">Albero dei Gemelli</p>
+				<p class="m-1">
+					<a href="Catalogo?action=vediAlbero&s=Albero dei gemelli">Albero
+						dei Gemelli</a>
+				</p>
 			</div>
 			<div class="col">
 				<img class="bd-placeholder-img rounded-circle" width="140"
 					style="background-color: #00008B;" height="140"
 					src="resources/img/catalogo/segniZodiacali/cancer.png">
-				<p class="m-1">Albero del Cancro</p>
+				<p class="m-1">
+					<a href="Catalogo?action=vediAlbero&s=Albero del cancro">Albero
+						del Cancro</a>
+				</p>
 			</div>
 			<div class="col">
 				<img class="bd-placeholder-img rounded-circle" width="140"
 					style="background-color: #00008B;" height="140"
 					src="resources/img/catalogo/segniZodiacali/leo.png">
-				<p class="m-1">Albero del Leone</p>
+				<p class="m-1">
+					<a href="Catalogo?action=vediAlbero&s=Albero del leone">Albero
+						del Leone</a>
+				</p>
 			</div>
 			<div class="col">
 				<img class="bd-placeholder-img rounded-circle" width="140"
 					style="background-color: #00008B;" height="140"
 					src="resources/img/catalogo/segniZodiacali/virgo.png">
-				<p class="m-1">Albero della Vergine</p>
+				<p class="m-1">
+					<a href="Catalogo?action=vediAlbero&s=Albero della vergine">Albero
+						della Vergine</a>
+				</p>
 			</div>
 			<div class="col">
 				<img class="bd-placeholder-img rounded-circle" width="140"
 					style="background-color: #00008B;" height="140"
 					src="resources/img/catalogo/segniZodiacali/libra.png">
-				<p class="m-1">Albero della Bilancia</p>
+				<p class="m-1">
+					<a href="Catalogo?action=vediAlbero&s=Albero della bilancia">Albero
+						della Bilancia</a>
+				</p>
 			</div>
 			<div class="col">
 				<img class="bd-placeholder-img rounded-circle" width="140"
 					style="background-color: #00008B;" height="140"
 					src="resources/img/catalogo/segniZodiacali/scorpio.png">
-				<p class="m-1">Albero dello scorpione</p>
+				<p class="m-1">
+					<a href="Catalogo?action=vediAlbero&s=Albero dello scorpione">Albero
+						dello scorpione</a>
+				</p>
 			</div>
 			<div class="col">
 				<img class="bd-placeholder-img rounded-circle" width="140"
 					style="background-color: #00008B;" height="140"
 					src="resources/img/catalogo/segniZodiacali/sagittarius.png">
-				<p class="m-1">Albero del Sagittario</p>
+				<p class="m-1">
+					<a href="Catalogo?action=vediAlbero&s=Albero del sagittario">Albero
+						del Sagittario</a>
+				</p>
 			</div>
 			<div class="col">
 				<img class="bd-placeholder-img rounded-circle" width="140"
 					style="background-color: #00008B;" height="140"
 					src="resources/img/catalogo/segniZodiacali/capricorn.png">
-				<p class="m-1">Albero del Capricorno</p>
+				<p class="m-1">
+					<a href="Catalogo?action=vediAlbero&s=Albero del Capricorno">Albero
+						del Capricorno</a>
+				</p>
 			</div>
 			<div class="col">
 				<img class="bd-placeholder-img rounded-circle" width="140"
 					style="background-color: #00008B;" height="140"
 					src="resources/img/catalogo/segniZodiacali/aquarius.png">
-				<p class="m-1">Albero dell'Acquario</p>
+				<p class="m-1">
+					<a href="Catalogo?action=vediAlbero&s=Albero dell'Acquario">Albero
+						dell'Acquario</a>
+				</p>
 			</div>
 			<div class="col">
 				<img class="bd-placeholder-img rounded-circle" width="140"
 					style="background-color: #00008B;" height="140"
 					src="resources/img/catalogo/segniZodiacali/pisces.png">
-				<p class="m-1">Albero dei Pesci</p>
+				<p class="m-1">
+					<a href="Catalogo?action=vediAlbero&s=Albero dei Pesci">Albero
+						dei Pesci </a>
+				</p>
 			</div>
-
 		</div>
 
 	</div>

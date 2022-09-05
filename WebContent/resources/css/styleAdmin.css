@@ -1,7 +1,15 @@
 @charset "UTF-8";
 
+#adminNav {
+	background-color: #3F5B73;
+}
+
+#adminNav  a {
+	color: white;
+}
+
 body {
-	background: #93c572;
+	background: #EBF2F2;
 }
 
 .home-content {
@@ -23,7 +31,7 @@ body {
 	align-items: center;
 	justify-content: center;
 	width: calc(100%/ 4 - 15px);
-	background: #c4d89d;
+	background: #fff;
 	padding: 15px 14px;
 	border-radius: 12px;
 	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
@@ -39,6 +47,31 @@ body {
 	font-size: 35px;
 	margin-top: -6px;
 	font-weight: 500;
+}
+
+.home-content .box .indicator {
+	display: flex;
+	align-items: center;
+}
+
+.home-content .box .indicator i {
+	height: 20px;
+	width: 20px;
+	background: #8FDACB;
+	line-height: 20px;
+	text-align: center;
+	border-radius: 50%;
+	color: #fff;
+	font-size: 20px;
+	margin-right: 5px;
+}
+
+.box .indicator i.down {
+	background: #e87d88;
+}
+
+.home-content .box .indicator .text {
+	font-size: 12px;
 }
 
 .home-content .box .cart {
@@ -77,10 +110,17 @@ body {
 	background: #f7d4d7;
 }
 
-.tab {
+.form {
+	width: 99%;
 	background: #fff;
 	padding: 20px 20px 20px 20px;
-	margin: 10 10px;
+	margin: 0 10px;
+	border-radius: 12px;
+	box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.tabb {
+	background: #fff;
 	border-radius: 12px;
 	box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
 	width: 1200px;

@@ -214,9 +214,11 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					<!-- The slideshow/carousel -->
 					<div class="carousel-inner">
 						<div class="carousel-item active">
+
 							<img src="./GetFotoProdotto?idFoto=<%=foto[0].getNomeFoto()%>"
 								class="d-block w-100 img-fluid"
 								onerror="this.src='./resources/img/error.jpg'">
+
 						</div>
 						<div class="carousel-item">
 							<img src="./GetFotoProdotto?idFoto=<%=foto[1].getNomeFoto()%>"
@@ -265,7 +267,12 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 							<%=prodotto.getSottotitolo()%>
 						</p>
 					</div>
+					<div class="col">
+						<a class="card-link" data-bs-toggle="modal"
+							data-bs-target="#prezzo">Cos'è incluso nel prezzo?</a>
+					</div>
 				</div>
+
 				<hr>
 				<div class="row">
 					<div class="col">
@@ -682,7 +689,156 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			</div>
 		</div>
 	</div>
+	<!-- Modal Prezzo -->
+	<div class="modal fade" id="prezzo" tabindex="-1" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-body p-5">
+					<h2 class="fw-bold mb-3">Cos'è incluso nel prezzo?</h2>
+					<img class="mx-5 my-1" src="resources/img/treedom-about-price.png"
+						width="350px">
+					<p class="m-1">Piantare un albero con Treedom significa
+						finanziare un contadino per piantare un albero e sostenerlo fino a
+						quando non sarà produttivo. Con Treedom infatti un albero è molto
+						più di un albero. Ecco cosa è incluso nel prezzo:</p>
+					<ol class="d-grid gap-4 my-2 list-group list-group-numbered">
+						<li class="d-flex">Avvio del progetto</li>
+						<li class="d-flex ">Costruzione del vivaio e produzione delle
+							piantine</li>
+						<li class="d-flex ">Distribuzione delle piante ai contadini</li>
+						<li class="d-flex ">Messa a dimora della pianta</li>
+						<li class="d-flex">Manutenzione della pianta fino al momento
+							in cui non darà un reddito al contadino</li>
+						<li class="d-flex ">Formazione dei contadini sulle migliori
+							pratiche agro-forestali, anche con il supporto di università ed
+							enti di ricerca locali</li>
+						<li class="d-flex">Sostituzione delle fallanze durante i
+							primi anni in cui il tasso di mortalità è più elevato</li>
+						<li class="d-flex">Piantumazione di un 5% in più di alberi
+							che non vengono assegnati agli utenti per coprire le fallanze</li>
+						<li class="d-flex">Registrazione delle coordinate GPS
+							dell'albero e monitoraggio fotografico</li>
+						<li class="d-flex">Controlli annuali a campione sulle aree di
+							progetto per verificare la permanenza degli alberi e la loro
+							buona salute</li>
+						<li class="d-flex">Approvazione della foto e controllo delle
+							coordinate di ogni singolo albero da parte dei nostri agronomi
+							specializzati.</li>
+						<li class="d-flex">Assegnazione all’albero di un ID univoco e
+							inserimento dell’albero <a
+							href="ChiSiamoServlet#registroDegliAlberi" class="card-link">nel
+								registro pubblico</a>
+						</li>
+						<li class="d-flex">Aggiornamenti periodici sul progetto, con
+							un focus sui benefici ambientali e sociali, pubblicati nel Diario
+							dell’Albero</li>
+					</ol>
+					<button type="button" class="btn btn-lg btn-primary mt-5 w-100"
+						data-bs-dismiss="modal">Ho capito!</button>
+				</div>
+			</div>
+		</div>
+	</div>
 	<!-- Footer -->
 	<%@ include file="../fragments/footer.jsp"%>
+	<script type="text/javascript">
+		// Zoom images
+
+		// Add zoom-image class to the container of the image that you want to apply the zoom to.
+
+		jQuery(document)
+				.ready(
+						function($) {
+
+							$('.zoom-image img').click(function(event) {
+								var ix = $(this).offset().left;
+								var iy = $(this).offset().top;
+								console.log(ix + '-' + iy);
+
+								var mx = event.pageX;
+								var my = event.pageY;
+								console.log(mx + '-' + my);
+							})
+
+							$('.zoom-image img')
+									.hover(
+											function() {
+
+												var img = $(this).attr('src');
+
+												$(this)
+														.after(
+																"<div class='hover-image' style='background-image: url("
+																		+ img
+																		+ "); background-size: 1200px;'></div>");
+
+												$(this)
+														.mousemove(
+																function(event) {
+
+																	// Mouse Position
+																	var mx = event.pageX;
+																	var my = event.pageY;
+
+																	// Image Position
+																	var ix = $(
+																			this)
+																			.offset().left;
+																	var iy = $(
+																			this)
+																			.offset().top;
+
+																	// Mouse Position Relavtive to Image
+																	var x = mx
+																			- (ix);
+																	var y = my
+																			- (iy);
+
+																	// Image Height and Width
+																	var w = $(
+																			this)
+																			.width();
+																	var h = $(
+																			this)
+																			.height();
+
+																	// Mouse Position Relative to Image, in %
+																	var xp = (-x / w)
+																			* -100;
+																	var yp = (-y / h)
+																			* -100;
+
+																	$(this)
+																			.parent()
+																			.find(
+																					'.hover-image')
+																			.attr(
+																					'style',
+
+																					"background-image: url("
+																							+ img
+																							+ "); background-size: 1200px; background-repeat: no-repeat; background-position: "
+																							+ xp
+																							+ "% "
+																							+ yp
+																							+ "%; top: "
+																							+ y
+																							+ "px; left: "
+																							+ x
+																							+ "px;");
+
+																});
+
+											},
+											function() {
+
+												$(this).parent().find(
+														'.hover-image')
+														.remove();
+
+											});
+
+						});
+	</script>
 </body>
 </html>

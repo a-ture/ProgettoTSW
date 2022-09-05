@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -117,38 +118,71 @@ public class KitAlberiDAO implements GenericDAO<KitAlberi> {
 
 	}
 
-	@Override
 	public void doSave(KitAlberi item) throws SQLException {
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
-
-		String insertSQL = "INSERT INTO " + KitAlberiDAO.TABLE_NAME + " (nome, saldo, descrizione)"
+		String insertOrder = "INSERT INTO " + KitAlberiDAO.TABLE_NAME + " (nome, saldo, descrizione)"
 				+ " VALUES (?, ?, ?)";
+		String insertItem = "INSERT INTO kit_alberi(pid,kid) " + "VALUES (?, ?)";
+		var conn = ds.getConnection();
+		conn.setAutoCommit(false);
+		try (var stmt = conn.prepareStatement(insertOrder, Statement.RETURN_GENERATED_KEYS)) {
+			stmt.setString(1, item.getNome());
+			stmt.setDouble(2, item.getSaldo());
+			stmt.setString(3, item.getDescrizione());
 
-		try {
-			connection = ds.getConnection();
+			stmt.executeUpdate();
 
-			preparedStatement = connection.prepareStatement(insertSQL);
-			preparedStatement.setString(1, item.getNome());
-			preparedStatement.setDouble(2, item.getSaldo());
-			preparedStatement.setString(3, item.getDescrizione());
+			ResultSet rs = stmt.getGeneratedKeys();
+			if (rs.next()) {
+				int lastInsertedId = rs.getInt(1);
 
-			preparedStatement.executeUpdate();
+				for (Albero i : item.getAlberi()) {
+					var stmt2 = conn.prepareStatement(insertItem);
+					stmt2.setInt(1, i.getId());
+					stmt2.setInt(2, lastInsertedId);
 
-			connection.commit();
-		} finally {
-			try {
-				if (preparedStatement != null)
-					preparedStatement.close();
-			} finally {
-				if (connection != null)
-					connection.close();
+					stmt2.execute();
+				}
 			}
+			conn.commit();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			conn.rollback();
 		}
+
 	}
 
 	@Override
 	public int doUpdate(KitAlberi item) throws SQLException {
+
+		String updateOrder = "UPDATE " + KitAlberiDAO.TABLE_NAME + " SET nome = ?, saldo=?, descrizione =? "
+				+ "WHERE id = ? ";
+		String insertItem = "INSERT INTO kit_alberi(pid,kid) " + "VALUES (?, ?)";
+		String deleteSQL = "DELETE FROM kit_alberi WHERE kid = ?";
+		var conn = ds.getConnection();
+		PreparedStatement preparedStatement = null;
+		try {
+			var stmt = conn.prepareStatement(updateOrder);
+			stmt.setString(1, item.getNome());
+			stmt.setDouble(2, item.getSaldo());
+			stmt.setString(3, item.getDescrizione());
+			stmt.setInt(4, item.getId());
+			stmt.executeUpdate();
+
+			preparedStatement = conn.prepareStatement(deleteSQL);
+			preparedStatement.setInt(1, item.getId());
+
+			preparedStatement.executeUpdate();
+			for (Albero i : item.getAlberi()) {
+				var stmt2 = conn.prepareStatement(insertItem);
+				stmt2.setInt(1, i.getId());
+				stmt2.setInt(2, item.getId());
+
+				stmt2.execute();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			conn.rollback();
+		}
 
 		return 0;
 	}
@@ -278,7 +312,7 @@ public class KitAlberiDAO implements GenericDAO<KitAlberi> {
 
 	}
 
-	public synchronized static void updatePhoto(String idA, String photo) throws SQLException {
+	public synchronized static void updatePhoto(int id, String photo) throws SQLException {
 		Connection con = null;
 		PreparedStatement stmt = null;
 
@@ -290,7 +324,7 @@ public class KitAlberiDAO implements GenericDAO<KitAlberi> {
 			try {
 				FileInputStream fis = new FileInputStream(file);
 				stmt.setBinaryStream(1, fis, fis.available());
-				stmt.setInt(2, Integer.parseInt(idA));
+				stmt.setInt(2, id);
 
 				stmt.executeUpdate();
 				con.commit();
@@ -311,4 +345,5 @@ public class KitAlberiDAO implements GenericDAO<KitAlberi> {
 			}
 		}
 	}
+
 }

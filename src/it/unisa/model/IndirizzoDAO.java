@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
 
@@ -73,47 +72,6 @@ public class IndirizzoDAO implements GenericDAO<Indirizzo> {
 			}
 		}
 		return bean;
-	}
-
-	public Collection<Indirizzo> doRetriveByUser(int i) throws SQLException {
-
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
-		Collection<Indirizzo> beans = new ArrayList<Indirizzo>();
-
-		String selectSQL = "SELECT * FROM " + IndirizzoDAO.TABLE_NAME + " WHERE cid = ?";
-
-		try {
-			connection = ds.getConnection();
-			preparedStatement = connection.prepareStatement(selectSQL);
-			preparedStatement.setInt(1, i);
-
-			ResultSet rs = preparedStatement.executeQuery();
-
-			while (rs.next()) {
-				Indirizzo bean = new Indirizzo();
-				bean.setCAP(rs.getString("cap"));
-				bean.setCittà(rs.getString("città"));
-				bean.setCognome(rs.getString("cognome"));
-				bean.setId(rs.getInt("id"));
-				bean.setVia(rs.getString("via"));
-				bean.setNome(rs.getString("nome"));
-				bean.setPreferred(rs.getBoolean("preferred"));
-				bean.setUid(rs.getInt("cid"));
-				bean.setCivico(rs.getString("civico"));
-				bean.setProvincia(rs.getString("provincia"));
-				beans.add(bean);
-			}
-		} finally {
-			try {
-				if (preparedStatement != null)
-					preparedStatement.close();
-			} finally {
-				if (connection != null)
-					connection.close();
-			}
-		}
-		return beans;
 	}
 
 	@Override
@@ -232,11 +190,11 @@ public class IndirizzoDAO implements GenericDAO<Indirizzo> {
 			preparedStatement.setString(7, item.getCivico());
 			preparedStatement.setBoolean(8, item.isPreferred());
 			preparedStatement.setInt(9, item.getId());
-			
+
 			preparedStatement.executeUpdate();
 
 			connection.commit();
-			
+
 		} finally {
 			try {
 				if (preparedStatement != null)

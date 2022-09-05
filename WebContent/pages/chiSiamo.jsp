@@ -7,6 +7,7 @@ int utentiTotali = (int) request.getAttribute("utentiTotali");
 int paesiTotali = (int) request.getAttribute("paesiTotali");
 int prodottiTotali = (int) request.getAttribute("prodottiTotali");
 
+Collection<?> ordini = (Collection<?>) request.getAttribute("ordini");
 Collection<?> utenti = (Collection<?>) request.getAttribute("utentiAcquisti");
 Collection<?> prodotti = (Collection<?>) request.getAttribute("prodottiVenduti");
 
@@ -33,15 +34,65 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 <!-- FontAwesome -->
 <script src="https://kit.fontawesome.com/6bd8866cc2.js"
 	crossorigin="anonymous"></script>
-
+<!-- jQuey -->
+<script src="https://code.jquery.com/jquery-3.6.0.js"
+	integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+	crossorigin="anonymous"></script>
+<!-- Animate.css -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 <style>
+.course-title {
+	display: flex;
+	justify-content: center;
+	font-weight: bold;
+	font-size: 34px;
+	color: #fff;
+}
+
+.count-up {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+.wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	position: relative;
+	margin: 20px;
+	box-shadow: -4px 2px 10px 0 rgba(0, 0, 0, 0.2);
+	background-color: #fff;
+	width: 250px;
+	height: 300px;
+}
+
+.counter {
+	font-size: 40px;
+	font-weight: bold;
+	background-color: #fff;
+	border-radius: 3px;
+	position: relative;
+	color: #3e3e3e;
+}
+
+.wrapper i {
+	color: #17a2b8;
+	z-index: 1;
+	font-size: 64px;
+	margin-bottom: 5px
+}
 </style>
+
 </head>
 <body>
 	<!-- Header -->
 	<%@ include file="../fragments/header.jsp"%>
 	<!-- HERO -->
-	<div class="px-4 py-5 my-5 text-center">
+	<div class="px-4 py-5 my-5 text-center" id="welcome">
 		<h1 class="display-5 fw-bold">Chi Siamo</h1>
 		<div class="col-lg-6 mx-auto">
 			<p class="lead mb-4">La riforestazione è una delle azioni più
@@ -129,50 +180,41 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 		<p class="border-bottom text-center">Il nostro obiettivo
 			principale è contrastare la crisi climatica alimentando un modello di
 			sviluppo sostenibile.</p>
-		<div class="row row-cols-2 row-cols-md-4 g-6 mb-5">
-			<div class="card-group w-100">
+
+		<div class="count-up mt-3 mb-5">
+			<div class="wrapper">
 				<div class="card h-100 w-100">
-					<img src="resources/img/chiSiamoPage/info_users.svg"
-						class="card-img-top">
+					<img src="resources/img/chiSiamoPage/info_users.svg" height="200"
+						width="200" class="card-img-top">
 					<div class="card-body">
 						<h5 class="card-title">Persone</h5>
-						<p class="card-text"><%=utentiTotali%></p>
+						<div class="counter" data-count="<%=utentiTotali%>">0</div>
 					</div>
 				</div>
+			</div>
+			<div class="wrapper">
 				<div class="card h-100">
 					<img src="resources/img/chiSiamoPage/info_countries.svg"
-						class="card-img-top">
+						height="200" width="200" class="card-img-top">
 					<div class="card-body">
 						<h5 class="card-title text-center">Paesi</h5>
-						<p class="card-text"><%=paesiTotali%></p>
+						<div class="counter" data-count="<%=paesiTotali%>">0</div>
 					</div>
 				</div>
-				<!--	<div class="card h-100">
-					<img src="resources/img/chiSiamoPage/info_emission.svg"
-						class="card-img-top">
-					<div class="card-body">
-						<h5 class="card-title text-center">Kg Di CO2</h5>
-						<p class="card-text">0</p>
-					</div>
-				</div>
-				 <div class="card h-100">
-					<img src="resources/img/chiSiamoPage/info_projects.svg"
-						class="card-img-top" alt="...">
-					<div class="card-body">
-						<h5 class="card-title">Beneficari</h5>
-						<p class="card-text">0</p>
-					</div>
-				</div> -->
+			</div>
+			<div class="wrapper">
 				<div class="card h-100">
-					<img src="resources/img/chiSiamoPage/info_trees.svg"
-						class="card-img-top">
+					<img src="resources/img/chiSiamoPage/info_trees.svg" height="200"
+						width="200" class="card-img-top">
 					<div class="card-body">
 						<h5 class="card-title">Alberi</h5>
-						<p class="card-text"><%=prodottiTotali%></p>
+						<div class="counter" data-count="<%=prodottiTotali%>">0</div>
 					</div>
 				</div>
 			</div>
 		</div>
+
+
 
 		<h4>Scopri chi ha piantato più alberi.</h4>
 		<table class="table m-3">
@@ -206,11 +248,6 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			</tbody>
 		</table>
 		<a type="button" class="btn btn-primary my-5" href="Catalogo">Partecipa
-			anche tu!</a>
-
-
-		<h4 class="m-3">Dove stanno piantando di più?</h4>
-		<a type="button" class="btn btn-primary m-3" href="Catalogo">Partecipa
 			anche tu!</a>
 
 		<h4>Felici di questi risultati</h4>
@@ -313,14 +350,10 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					beneficio per l’intero pianeta.</p>
 			</div>
 			<div class="col-md-5">
-				<svg
+
+				<img src="resources/img/chiSiamoPage/chiSiamo3.jpg"
 					class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
-					width="500" height="500" xmlns="http://www.w3.org/2000/svg"
-					role="img" aria-label="Placeholder: 500x500"
-					preserveAspectRatio="xMidYMid slice" focusable="false">
-						<title>Placeholder</title><rect width="100%" height="100%"
-						fill="#eee"></rect>
-						<text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
+					width="500" height="500">
 
 			</div>
 		</div>
@@ -343,15 +376,10 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					termini di frutti.</p>
 			</div>
 			<div class="col-md-5 order-md-1">
-				<svg
+				<img
 					class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
-					width="500" height="500" xmlns="http://www.w3.org/2000/svg"
-					role="img" aria-label="Placeholder: 500x500"
-					preserveAspectRatio="xMidYMid slice" focusable="false">
-						<title>Placeholder</title><rect width="100%" height="100%"
-						fill="#eee"></rect>
-						<text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
-
+					width="500" height="500"
+					src="resources/img/chiSiamoPage/chiSiamo.jpg">
 			</div>
 		</div>
 
@@ -375,15 +403,11 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					possa rendere questo pianeta più verde. E vogliamo farlo nel modo
 					giusto.</p>
 			</div>
-			<div class="col-md-5">
-				<svg
+			<div class="col-md-5 ">
+				<img
 					class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
-					width="500" height="500" xmlns="http://www.w3.org/2000/svg"
-					role="img" aria-label="Placeholder: 500x500"
-					preserveAspectRatio="xMidYMid slice" focusable="false">
-						<title>Placeholder</title><rect width="100%" height="100%"
-						fill="#eee"></rect>
-						<text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
+					width="500" height="500"
+					src="resources/img/chiSiamoPage/chiSiamo2.jpg">
 			</div>
 		</div>
 
@@ -415,14 +439,9 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					pianeta e per le comunità locali</p>
 			</div>
 			<div class="col-md-5">
-				<svg
+				<img src="resources/img/chiSiamoPage/chiSiamo1.jpeg"
 					class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
-					width="500" height="500" xmlns="http://www.w3.org/2000/svg"
-					role="img" aria-label="Placeholder: 500x500"
-					preserveAspectRatio="xMidYMid slice" focusable="false">
-						<title>Placeholder</title><rect width="100%" height="100%"
-						fill="#eee"></rect>
-						<text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
+					width="500" height="500">
 			</div>
 		</div>
 
@@ -440,7 +459,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				<div class="col">
 					<div
 						class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg"
-						style="background-image: url('unsplash-photo-1.jpg');">
+						style="background-image: url('resources/img/chiSiamoPage/guatemala.jpg');">
 						<div
 							class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
 							<h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Guatemala
@@ -452,7 +471,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				<div class="col">
 					<div
 						class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg"
-						style="background-image: url('unsplash-photo-2.jpg');">
+						style="background-image: url('resources/img/chiSiamoPage/pery.jpeg');">
 						<div
 							class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
 							<h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Perù -
@@ -464,7 +483,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				<div class="col">
 					<div
 						class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg"
-						style="background-image: url('unsplash-photo-3.jpg');">
+						style="background-image: url('resources/img/chiSiamoPage/italia.jpg');">
 						<div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
 							<h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Italia -
 								Diverse regioni italiane</h2>
@@ -498,8 +517,6 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			</div>
 
 		</div>
-
-
 	</div>
 	<!-- Divider -->
 	<div class="b-example-divider"></div>
@@ -553,11 +570,180 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			</div>
 		</div>
 	</div>
-	<!-- /.container -->
 
 	<div class="b-example-divider"></div>
+
+	<div class="container my-5" id="registroDegliAlberi">
+		<h1 class="text-center mb-3">Registro degli alberi</h1>
+		<div class="row g-3 text-center">
+
+			<div class="col-md-3 mx-5">
+				<div class="input-group mb-3">
+					<input type="text" class="form-control" placeholder="Cerca per id"
+						aria-label="Recipient's username" aria-describedby="button-addon2"
+						id="myInput" onkeyup="myFunctionId()">
+					<button class="btn btn-outline-secondary" type="button"
+						id="button-addon2">
+						<i class="fa-solid fa-magnifying-glass"></i>
+					</button>
+				</div>
+			</div>
+
+			<div class="col-md-3 mx-5">
+				<div class="input-group mb-3">
+					<input type="text" class="form-control"
+						placeholder="Cerca per username" aria-label="Recipient's username"
+						aria-describedby="button-addon2" id="myInputUsername"
+						onkeyup="myFunctionName()">
+					<button class="btn btn-outline-secondary" type="button"
+						id="button-addon2">
+						<i class="fa-solid fa-magnifying-glass"></i>
+					</button>
+				</div>
+			</div>
+
+			<div class="col-md-3 mx-5">
+				<div class="input-group mb-3">
+					<input type="text" class="form-control"
+						placeholder="Cerca per tipo albero"
+						aria-label="Recipient's username" aria-describedby="button-addon2"
+						id="myInputTree" onkeyup="myFunctionNameTree()">
+					<button class="btn btn-outline-secondary" type="button"
+						id="button-addon2">
+						<i class="fa-solid fa-magnifying-glass"></i>
+					</button>
+				</div>
+			</div>
+
+		</div>
+		<table class="table text-center my-2" id="myTable">
+			<thead style="background-color: #e5c59c;">
+				<tr>
+					<th scope="col">Id</th>
+					<th scope="col">Albero</th>
+					<th scope="col">Stato</th>
+					<th scope="col">Piantato Da</th>
+					<th scope="col">Piantato il</th>
+				</tr>
+			</thead>
+			<tbody style="background-color: #f4ebc7;">
+				<%
+				if (ordini != null && ordini.size() != 0) {
+					Iterator<?> it2 = ordini.iterator();
+					while (it2.hasNext()) {
+						Ordine ordine = (Ordine) it2.next();
+						Collection<ProdottoOrdine> prodottiOrdini = ordine.getItems();
+						Iterator<?> it4 = prodottiOrdini.iterator();
+
+						while (it4.hasNext()) {
+
+					ProdottoOrdine p = (ProdottoOrdine) it4.next();
+				%>
+				<tr>
+					<td scope="row"><%=p.getId()%></td>
+					<td><%=p.getNome()%></td>
+					<td><%=p.getStato()%></td>
+					<td><%=ordine.getUtente().getUsername()%></td>
+					<td><%=ordine.getCreatoIl()%></td>
+				</tr>
+				<%
+				}
+				}
+				}
+				%>
+			</tbody>
+		</table>
+	</div>
 	<!-- Footer -->
 	<%@ include file="../fragments/footer.jsp"%>
+	<script type="text/javascript">
+		$(".effect").mouseleave(function() {
+			$(this).removeClass("effect");
+		});
+	</script>
+	<script>
+		function myFunctionId() {
+			var input, filter, table, tr, td, i, txtValue;
+			input = document.getElementById("myInput");
+			filter = input.value.toUpperCase();
+			table = document.getElementById("myTable");
+			tr = table.getElementsByTagName("tr");
+			for (i = 0; i < tr.length; i++) {
+				td = tr[i].getElementsByTagName("td")[0];
+				if (td) {
+					txtValue = td.textContent || td.innerText;
+					if (txtValue.toUpperCase().indexOf(filter) > -1) {
+						tr[i].style.display = "";
+					} else {
+						tr[i].style.display = "none";
+					}
+				}
+			}
+		}
 
+		function myFunctionName() {
+			var input, filter, table, tr, td, i, txtValue;
+			input = document.getElementById("myInputUsername");
+			filter = input.value.toUpperCase();
+			table = document.getElementById("myTable");
+			tr = table.getElementsByTagName("tr");
+			for (i = 0; i < tr.length; i++) {
+				td = tr[i].getElementsByTagName("td")[3];
+				if (td) {
+					txtValue = td.textContent || td.innerText;
+					if (txtValue.toUpperCase().indexOf(filter) > -1) {
+						tr[i].style.display = "";
+					} else {
+						tr[i].style.display = "none";
+					}
+				}
+			}
+		}
+
+		function myFunctionNameTree() {
+			var input, filter, table, tr, td, i, txtValue;
+			input = document.getElementById("myInputTree");
+			filter = input.value.toUpperCase();
+			table = document.getElementById("myTable");
+			tr = table.getElementsByTagName("tr");
+			for (i = 0; i < tr.length; i++) {
+				td = tr[i].getElementsByTagName("td")[1];
+				if (td) {
+					txtValue = td.textContent || td.innerText;
+					if (txtValue.toUpperCase().indexOf(filter) > -1) {
+						tr[i].style.display = "";
+					} else {
+						tr[i].style.display = "none";
+					}
+				}
+			}
+		}
+	</script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$(".counter").each(function() {
+				var count = $(this);
+				var countTo = count.attr('data-count');
+				$({
+					countNum : count.text()
+				}).animate({
+					countNum : countTo,
+				}, {
+					duration : 3000,
+					easing : 'linear',
+					step : function() {
+						count.text(Math.floor(this.countNum));
+					},
+					complete : function() {
+						count.text(this.countNum);
+					}
+				});
+			});
+
+			$('.effect').mouseleave(function() {
+				$(this).removeClass('effect');
+			})
+		});
+	</script>
 </body>
 </html>
