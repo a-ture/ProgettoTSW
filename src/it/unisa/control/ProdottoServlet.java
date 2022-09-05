@@ -271,8 +271,8 @@ public class ProdottoServlet extends HttpServlet {
 
 				salvaFotoKit(request, kit);
 			} else if (action.equalsIgnoreCase("aggiornaAlbero")) {
+				String id = request.getParameter("codiceProdotto");
 
-			} else if (action.equalsIgnoreCase("inserisciAlbero")) { // MI MANCA LA CATEGORIA
 				String nome = request.getParameter("nome");
 				String nomeScientifico = request.getParameter("nomeScientifico");
 				double prezzo = Double.parseDouble(request.getParameter("prezzo"));
@@ -287,7 +287,75 @@ public class ProdottoServlet extends HttpServlet {
 				int quantità = Integer.parseInt(request.getParameter("quantità"));
 				double tasse = Double.parseDouble(request.getParameter("tasse"));
 				String paeseDiOrigine = request.getParameter("paese");
-				System.out.print(paeseDiOrigine);
+
+				String doveVienePiantato = request.getParameter("doveVienePiantato");
+
+				Albero bean = new Albero();
+				bean.setAltezza(altezza);
+				bean.setCo2(co2);
+				bean.setDescrizione(descrizione);
+				bean.setDescrizioneBreve(descrizioneBreve);
+				bean.setId(altezza);
+				bean.setNome(nome);
+				bean.setNomeScientifico(nomeScientifico);
+				bean.setOnSale(co2);
+				bean.setPaeseDiOrigine(paeseDiOrigine);
+				bean.setPrezzo(prezzo);
+				bean.setQuantità(quantità);
+				bean.setSalvaguardia(salvaguardia);
+				bean.setSottotitolo(sottotitolo);
+				bean.setDoveVienePiantato(doveVienePiantato);
+				bean.setOnSale(onSale);
+				bean.setSaldo(saldo);
+				bean.setTasse(tasse);
+
+				int sicAlimentare = Integer.parseInt(request.getParameter("ben1"));
+				int sviSoste = Integer.parseInt(request.getParameter("ben2"));
+				int assCO2 = Integer.parseInt(request.getParameter("ben3"));
+				int sviEconomico = Integer.parseInt(request.getParameter("ben4"));
+
+				Collection<Beneficio> benefits = new ArrayList<Beneficio>();
+				benefits.add(new Beneficio(1, sicAlimentare));
+				benefits.add(new Beneficio(2, sviSoste));
+				benefits.add(new Beneficio(4, assCO2));
+				benefits.add(new Beneficio(3, sviEconomico));
+
+				String[] catId = request.getParameterValues("categorie");
+				Collection<Categoria> categorie = new ArrayList<Categoria>();
+				for (String i : catId) {
+					String idC = i.substring(3);
+					categorie.add(model4.doRetriveByKey(idC));
+				}
+
+				String[] usiId = request.getParameterValues("usi");
+				Collection<UsoLocale> usi = new ArrayList<UsoLocale>();
+				for (String i : usiId) {
+					String idU = i.substring(3);
+					usi.add(model3.doRetriveByKey(idU));
+				}
+				bean.setCategorie(categorie);
+				bean.setUsiLocali(usi);
+				bean.setBenefici(benefits);
+				bean.setId(Integer.parseInt(id));
+
+				model.doUpdate(bean);
+				
+			} else if (action.equalsIgnoreCase("inserisciAlbero")) {
+				String nome = request.getParameter("nome");
+				String nomeScientifico = request.getParameter("nomeScientifico");
+				double prezzo = Double.parseDouble(request.getParameter("prezzo"));
+				String sottotitolo = request.getParameter("sottotitolo");
+				String descrizioneBreve = request.getParameter("descrizioneBreve");
+				String descrizione = request.getParameter("descrizione");
+				int co2 = Integer.parseInt(request.getParameter("co2"));
+				int salvaguardia = Integer.parseInt(request.getParameter("salvaguardia"));
+				int altezza = Integer.parseInt(request.getParameter("altezza"));
+				int onSale = Integer.parseInt(request.getParameter("onSale"));
+				double saldo = Double.parseDouble(request.getParameter("saldo"));
+				int quantità = Integer.parseInt(request.getParameter("quantità"));
+				double tasse = Double.parseDouble(request.getParameter("tasse"));
+				String paeseDiOrigine = request.getParameter("paese");
+
 				String doveVienePiantato = request.getParameter("doveVienePiantato");
 
 				Albero bean = new Albero();
@@ -336,14 +404,14 @@ public class ProdottoServlet extends HttpServlet {
 				bean.setCategorie(categorie);
 				bean.setUsiLocali(usi);
 				bean.setBenefici(benefits);
-				System.out.print(bean);
+
 				model.doSave(bean);
 
-				Iterator<Albero> it= model.doRetriveAll("id DESC").iterator();
-				Collection<FotoProdotto> fotos = model1.doRetriveAll(it.next().getId()+"");
-				Iterator<FotoProdotto> it1= fotos.iterator();
-				while(it1.hasNext()) {
-					salvaFotoProdotto(request,it1.next().getNomeFoto());
+				Iterator<Albero> it = model.doRetriveAll("id DESC").iterator();
+				Collection<FotoProdotto> fotos = model1.doRetriveAll(it.next().getId() + "");
+				Iterator<FotoProdotto> it1 = fotos.iterator();
+				while (it1.hasNext()) {
+					salvaFotoProdotto(request, it1.next().getNomeFoto());
 				}
 			}
 		} catch (SQLException e) {
