@@ -229,9 +229,10 @@ public class AlberoDAO implements GenericDAO<Albero> {
 
 	@Override
 	public int doUpdate(Albero item) throws SQLException {
-		String update = "UPDATE  prodotto SET(nome = ?, nomeScientifico =?, descrizione=?, descrizioneBreve=?, prezzo=?, sottotitolo=?, doveVienePiantato=?,"
-				+ "altezza=?, pid=?, onSale=?, quantità=?, co2=?, salvaguardia=?, tasse=?, saldo=?, disponibile=?) "
-				+ "WHERE id = ? ";
+		String update = "UPDATE  prodotto SET nome = ?, nomeScientifico = ?, descrizione = ?, descrizioneBreve = ?, prezzo=?, sottotitolo = ?,"
+				+ " doveVienePiantato = ?,"
+				+ "altezza = ?, pid = ?, onSale = ?, quantità = ?, co2 = ?, salvaguardia = ?, tasse = ?, saldo = ?, disponibile = ? "
+				+ " WHERE id = ? ";
 
 		String updateBenfit = "UPDATE benefici_prodotti  SET percentuale =?  WHERE  pid =? AND cid=?";
 
@@ -240,9 +241,11 @@ public class AlberoDAO implements GenericDAO<Albero> {
 
 		String insertUso = "INSERT INTO albero_usiLocali (pid,uid) VALUES (?,?)";
 		String deleteUso = "DELETE FROM albero_usiLocali WHERE pid=?";
+
 		var conn = ds.getConnection();
 		conn.setAutoCommit(false);
 		try (var stmt = conn.prepareStatement(update, Statement.RETURN_GENERATED_KEYS)) {
+
 			stmt.setString(1, item.getNome());
 			stmt.setString(2, item.getNomeScientifico());
 			stmt.setString(3, item.getDescrizione());
@@ -254,38 +257,47 @@ public class AlberoDAO implements GenericDAO<Albero> {
 			stmt.setString(9, item.getPaeseDiOrigine());
 			stmt.setInt(10, item.getOnSale());
 			stmt.setDouble(11, item.getQuantità());
-			stmt.setInt(11, item.getCo2());
-			stmt.setInt(12, item.getSalvaguardia());
-			stmt.setDouble(13, item.getTasse());
-			stmt.setDouble(14, item.getSaldo());
-			stmt.setBoolean(15, item.isDisponibile());
-			stmt.setInt(16, item.getId());
+			stmt.setInt(12, item.getCo2());
+			stmt.setInt(13, item.getSalvaguardia());
+			stmt.setDouble(14, item.getTasse());
+			stmt.setDouble(15, item.getSaldo());
+			stmt.setBoolean(16, item.isDisponibile());
+
+			stmt.setInt(17, item.getId());
 
 			stmt.executeUpdate();
-			ResultSet rs = stmt.getGeneratedKeys();
-			if (rs.next()) {
-				int lastInsertedId = rs.getInt(1);
 
-				for (Beneficio b : item.getBenefici()) {
-					var stmt2 = conn.prepareStatement(updateBenfit);
-					stmt2.setInt(1, lastInsertedId);
-					stmt2.setInt(2, b.getId());
-					stmt2.setDouble(3, b.getPercentuale());
-
-					stmt2.execute();
-				}
-
-				var stmt2 = conn.prepareStatement(deleteCat);
+			for (Beneficio b : item.getBenefici()) {
+				var stmt2 = conn.prepareStatement(updateBenfit);
 				stmt2.setInt(1, item.getId());
-				stmt2.execute();
+				stmt2.setInt(2, b.getId());
+				stmt2.setDouble(3, b.getPercentuale());
 
-				for (Categoria c : item.getCategorie()) {
-					var stmt3 = conn.prepareStatement(insertCat);
-					stmt3.setInt(1, lastInsertedId);
-					stmt3.setInt(2, c.getId());
+				stmt2.executeUpdate();
+			}
 
-					stmt3.execute();
-				}
+			var stmt2 = conn.prepareStatement(deleteCat);
+			stmt2.setInt(1, item.getId());
+			stmt2.execute();
+
+			for (Categoria c : item.getCategorie()) {
+				var stmt3 = conn.prepareStatement(insertCat);
+				stmt3.setInt(1, item.getId());
+				stmt3.setInt(2, c.getId());
+
+				stmt3.executeUpdate();
+			}
+
+			var stmt4 = conn.prepareStatement(deleteUso);
+			stmt4.setInt(1, item.getId());
+			stmt4.execute();
+
+			for (UsoLocale u : item.getUsiLocali()) {
+				var stmt5 = conn.prepareStatement(insertUso);
+				stmt5.setInt(1, item.getId());
+				stmt5.setInt(2, u.getId());
+
+				stmt5.executeUpdate();
 			}
 			conn.commit();
 		} catch (SQLException e) {

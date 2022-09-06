@@ -281,13 +281,13 @@ public class ProdottoServlet extends HttpServlet {
 				String descrizione = request.getParameter("descrizione");
 				int co2 = Integer.parseInt(request.getParameter("co2"));
 				int salvaguardia = Integer.parseInt(request.getParameter("salvaguardia"));
-				int altezza = Integer.parseInt(request.getParameter("altezza"));
+				double altezza = Double.parseDouble(request.getParameter("altezza"));
 				int onSale = Integer.parseInt(request.getParameter("onSale"));
 				double saldo = Double.parseDouble(request.getParameter("saldo"));
 				int quantità = Integer.parseInt(request.getParameter("quantità"));
 				double tasse = Double.parseDouble(request.getParameter("tasse"));
 				String paeseDiOrigine = request.getParameter("paese");
-
+				String disponibile = request.getParameter("disponibile");
 				String doveVienePiantato = request.getParameter("doveVienePiantato");
 
 				Albero bean = new Albero();
@@ -295,7 +295,7 @@ public class ProdottoServlet extends HttpServlet {
 				bean.setCo2(co2);
 				bean.setDescrizione(descrizione);
 				bean.setDescrizioneBreve(descrizioneBreve);
-				bean.setId(altezza);
+				bean.setAltezza(altezza);
 				bean.setNome(nome);
 				bean.setNomeScientifico(nomeScientifico);
 				bean.setOnSale(co2);
@@ -308,6 +308,8 @@ public class ProdottoServlet extends HttpServlet {
 				bean.setOnSale(onSale);
 				bean.setSaldo(saldo);
 				bean.setTasse(tasse);
+				if (Integer.parseInt(disponibile) == 0)
+					bean.setDisponibile(false);
 
 				int sicAlimentare = Integer.parseInt(request.getParameter("ben1"));
 				int sviSoste = Integer.parseInt(request.getParameter("ben2"));
@@ -338,8 +340,9 @@ public class ProdottoServlet extends HttpServlet {
 				bean.setBenefici(benefits);
 				bean.setId(Integer.parseInt(id));
 
+				System.out.println(bean);
 				model.doUpdate(bean);
-				
+
 			} else if (action.equalsIgnoreCase("inserisciAlbero")) {
 				String nome = request.getParameter("nome");
 				String nomeScientifico = request.getParameter("nomeScientifico");
@@ -349,7 +352,7 @@ public class ProdottoServlet extends HttpServlet {
 				String descrizione = request.getParameter("descrizione");
 				int co2 = Integer.parseInt(request.getParameter("co2"));
 				int salvaguardia = Integer.parseInt(request.getParameter("salvaguardia"));
-				int altezza = Integer.parseInt(request.getParameter("altezza"));
+				double altezza = Double.parseDouble(request.getParameter("altezza"));
 				int onSale = Integer.parseInt(request.getParameter("onSale"));
 				double saldo = Double.parseDouble(request.getParameter("saldo"));
 				int quantità = Integer.parseInt(request.getParameter("quantità"));
@@ -363,7 +366,7 @@ public class ProdottoServlet extends HttpServlet {
 				bean.setCo2(co2);
 				bean.setDescrizione(descrizione);
 				bean.setDescrizioneBreve(descrizioneBreve);
-				bean.setId(altezza);
+				bean.setAltezza(altezza);
 				bean.setNome(nome);
 				bean.setNomeScientifico(nomeScientifico);
 				bean.setOnSale(co2);
@@ -413,6 +416,11 @@ public class ProdottoServlet extends HttpServlet {
 				while (it1.hasNext()) {
 					salvaFotoProdotto(request, it1.next().getNomeFoto());
 				}
+			} else if (action.equalsIgnoreCase("aggiornaFotoAlbero")) {
+				String id = request.getParameter("codice");
+
+				salvaFotoProdotto(request, Integer.parseInt(id));
+
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

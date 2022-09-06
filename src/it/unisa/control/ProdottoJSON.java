@@ -32,11 +32,15 @@ public class ProdottoJSON extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
 		String code = request.getParameter("codice");
 		String action = request.getParameter("action");
+
 		response.setContentType("application/json");
+
 		AlberoDAO dao = new AlberoDAO();
 		FotoProdottoDAO dao1 = new FotoProdottoDAO();
+
 		if (action != null) {
 			if (action.equals("vista")) {
 				try {
@@ -44,9 +48,9 @@ public class ProdottoJSON extends HttpServlet {
 					Albero a = dao.doRetriveByKey(code);
 					response.setStatus(200);
 
-					response.getWriter().print(gson.toJson(a));
+					// Da vedere come cambiare -> scrivere in cookie
+					response.getWriter().write(gson.toJson(a));
 					response.getWriter().flush();
-
 					return;
 				} catch (SQLException e) {
 					e.printStackTrace();

@@ -108,9 +108,7 @@ public class Ordini extends HttpServlet {
 		Carrello carrello = (Carrello) request.getSession().getAttribute("carrello");
 		Utente utente = (Utente) (request.getSession().getAttribute("utente"));
 
-		Indirizzo indirizzo = (Indirizzo) request.getSession().getAttribute("indirizzo");
-
-		if (carrello == null || indirizzo == null) {
+		if (carrello == null) {
 			response.sendError(500);
 			return;
 		}

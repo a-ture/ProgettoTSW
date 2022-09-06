@@ -102,7 +102,7 @@ public class Login extends HttpServlet {
 				if (utente == null || !utente.getPassword().equals(request.getParameter("password"))) {
 					request.getSession().removeAttribute("utente");
 					request.setAttribute("errori", new ArrayList<String>() {
-				
+
 						private static final long serialVersionUID = 1L;
 
 						{
@@ -116,20 +116,20 @@ public class Login extends HttpServlet {
 					request.removeAttribute("errors");
 					if (utente.getRole().equals("cliente")) {
 						request.getSession().setAttribute("utente", utente);
-					} else if (utente.getRole().equals("amministratore")) {
+					} else if (utente.getRole().equals("admin")) {
 						request.getSession().setAttribute("admin", utente);
-
+						response.sendRedirect("./Admin");
+						return;
 					}
 					String tryLoggin = (String) request.getSession().getAttribute("tryLoggin");
 					System.out.println(tryLoggin);
 					if (tryLoggin != null && tryLoggin.equals("try")) {
-						System.out.println("Sono qui ");
 						request.getSession().removeAttribute("tryLoggin");
 						response.sendRedirect("Ordini?action=checkout");
 						return;
 
 					} else
-						response.sendRedirect("Utente");
+						response.sendRedirect("./Utente");
 				}
 			}
 		}

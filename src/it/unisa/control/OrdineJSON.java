@@ -38,7 +38,7 @@ public class OrdineJSON extends HttpServlet {
 				if (action.equals("vedi")) {
 					Ordine o = dao.doRetriveByKey(code);
 					response.setStatus(200);
-					response.getWriter().print(gson.toJson(o));
+					response.getWriter().write(gson.toJson(o));
 					response.getWriter().flush();
 					return;
 				} else if (action.equals("vediFoto")) {
