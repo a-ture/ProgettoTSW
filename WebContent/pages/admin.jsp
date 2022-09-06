@@ -174,7 +174,7 @@ input.invalid {
 						</div>
 					</div>
 
-					<div class="row mt-1">
+					<div class="row mt-1" style="display: flex;">
 						<!-- Cerca Per id   -->
 						<div class="col-md-3 mx-5">
 							<div class="input-group mb-3">
@@ -209,7 +209,7 @@ input.invalid {
 						<div class="col-md-3 mx-5">
 							<div class="input-group mb-3">
 								<input type="text" class="form-control"
-									placeholder="Cerca per data compresa tra x e y"
+									placeholder="dd/MM/yy - dd/MM/yy"
 									aria-label="Recipient's username"
 									aria-describedby="button-addon2" id="myInput3">
 								<button class="btn btn-outline-secondary" type="button"
@@ -231,7 +231,7 @@ input.invalid {
 								<th scope="col">Azioni</th>
 							</tr>
 						</thead>
-						<tbody>
+						<tbody id="tableBodyOrdini">
 							<%
 							if (ordini != null && ordini.size() != 0) {
 								Iterator<?> it2 = ordini.iterator();
@@ -315,7 +315,7 @@ input.invalid {
 					<div class="row mt-2">
 						<div class="text-center fw-bold h3">Alberi</div>
 					</div>
-					<div class="row mt-1">
+					<div class="row mt-1" style="display: flex;">
 						<!-- Cerca Per Id -->
 						<div class="col-md-3 m-5">
 							<div class="input-group mb-3">
@@ -477,7 +477,7 @@ input.invalid {
 					<div class="row mt-2">
 						<div class="text-center fw-bold h3">Kits</div>
 					</div>
-					<div class="row mt-1">
+					<div class="row mt-1" style="display: flex;">
 						<!-- Cerca Per Id -->
 						<div class="col-md-3 m-5">
 							<div class="input-group mb-3">
@@ -987,7 +987,7 @@ input.invalid {
 				</div>
 				<div class="col-9">
 					<input class="form-control " type="text"
-						placeholder="Inserisci nome" name="idKit" >
+						placeholder="Inserisci nome" name="idKit">
 
 				</div>
 			</div>
@@ -1124,521 +1124,539 @@ input.invalid {
 	</div>
 
 	<script>
-		// per il form
-		var currentTab = 0; 
-		showTab(currentTab); 
+	// per il form
+	var currentTab = 0; 
+	showTab(currentTab); 
 
-		function showTab(n) {
+	function showTab(n) {
+		
+		var x = document.getElementsByClassName("tab");
+		x[n].style.display = "block";
+
+		if (n == 0) {
+			document.getElementById("prevBtn").style.display = "none";
+		} else {
+			document.getElementById("prevBtn").style.display = "inline";
+		}
+		if (n == (x.length - 1)) {
+			document.getElementById("nextBtn").innerHTML = "Submit";
+		} else {
+			document.getElementById("nextBtn").innerHTML = "Next";
+		}
+		fixStepIndicator(n)
+	}
+
+	function nextPrev(n) {
+		var x = document.getElementsByClassName("tab");
+		if (n == 1 && !validateForm())
+			return false;
+		x[currentTab].style.display = "none";
+		currentTab = currentTab + n;
+		
+		if (currentTab >= x.length) {
+			document.getElementById("prodottoForm").submit();
+			return false;
+		}
+		showTab(currentTab);
+	}
+
+	function validateForm() {
+		var x, y, i, valid = true;
+		x = document.getElementsByClassName("tab");
+		y = x[currentTab].getElementsByTagName("input");
+		z = x[currentTab].getElementsByTagName("textarea");
+		
+		for (r = 0; r < z.length; r++) {
+			if(z[r].name ==  "descrizione" || z[r].name == "descrizioneBreve" ){
+				if (z[r].value != "" && z[r].lenght != 0) {
+					z[r].classList.add("was-validated");
+					z[r].classList.add("is-valid");
+				}
+				else {
+					z[r].classList.add("is-invalid");
+					valid = false;
+				}
+			}
+		}
+		
+		for (i = 0; i < y.length; i++) {
+		
+			if(y[i].name ==  "nome" ){
+				if (validateNome(y[i])) {
+					y[i].classList.add("was-validated");
+					y[i].classList.add("is-valid");
+				}
+				else {
+					y[i].classList.add("is-invalid");
+					valid = false;
+				}
+			}
+				
+			if( y[i].name == "sottotitolo" || y[i].name == "nomeScientifico" || y[i].name=="doveVienePiantato" ){
+				if (y[i].value == "") {
+					y[i].classList.add("is-invalid");
+					valid = false;
+				} else {
+					y[i].classList.add("is-valid");
+					y[i].classList.add("was-validated");
+				}
+			}
 			
-			var x = document.getElementsByClassName("tab");
-			x[n].style.display = "block";
+			if(y[i].name ==  "prezzo" ){
+				if (validatePrice(y[i])) {
+					y[i].classList.add("was-validated");
+					y[i].classList.add("is-valid");
+				}
+				else {
+					y[i].classList.add("is-invalid");
+					valid = false;
+				}
+			}
+			
+			if(y[i].name ==  "co2" || y[i].name ==  "salvaguardia" || y[i].name == "ben1"  ||  y[i].name == "ben2"
+					||  y[i].name == "ben3" ||  y[i].name == "ben4"){
+				if (validate5(y[i])) {
+					y[i].classList.add("was-validated");
+					y[i].classList.add("is-valid");
+				}
+				else {
+					y[i].classList.add("is-invalid");
+					valid = false;
+				}
+			}
+			
+			if(y[i].name ==  "altezza"){
+				if (validateHeight(y[i])) {
+					y[i].classList.add("was-validated");
+					y[i].classList.add("is-valid");
+				}
+				else {
+					y[i].classList.add("is-invalid");
+					valid = false;
+				}
+			}
+			
+			if(y[i].name ==  "tasse" || y[i].name ==  "saldo" || y[i].name=="quantità"){
+				if (validateNumber(y[i])) {
+					y[i].classList.add("was-validated");
+					y[i].classList.add("is-valid");
+				}
+				else {
+					y[i].classList.add("is-invalid");
+					valid = false;
+				}
+			}
+			
+			if(y[i].name ==  "onSale"){
+				if (validateOnSale(y[i])) {
+					y[i].classList.add("was-validated");
+					y[i].classList.add("is-valid");
+				}
+				else {
+					y[i].classList.add("is-invalid");
+					valid = false;
+				}
+			}
+		}
+		if (valid) {
+			document.getElementsByClassName("step")[currentTab].className += " finish";
+		}
+		return valid; 
+	}
+
+	function fixStepIndicator(n) {
+		var i, x = document.getElementsByClassName("step");
+		for (i = 0; i < x.length; i++) {
+			x[i].className = x[i].className.replace(" active", "");
+		}
+		x[n].className += " active";
+	}
 	
-			if (n == 0) {
-				document.getElementById("prevBtn").style.display = "none";
-			} else {
-				document.getElementById("prevBtn").style.display = "inline";
-			}
-			if (n == (x.length - 1)) {
-				document.getElementById("nextBtn").innerHTML = "Submit";
-			} else {
-				document.getElementById("nextBtn").innerHTML = "Next";
-			}
-			fixStepIndicator(n)
-		}
 
-		function nextPrev(n) {
-			var x = document.getElementsByClassName("tab");
-			if (n == 1 && !validateForm())
-				return false;
-			x[currentTab].style.display = "none";
-			currentTab = currentTab + n;
-			
-			if (currentTab >= x.length) {
-				document.getElementById("prodottoForm").submit();
-				return false;
-			}
-			showTab(currentTab);
+	function validateOnSale(y) {
+		let regex = /^[01]+$/;
+		let str = y.value;
+		if (str.match(regex) && str != "") {
+			return true;
+		} else {
+			return false;
 		}
-
-		function validateForm() {
-			var x, y, i, valid = true;
-			x = document.getElementsByClassName("tab");
-			y = x[currentTab].getElementsByTagName("input");
-			z = x[currentTab].getElementsByTagName("textarea");
-			
-			for (r = 0; r < z.length; r++) {
-				if(z[r].name ==  "descrizione" || z[r].name == "descrizioneBreve" ){
-					if (z[r].value != "" && z[r].lenght != 0) {
-						z[r].classList.add("was-validated");
-						z[r].classList.add("is-valid");
-					}
-					else {
-						z[r].classList.add("is-invalid");
-						valid = false;
-					}
-				}
-			}
-			
-			for (i = 0; i < y.length; i++) {
-			
-				if(y[i].name ==  "nome" ){
-					if (validateNome(y[i])) {
-						y[i].classList.add("was-validated");
-						y[i].classList.add("is-valid");
-					}
-					else {
-						y[i].classList.add("is-invalid");
-						valid = false;
-					}
-				}
-					
-				if( y[i].name == "sottotitolo" || y[i].name == "nomeScientifico" || y[i].name=="doveVienePiantato" ){
-					if (y[i].value == "") {
-						y[i].classList.add("is-invalid");
-						valid = false;
-					} else {
-						y[i].classList.add("is-valid");
-						y[i].classList.add("was-validated");
-					}
-				}
-				
-				if(y[i].name ==  "prezzo" ){
-					if (validatePrice(y[i])) {
-						y[i].classList.add("was-validated");
-						y[i].classList.add("is-valid");
-					}
-					else {
-						y[i].classList.add("is-invalid");
-						valid = false;
-					}
-				}
-				
-				if(y[i].name ==  "co2" || y[i].name ==  "salvaguardia" || y[i].name == "ben1"  ||  y[i].name == "ben2"
-						||  y[i].name == "ben3" ||  y[i].name == "ben4"){
-					if (validate5(y[i])) {
-						y[i].classList.add("was-validated");
-						y[i].classList.add("is-valid");
-					}
-					else {
-						y[i].classList.add("is-invalid");
-						valid = false;
-					}
-				}
-				
-				if(y[i].name ==  "altezza"){
-					if (validateHeight(y[i])) {
-						y[i].classList.add("was-validated");
-						y[i].classList.add("is-valid");
-					}
-					else {
-						y[i].classList.add("is-invalid");
-						valid = false;
-					}
-				}
-				
-				if(y[i].name ==  "tasse" || y[i].name ==  "saldo" || y[i].name=="quantità"){
-					if (validateNumber(y[i])) {
-						y[i].classList.add("was-validated");
-						y[i].classList.add("is-valid");
-					}
-					else {
-						y[i].classList.add("is-invalid");
-						valid = false;
-					}
-				}
-				
-				if(y[i].name ==  "onSale"){
-					if (validateOnSale(y[i])) {
-						y[i].classList.add("was-validated");
-						y[i].classList.add("is-valid");
-					}
-					else {
-						y[i].classList.add("is-invalid");
-						valid = false;
-					}
-				}
-			}
-			if (valid) {
-				document.getElementsByClassName("step")[currentTab].className += " finish";
-			}
-			return valid; 
+	}
+	function validateHeight(y) {
+		let regex = /^\d{0,9}(\.\d{0,2}){0,1}$/;
+		let str = y.value;
+		if (str.match(regex) && str != "") {
+			return true;
+		} else {
+			return false;
 		}
-
-		function fixStepIndicator(n) {
-			var i, x = document.getElementsByClassName("step");
-			for (i = 0; i < x.length; i++) {
-				x[i].className = x[i].className.replace(" active", "");
-			}
-			x[n].className += " active";
-		}
-		
+	}
 	
-		function validateOnSale(y) {
-			let regex = /^[01]+$/;
-			let str = y.value;
-			if (str.match(regex) && str != "") {
-				return true;
-			} else {
-				return false;
-			}
+	function validateNome(y) {
+		let regex = /^[A-Za-z_ ]+$/;
+		let str = y.value;
+		if (str.match(regex)) {
+			return true;
+		} else {
+			return false;
 		}
-		function validateHeight(y) {
-			let regex = /^\d{0,9}(\.\d{0,2}){0,1}$/;
-			let str = y.value;
-			if (str.match(regex) && str != "") {
-				return true;
-			} else {
-				return false;
-			}
+	}
+	
+	function validate5(y) {
+		let str = y.value;
+		if (str>0 && str<=5) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	function validatePrice(y) {
+		let regex = /^\d+(?:[.,]\d+)*$/;
+		let str = y.value;
+		if (str.match(regex)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	function validateText(y) {
+		let regex = /^[a-zA-Z]([0-9a-zA-Z]){1,10}$/;
+		let str = y.value;
+		if (regex.test(str)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	function validateNumber(y) {
+		let regex = /^[0-9]+$/;
+		let str = y.value;
+		if (str.match(regex)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	function validateKit (){
+		var nome =document.kitForm.nomeKit;
+		var descrizione =document.kitForm.descrizioneKit;
+		var saldo =document.kitForm.saldoKit;
+		var valid= true; 
+		
+		if(!validateNome(nome)){
+			nome.classList.add("was-validated");
+			nome.classList.add("is-invalid");
+			valid=false;
+		}else {
+			nome.classList.add("was-validated");
+			nome.classList.add("is-valid");
+		}
+		if (descrizione.value == ""){
+			descrizione.classList.add("was-validated");
+			descrizione.classList.add("is-invalid");
+			valid=false;
+		}
+		else {
+			descrizione.classList.add("was-validated");
+			descrizione.classList.add("is-valid");
 		}
 		
-		function validateNome(y) {
-			let regex = /^[A-Za-z_ ]+$/;
-			let str = y.value;
-			if (str.match(regex)) {
-				return true;
-			} else {
-				return false;
-			}
+		if (!validateNumber(saldo)){
+			saldo.classList.add("was-validated");
+			saldo.classList.add("is-invalid");
+			valid=false;
 		}
-		
-		function validate5(y) {
-			let str = y.value;
-			if (str>0 && str<=5) {
-				return true;
-			} else {
-				return false;
-			}
+		else {
+			saldo.classList.add("was-validated");
+			saldo.classList.add("is-valid");
 		}
-		
-		function validatePrice(y) {
-			let regex = /^\d+(?:[.,]\d+)*$/;
-			let str = y.value;
-			if (str.match(regex)) {
-				return true;
-			} else {
-				return false;
-			}
-		}
-		
-		function validateText(y) {
-			let regex = /^[a-zA-Z]([0-9a-zA-Z]){1,10}$/;
-			let str = y.value;
-			if (regex.test(str)) {
-				return true;
-			} else {
-				return false;
-			}
-		}
-		
-		function validateNumber(y) {
-			let regex = /^[0-9]+$/;
-			let str = y.value;
-			if (str.match(regex)) {
-				return true;
-			} else {
-				return false;
-			}
-		}
-		
-		function validateKit (){
-			var nome =document.kitForm.nomeKit;
-			var descrizione =document.kitForm.descrizioneKit;
-			var saldo =document.kitForm.saldoKit;
-			var valid= true; 
-			
-			if(!validateNome(nome)){
-				nome.classList.add("was-validated");
-				nome.classList.add("is-invalid");
-				valid=false;
-			}else {
-				nome.classList.add("was-validated");
-				nome.classList.add("is-valid");
-			}
-			if (descrizione.value == ""){
-				descrizione.classList.add("was-validated");
-				descrizione.classList.add("is-invalid");
-				valid=false;
-			}
-			else {
-				descrizione.classList.add("was-validated");
-				descrizione.classList.add("is-valid");
-			}
-			
-			if (!validateNumber(saldo)){
-				saldo.classList.add("was-validated");
-				saldo.classList.add("is-invalid");
-				valid=false;
-			}
-			else {
-				saldo.classList.add("was-validated");
-				saldo.classList.add("is-valid");
-			}
-			return valid;
-		}
-		
+		return valid;
+	}
+	
 	</script>
+
 	<script>
-$(document).ready(function() {
+	
+	function myFunctionOrderData() {
 		
+		$.get('OrdineJSON?action=data&date=' + $("#myInput3").val(), function(resp) {
+			printTableOrder(resp);
+		}).fail(function() {
+			alert("Request failed.");
+		});
+
+	}
+	
+	function printTableOrder(j){
+		$("#tableBodyOrdini").empty(); 
+		
+		j.forEach((e) => {
+			$("#tableBodyOrdini").append('<tr> <td scope="row" class="nr">'+e.id+'</td>'+
+					'<td>'+e.utente.email+'</td><td>'+e.totalePagato+'</td><td>'+e.totaleProdotti+'</td><td>'+e.creatoIl.date+'</td></tr>'); 
+		});
+		
+	}
+	$(document).ready(function() {
+
 		$(".botteneIdKitVedi").click(function() {
-			var $row = $(this).closest("tr"); 
+			var $row = $(this).closest("tr");
 			var $id = $row.find(".nr").text();
 			$.get('KitJSON?codice=' + $id, function(resp) {
-					printKit(resp);
-				}).fail(function() { 
-					alert("Request failed.");
-				});			
+				printKit(resp);
+			}).fail(function() {
+				alert("Request failed.");
+			});
 		});
-									
+
 		$(".botteneIdProdottoVedi").click(function() {
-			var $row = $(this).closest("tr");  
+			var $row = $(this).closest("tr");
 			var $id = $row.find(".nr").text();
 			$.get('ProdottoJSON?action=vista&codice=' + $id, function(resp) {
 				printProdotto(resp);
-			}).fail(function() { 
+			}).fail(function() {
 				alert("Request failed.");
-			});			
+			});
 		});
-		
-		$(".vediFoto").click(function() {			
-			var $row = $(this).closest("tr");  
+
+		$(".vediFoto").click(function() {
+			var $row = $(this).closest("tr");
 			var $id = $row.find(".nr").text();
 			$.get('ProdottoJSON?action=vediFoto&codice=' + $id, function(resp) {
 				printProdottoFoto(resp);
-			}).fail(function() { 
+			}).fail(function() {
 				alert("Request failed.");
-			});	
-			
-			$(".uploadFoto-1").click(function() {	
+			});
+
+			$(".uploadFoto-1").click(function() {
 				var $nomeFoto = $("#fotoCodice1").html().substring(7);
 				$("#codiceFotoUpload").val($nomeFoto);
 				$("#uploadFoto").removeClass("d-none")
 			});
-			$(".uploadFoto-2").click(function() {	
+			$(".uploadFoto-2").click(function() {
 				var $nomeFoto = $("#fotoCodice2").html().substring(7);
 				$("#codiceFotoUpload").val($nomeFoto);
 				$("#uploadFoto").removeClass("d-none")
 			});
-			$(".uploadFoto-3").click(function() {	
+			$(".uploadFoto-3").click(function() {
 				var $nomeFoto = $("#fotoCodice3").html().substring(7);
 				$("#codiceFotoUpload").val($nomeFoto);
 				$("#uploadFoto").removeClass("d-none")
 			});
-			
+
 		});
-		
-		$(".vediFotoOrdine").click(function() {			
-			var $row = $(this).closest("tr");  
+
+		$(".vediFotoOrdine").click(function() {
+			var $row = $(this).closest("tr");
 			var $id = $row.find(".nr").text();
-			
+
 			$.get('OrdineJSON?action=vedi&codice=' + $id, function(resp) {
 				printFotoOrdine(resp);
-			}).fail(function() { 
+			}).fail(function() {
 				alert("Request failed.");
 			});
-			
+
 		});
-		
+
 		$(".botteneIdKitModifica").click(function() {
-			var $row = $(this).closest("tr");  
+			var $row = $(this).closest("tr");
 			var $id = $row.find(".nr").text();
 			$.get('KitJSON?action=vista&codice=' + $id, function(resp) {
 				printKitForm(resp);
-			}).fail(function() { 
+			}).fail(function() {
 				alert("Request failed.");
-			});			
+			});
 		});
-		
+
 		$(".botteneIdProdottoModifica").click(function() {
-			var $row = $(this).closest("tr");  
+			var $row = $(this).closest("tr");
 			var $id = $row.find(".nr").text();
 			$.get('ProdottoJSON?action=vista&codice=' + $id, function(resp) {
 				printProdottoForm(resp);
-			}).fail(function() { 
+			}).fail(function() {
 				alert("Request failed.");
-			});			
+			});
 		});
-				
+
 		$(".botteneIdOrdine").click(function() {
-			var $row = $(this).closest("tr"); 
+			var $row = $(this).closest("tr");
 			var $codice = $row.find(".nr").text();
 			$.get('OrdineJSON?action=vedi&codice=' + $codice, function(resp) {
 				printDettagliOrdine(resp);
-			}).fail(function() { 
+			}).fail(function() {
 				alert("Request failed.");
 			});
 		});
-		
-		$("#closeOrdineAlert").click(function() {
-				 $("#ordineAlert").addClass("d-none");
-		});
-		
-		$("#closeProdottoAlert").click(function() {
-			 $("#prodottoAlert").addClass("d-none");
-		});
-		
-		$("#closeKitAlert").click(function() {
-			 $("#kitAlert").addClass("d-none");
-		});
-		
-		$("#closeProdottoFotoAlert").click(function() {
-			 $("#prodottoFotoAlert").addClass("d-none");
-		});
-		
-		$("#closeOrdineFotoAlert").click(function() {
-			 $("#ordineFotoAlert").addClass("d-none");
-		});
-		
-		});
-		function uploadFotoAlbero(id){
-			$("#uploadFotoOrdineForm").removeClass("d-none");
-			$("#codiceProdottoUpload").val(id);
-		}
-		function printFotoOrdine (j){
-			var i=0; 
-			$("#ordineFotoAlert").removeClass("d-none");
-			
-			$("#tableBody").empty();
-			j.items.forEach((e) => {
-				$("#tableBody").append('<tr><td class="nrOrder">'+e.id+'</td><td>'+e.nome+'</td>'+
-						'<td>'+e.prezzo+'</td><td>'+e.saldo+'</td><td>'+e.quantità+
-						'</td><td>'+e.stato+'</td><td><img src="./GetFotoProdottoOrdine?idProdottoOrdine='+e.id
-						+'" class="img-thumbnail bg-secondary bg-gradient" style="max-width:60px;"></td> <td><a class="aggiornaAlbero" onclick="uploadFotoAlbero('+e.id+')"><i class="fa-solid fa-pen-to-square"></i></a></td></tr>');
-			});
-		
-		}
-		
-		function printDettagliOrdine(json) {
-            $("#ordineAlert").removeClass("d-none");
-			$("#numeroOrdineAlert").empty().append("<h4>Dettaglio ordine n."+json.id+"</h4>");
-			
-			$("#prodottiOrdineAlert").empty();
-			json.items.forEach((e) => {
-				$("#prodottiOrdineAlert").append("<li>" + "<b>Nome:</b> "+ e.nome+ ", Prezzo: "+ e.prezzo+", Quantità: "
-						+ e.quantità+", Saldo: "+e.saldo+"%, tasse: " +e.tasse+ "%, Stato: "+e.stato+
-				"</li>");
-			});
-			
-			$("#dettaglioOrdineAlert").empty().append("<b>N. Prodotti:</b>"+json.totaleProdotti + ", ");
-			$("#dettaglioOrdineAlert").append("<b>Totale Ordine:</b>"+json.totalePagato + ", ");
-			$("#dettaglioOrdineAlert").append("<b>Regalo?:</b>" + ", ");
-			$("#dettaglioOrdineAlert").append("<b>Messaggio Regalo</b>"+json.messaggioRegalo + ", ");
-			$("#dettaglioOrdineAlert").append("<b>Destinatario Regalo</b>"+json.destinatarioRegalo + ", ");
-			
-			$("#dettaglioOrdineAlert").empty().append("Ordine effettuato dall'utente: "+ json.utente.id+"("+json.utente.nome+" "
-					+json.utente.cognome+")"+". E-mail:"+
-					 json.utente.email);
-		};
-		
-		function printProdotto (j) {
-			 $("#prodottoAlert").removeClass("d-none");
-			 $("#prodottoIdAlert").empty().append("<h4>Dettaglio prodotto id."+j.id+"</h4>")
-			 
-			  $("#prodottoDescrizioneAlert").empty().append("<b>Nome Scientifico: </b>"+j.nomeScientifico + ",  sottotitolo: " +j.sottotitolo
-					  +", descrizione breve:"+j.descrizioneBreve
-					  +" ,descrizione:"  +j.descrizione+"<br>"
-					  +"Paese:"+ j.paeseDiOrigine +" "+j.doveVienePiantato +"<br>"
-					  +"Altezza:"+j.altezza+" ,co2:"+j.co2+" ,salvaguardia: "+j.salvaguardia);
-			 
-			 $("#prodottoBeneficiAlert").empty();
-			 j.benefici.forEach((e) => {
-					$("#prodottoBeneficiAlert").append("<li>" + "<b>Beneficio:</b> "+ e.nome+ ", con valore: "+ e.percentuale+
-					"</li>");
-				});
-			 
-			 $("#prodottoCategorieAlert").empty();
-			 j.categorie.forEach((e) => {
-					$("#prodottoCategorieAlert").append("<li>" + "<b>Nome:</b> "+ e.nome+ ", descrizione: "+ e.descrizione+
-					"</li>");
-				});
-			 
-			 $("#prodottoUsiLocaliAlert").empty();
-			 j.usiLocali.forEach((e) => {
-					$("#prodottoUsiLocaliAlert").append("<li>" + "<b>Nome:</b> "+ e.nome+ ", descrizione: "+ e.descrizione+
-					"</li>");
-				});
-		}
-		
-		function printProdottoFoto(j){
-			var i=0; 
-			$("#prodottoFotoAlert").removeClass("d-none");
-			$("#prodottoFotoIdAlert").empty().append("<h4>Foto prodotto."+"</h4>")
-			
-			j.forEach((e)=> {
-				i++; 
-				$("#foto"+i).attr("src","./GetFotoProdotto?idFoto="+e.nomeFoto);
-				$("#fotoCodice"+i).empty().append("Foto n."+e.nomeFoto);	
-			});
-		}
-		
-		function printKit (j) {
-			  $("#kitAlert").removeClass("d-none");
-			  $("#kitIdAlert").empty().append("<h4>Dettaglio kit n."+j.id+"</h4>")
-			  $("#kitDescrizioneAlert").empty().append("<b> Nome: </b>"+j.nome +", descrizione:"+ j.descrizione +", saldo:"+j.saldo);
-			 
-			  $("#prdottiKitAlert").empty();
-				 j.alberi.forEach((e) => {
-						$("#prdottiKitAlert").append("<li>" + "<b>Nome:</b> "+ e.nome+ ", prezzo: "+ e.prezzo+
-						"€</li>");
-					});
-		}
-		
-		function printProdottoForm(j) {
-			
-			$('#tab1').append('<div class="row align-items-center" id="codiceProdotto">	<div class="col-3 "> <h5>Codice:</h5>'
-					+' </div>	<div class="col-9">	<input class="form-control " type="text" name="codiceProdotto"> </div> </div>');
-			$('input[name="codiceProdotto"]').val(j.id); 
-			$('input[name="nome"]').val(j.nome); 
-			$('input[name="nomeScientifico"]').val(j.nomeScientifico); 
-			$('input[name="prezzo"]').val(j.prezzo); 
-			$('input[name="sottotitolo"]').val(j.sottotitolo); 
-			$('textArea[name="descrizioneBreve"]').val(j.descrizioneBreve); 
-			$('textArea[name="descrizione"]').val(j.descrizione); 
-			$('input[name="co2"]').val(j.co2); 
-			$('input[name="salvaguardia"]').val(j.salvaguardia); 
-			$('input[name="altezza"]').val(j.altezza); 
-			$('input[name="onSale"]').val(j.onSale); 
-			$('input[name="co2"]').val(j.co2); 
-			$('input[name="saldo"]').val(j.saldo); 
-			$('input[name="quantità"]').val(j.quantità); 
-			$('input[name="doveVienePiantato"]').val(j.doveVienePiantato); 
-			$('input[name="tasse"]').val(j.tasse); 
-			$('select[name="paese"]').val(j.paeseDiOrigine); 
 
-			j.benefici.forEach((e) => {
-					$('input[name=ben'+e.id+']').val(e.percentuale); 
+		$("#closeOrdineAlert").click(function() {
+			$("#ordineAlert").addClass("d-none");
+		});
+
+		$("#closeProdottoAlert").click(function() {
+			$("#prodottoAlert").addClass("d-none");
+		});
+
+		$("#closeKitAlert").click(function() {
+			$("#kitAlert").addClass("d-none");
+		});
+
+		$("#closeProdottoFotoAlert").click(function() {
+			$("#prodottoFotoAlert").addClass("d-none");
+		});
+
+		$("#closeOrdineFotoAlert").click(function() {
+			$("#ordineFotoAlert").addClass("d-none");
+		});
+
+	});
+	function uploadFotoAlbero(id) {
+		$("#uploadFotoOrdineForm").removeClass("d-none");
+		$("#codiceProdottoUpload").val(id);
+	}
+	function printFotoOrdine(j) {
+		var i = 0;
+		$("#ordineFotoAlert").removeClass("d-none");
+
+		$("#tableBody").empty();
+		j.items.forEach((e) => {
+			$("#tableBody").append('<tr> <td class="nrOrder">' + e.id + '</td><td>' + e.nome + '</td>' +
+				'<td>' + e.prezzo + '</td><td>' + e.saldo + '</td><td>' + e.quantità +
+				'</td><td>' + e.stato + '</td><td><img src="./GetFotoProdottoOrdine?idProdottoOrdine=' + e.id
+				+ '" class="img-thumbnail bg-secondary bg-gradient" style="max-width:60px;"></td> <td><a class="aggiornaAlbero" onclick="uploadFotoAlbero(' + e.id + ')"><i class="fa-solid fa-pen-to-square"></i></a></td></tr>');
+		});
+
+	}
+
+	function printDettagliOrdine(json) {
+		$("#ordineAlert").removeClass("d-none");
+		$("#numeroOrdineAlert").empty().append("<h4>Dettaglio ordine n." + json.id + "</h4>");
+
+		$("#prodottiOrdineAlert").empty();
+		json.items.forEach((e) => {
+			$("#prodottiOrdineAlert").append("<li>" + "<b>Nome:</b> " + e.nome + ", Prezzo: " + e.prezzo + ", Quantità: "
+				+ e.quantità + ", Saldo: " + e.saldo + "%, tasse: " + e.tasse + "%, Stato: " + e.stato +
+				"</li>");
+		});
+
+		$("#dettaglioOrdineAlert").empty().append("<b>N. Prodotti:</b>" + json.totaleProdotti + ", ");
+		$("#dettaglioOrdineAlert").append("<b>Totale Ordine:</b>" + json.totalePagato + ", ");
+		$("#dettaglioOrdineAlert").append("<b>Regalo?:</b>" + ", ");
+		$("#dettaglioOrdineAlert").append("<b>Messaggio Regalo</b>" + json.messaggioRegalo + ", ");
+		$("#dettaglioOrdineAlert").append("<b>Destinatario Regalo</b>" + json.destinatarioRegalo + ", ");
+
+		$("#dettaglioOrdineAlert").empty().append("Ordine effettuato dall'utente: " + json.utente.id + "(" + json.utente.nome + " "
+			+ json.utente.cognome + ")" + ". E-mail:" +
+			json.utente.email);
+	};
+
+	function printProdotto(j) {
+		$("#prodottoAlert").removeClass("d-none");
+		$("#prodottoIdAlert").empty().append("<h4>Dettaglio prodotto id." + j.id + "</h4>");
+
+		$("#prodottoDescrizioneAlert").empty().append("<b>Nome Scientifico: </b>" + j.nomeScientifico + ",  sottotitolo: " + j.sottotitolo
+			+ ", descrizione breve:" + j.descrizioneBreve
+			+ " ,descrizione:" + j.descrizione + "<br>"
+			+ "Paese:" + j.paeseDiOrigine + " " + j.doveVienePiantato + "<br>"
+			+ "Altezza:" + j.altezza + " ,co2:" + j.co2 + " ,salvaguardia: " + j.salvaguardia);
+
+		$("#prodottoBeneficiAlert").empty();
+		j.benefici.forEach((e) => {
+			$("#prodottoBeneficiAlert").append("<li>" + "<b>Beneficio:</b> " + e.nome + ", con valore: " + e.percentuale +
+				"</li>");
+		});
+
+		$("#prodottoCategorieAlert").empty();
+		j.categorie.forEach((e) => {
+			$("#prodottoCategorieAlert").append("<li>" + "<b>Nome:</b> " + e.nome + ", descrizione: " + e.descrizione +
+				"</li>");
+		});
+
+		$("#prodottoUsiLocaliAlert").empty();
+		j.usiLocali.forEach((e) => {
+			$("#prodottoUsiLocaliAlert").append("<li>" + "<b>Nome:</b> " + e.nome + ", descrizione: " + e.descrizione +
+				"</li>");
+		});
+	}
+
+	function printProdottoFoto(j) {
+		var i = 0;
+		$("#prodottoFotoAlert").removeClass("d-none");
+		$("#prodottoFotoIdAlert").empty().append("<h4>Foto prodotto." + "</h4>")
+
+		j.forEach((e) => {
+			i++;
+			$("#foto" + i).attr("src", "./GetFotoProdotto?idFoto=" + e.nomeFoto);
+			$("#fotoCodice" + i).empty().append("Foto n." + e.nomeFoto);
+		});
+	}
+
+	function printKit(j) {
+		$("#kitAlert").removeClass("d-none");
+		$("#kitIdAlert").empty().append("<h4>Dettaglio kit n." + j.id + "</h4>")
+		$("#kitDescrizioneAlert").empty().append("<b> Nome: </b>" + j.nome + ", descrizione:" + j.descrizione + ", saldo:" + j.saldo);
+
+		$("#prdottiKitAlert").empty();
+		j.alberi.forEach((e) => {
+			$("#prdottiKitAlert").append("<li>" + "<b>Nome:</b> " + e.nome + ", prezzo: " + e.prezzo +
+				"€</li>");
+		});
+	}
+
+	function printProdottoForm(j) {
+
+		$('#tab1').append('<div class="row align-items-center" id="codiceProdotto">	<div class="col-3 "> <h5>Codice:</h5>'
+			+ ' </div>	<div class="col-9">	<input class="form-control " type="text" name="codiceProdotto"> </div> </div>');
+		$('input[name="codiceProdotto"]').val(j.id);
+		$('input[name="nome"]').val(j.nome);
+		$('input[name="nomeScientifico"]').val(j.nomeScientifico);
+		$('input[name="prezzo"]').val(j.prezzo);
+		$('input[name="sottotitolo"]').val(j.sottotitolo);
+		$('textArea[name="descrizioneBreve"]').val(j.descrizioneBreve);
+		$('textArea[name="descrizione"]').val(j.descrizione);
+		$('input[name="co2"]').val(j.co2);
+		$('input[name="salvaguardia"]').val(j.salvaguardia);
+		$('input[name="altezza"]').val(j.altezza);
+		$('input[name="onSale"]').val(j.onSale);
+		$('input[name="co2"]').val(j.co2);
+		$('input[name="saldo"]').val(j.saldo);
+		$('input[name="quantità"]').val(j.quantità);
+		$('input[name="doveVienePiantato"]').val(j.doveVienePiantato);
+		$('input[name="tasse"]').val(j.tasse);
+		$('select[name="paese"]').val(j.paeseDiOrigine);
+
+		j.benefici.forEach((e) => {
+			$('input[name=ben' + e.id + ']').val(e.percentuale);
+		});
+
+		j.categorie.forEach((e) => {
+			$('select[name=categorie] option[value="cat' + e.id + '"]').attr("selected", 1);
+		});
+
+		j.usiLocali.forEach((e) => {
+			$('select[name=usi] option[value="uso' + e.id + '"]').attr("selected", 1);
+		});
+
+		$('#prodottoForm').attr("action", "Prodotto?action=aggiornaAlbero");
+		$('#tab2').remove();
+
+	}
+
+	function printKitForm(j) {
+		$('#kitForm').attr("action", "Prodotto?action=aggiornaKit")
+		$('#kitFormButton').html("Modifica")
+		$('#idKitForm').removeClass("d-none")
+		$('input[name="idKit"]').val(j.id);
+		$('input[name="nomeKit"]').val(j.nome);
+		$('input[name="nomeScientifico"]').val(j.nomeScientifico);
+		$('input[name="saldoKit"]').val(j.saldo);
+		$('textArea[name="descrizioneKit"]').val(j.descrizione);
+			j.alberi.forEach((e) => {
+				$('select[name=alberiKit] option[value="alb' + e.id + '"]').attr("selected", 1);
 			});
-			
-			j.categorie.forEach((e) => {
-				$('select[name=categorie] option[value="cat'+e.id+'"]').attr("selected", 1);	
-			});
-	
-			j.usiLocali.forEach((e) => {
-				$('select[name=usi] option[value="uso'+e.id+'"]').attr("selected", 1);	
-			});
-			
-			$('#prodottoForm').attr("action","Prodotto?action=aggiornaAlbero");
-			$('#tab2').remove();
-			
-		}
-			
-			function printKitForm(j) {
-				$('#kitForm').attr("action","Prodotto?action=aggiornaKit")
-				$('#kitFormButton').html("Modifica")
-				$('#idKitForm').removeClass("d-none") 
-				$('input[name="idKit"]').val(j.id); 
-				$('input[name="nomeKit"]').val(j.nome); 
-				$('input[name="nomeScientifico"]').val(j.nomeScientifico); 
-				$('input[name="saldoKit"]').val(j.saldo); 
-				$('textArea[name="descrizioneKit"]').val(j.descrizione); 
-				j.alberi.forEach((e) => {
-				$('select[name=alberiKit] option[value="alb'+e.id+'"]').attr("selected", 1);	
-			});
-			}
-		/*function myFunctionOrderData(){
-			
-		}*/
+	}
 	</script>
 </body>
 </html>

@@ -147,7 +147,7 @@ public class OrdineDAO implements GenericDAO<Ordine> {
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
-			
+
 		}
 	}
 
@@ -229,43 +229,34 @@ public class OrdineDAO implements GenericDAO<Ordine> {
 		}
 	}
 
-	public Collection<Ordine> doRetrieveOrdersBetween(String sort, int userId, int from, int howMany,
-			Timestamp fromDate, Timestamp ToDate) throws SQLException {
-		String selectSQL = userId == 0
-				? "SELECT * FROM  " + TABLE_NAME
-						+ " WHERE uid LIKE ? AND creatoIl BETWEEN ? AND ? ORDER BY ? LIMIT ? OFFSET ?"
-				: "SELECT * FROM  " + TABLE_NAME
-						+ " WHERE uid = ?  AND creatoIl BETWEEN ? AND ? ORDER BY ? LIMIT ? OFFSET ?";
+	public Collection<Ordine> doRetrieveOrdersBetween(Timestamp fromDate, Timestamp ToDate) throws SQLException {
+		String selectSQL = "SELECT * FROM  " + TABLE_NAME + " WHERE creatoIl  BETWEEN ? AND ?";
 
-		Collection<Ordine> orders = new LinkedList<>();
+		Collection<Ordine> ordini = new LinkedList<>();
+		UtenteDAO dao = new UtenteDAO();
 
 		try (var conn = ds.getConnection()) {
 			try (var stmt = conn.prepareStatement(selectSQL)) {
-				if (userId == 0)
-					stmt.setString(1, "%");
-				else
-					stmt.setInt(1, userId);
-				stmt.setTimestamp(2, fromDate);
-				stmt.setTimestamp(3, ToDate);
-				stmt.setString(4, sort);
-				stmt.setInt(5, howMany);
-				stmt.setInt(6, from);
+
+				stmt.setTimestamp(1, fromDate);
+				stmt.setTimestamp(2, ToDate);
+
 				System.out.println(stmt);
 				ResultSet rs = stmt.executeQuery();
 				while (rs.next()) {
 					Ordine bean = new Ordine();
-
 					bean.setId(rs.getInt("id"));
 					bean.setTotaleProdotti(rs.getInt("totaleProdotti"));
 					bean.setTotalePagato(rs.getDouble("totalePagato"));
 					bean.setRegalo(rs.getBoolean("regalo"));
 					bean.setMessaggioRegalo(rs.getString("messaggioRegalo"));
 					bean.setCreatoIl(rs.getTimestamp("creatoIl").toLocalDateTime());
-
+					bean.setUtente(dao.doRetriveByKey(rs.getInt("uid") + ""));
+					ordini.add(bean);
 				}
 			}
 		}
-		return orders;
+		return ordini;
 	}
 
 	public Collection<Ordine> doRetrieveSome(String order, int from, int howMany) throws SQLException {
