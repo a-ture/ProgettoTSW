@@ -18,8 +18,13 @@ import javax.servlet.http.Part;
 import it.unisa.beans.Utente;
 import it.unisa.model.UtenteDAO;
 
+/**
+ * Servlet che gestisce l'autenticazione
+ * 
+ * @author raffaella & alessia
+ *
+ */
 @WebServlet("/Login")
-
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, // 2MB
 		maxFileSize = 1024 * 1024 * 10, // 10MB
 		maxRequestSize = 1024 * 1024 * 50) // 50MB
@@ -31,7 +36,9 @@ public class ServletLogin extends HttpServlet {
 		super();
 	}
 
-	@Override
+	/**
+	 * Metodo gestisce l'autenticazione
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -46,7 +53,7 @@ public class ServletLogin extends HttpServlet {
 				return;
 			}
 			if (action.equals("checkout")) {
-				// utente non loggato
+				// utente che non ha effettuato il login prima di fare il checkout, una volta effettuare il login verrà reindirizzato nella pagine precedente
 				if (utente == null) {
 					request.getSession().setAttribute("tryLoggin", "try");
 					request.removeAttribute(action);
@@ -61,6 +68,7 @@ public class ServletLogin extends HttpServlet {
 				}
 			}
 			if (action.equals("registrazione")) {
+				//l'utente effettuerà la registrazione
 				if (utente == null) {
 					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/pages/signUpForm.jsp");
 					dispatcher.forward(request, response);
@@ -78,7 +86,9 @@ public class ServletLogin extends HttpServlet {
 		}
 	}
 
-	@Override
+	/**
+	 * Metodo per controllare la password
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -113,6 +123,7 @@ public class ServletLogin extends HttpServlet {
 					dispatcher.forward(request, response);
 					return;
 				} else {
+					//nel caso di login andato a buon fine assegna il ruolo alla sessione
 					request.removeAttribute("errors");
 					if (utente.getRole().equals("cliente")) {
 						request.getSession().setAttribute("utente", utente);
@@ -122,7 +133,6 @@ public class ServletLogin extends HttpServlet {
 						return;
 					}
 					String tryLoggin = (String) request.getSession().getAttribute("tryLoggin");
-					System.out.println(tryLoggin);
 					if (tryLoggin != null && tryLoggin.equals("try")) {
 						request.getSession().removeAttribute("tryLoggin");
 						response.sendRedirect("Ordini?action=checkout");
@@ -135,6 +145,9 @@ public class ServletLogin extends HttpServlet {
 		}
 	}
 
+	/**
+	 * Metodo che effettua la registrazione
+	 */
 	private void registerUser(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		if (validateForm(request)) {
@@ -176,6 +189,9 @@ public class ServletLogin extends HttpServlet {
 
 	}
 
+	/**
+	 * Metodo per la validazione del form
+	 */
 	private boolean validateForm(HttpServletRequest request) {
 		ArrayList<String> errors = new ArrayList<String>();
 
@@ -198,6 +214,9 @@ public class ServletLogin extends HttpServlet {
 		return errors.size() > 0;
 	}
 
+	/**
+	 * Metodo per salvaree la foto dell'utente
+	 */
 	private void salvaFotoProfilo(HttpServletRequest request, Utente utente) throws IOException, ServletException {
 
 		String SAVE_DIR = "/uploadTemp";

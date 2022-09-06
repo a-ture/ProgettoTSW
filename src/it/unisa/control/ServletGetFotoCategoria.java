@@ -10,9 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import it.unisa.model.CategoriaDAO;
 
-
 /**
- * Servlet implementation class GetFotoCategoria
+ * Servlet per recuperare una foto
  */
 @WebServlet("/GetFotoCategoria")
 public class ServletGetFotoCategoria extends HttpServlet {
@@ -23,6 +22,9 @@ public class ServletGetFotoCategoria extends HttpServlet {
 
 	}
 
+	/**
+	 * Metodo recupera la foto della categoria dal database
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String id = (String) request.getParameter("idCategoria");
@@ -38,6 +40,9 @@ public class ServletGetFotoCategoria extends HttpServlet {
 		}
 	}
 
+	/**
+	 * Metodo Post che richiama il metodo doGet
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 

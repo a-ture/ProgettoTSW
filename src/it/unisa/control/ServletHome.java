@@ -19,19 +19,18 @@ import it.unisa.model.FotoProdottoDAO;
 import it.unisa.model.AlberoDAO;
 
 /**
- * Servlet implementation class Home
+ * Servlet che recupera i dati e li reindirizza alla JSP della Home
  */
 @WebServlet("/Home")
 public class ServletHome extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * Default constructor.
-	 */
 	public ServletHome() {
-		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * Prende le foto dei primi quattro alberi e fa una redirect alla JSP
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 

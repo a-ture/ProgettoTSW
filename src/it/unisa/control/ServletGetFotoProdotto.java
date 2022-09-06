@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import it.unisa.model.FotoProdottoDAO;
 
 /**
- * Servlet implementation class GetFotoProdotto
+ * Servlet per recuperare delle foto
  */
 @WebServlet("/GetFotoProdotto")
 public class ServletGetFotoProdotto extends HttpServlet {
@@ -19,9 +19,11 @@ public class ServletGetFotoProdotto extends HttpServlet {
 
 	public ServletGetFotoProdotto() {
 		super();
-
 	}
 
+	/**
+	 * Metodo recupera le foto del prodotto dal database
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		int id = Integer.parseInt(request.getParameter("idFoto"));
@@ -36,6 +38,10 @@ public class ServletGetFotoProdotto extends HttpServlet {
 		}
 		out.close();
 	}
+	
+	/**
+	 * Metodo Post che richiama il metodo doGet
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doGet(request, response);

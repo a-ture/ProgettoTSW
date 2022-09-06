@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import it.unisa.model.UsoLocaleDAO;
 
 /**
- * Servlet implementation class GetFotoUsoLocale
+ * Servlet per recuperare una foto
  */
 @WebServlet("/GetFotoUsoLocale")
 public class ServletGetFotoUsoLocale extends HttpServlet {
@@ -22,6 +22,9 @@ public class ServletGetFotoUsoLocale extends HttpServlet {
 
 	}
 
+	/**
+	 * Metodo recupera la foto del uso dal database
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String id = (String) request.getParameter("idUsoLocale");
@@ -37,9 +40,11 @@ public class ServletGetFotoUsoLocale extends HttpServlet {
 		}
 	}
 
+	/**
+	 * Metodo Post che richiama il metodo doGet
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		doGet(request, response);
 	}
 

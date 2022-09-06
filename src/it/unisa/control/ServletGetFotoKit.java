@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import it.unisa.model.KitAlberiDAO;
 
 /**
- * Servlet implementation class GetFotoKit
+ * Servlet per recuperare una foto
  */
 @WebServlet("/GetFotoKit")
 public class ServletGetFotoKit extends HttpServlet {
@@ -22,6 +22,9 @@ public class ServletGetFotoKit extends HttpServlet {
 
 	}
 
+	/**
+	 * Metodo recupera la foto del kit dal database
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String id = (String) request.getParameter("idKit");
@@ -39,6 +42,9 @@ public class ServletGetFotoKit extends HttpServlet {
 		}
 	}
 
+	/**
+	 * Metodo Post che richiama il metodo doGet
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		

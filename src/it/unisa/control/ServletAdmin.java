@@ -29,7 +29,7 @@ import it.unisa.model.KitAlberiDAO;
 import it.unisa.model.UtenteDAO;
 
 /**
- * Servlet implementa la classe SrvletAdmin
+ * Servlet per la gestione delle immagini degli alberi (utilizzata dagli admin)
  */
 @WebServlet("/Admin")
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, // 2MB
@@ -159,7 +159,7 @@ public class ServletAdmin extends HttpServlet {
 			}
 		}
 	}
-
+	
 	private String extractFileName(Part part) {
 		String contentDisp = part.getHeader("content-disposition");
 		String[] items = contentDisp.split(";");

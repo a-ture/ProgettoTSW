@@ -10,9 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import it.unisa.model.PaeseDiOrigineDAO;
 
-
 /**
- * Servlet implementation class GetPhoto
+ * Servlet per recuperare una foto
  */
 @WebServlet("/GetFotoPaeseDiOrigine")
 public class ServletGetFotoPaeseDiOrigine extends HttpServlet {
@@ -22,6 +21,9 @@ public class ServletGetFotoPaeseDiOrigine extends HttpServlet {
 		super();
 	}
 
+	/**
+	 * Metodo recupera la foto del paese di origine dal database
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String id = (String) request.getParameter("idPaese");
@@ -39,6 +41,9 @@ public class ServletGetFotoPaeseDiOrigine extends HttpServlet {
 		}
 	}
 
+	/**
+	 * Metodo Post che richiama il metodo doGet
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doGet(request, response);

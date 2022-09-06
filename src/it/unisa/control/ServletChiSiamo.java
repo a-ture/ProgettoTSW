@@ -22,7 +22,7 @@ import it.unisa.model.AlberoDAO;
 import it.unisa.model.UtenteDAO;
 
 /**
- * Servlet implementation class ChiSiamoServlet
+ * Servlet per mostrare statistiche
  */
 @WebServlet("/ChiSiamoServlet")
 public class ServletChiSiamo extends HttpServlet {
@@ -33,6 +33,9 @@ public class ServletChiSiamo extends HttpServlet {
 
 	}
 
+	/**
+	 * Metodo per richiedere alcuni dati utili per le statistiche
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -85,6 +88,9 @@ public class ServletChiSiamo extends HttpServlet {
 		dispatcher.forward(request, response);
 	}
 
+	/**
+	 * Metodo Post che richiama il metodo doGet
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 

@@ -10,9 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import it.unisa.model.BeneficioDAO;
 
-
 /**
- * Servlet implementation class GetFotoBeneficio
+ * Servlet per recuperare una foto
  */
 @WebServlet("/GetFotoBeneficio")
 public class ServletGetFotoBeneficio extends HttpServlet {
@@ -23,6 +22,9 @@ public class ServletGetFotoBeneficio extends HttpServlet {
 
 	}
 
+	/**
+	 * Metodo recupera la foto del beneficio dal database
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String id = (String) request.getParameter("idBeneficio");
@@ -38,9 +40,11 @@ public class ServletGetFotoBeneficio extends HttpServlet {
 		}
 	}
 
+	/**
+	 * Metodo Post che richiama il metodo doGet
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		doGet(request, response);
 	}
 

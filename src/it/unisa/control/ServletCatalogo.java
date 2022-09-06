@@ -26,7 +26,7 @@ import it.unisa.model.AlberoDAO;
 import it.unisa.model.UsoLocaleDAO;
 
 /**
- * Servlet implementa la classe Catalogo
+ * Servlet per gestire la visione del calalogo in base alle sue categorie
  */
 @WebServlet("/Catalogo")
 public class ServletCatalogo extends HttpServlet {
@@ -37,6 +37,9 @@ public class ServletCatalogo extends HttpServlet {
 
 	}
 
+	/**
+	 *Mostra il catalogo analizzando il paramtro action
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -60,7 +63,7 @@ public class ServletCatalogo extends HttpServlet {
 					prodotti = model.doRetriveAll(sort);
 
 					kits = model3.doRetriveAll(null);
-					// devo ordinare i kitrr
+					// devo ordinare i kit
 
 				} catch (SQLException e1) {
 					e1.printStackTrace();
@@ -73,6 +76,7 @@ public class ServletCatalogo extends HttpServlet {
 				request.setAttribute("kits", kits);
 
 			} else if (action.equals("saldi")) {
+				// esegue un filtro che restituisce il catalogo ordinato in base ai saldi
 				try {
 					Iterator<Albero> it = model.doRetriveAll(null).iterator();
 					while (it.hasNext()) {
@@ -89,7 +93,7 @@ public class ServletCatalogo extends HttpServlet {
 				request.setAttribute("prodotti", prodotti);
 
 			} else if (action.equals("categoria")) {
-
+				// esegue un filtro che restituisce il catalogo ordinato in base alla categoria
 				String categoria = request.getParameter("categoria");
 				if (categoria != null) {
 					int id = Integer.parseInt(categoria);
@@ -102,6 +106,7 @@ public class ServletCatalogo extends HttpServlet {
 					request.setAttribute("prodotti", prodotti);
 				}
 			} else if (action.equals("vediAlberi")) {
+				// esegue un filtro che restituisce il catalogo ordinato in base agli alberi
 				try {
 					prodotti = model.doRetriveAll("");
 				} catch (SQLException e) {
@@ -112,6 +117,7 @@ public class ServletCatalogo extends HttpServlet {
 				request.setAttribute("prodotti", prodotti);
 				request.removeAttribute("kits");
 			} else if (action.equals("vediKit")) {
+				// esegue un filtro che restituisce il catalogo ordinato in base ai kit
 				try {
 					kits = model3.doRetriveAll(null);
 				} catch (SQLException e) {
@@ -121,6 +127,7 @@ public class ServletCatalogo extends HttpServlet {
 				request.removeAttribute("kits");
 				request.setAttribute("kits", kits);
 			} else if (action.equals("paese")) {
+				// esegue un filtro che restituisce il catalogo ordinato in base al paese
 				String paese = request.getParameter("paese");
 				if (paese != null) {
 					try {
@@ -139,6 +146,7 @@ public class ServletCatalogo extends HttpServlet {
 					request.setAttribute("prodotti", prodotti);
 				}
 			} else if (action.equals("usoLocale")) {
+				// esegue un filtro che restituisce il catalogo ordinato in base all'uso
 				String usoLocale = request.getParameter("usoLocale");
 				try {
 					Iterator<Albero> it = model.doRetriveAll(null).iterator();
@@ -161,6 +169,7 @@ public class ServletCatalogo extends HttpServlet {
 				request.setAttribute("prodotti", prodotti);
 
 			} else if (action.equals("vediAlbero")) {
+				// rindirizza alla pagina del prodotto cercato
 				String s = request.getParameter("s");
 				try {
 					Iterator<Albero> it = model.doRetriveAll(null).iterator();
@@ -177,6 +186,7 @@ public class ServletCatalogo extends HttpServlet {
 				}
 			}
 		} else {
+			// azione di default: mostra il catalogo senza filtri
 			try {
 				prodotti = model.doRetriveAll(null);
 
@@ -231,6 +241,9 @@ public class ServletCatalogo extends HttpServlet {
 		dispatcher.forward(request, response);
 	}
 
+	/**
+	 * Metodo Post che richiama il doGet
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doGet(request, response);

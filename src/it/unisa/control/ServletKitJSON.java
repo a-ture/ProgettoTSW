@@ -15,7 +15,7 @@ import it.unisa.beans.KitAlberi;
 import it.unisa.model.KitAlberiDAO;
 
 /**
- * Servlet implementation class KitJSON
+ * Servlet che fa visualizza il contenuto dei kit in formato JSON
  */
 @WebServlet("/KitJSON")
 public class ServletKitJSON extends HttpServlet {
@@ -26,7 +26,10 @@ public class ServletKitJSON extends HttpServlet {
 		super();
 		
 	}
-
+	
+	/**
+	 * Metodo Get per vedere tutti i prodotti alberi che fanno parte del kit avente il codice passato come paramtro
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String code = request.getParameter("codice");
@@ -46,10 +49,12 @@ public class ServletKitJSON extends HttpServlet {
 			return;
 		}
 	}
-
+	
+	/**
+	 * Metodo Post che richiama il doGet
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
