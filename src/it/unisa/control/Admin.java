@@ -29,7 +29,7 @@ import it.unisa.model.KitAlberiDAO;
 import it.unisa.model.UtenteDAO;
 
 /**
- * Servlet implementation class Admin
+ * Servlet implementa la classe Admin
  */
 @WebServlet("/Admin")
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, // 2MB
@@ -40,9 +40,13 @@ public class Admin extends HttpServlet {
 
 	public Admin() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
-
+	
+	/**
+	 * Recupera le informazioni sugli ordini visibili dall'amministratore
+	 * @pre devi aver effettuato il Login come amministratore
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -96,6 +100,9 @@ public class Admin extends HttpServlet {
 		dispatcher.forward(request, response);
 	}
 
+	/**
+	 * Aggiorna il prodotto aggiungendo la foto dell'albero e la stato
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		OrdineDAO dao = new OrdineDAO();
@@ -121,6 +128,13 @@ public class Admin extends HttpServlet {
 		dispatcher.forward(request, response);
 	}
 
+	/**
+	 * Salva la foto del prodotto
+	 * @param request	
+	 * @param id	codice identificativo del prodotto
+	 * @throws IOException	eccezioni
+	 * @throws ServletException	eccezioni
+	 */
 	private void salvaFotoProdottoOrdine(HttpServletRequest request, int id) throws IOException, ServletException {
 
 		String SAVE_DIR = "/uploadTemp";

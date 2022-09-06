@@ -26,7 +26,7 @@ import it.unisa.model.AlberoDAO;
 import it.unisa.model.UsoLocaleDAO;
 
 /**
- * Servlet implementation class Catalogo
+ * Servlet implementa la classe Catalogo
  */
 @WebServlet("/Catalogo")
 public class Catalogo extends HttpServlet {
