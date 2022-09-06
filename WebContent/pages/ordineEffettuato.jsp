@@ -95,11 +95,29 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 							<div class="d-flex justify-content-between pt-2">
 								<p class="fw-bold mb-0">Dettagli ordine</p>
 							</div>
-							<div class="d-flex justify-content-between pt-2">
+							
 								<p class="text-muted mb-0">
 									Numero prodotti :
 									<%=ordine.getTotaleProdotti()%></p>
-							</div>
+								<%
+								if (ordine.isRegalo()) {
+								%>
+								<p class="text-muted mb-0 ">
+									Il tuo ordine è un regalo per
+									<%=ordine.getDestinatarioRegalo()%>
+								</p>
+								<p class="text-muted mb-0">
+									La tua dedica:
+									<%=ordine.getMessaggioRegalo()%>
+								</p>
+								<p class="text-muted mb-0">
+									Il codice per riscattare il regalo è
+									<%=ordine.getId()%>
+								</p>
+								<%
+								}
+								%>
+						
 						</div>
 						<div class="card-footer border-0 px-4 py-5"
 							style="background-color: #a8729a; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">

@@ -93,8 +93,7 @@ public class ServletLogin extends HttpServlet {
 			throws ServletException, IOException {
 
 		String action = request.getParameter("action");
-		request.setAttribute("active", "Login");
-
+		
 		if (action != null) {
 			if (action.equals("registrazione")) {
 				registerUser(request, response);

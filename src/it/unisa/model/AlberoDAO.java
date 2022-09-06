@@ -227,6 +227,34 @@ public class AlberoDAO implements GenericDAO<Albero> {
 		}
 	}
 
+	public void updateQuantità(Albero a) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		String update = "UPDATE  prodotto SET quantità = ?, disponibile = ? WHERE id=?";
+		try {
+			connection = ds.getConnection();
+			connection.setAutoCommit(false);
+
+			preparedStatement = connection.prepareStatement(update);
+			preparedStatement.setInt(1, a.getQuantità());
+			preparedStatement.setBoolean(2, a.isDisponibile());
+			preparedStatement.setInt(3, a.getId());
+			preparedStatement.executeUpdate();
+			connection.commit();
+
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null)
+					connection.close();
+			}
+		}
+
+	}
+
 	@Override
 	public int doUpdate(Albero item) throws SQLException {
 		String update = "UPDATE  prodotto SET nome = ?, nomeScientifico = ?, descrizione = ?, descrizioneBreve = ?, prezzo=?, sottotitolo = ?,"

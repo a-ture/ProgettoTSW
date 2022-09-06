@@ -95,6 +95,7 @@ public class UtenteDAO implements GenericDAO<Utente> {
 				bean.setNome(rs.getString("nome"));
 				bean.setPassword(rs.getString("password"));
 				bean.setRole(rs.getString("role"));
+				bean.setIndirizzi(doRetriveByUser(bean.getId()));
 				beans.add(bean);
 			}
 		} finally {
@@ -282,6 +283,7 @@ public class UtenteDAO implements GenericDAO<Utente> {
 				bean.setPassword(rs.getString("password"));
 				bean.setUsername(rs.getString("username"));
 				bean.setRole(rs.getString("role"));
+				bean.setIndirizzi(doRetriveByUser(bean.getId()));
 			}
 
 		} finally {
@@ -314,6 +316,7 @@ public class UtenteDAO implements GenericDAO<Utente> {
 
 			while (rs.next()) {
 				Indirizzo bean = new Indirizzo();
+				
 				bean.setCAP(rs.getString("cap"));
 				bean.setCittà(rs.getString("città"));
 				bean.setCognome(rs.getString("cognome"));
@@ -324,6 +327,7 @@ public class UtenteDAO implements GenericDAO<Utente> {
 				bean.setUid(rs.getInt("cid"));
 				bean.setCivico(rs.getString("civico"));
 				bean.setProvincia(rs.getString("provincia"));
+			
 				beans.add(bean);
 			}
 		} finally {

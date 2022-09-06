@@ -33,14 +33,13 @@
 				<img class="navbar-brand" src="./resources/img/logo.png"
 					height="60px">
 			</button>
-			<button class="navbar-toggler collapsed" type="button"
-				data-bs-toggle="collapse" data-bs-target="#navbarColor01"
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="collapse" data-bs-target="#header"
 				aria-controls="navbarColor01" aria-expanded="false"
 				aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-
-			<div class="navbar-collapse collapse" id="navbarColor01" style="">
+			<div class="navbar-collapse collapse" id="header">
 				<ul class="navbar-nav me-auto">
 					<li class="nav-item"><a class="nav-link active" href="Home">Home
 							<span class="visually-hidden">(current)</span>

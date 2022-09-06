@@ -36,7 +36,7 @@ public class ServletOrdineJSON extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String code = request.getParameter("codice");
-		response.setContentType("application/json");
+		response.setContentType("application/json ; charset=UTF-8");
 		OrdineDAO dao = new OrdineDAO();
 		String action = request.getParameter("action");
 		try {
@@ -54,19 +54,11 @@ public class ServletOrdineJSON extends HttpServlet {
 					String data1 = date.substring(0, 8);
 					String data2 = date.substring(11, 19);
 
-					System.out.println("1:" + data1);
-					System.out.println("2:" + data2);
-
-					System.out.println(convertStringToTimestamp(data1));
-					System.out.println(convertStringToTimestamp(data2));
-
 					Collection<Ordine> c = dao.doRetrieveOrdersBetween(convertStringToTimestamp(data1),
 							convertStringToTimestamp(data2));
 
-					System.out.println(c);
 					response.getWriter().write(gson.toJson(c));
 					response.getWriter().flush();
-
 				}
 			}
 		} catch (SQLException e) {

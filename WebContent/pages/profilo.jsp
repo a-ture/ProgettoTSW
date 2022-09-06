@@ -7,7 +7,6 @@
 	import="java.util.*, it.unisa.beans.*,java.text.*"%>
 <%
 Utente utente = (Utente) request.getSession().getAttribute("utente");
-Collection<?> indirizzi = (Collection<?>) request.getSession().getAttribute("indirizzi");
 
 Collection<?> ordini = (Collection<?>) request.getSession().getAttribute("ordiniUtente");
 Collection<?> ordiniRegalati = (Collection<?>) request.getSession().getAttribute("ordiniRegalati");
@@ -120,7 +119,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 	position: absolute;
 	background-color: #e5c59c;
 	height: 10px;
-	width: 75%;
+	width: 100%;
 	top: 50%;
 	left: 0px;
 	transform: translateY(-50%);
@@ -167,7 +166,8 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 	<%@ include file="../fragments/header.jsp"%>
 	<br>
 	<div class="container">
-		<div class="row d-flex">
+		<div
+			class="row d-flex row-cols-1 row-cols-md-3 row-cols-sm-1 justify-content-center">
 			<div class="col-2">
 				<img src="GetFotoUtente?idUtente=<%=utente.getId()%>"
 					onerror="this.src='./resources/img/placeholderProfile.png'"
@@ -194,7 +194,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				</div>
 				<div class="row">
 					<a href="#modificaInformazioni" class="btn btn-primary col-5"
-						id="modificaInformazioniButton">Modifica Informazioni</a>
+						id="modificaInformazioniButton">Modifica </a>
 				</div>
 			</div>
 			<div class="col">
@@ -228,6 +228,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 	<hr>
 
 	<div class="container">
+
 		<div class="row g-4">
 			<!-- Sidenav START -->
 			<div class="col-lg-3">
@@ -252,9 +253,6 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						<div class="offcanvas-body d-block px-2 px-lg-0">
 							<!-- Card START -->
 							<div class="card overflow-hidden">
-								<!-- Cover image -->
-								<div class="h-50px"
-									style="background-image: url(); background-position: center; background-size: cover; background-repeat: no-repeat;"></div>
 								<!-- Card body START -->
 								<div class="card-body pt-0">
 									<!-- Side Nav START -->
@@ -512,6 +510,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					Collection<ProdottoOrdine> prodotti = ordine.getItems();
 					Iterator<ProdottoOrdine> it2 = prodotti.iterator();
 					while (it2.hasNext()) {
+
 						ProdottoOrdine prodottoOrdine = it2.next();
 					%>
 
@@ -531,6 +530,15 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 										<b>Data di nascita:</b><%=ordine.getCreatoIl()%>
 									</p>
 									<%
+									String descrizione = prodottoOrdine.getBreveDescrizione();
+									String[] splits = descrizione.split(", Categorie:");
+									String name = (splits[0].replace("Paese:", "").trim());
+									%>
+									<p class="card-text">
+										<b>Paese:</b>
+										<%=name%>
+									</p>
+									<%
 									if (ordine.isRegalo()) {
 									%>
 									<p class="card-text">
@@ -539,7 +547,6 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 									<%
 									}
 									%>
-
 									<div class="progress-bar-container mb-3 ">
 										<div id="progress-bar-<%=prodottoOrdine.getStato()%>"></div>
 										<%
@@ -637,12 +644,12 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 													<i class="fa-solid fa-seedling"></i>
 												</h3>
 											</div>
-											<div class="circle">
+											<div class="circle active">
 												<h3>
 													<i class="fa-solid fa-location-dot"></i>
 												</h3>
 											</div>
-											<div class="circle">
+											<div class="circle active">
 												<h3>
 													<i class="fa-solid fa-image"></i>
 												</h3>
@@ -667,17 +674,65 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				<!-- Badge -->
 				<div class="row d-none" id="badge">
 
+					<%
+					int maxCat = 0;
+					int i = 0;
+					int p = 0;
+					int g = 0;
+					Iterator<?> it4 = ordini.iterator();
+					while (it4.hasNext()) {
+						Ordine ordine = (Ordine) it4.next();
+						Collection<ProdottoOrdine> prodotti = ordine.getItems();
+						Iterator<ProdottoOrdine> it5 = prodotti.iterator();
+						while (it5.hasNext()) {
+							ProdottoOrdine prodottoOrdine = it5.next();
+
+							String descrizione = prodottoOrdine.getBreveDescrizione();
+							String[] splits = descrizione.split(", Categorie:");
+							String name = (splits[0].replace("Paese:", "").trim());
+							String categorie = splits[1].trim();
+
+							int cat = Integer.parseInt(categorie);
+
+							if (maxCat < cat) {
+						maxCat = cat;
+							}
+
+							if (name.equalsIgnoreCase("italia"))
+						i = 1;
+							else if (name.equalsIgnoreCase("perù"))
+						p = 1;
+							else if (name.equalsIgnoreCase("guatemala"))
+						g = 1;
+						}
+					}
+
+					int paesi = i + p + g;
+					%>
+
 					<h1 class="text-center">I tuoi badge</h1>
 
 					<div class="row row-cols-1 row-cols-md-3 g-3 text-center">
 						<!-- Astrologo -->
 						<div class="card">
 							<img src="./resources/img/badge/astrologo.png"
-								class="card-img-top badgeImg " alt="...">
+								class="card-img-top <%if (numeroAlberiAcquistati < 40)%>badgeImg "
+								alt="...">
 							<div class="card-body">
 								<h5 class="card-title">Astrologo</h5>
+								<%if (numeroAlberiAcquistati < 40) {%>
 								<a href="#!" class="btn btn-primary" data-bs-toggle="modal"
 									data-bs-target="#astrologoModal">Sblocca</a>
+								<%
+								} else {
+								%>
+								<p class="text-center text-success">
+									Hai comprato
+									<%=numeroAlberiAcquistati%>. Punta sempre più in alto!.
+								</p>
+								<%
+								}
+								%>
 							</div>
 						</div>
 						<!-- benefattore -->
@@ -703,18 +758,20 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						<!-- Giramondo -->
 						<div class="card">
 							<img src="./resources/img/badge/giramondo.png"
-								class="card-img-top <%if (numeroAlberiAcquistati < 3)%>badgeImg"
+								class="card-img-top <%if (paesi < 3) {%>badgeImg" <%}%>
 								alt="...">
 							<div class="card-body">
 								<h5 class="card-title">Giramondo</h5>
-								<%if (numeroDiRegali == 0) {%>
+								<%
+								if (paesi < 3) {
+								%>
 								<a href="#!" class="btn btn-primary" data-bs-toggle="modal"
 									data-bs-target="#giramondoModal">Sblocca</a>
 								<%
 								} else {
 								%>
-								<p class="text-center text-success">Hai creato la tua
-									foresta!</p>
+								<p class="text-center text-success">I tuoi alberi sono in
+									giro per il mondo</p>
 								<%
 								}
 								%>
@@ -743,13 +800,21 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						<!-- Multitasking -->
 						<div class="card">
 							<img src="./resources/img/badge/multitasking.png"
-								class="card-img-top badgeImg" alt="...">
+								class="card-img-top <%if (maxCat < 3) {%> badgeImg" <%}%>
+								alt="...">
 							<div class="card-body">
-
-
 								<h5 class="card-title">Multitasking</h5>
+								<%
+								if (maxCat < 3) {
+								%>
 								<a href="#!" class="btn btn-primary" data-bs-toggle="modal"
 									data-bs-target="#multitaskingModal">Sblocca</a>
+								<%
+								} else {
+								%>
+								<p class="text-center text-success">Hai comprato alberi che
+									assolvono a molti usi</p>
+								<%}%>
 							</div>
 						</div>
 						<!-- Tarzan -->
@@ -785,6 +850,8 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				<div id="indirizzo" class="row d-none px-5  pb-5">
 					<h1 class="text-center">I tuoi indirizzi</h1>
 					<%
+					Collection<Indirizzo> indirizzi = utente.getIndirizzi();
+					
 					if (indirizzi != null && indirizzi.size() != 0) {
 						Iterator<?> it = indirizzi.iterator();
 					%>
@@ -847,8 +914,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					} else {
 					%>
 					<p class="text-center">Non hai salvato nessun indirizzo di
-						fatturazione! Potrai salvare il tuo primo indirizzo in fase di
-						checkout</p>
+						fatturazione!</p>
 					<%
 					}
 					%>
@@ -858,8 +924,10 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					</div>
 					<div id="showIndirizzo" class="d-none">
 						<h4 class="mb-3">Inidirizzo di fatturazione</h4>
+
 						<form class="needs-validation" novalidate autocomplete="off"
-							name="salvaIndirizzo" action="" id="salvaIndirizzo">
+							name="salvaIndirizzo" action="Utente?action=salvaIndirizzo"
+							method="POST" onSubmit="return validateAdress()">
 							<div class="row g-3">
 								<div class="col-sm-6">
 									<label for="nome" class="form-label">Nome</label> <input
@@ -916,6 +984,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 							<button class="w-100 btn btn-primary btn-lg mb-5" type="submit"
 								id="salva">Salva</button>
 						</form>
+
 					</div>
 				</div>
 				<!-- Regali -->
@@ -1290,7 +1359,8 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			</div>
 		</div>
 	</div>
-	<script>$(document).ready(function() {
+	<script>
+	$(document).ready(function() {
 
 	$("#ordiniButton").click(function() {
 		$("#ordini").removeClass("d-none");
@@ -1389,8 +1459,13 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			alert("Request failed.");
 		});
 	});
+	
 	$("#closeOrdineAlert").click(function() {
 		$("#ordineAlert").addClass("d-none");
+	});
+	
+	$("#addIndirizzo").click(function() {
+		$("#showIndirizzo").removeClass("d-none");
 	});
 
 });
@@ -1412,8 +1487,105 @@ function printDettagliOrdine(json) {
 	$("#dettaglioOrdineAlert").append("<b>Regalo?:</b>" + json.regalo + ", ");
 	$("#dettaglioOrdineAlert").append("<b>Messaggio Regalo</b>" + json.messaggioRegalo + ", ");
 	$("#dettaglioOrdineAlert").append("<b>Destinatario Regalo</b>" + json.destinatarioRegalo + ", ");
-};
+}
 </script>
+	<script>
+	function validateAdress(){
+		
+		var valid= true; 
+		
+		var nome= document.salvaIndirizzo.nome;
+		var cognome=document.salvaIndirizzo.cognome;
+		var città = document.salvaIndirizzo.città; 
+		var via = document.salvaIndirizzo.via;
+		var civico = document.salvaIndirizzo.civico; 
+		var provincia =  document.salvaIndirizzo.provincia; 
+		var cap =  document.salvaIndirizzo.cap; 
+		
+		if (validateText(nome)) {
+			nome.classList.add("was-validated");
+			nome.classList.add("is-valid");
+		} else {
+			nome.classList.add("is-invalid");
+			nome.classList.add("was-validated");
+			valid = false;
+		}
+		
+		if (validateText(cognome)) {
+			cognome.classList.add("was-validated");
+			cognome.classList.add("is-valid");
+		} else {
+			cognome.classList.add("is-invalid");
+			cognome.classList.add("was-validated");
+			valid = false;
+		}
+		
+		if (validateText(provincia)) {
+			provincia.classList.add("was-validated");
+			provincia.classList.add("is-valid");
+		} else {
+			provincia.classList.add("is-invalid");
+			valid = false;
+		}
+		
+		if (validateText(città)) {
+			città.classList.add("was-validated");
+			città.classList.add("is-valid");
+		} else {
+			città.classList.add("is-invalid");
+			città.classList.add("was-validated");
+			valid = false;
+		}
+		
+		if (via.value == " ") {
+			via.classList.add("is-invalid");
+			via.classList.add("was-validated");
+			valid = false;
+		} else {
+			via.classList.add("is-valid");
+			via.classList.add("was-validated");
+		}
+		
+		if (validateNumber(cap)) {
+			cap.classList.add("was-validated");
+			cap.classList.add("is-valid");
+		} else {
+			cap.classList.add("is-invalid");
+			cap.classList.add("was-validated");
+			valid = false;
+		}
+		
+		if (validateNumber(civico)) {
+			civico.classList.add("was-validated");
+			civico.classList.add("is-valid");
+		} else {
+			civico.classList.add("was-validated");
+			civico.classList.add("is-invalid");
+			valid = false;
+		}
+		
+		return valid;
+}
+	
+	function validateText(y) {
+		let regex = /^[a-zA-Z]([0-9a-zA-Z]){1,10}$/;
+		let str = y.value;
+		if (regex.test(str)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	function validateNumber(y) {
+		let regex = /^[0-9]+$/;
+		let str = y.value;
+		if (str.match(regex)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	</script>
 	<!-- Footer -->
 	<%@ include file="../fragments/footer.jsp"%>
 </body>

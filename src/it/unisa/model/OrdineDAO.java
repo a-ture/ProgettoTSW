@@ -70,6 +70,9 @@ public class OrdineDAO implements GenericDAO<Ordine> {
 		Collection<Ordine> ordini = new LinkedList<>();
 		String selectSQL = "SELECT * FROM ordine AS o";
 		UtenteDAO dao = new UtenteDAO();
+		if (order != null && !order.equals("")) {
+			selectSQL += " ORDER BY " + order;
+		}
 		try (var conn = ds.getConnection()) {
 			try (var stmt = conn.prepareStatement(selectSQL)) {
 

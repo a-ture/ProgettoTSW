@@ -98,7 +98,12 @@ public class ServletProdotto extends HttpServlet {
 					int quantità = Integer.parseInt(request.getParameter("quantità"));
 					String azione = request.getParameter("azione");
 					if (azione.equals("più")) {
-						carrello.aggiornaProdotti(model.doRetriveByKey(id), quantità + 1);
+						Albero a = model.doRetriveByKey(id);
+						if (a.getQuantità() < quantità + 1) {
+							response.sendError(500);
+							return;
+						}
+						carrello.aggiornaProdotti(a, quantità + 1);
 					} else if (azione.equals("meno")) {
 						carrello.aggiornaProdotti(model.doRetriveByKey(id), quantità - 1);
 					}
@@ -287,7 +292,11 @@ public class ServletProdotto extends HttpServlet {
 				int quantità = Integer.parseInt(request.getParameter("quantità"));
 				double tasse = Double.parseDouble(request.getParameter("tasse"));
 				String paeseDiOrigine = request.getParameter("paese");
-				String disponibile = request.getParameter("disponibile");
+				
+				if (paeseDiOrigine.equals("PerÃ¹"))
+					paeseDiOrigine = "Perù";
+			
+				int disponibile = Integer.parseInt(request.getParameter("disponibile"));
 				String doveVienePiantato = request.getParameter("doveVienePiantato");
 
 				Albero bean = new Albero();
@@ -308,8 +317,11 @@ public class ServletProdotto extends HttpServlet {
 				bean.setOnSale(onSale);
 				bean.setSaldo(saldo);
 				bean.setTasse(tasse);
-				if (Integer.parseInt(disponibile) == 0)
+
+				if (disponibile == 0)
 					bean.setDisponibile(false);
+				else
+					bean.setDisponibile(true);
 
 				int sicAlimentare = Integer.parseInt(request.getParameter("ben1"));
 				int sviSoste = Integer.parseInt(request.getParameter("ben2"));
@@ -358,7 +370,7 @@ public class ServletProdotto extends HttpServlet {
 				int quantità = Integer.parseInt(request.getParameter("quantità"));
 				double tasse = Double.parseDouble(request.getParameter("tasse"));
 				String paeseDiOrigine = request.getParameter("paese");
-
+				int disponibile = Integer.parseInt(request.getParameter("disponibile"));
 				String doveVienePiantato = request.getParameter("doveVienePiantato");
 
 				Albero bean = new Albero();
@@ -379,6 +391,11 @@ public class ServletProdotto extends HttpServlet {
 				bean.setOnSale(onSale);
 				bean.setSaldo(saldo);
 				bean.setTasse(tasse);
+
+				if (disponibile == 0)
+					bean.setDisponibile(false);
+				else
+					bean.setDisponibile(true);
 
 				int sicAlimentare = Integer.parseInt(request.getParameter("ben1"));
 				int sviSoste = Integer.parseInt(request.getParameter("ben2"));

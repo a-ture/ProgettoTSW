@@ -36,7 +36,7 @@ public class ServletProdottoJSON extends HttpServlet {
 		String code = request.getParameter("codice");
 		String action = request.getParameter("action");
 
-		response.setContentType("application/json");
+		response.setContentType("application/json ; charset=UTF-8");
 
 		AlberoDAO dao = new AlberoDAO();
 		FotoProdottoDAO dao1 = new FotoProdottoDAO();

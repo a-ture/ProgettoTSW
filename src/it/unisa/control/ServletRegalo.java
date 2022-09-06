@@ -45,17 +45,18 @@ public class ServletRegalo extends HttpServlet {
 			if (codice != null && email != null) {
 				Ordine ordine = dao.doRetriveByKey(codice);
 
-				if ((ordine == null) || !(ordine.getDestinatarioRegalo().equals(email))
-						|| (ordine.isRegalo() == false)) {
-					error = "OPS! Qualcosa è andato storto! Riprova!";
+				if (ordine != null) {
+					if ((ordine.isRegalo() == true) && (ordine.getDestinatarioRegalo().equals(email))) {
+						error = "Hai riscatto correttamente il tuo regalo! Lo puoi visualizzare nel tuo profilo";
+						error.concat("Ecco il messaggio del tuo regalo:" + ordine.getMessaggioRegalo());
+						ordine.setMessaggioRegalo("riscattato");
+						dao.doUpdateMexGift(ordine);
+					} else {
+						error = "OPS! Qualcosa è andato storto! Riprova!";
+					}
 				} else {
-				
-					error = "Hai riscatto correttamente il tuo regalo! Lo puoi visualizzare nel tuo profilo";
-					error.concat("Ecco il messaggio del tuo regalo:" + ordine.getMessaggioRegalo());
-					ordine.setMessaggioRegalo("riscattato");
-					dao.doUpdateMexGift(ordine);
+					error = "OPS! Qualcosa è andato storto! Riprova!";
 				}
-
 			}
 		} catch (SQLException e) {
 			error = "OPS! Qualcosa è andato storto! Riprova!";

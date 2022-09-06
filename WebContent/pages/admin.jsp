@@ -511,8 +511,10 @@ input.invalid {
 									id="dropdownMenuButton1" data-bs-toggle="dropdown"
 									aria-expanded="false">Ordina Per</button>
 								<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton5">
-									<li><a class="dropdown-item" href="#">Disponibilità</a></li>
-									<li onclick=""><a class="dropdown-item">Prezzo</a></li>
+									<li onclick="sortTableNumb(4,'myTable4')"><a
+										class="dropdown-item">Disponibilità</a></li>
+									<li onclick="sortTableNumb('myTable4',3)"><a
+										class="dropdown-item">Prezzo</a></li>
 								</ul>
 							</div>
 						</div>
@@ -521,12 +523,12 @@ input.invalid {
 					<table class="table" id="myTable4">
 						<thead>
 							<tr>
-								<th scope="col">Id</th>
-								<th scope="col" onclick="sortTableAlf(1,'myTable4')">Nome</th>
-								<th scope="col">Saldo</th>
-								<th scope="col">Prezzo Kit</th>
-								<th scope="col">Disponibile</th>
-								<th scope="col">Azioni</th>
+								<td scope="row">Id</td>
+								<td onclick="sortTableAlf(1,'myTable4')">Nome</td>
+								<td>Saldo</td>
+								<td>Prezzo Kit</td>
+								<td>Disponibile</td>
+								<td>Azioni</td>
 							</tr>
 						</thead>
 						<%
@@ -618,7 +620,7 @@ input.invalid {
 		<div id="prod" class="text-center fw-bold h3">Gestione Prodotti</div>
 
 		<div class="form  my-5">
-			<form action="Prodotto?action=inserisciAlbero"
+			<form action="Prodotto?action=inserisciAlbero" accept-charset="UTF-8"
 				class="needs-validation" novalidate autocomplete="off"
 				enctype="multipart/form-data" method="POST" id="prodottoForm">
 
@@ -726,16 +728,16 @@ input.invalid {
 				<div class="tab">
 					<div class="fw-bold h3">Dettagli Prodotto</div>
 					<hr>
+
 					<div class="row align-items-center">
 						<div class="col-3 ">
-							<h5>OnSale</h5>
+							<h5>OnSale:</h5>
 						</div>
 						<div class="col-9">
-							<input class="form-control" type="text"
-								placeholder="Inserisci 1 per indicare onSale, 0 viceversa"
-								name="onSale">
-							<div class="invalid-feedback">Inserisci 1 per indicare
-								onSale, 0 viceversa</div>
+							<select class="form-select form-select-sm" name="onSale">
+								<option value="1">vero</option>
+								<option selected value="0">falso</option>
+							</select>
 						</div>
 					</div>
 					<div class="row align-items-center">
@@ -766,6 +768,17 @@ input.invalid {
 							<input class="form-control" type="text"
 								placeholder="Inserisci nome" name="tasse">
 							<div class="invalid-feedback">Inserisci un importo valido</div>
+						</div>
+					</div>
+					<div class="row align-items-center">
+						<div class="col-3 ">
+							<h5>Disponibile:</h5>
+						</div>
+						<div class="col-9">
+							<select class="form-select form-select-sm" name="disponibile">
+								<option selected value="1">vero</option>
+								<option value="0">falso</option>
+							</select>
 						</div>
 					</div>
 				</div>
@@ -1247,16 +1260,6 @@ input.invalid {
 				}
 			}
 			
-			if(y[i].name ==  "onSale"){
-				if (validateOnSale(y[i])) {
-					y[i].classList.add("was-validated");
-					y[i].classList.add("is-valid");
-				}
-				else {
-					y[i].classList.add("is-invalid");
-					valid = false;
-				}
-			}
 		}
 		if (valid) {
 			document.getElementsByClassName("step")[currentTab].className += " finish";
@@ -1272,16 +1275,6 @@ input.invalid {
 		x[n].className += " active";
 	}
 	
-
-	function validateOnSale(y) {
-		let regex = /^[01]+$/;
-		let str = y.value;
-		if (str.match(regex) && str != "") {
-			return true;
-		} else {
-			return false;
-		}
-	}
 	function validateHeight(y) {
 		let regex = /^\d{0,9}(\.\d{0,2}){0,1}$/;
 		let str = y.value;
@@ -1375,8 +1368,7 @@ input.invalid {
 			saldo.classList.add("is-valid");
 		}
 		return valid;
-	}
-	
+	}	
 	</script>
 
 	<script>
@@ -1396,10 +1388,17 @@ input.invalid {
 		
 		j.forEach((e) => {
 			$("#tableBodyOrdini").append('<tr> <td scope="row" class="nr">'+e.id+'</td>'+
-					'<td>'+e.utente.email+'</td><td>'+e.totalePagato+'</td><td>'+e.totaleProdotti+'</td><td>'+e.creatoIl.date+'</td></tr>'); 
+					'<td>'+e.utente.email+'</td><td>'+e.totalePagato+'</td><td>'+e.totaleProdotti+'</td><td>'+e.creatoIl.date+'</td>'+
+					'<td> <a class="botteneIdOrdine"> <i class="fa-solid fa-eye"></i> </a> '+
+					'<a class="vediFotoOrdine"> <i class="fa-solid fa-images"> </i></a> </td> </tr>'); 
 		});
 		
 	}
+	
+	function myFunctionKitsPrice(){
+		
+	}
+	
 	$(document).ready(function() {
 
 		$(".botteneIdKitVedi").click(function() {
@@ -1626,7 +1625,15 @@ input.invalid {
 		$('input[name="doveVienePiantato"]').val(j.doveVienePiantato);
 		$('input[name="tasse"]').val(j.tasse);
 		$('select[name="paese"]').val(j.paeseDiOrigine);
+		
+		if(j.disponibile == false){
+			$('select[name="disponibile"]').val(0);
+		 }else{
+			 $('select[name="disponibile"]').val(1);
+		 }
 
+		$('select[name="onSale"]').val(j.onSale);
+		
 		j.benefici.forEach((e) => {
 			$('input[name=ben' + e.id + ']').val(e.percentuale);
 		});

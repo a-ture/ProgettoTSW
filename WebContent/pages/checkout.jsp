@@ -421,9 +421,7 @@ input.invalid {
 					if (validateText(y[i])) {
 						y[i].classList.add("was-validated");
 						y[i].classList.add("is-valid");
-					}
-
-					else {
+					}	else {
 						y[i].classList.add("is-invalid");
 						valid = false;
 					}

@@ -2,7 +2,7 @@ package it.unisa.control;
 
 import java.io.IOException;
 import java.sql.SQLException;
-
+import java.util.Iterator;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,12 +11,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
+import it.unisa.beans.Albero;
 import it.unisa.beans.Indirizzo;
 import it.unisa.beans.Utente;
 import it.unisa.beans.Ordine;
 import it.unisa.beans.ProdottoCarrello;
 import it.unisa.beans.ProdottoOrdine;
+import it.unisa.model.AlberoDAO;
 import it.unisa.model.Carrello;
 
 import it.unisa.model.IndirizzoDAO;
@@ -31,33 +32,24 @@ public class ServletOrdini extends HttpServlet {
 
 	public ServletOrdini() {
 		super();
-		// TODO Auto-generated constructor stub
+
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		var action = request.getParameter("action");
 
-		// Utente utente = (Utente) request.getSession().getAttribute("utente");
-
 		Carrello carrello = (Carrello) request.getSession().getAttribute("carrello");
 		String redirectPage = "/pages/checkout.jsp";
 		if (action != null) {
 
-			if (action.equals("vista")) {
-				/*
-				 * OrdineDAO dao = new OrdineDAO(); Ordine ordine; try { ordine =
-				 * dao.doRetriveByLastUserOrder(); request.setAttribute("ordineUtente", ordine);
-				 * redirectPage = "/pages/ordineEffettuato.jsp"; } catch (SQLException e) {
-				 * e.printStackTrace(); }
-				 */
-
-			} else if (action.equals("checkout")) {
+			if (action.equals("checkout")) {
 				if (carrello == null || ((Carrello) carrello).getQuantitàTotaleProdotti() <= 0) {
 					response.sendError(500);
 					return;
 				}
 			}
+
 			RequestDispatcher dispatcher = request.getRequestDispatcher(redirectPage);
 			dispatcher.forward(request, response);
 			return;
@@ -81,6 +73,7 @@ public class ServletOrdini extends HttpServlet {
 
 	private void salvaIndirizzo(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
 		Utente utente = (Utente) (request.getSession().getAttribute("utente"));
 		Indirizzo indirizzo = new Indirizzo();
 		IndirizzoDAO model = new IndirizzoDAO();
@@ -135,12 +128,24 @@ public class ServletOrdini extends HttpServlet {
 			bean.setDescrizione(prod.getProdotto().getDescrizione());
 			bean.setSaldo(prod.getProdotto().getSaldo());
 			bean.setNome(prod.getProdotto().getNome());
-			bean.setPrezzo(prod.getPrezzoTotale());
+			bean.setPrezzo(prod.getProdotto().getPrezzo());
 			bean.setQuantità(prod.getQuantità());
-			bean.setBreveDescrizione(prod.getProdotto().getDescrizioneBreve());
+			bean.setBreveDescrizione("Paese:" + prod.getProdotto().getPaeseDiOrigine() + ", Categorie:"
+					+ prod.getProdotto().getCategorie().size());
 			bean.setTasse(prod.getProdotto().getTasse());
 			bean.setStato("seme");
 
+			Albero a = prod.getProdotto();
+			a.setQuantità(a.getQuantità() - prod.getQuantità());
+			if (a.getQuantità() == 0)
+				a.setDisponibile(false);
+
+			AlberoDAO dao1 = new AlberoDAO();
+			try {
+				dao1.updateQuantità(a);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 			ordine.aggiungiPrdotto(bean);
 		}
 
@@ -157,6 +162,13 @@ public class ServletOrdini extends HttpServlet {
 		request.getSession().setAttribute("carrello", new Carrello());
 		request.getSession().removeAttribute("codice");
 		request.getSession().removeAttribute("ordineUtente");
+		try {
+			Iterator<Ordine> it3 = dao.doRetriveAll("id DESC").iterator();
+			ordine = it3.next();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		System.out.println(ordine);
 		request.getSession().setAttribute("ordineUtente", ordine);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/ordineEffettuato.jsp");
 		dispatcher.forward(request, response);

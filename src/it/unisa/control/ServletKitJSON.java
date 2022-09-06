@@ -24,7 +24,7 @@ public class ServletKitJSON extends HttpServlet {
 
 	public ServletKitJSON() {
 		super();
-		
+
 	}
 	
 	/**
@@ -33,11 +33,11 @@ public class ServletKitJSON extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String code = request.getParameter("codice");
-		response.setContentType("application/json");
+		response.setContentType("application/json ; charset=UTF-8");
 		KitAlberiDAO dao = new KitAlberiDAO();
 		try {
 			KitAlberi o = dao.doRetriveByKey(code);
-			
+
 			response.setStatus(200);
 			response.getWriter().print(gson.toJson(o));
 			response.getWriter().flush();

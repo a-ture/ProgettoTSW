@@ -6,6 +6,7 @@ import java.util.Collection;
 
 /**
  * Questa classe rappresenta l'oggetto Utente
+ * 
  * @author raffaella & alessia
  *
  */
@@ -21,23 +22,25 @@ public class Utente implements Cloneable, Serializable {
 	private String role;
 	private String username;
 	private boolean active;
-	
+
 	/**
 	 * Costruttore senza parametri
 	 */
 	public Utente() {
+		indirizzi = new ArrayList<Indirizzo>();
 	}
 
 	/**
 	 * Costruttore con i parametri
-	 * @param id	codice identificativo
-	 * @param nome	nome dell'utente
-	 * @param cognome	cognome dell'utente
-	 * @param indirizzi	indirizzo dell'utente
-	 * @param email	email dell'utente
-	 * @param password	password dell'utente
-	 * @param role	ruolo dell'utente
-	 * @param username	username dell'utente
+	 * 
+	 * @param id        codice identificativo
+	 * @param nome      nome dell'utente
+	 * @param cognome   cognome dell'utente
+	 * @param indirizzi indirizzo dell'utente
+	 * @param email     email dell'utente
+	 * @param password  password dell'utente
+	 * @param role      ruolo dell'utente
+	 * @param username  username dell'utente
 	 */
 	public Utente(int id, String nome, String cognome, Collection<Indirizzo> indirizzi, String email, String password,
 			String role, String username) {
@@ -208,4 +211,5 @@ public class Utente implements Cloneable, Serializable {
 			this.indirizzi = new ArrayList<Indirizzo>();
 		this.indirizzi.add(addr);
 	}
+
 }
