@@ -22,13 +22,13 @@ import it.unisa.model.AlberoDAO;
  * Servlet implementation class Home
  */
 @WebServlet("/Home")
-public class Home extends HttpServlet {
+public class ServletHome extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * Default constructor.
 	 */
-	public Home() {
+	public ServletHome() {
 		// TODO Auto-generated constructor stub
 	}
 

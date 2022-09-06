@@ -32,10 +32,10 @@ import it.unisa.model.UtenteDAO;
 		maxFileSize = 1024 * 1024 * 10, // 10MB
 		maxRequestSize = 1024 * 1024 * 50) // 50MB
 
-public class UtenteServlet extends HttpServlet {
+public class ServletUtente extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public UtenteServlet() {
+	public ServletUtente() {
 		super();
 
 	}

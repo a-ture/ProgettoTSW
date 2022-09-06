@@ -8,25 +8,25 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import it.unisa.model.OrdineDAO;
+import it.unisa.model.UsoLocaleDAO;
 
 /**
- * Servlet implementation class GetFotoProdottoOrdine
+ * Servlet implementation class GetFotoUsoLocale
  */
-@WebServlet("/GetFotoProdottoOrdine")
-public class GetFotoProdottoOrdine extends HttpServlet {
+@WebServlet("/GetFotoUsoLocale")
+public class ServletGetFotoUsoLocale extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public GetFotoProdottoOrdine() {
+	public ServletGetFotoUsoLocale() {
 		super();
 
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String id = (String) request.getParameter("idProdottoOrdine");
+		String id = (String) request.getParameter("idUsoLocale");
 		if (id != null) {
-			byte[] bt = OrdineDAO.load(id);
+			byte[] bt = UsoLocaleDAO.load(id);
 
 			ServletOutputStream out = response.getOutputStream();
 			if (bt != null) {
@@ -39,6 +39,7 @@ public class GetFotoProdottoOrdine extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
 		doGet(request, response);
 	}
 

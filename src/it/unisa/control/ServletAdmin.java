@@ -29,16 +29,16 @@ import it.unisa.model.KitAlberiDAO;
 import it.unisa.model.UtenteDAO;
 
 /**
- * Servlet implementa la classe Admin
+ * Servlet implementa la classe SrvletAdmin
  */
 @WebServlet("/Admin")
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, // 2MB
 		maxFileSize = 1024 * 1024 * 10, // 10MB
 		maxRequestSize = 1024 * 1024 * 50) // 50MB
-public class Admin extends HttpServlet {
+public class ServletAdmin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public Admin() {
+	public ServletAdmin() {
 		super();
 		
 	}

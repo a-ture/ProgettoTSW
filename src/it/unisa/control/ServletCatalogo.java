@@ -29,10 +29,10 @@ import it.unisa.model.UsoLocaleDAO;
  * Servlet implementa la classe Catalogo
  */
 @WebServlet("/Catalogo")
-public class Catalogo extends HttpServlet {
+public class ServletCatalogo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public Catalogo() {
+	public ServletCatalogo() {
 		super();
 
 	}

@@ -18,11 +18,11 @@ import it.unisa.model.OrdineDAO;
  * Servlet implementation class OrdineJSON
  */
 @WebServlet("/OrdineJSON")
-public class OrdineJSON extends HttpServlet {
+public class ServletOrdineJSON extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Gson gson = new Gson();
 
-	public OrdineJSON() {
+	public ServletOrdineJSON() {
 		super();
 
 	}

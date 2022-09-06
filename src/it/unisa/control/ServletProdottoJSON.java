@@ -21,11 +21,11 @@ import it.unisa.model.FotoProdottoDAO;
  * Servlet implementation class ProdottoJSON
  */
 @WebServlet("/ProdottoJSON")
-public class ProdottoJSON extends HttpServlet {
+public class ServletProdottoJSON extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Gson gson = new Gson();
 
-	public ProdottoJSON() {
+	public ServletProdottoJSON() {
 		super();
 
 	}

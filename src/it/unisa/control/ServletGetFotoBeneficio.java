@@ -8,30 +8,29 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import it.unisa.model.PaeseDiOrigineDAO;
+import it.unisa.model.BeneficioDAO;
 
 
 /**
- * Servlet implementation class GetPhoto
+ * Servlet implementation class GetFotoBeneficio
  */
-@WebServlet("/GetFotoPaeseDiOrigine")
-public class GetFotoPaeseDiOrigine extends HttpServlet {
+@WebServlet("/GetFotoBeneficio")
+public class ServletGetFotoBeneficio extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public GetFotoPaeseDiOrigine() {
+	public ServletGetFotoBeneficio() {
 		super();
+
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String id = (String) request.getParameter("idPaese");
+		String id = (String) request.getParameter("idBeneficio");
 		if (id != null) {
-			byte[] bt = PaeseDiOrigineDAO.load(id);
+			byte[] bt = BeneficioDAO.load(id);
 
-			
 			ServletOutputStream out = response.getOutputStream();
 			if (bt != null) {
-				System.out.print(bt);
 				out.write(bt);
 				response.setContentType("image/jpeg");
 			}
@@ -41,6 +40,7 @@ public class GetFotoPaeseDiOrigine extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
 		doGet(request, response);
 	}
 

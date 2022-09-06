@@ -24,10 +24,10 @@ import it.unisa.model.UtenteDAO;
 		maxFileSize = 1024 * 1024 * 10, // 10MB
 		maxRequestSize = 1024 * 1024 * 50) // 50MB
 
-public class Login extends HttpServlet {
+public class ServletLogin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public Login() {
+	public ServletLogin() {
 		super();
 	}
 

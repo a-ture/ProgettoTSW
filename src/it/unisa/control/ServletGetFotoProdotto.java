@@ -8,40 +8,36 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import it.unisa.model.KitAlberiDAO;
+import it.unisa.model.FotoProdottoDAO;
 
 /**
- * Servlet implementation class GetFotoKit
+ * Servlet implementation class GetFotoProdotto
  */
-@WebServlet("/GetFotoKit")
-public class GetFotoKit extends HttpServlet {
+@WebServlet("/GetFotoProdotto")
+public class ServletGetFotoProdotto extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public GetFotoKit() {
+	public ServletGetFotoProdotto() {
 		super();
 
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String id = (String) request.getParameter("idKit");
-		if (id != null) {
-			byte[] bt = KitAlberiDAO.load(id);
+		int id = Integer.parseInt(request.getParameter("idFoto"));
 
-			
-			ServletOutputStream out = response.getOutputStream();
-			if (bt != null) {
-				System.out.print(bt);
-				out.write(bt);
-				response.setContentType("image/jpeg");
-			}
-			out.close();
+		FotoProdottoDAO model = new FotoProdottoDAO();
+
+		byte[] bt = model.load(id);
+		ServletOutputStream out = response.getOutputStream();
+		if (bt != null) {
+			out.write(bt);
+			response.setContentType("image/jpeg");
 		}
+		out.close();
 	}
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
 		doGet(request, response);
 	}
 

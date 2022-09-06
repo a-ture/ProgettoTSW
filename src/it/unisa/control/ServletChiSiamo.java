@@ -25,10 +25,10 @@ import it.unisa.model.UtenteDAO;
  * Servlet implementation class ChiSiamoServlet
  */
 @WebServlet("/ChiSiamoServlet")
-public class ChiSiamoServlet extends HttpServlet {
+public class ServletChiSiamo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public ChiSiamoServlet() {
+	public ServletChiSiamo() {
 		super();
 
 	}

@@ -18,13 +18,13 @@ import it.unisa.model.KitAlberiDAO;
  * Servlet implementation class KitJSON
  */
 @WebServlet("/KitJSON")
-public class KitJSON extends HttpServlet {
+public class ServletKitJSON extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Gson gson = new Gson();
 
-	public KitJSON() {
+	public ServletKitJSON() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)

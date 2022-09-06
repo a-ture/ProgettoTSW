@@ -17,10 +17,10 @@ import it.unisa.model.OrdineDAO;
  * Servlet implementation class Regalo
  */
 @WebServlet("/Regalo")
-public class Regalo extends HttpServlet {
+public class ServletRegalo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public Regalo() {
+	public ServletRegalo() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

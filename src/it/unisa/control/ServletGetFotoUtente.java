@@ -8,39 +8,35 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import it.unisa.model.BeneficioDAO;
-
+import it.unisa.model.UtenteDAO;
 
 /**
- * Servlet implementation class GetFotoBeneficio
+ * Servlet implementation class GetFotoUtente
  */
-@WebServlet("/GetFotoBeneficio")
-public class GetFotoBeneficio extends HttpServlet {
+@WebServlet("/GetFotoUtente")
+public class ServletGetFotoUtente extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public GetFotoBeneficio() {
+	public ServletGetFotoUtente() {
 		super();
-
+		// TODO Auto-generated constructor stub
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String id = (String) request.getParameter("idBeneficio");
-		if (id != null) {
-			byte[] bt = BeneficioDAO.load(id);
-
-			ServletOutputStream out = response.getOutputStream();
-			if (bt != null) {
-				out.write(bt);
-				response.setContentType("image/jpeg");
-			}
-			out.close();
+		String id = (String) request.getParameter("idUtente");
+		byte[] bt = UtenteDAO.load(Integer.parseInt(id));
+		ServletOutputStream out = response.getOutputStream();
+		if (bt != null) {
+			out.write(bt);
+			response.setContentType("image/jpeg");
 		}
+		out.close();
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
