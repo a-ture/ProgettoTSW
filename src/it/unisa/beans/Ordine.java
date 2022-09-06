@@ -5,6 +5,11 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 
+/**
+ * Questa classe rappresenta l'oggetto Ordine
+ * @author raffaella & alessia
+ *
+ */
 public class Ordine implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -17,11 +22,26 @@ public class Ordine implements Serializable {
 	private Collection<ProdottoOrdine> items;
 	private Utente utente;
 	private LocalDateTime creatoIl;
-
+	
+	/**
+	 * Costruttore senza parametri
+	 */
 	public Ordine() {
 		items = new ArrayList<ProdottoOrdine>();
 	}
 
+	/**
+	 * Costruttore con i parametri
+	 * @param id	codice identificativo
+	 * @param totaleProdotti	totale dei prodottiche appartengono all'ordine
+	 * @param totalePagato	costo totale dell'ordine
+	 * @param regalo	TRUE è un regale, FALSE non è un regalo
+	 * @param messaggioRegalo	 messaggio del regalo
+	 * @param destinatarioRegalo	destinatario del regalo
+	 * @param items	collezione dei prodotti che appartengono a questo ordine
+	 * @param utente	l'utente che ha effettuato l'ordine
+	 * @param creatoIl	data dell'ordine
+	 */
 	public Ordine(int id, int totaleProdotti, double totalePagato, boolean regalo, String messaggioRegalo,
 			String destinatarioRegalo, Collection<ProdottoOrdine> items, Utente utente, LocalDateTime creatoIl) {
 		super();

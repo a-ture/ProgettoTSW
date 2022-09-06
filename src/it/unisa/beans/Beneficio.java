@@ -2,13 +2,25 @@ package it.unisa.beans;
 
 import java.io.Serializable;
 
+/**
+ * Questa classe rappresenta l'oggetto Beneficio
+ * @author raffaella & alessia
+ *
+ */
 public class Beneficio implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private int id;
 	private String nome, descrizione;
 	private double percentuale;
-
+	
+	/**
+	 * Costruttore con i parametri
+	 * @param id	codice identificativo
+	 * @param nome	nome del beneficio
+	 * @param descrizione	descizione del beneficio
+	 * @param percentuale	percentuale del beneficio
+	 */
 	public Beneficio(int id, String nome, String descrizione, double percentuale) {
 		super();
 		this.id = id;
@@ -16,11 +28,19 @@ public class Beneficio implements Serializable {
 		this.descrizione = descrizione;
 		this.percentuale = percentuale;
 	}
-
+	
+	/**
+	 * Costruttore senza parametri
+	 */
 	public Beneficio() {
 
 	}
-
+	
+	/**
+	 * Costruttore con i parametri
+	 * @param id codice identificativo
+	 * @param percentuale	percentuale del beneficio
+	 */
 	public Beneficio(int id, double percentuale) {
 		this.id = id;
 		this.percentuale = percentuale;

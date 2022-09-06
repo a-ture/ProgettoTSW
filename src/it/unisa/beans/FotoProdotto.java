@@ -2,11 +2,19 @@ package it.unisa.beans;
 
 import java.io.Serializable;
 
+/**
+ * Questa classe rappresenta l'oggetto FotoProdotto
+ * @author raffaella & alessia 
+ *
+ */
 public class FotoProdotto implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private int nomeFoto;
 	private int idProdotto;
-
+	
+	/**
+	 * Costruttore
+	 */
 	public FotoProdotto() {
 		nomeFoto=-1;
 		idProdotto=-1;

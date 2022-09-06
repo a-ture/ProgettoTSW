@@ -56,7 +56,6 @@ public class UtenteDAO implements GenericDAO<Utente> {
 					bean.setEmail(rs.getString("email"));
 					bean.setPassword(rs.getString("password"));
 					bean.setRole(rs.getString("role"));
-					bean.setActive(rs.getBoolean("active"));
 					bean.setUsername(rs.getString("username"));
 					bean.setIndirizzi(doRetriveByUser(bean.getId()));
 				}
@@ -96,7 +95,6 @@ public class UtenteDAO implements GenericDAO<Utente> {
 				bean.setNome(rs.getString("nome"));
 				bean.setPassword(rs.getString("password"));
 				bean.setRole(rs.getString("role"));
-				bean.setActive(rs.getBoolean("active"));
 				beans.add(bean);
 			}
 		} finally {

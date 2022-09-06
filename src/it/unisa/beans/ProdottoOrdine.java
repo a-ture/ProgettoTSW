@@ -2,6 +2,11 @@ package it.unisa.beans;
 
 import java.io.Serializable;
 
+/**
+ * Questa classe rappresenta l'oggetto ProdottoOrdine
+ * @author raffaella & alessia
+ *
+ */
 public class ProdottoOrdine implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -16,6 +21,18 @@ public class ProdottoOrdine implements Serializable {
 	private int quantità;
 	private String stato;
 
+	/**
+	 * Costruttore con i parametri
+	 * @param id	codice identificativo
+	 * @param oid	codice dell'ordine
+	 * @param nome	nome del prodotto
+	 * @param descrizione	descrizione del prodotto
+	 * @param breveDescrizione	breve descrizione del prodotto
+	 * @param tasse	iva del prodotto
+	 * @param prezzo	prezzo del prodotto
+	 * @param saldo	prezzo+iva del prodotto
+	 * @param quantità	quantità del prodotto	
+	 */
 	public ProdottoOrdine(int id, int oid, String nome, String descrizione, String breveDescrizione, int tasse,
 			double prezzo, double saldo, int quantità) {
 		super();
@@ -30,6 +47,9 @@ public class ProdottoOrdine implements Serializable {
 		this.quantità = quantità;
 	}
 
+	/**
+	 * Costruttore senza parametri
+	 */
 	public ProdottoOrdine() {
 	}
 

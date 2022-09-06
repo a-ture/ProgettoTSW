@@ -146,7 +146,6 @@ public class Login extends HttpServlet {
 			utente.setEmail(request.getParameter("email"));
 			utente.setPassword(request.getParameter("password"));
 			utente.setRole("cliente");
-			utente.setActive(true);
 			try {
 				dao.doSave(utente);
 				utente = dao.doRetriveByEmail(utente.getEmail());

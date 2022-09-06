@@ -2,12 +2,21 @@ package it.unisa.beans;
 
 import java.io.Serializable;
 
+/**
+ * Questa classe rappresenta l'oggetto ProdottoCarrello
+ * @author raffaella & alessia
+ *
+ */
 public class ProdottoCarrello implements Serializable {
 	private static final long serialVersionUID = 1L;
 	int quantità;
 	private Albero prodotto;
 	double sconto;
-
+	
+	/**
+	 * Costruttore con parametro
+	 * @param prodotto prodotto contenuto nel carrello
+	 */
 	public ProdottoCarrello(Albero prodotto) {
 		super();
 		this.setQuantità(0);

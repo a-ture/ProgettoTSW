@@ -5,6 +5,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
+/**
+ * Questa classe rappresenta l'oggetto KitAlberi
+ * @author raffaella & alessia
+ *
+ */
 public class KitAlberi implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -14,6 +19,18 @@ public class KitAlberi implements Serializable {
 	private double saldo;
 	private Collection<Albero> alberi;
 
+	/**
+	 * Costruttore con i parametri
+	 * @param id	codice identificativo
+	 * @param nome	nome del kit
+	 * @param descrizione	descrizione del kit
+	 * @param tasse	iva del kit
+	 * @param prezzo	prezzo del kit
+	 * @param saldo	prezzo+iva del kit
+	 * @param disponibile	TRUE se è disponibile, FALSE se non è disponibile
+	 * @param onSale	percentuale di saldo
+	 * @param alberi	collezione di alberi che appartengono a quel kit
+	 */
 	public KitAlberi(int id, String nome, String descrizione, double tasse, double prezzo, double saldo,
 			boolean disponibile, int onSale, Collection<Albero> alberi) {
 		super();
@@ -24,11 +41,17 @@ public class KitAlberi implements Serializable {
 		this.alberi = alberi;
 
 	}
-
+	
+	/**
+	 * Costruttore senza parametri
+	 */
 	public KitAlberi() {
 		this.alberi = new ArrayList<Albero>();
 	}
-
+	/**
+	 * Aggiunge la quantità di CO2 che ogni albero può assorbire
+	 * @return quantità di CO2 ( per ogni stella attibuiamo 10 Kg di CO2)
+	 */
 	public double getCO2() {
 		double co2 = 0;
 		Iterator<Albero> it = alberi.iterator();
@@ -36,7 +59,6 @@ public class KitAlberi implements Serializable {
 			Albero albero = it.next();
 			co2 += albero.getCo2();
 		}
-		// ogni stella sta per 10kg
 		return co2 * 10 * alberi.size();
 	}
 

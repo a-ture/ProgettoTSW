@@ -4,15 +4,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 
+/**
+ * Questa classe rappresenta l'oggetto Albero
+ * @author raffaella & alessia
+ */
 public class Albero implements Serializable {
 	private static final long serialVersionUID = 1L;
-
-	// DA VEDERE SE MI SERVE
-	public static int NO_ITEM = -1;
-
-	static boolean isProductInizialize(Albero b) {
-		return b.getId() != NO_ITEM;
-	}
 
 	private int id;
 	private String nome;
@@ -39,6 +36,28 @@ public class Albero implements Serializable {
 	private Collection<Categoria> categorie;
 	private Collection<Beneficio> benefici; 
 	
+	/**
+	 * Costruttore con parametri
+	 * @param id	codice identificativo
+	 * @param nome	nome dell'albero
+	 * @param nomeScientifico	nome scientifico dell'albero
+	 * @param paeseDiOrigine	paese di origine dell'albero
+	 * @param descrizione	descrizione dell'albero
+	 * @param descrizioneBreve	breve descrizione dell'albero
+	 * @param sottotitolo	informazione caratterizzante l'albero
+	 * @param doveVienePiantato	dove verrà piantato l'albero
+	 * @param prezzo	prezzo per piantare l'albero
+	 * @param altezza	altezza dell'albero
+	 * @param co2	quantità di co2 assorbita
+	 * @param salvaguardia	 caratteristiche ambientali
+	 * @param tasse	iva
+	 * @param saldo	tatale iva+prezzo
+	 * @param quantità	 di quanti alberi di qeusto tipo diponiamo
+	 * @param onSale	 percentuale di saldo
+	 * @param disponibile	TRUE è disponibile, FALSE non disponibile
+	 * @param usiLocali	gli usi che possono essere fatti con quell'albero
+	 * @param categorie	categoria a cui viene accomunato l'albero
+	 */
 	public Albero(int id, String nome, String nomeScientifico, String paeseDiOrigine, String descrizione,
 			String descrizioneBreve, String sottotitolo, String doveVienePiantato, double prezzo, double altezza,
 			int co2, int salvaguardia, double tasse, double saldo, int quantità, int onSale, boolean disponibile,
@@ -80,7 +99,7 @@ public class Albero implements Serializable {
 	public void setSaldo(double saldo) {
 		this.saldo = saldo;
 	}
-
+ 
 	public boolean isDisponibile() {
 		return disponibile;
 	}
@@ -96,9 +115,11 @@ public class Albero implements Serializable {
 	public void setPaeseDiOrigine(String paeseDiOrigine) {
 		this.paeseDiOrigine = paeseDiOrigine;
 	}
-
+	
+	/**
+	 * Costruttore senza parametri
+	 */
 	public Albero() {
-		this.id = NO_ITEM;
 	}
 
 	public int getId() {
@@ -199,6 +220,10 @@ public class Albero implements Serializable {
 		this.categorie = categories;
 	}
 
+	/**
+	 * Aggiunge una nuova categoria alla lista delle categorie
+	 * @param category la nuova categoria da aggiungere alla lista
+	 */
 	public void addCategory(Categoria category) {
 		if (categorie == null)
 			categorie = new ArrayList<Categoria>();

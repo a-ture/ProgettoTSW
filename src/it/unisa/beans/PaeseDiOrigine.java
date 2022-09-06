@@ -2,18 +2,31 @@ package it.unisa.beans;
 
 import java.io.Serializable;
 
+/**
+ * Questa classe rappresenta l'oggetto PaeseDiOrigine
+ * @author raffaella & alessia
+ *
+ */
 public class PaeseDiOrigine implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private String nome;
 	private String descrizione;
 
+	/**
+	 * Costruttore con i parametri 
+	 * @param nome nome del paese
+	 * @param descrizione	descrizione del paese
+	 */
 	public PaeseDiOrigine(String nome, String descrizione) {
 		super();
 		this.nome = nome;
 		this.descrizione = descrizione;
 	}
 
+	/**
+	 * Costruttore senza parametri
+	 */
 	public PaeseDiOrigine() {
 
 	}

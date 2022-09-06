@@ -4,6 +4,11 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 
+/**
+ * Questa classe rappresenta l'oggetto Utente
+ * @author raffaella & alessia
+ *
+ */
 public class Utente implements Cloneable, Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -16,12 +21,26 @@ public class Utente implements Cloneable, Serializable {
 	private String role;
 	private String username;
 	private boolean active;
-
+	
+	/**
+	 * Costruttore senza parametri
+	 */
 	public Utente() {
 	}
 
+	/**
+	 * Costruttore con i parametri
+	 * @param id	codice identificativo
+	 * @param nome	nome dell'utente
+	 * @param cognome	cognome dell'utente
+	 * @param indirizzi	indirizzo dell'utente
+	 * @param email	email dell'utente
+	 * @param password	password dell'utente
+	 * @param role	ruolo dell'utente
+	 * @param username	username dell'utente
+	 */
 	public Utente(int id, String nome, String cognome, Collection<Indirizzo> indirizzi, String email, String password,
-			String role, String username, boolean active) {
+			String role, String username) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -31,7 +50,6 @@ public class Utente implements Cloneable, Serializable {
 		this.password = password;
 		this.role = role;
 		this.username = username;
-		this.active = active;
 	}
 
 	public int getId() {
@@ -97,8 +115,7 @@ public class Utente implements Cloneable, Serializable {
 	@Override
 	public String toString() {
 		return "Utente [id=" + id + ", nome=" + nome + ", cognome=" + cognome + ", indirizzi=" + indirizzi + ", email="
-				+ email + ", password=" + password + ", role=" + role + ", username=" + username + ", active=" + active
-				+ "]";
+				+ email + ", password=" + password + ", role=" + role + ", username=" + username + "]";
 	}
 
 	@Override
@@ -166,14 +183,6 @@ public class Utente implements Cloneable, Serializable {
 		} else if (!username.equals(other.username))
 			return false;
 		return true;
-	}
-
-	public boolean isActive() {
-		return active;
-	}
-
-	public void setActive(boolean active) {
-		this.active = active;
 	}
 
 	public String getUsername() {

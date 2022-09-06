@@ -2,6 +2,11 @@ package it.unisa.beans;
 
 import java.io.Serializable;
 
+/**
+ * Questa classe rappresenta l'oggetto Indirizzo
+ * @author raffaella & alessia
+ *
+ */
 public class Indirizzo implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -15,11 +20,27 @@ public class Indirizzo implements Serializable {
 	private String provincia;
 	private boolean preferred;
 	private String civico;
-
+	
+	/**
+	 * Costruttore senza parametri
+	 */
 	public Indirizzo() {
 
 	}
 
+	/**
+	 * Costruttore con i parametri
+	 * @param id	codice identificativo
+	 * @param uid	codice identificativo dell'utente
+	 * @param nome	nome dell'utente
+	 * @param cognome	cognome dell'utente
+	 * @param via
+	 * @param cAP
+	 * @param città
+	 * @param provincia
+	 * @param preferred	TRUE l'indirizzo è il preferito, FALSE l'indirizzo non è il preferito
+	 * @param civico
+	 */
 	public Indirizzo(int id, int uid, String nome, String cognome, String via, String cAP, String città,
 			String provincia, boolean preferred, String civico) {
 		super();

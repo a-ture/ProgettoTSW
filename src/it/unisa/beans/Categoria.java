@@ -2,7 +2,11 @@ package it.unisa.beans;
 
 import java.io.Serializable;
 
-
+/**
+ * Questa classe rappresenta l'oggetto Categoria
+ * @author raffaella & alessia
+ *
+ */
 public class Categoria implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -32,7 +36,13 @@ public class Categoria implements Serializable {
 	public void setDescrizione(String descrizione) {
 		this.descrizione = descrizione;
 	}
-
+	
+	/**
+	 * Costruttore con i parametri
+	 * @param id	codice identificativo
+	 * @param nome	nome della categoria
+	 * @param descrizione	descrizione della categoria
+	 */
 	public Categoria(int id, String nome, String descrizione) {
 		super();
 		this.id = id;
@@ -40,13 +50,20 @@ public class Categoria implements Serializable {
 		this.descrizione = descrizione;
 
 	}
-
+	
+	/**
+	 * Costruttore con parametro
+	 * @param id	codice identificativo
+	 */
 	public Categoria(int id) {
 		this.setId(id);
 	}
-
+	
+	/**
+	 * Costruttore senza parametri
+	 */
 	public Categoria() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	@Override

@@ -2,6 +2,11 @@ package it.unisa.beans;
 
 import java.io.Serializable;
 
+/**
+ * Questa classe rappresenta l'oggetto UsoLocale
+ * @author raffaella & alessia
+ *
+ */
 public class UsoLocale implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -9,13 +14,22 @@ public class UsoLocale implements Serializable {
 	private String nome;
 	private String descrizione;
 
+	/**
+	 * Costruttore con i parametri
+	 * @param id	codice identificatico
+	 * @param nome	nome dell'uso
+	 * @param descrizione	descrizione dell'uso
+	 */
 	public UsoLocale(int id, String nome, String descrizione) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.descrizione = descrizione;
 	}
-
+	
+	/**
+	 * Costruttore senza paramtri
+	 */
 	public UsoLocale() {
 		
 	}
