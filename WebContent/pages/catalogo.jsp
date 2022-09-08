@@ -245,7 +245,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				<!-- Card  -->
 				<div class="col ">
 					<div class="card h-100">
-						<img src="./GetFotoProdotto?idFoto=<%=bean1.getNomeFoto()%>"
+						<img src="./ServletResources?codiceAzione=fotoProdotto&idFoto=<%=bean1.getNomeFoto()%>"
 							onerror="this.src='./resources//img/error.jpg'"
 							class="card-img-top <%if (!bean.isDisponibile())%> badgeImg"
 							alt="..." />
@@ -317,7 +317,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				<!-- Card  -->
 				<div class="col ">
 					<div class="card h-100">
-						<img src="./GetFotoKit?idKit=<%=kit.getId()%>"
+						<img src="./ServletResources?codiceAzione=fotoKit&idKit=<%=kit.getId()%>"
 							onerror="this.src='./resources//img/error.jpg'"
 							class="card-img-top <%if (!kit.isDisponibile())%> badgeImg"
 							alt="..." />

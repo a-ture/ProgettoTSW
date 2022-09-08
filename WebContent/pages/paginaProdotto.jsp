@@ -217,18 +217,18 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					<div class="carousel-inner">
 						<div class="carousel-item active">
 
-							<img src="./GetFotoProdotto?idFoto=<%=foto[0].getNomeFoto()%>"
+							<img src="./ServletResources?codiceAzione=fotoProdotto&idFoto=<%=foto[0].getNomeFoto()%>"
 								class="d-block w-100 img-fluid"
 								onerror="this.src='./resources/img/error.jpg'">
 
 						</div>
 						<div class="carousel-item">
-							<img src="./GetFotoProdotto?idFoto=<%=foto[1].getNomeFoto()%>"
+							<img src="./ServletResources?codiceAzione=fotoProdotto&idFoto=<%=foto[1].getNomeFoto()%>"
 								class="d-block w-100 img-fluid"
 								onerror="this.src='./resources/img/error.jpg'">
 						</div>
 						<div class="carousel-item">
-							<img src="./GetFotoProdotto?idFoto=<%=foto[2].getNomeFoto()%>"
+							<img src="./ServletResources?codiceAzione=fotoProdotto&idFoto=<%=foto[2].getNomeFoto()%>"
 								class="d-block w-100 img-fluid"
 								onerror="this.src='./resources//img/error.jpg'">
 						</div>
@@ -439,7 +439,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 							<li class="d-flex gap-4"><img
 								class="bi text-muted flex-shrink-0 rounded-circle" width="98"
 								height="98" onerror="this.src='./resources//img/error.jpg'"
-								src="./GetFotoUsoLocale?idUsoLocale=<%=uso.getId()%>">
+								src="./ServletResources?codiceAzione=fotoUsoLocale&idUsoLocale=<%=uso.getId()%>">
 								<div>
 									<h5 class="mb-0"><%=uso.getNome()%></h5>
 									<%=uso.getDescrizione()%>
@@ -474,7 +474,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 							<li class="list-group-item">
 								<div class="years-<%=(int) cat.getPercentuale()%> m-2">
 									<img onerror="this.src='./resources//img/error.jpg'"
-										src="./GetFotoBeneficio?idBeneficio=<%=cat.getId()%>"
+										src="./ServletResources?codiceAzione=fotoBeneficio&idBeneficio=<%=cat.getId()%>"
 										class="avatar">
 								</div>
 
@@ -501,7 +501,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 		</div>
 		<div class="text-center">
 			<img
-				src="./GetFotoPaeseDiOrigine?idPaese=<%=prodotto.getPaeseDiOrigine()%>"
+				src="./ServletResources?codiceAzione=fotoPaeseDiOrigine&idPaese=<%=prodotto.getPaeseDiOrigine()%>"
 				class="img-fluid" height="626px" width="925px"
 				onerror="this.src='./resources//img/error.jpg'">
 		</div>
@@ -524,7 +524,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 
 			<img id="imageCategorie"
 				onerror="this.src='./resources//img/error.jpg'"
-				src="./GetFotoCategoria?idCategoria=<%=c.getId()%>"
+				src="./ServletResources?codiceAzione=fotoCategoria&idCategoria=<%=c.getId()%>"
 				alt="img-200-300">
 		</div>
 		<%
@@ -582,7 +582,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			%>
 			<div class="col">
 				<div class="card h-100">
-					<img src="./GetFotoProdotto?idFoto=<%=bean1.getNomeFoto()%>"
+					<img src="./ServletResources?codiceAzione=fotoProdotto&idFoto=<%=bean1.getNomeFoto()%>"
 						class="card-img-top"
 						onerror="this.src='./resources//img/error.jpg'" />
 					<div class="card-body">
@@ -641,7 +641,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						<li class="d-flex gap-4"><img
 							class="bi text-muted flex-shrink-0" width="98" height="98"
 							onerror="this.src='./resources//img/error.jpg'"
-							src="./GetFotoUsoLocale?idUsoLocale=<%=uso.getId()%>">
+							src="./ServletResources?codiceAzione=fotoUsoLocale&idUsoLocale=<%=uso.getId()%>">
 							<div>
 								<h5 class="mb-0"><%=uso.getNome()%></h5>
 								<%=uso.getDescrizione()%>
@@ -675,7 +675,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						<li class="d-flex gap-4"><img
 							class="bi text-muted flex-shrink-0" width="48" height="48"
 							onerror="this.src='./resources//img/error.jpg'"
-							src="./GetFotoBeneficio?idBeneficio=<%=ben.getId()%>">
+							src="./ServletResources?codiceAzione=fotoBeneficio&idBeneficio=<%=ben.getId()%>">
 							<div>
 								<h5 class="mb-0"><%=ben.getNome()%></h5>
 								<%=ben.getDescrizione()%>

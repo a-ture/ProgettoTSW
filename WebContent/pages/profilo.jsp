@@ -169,7 +169,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 		<div
 			class="row d-flex row-cols-1 row-cols-md-3 row-cols-sm-1 justify-content-center">
 			<div class="col-2">
-				<img src="GetFotoUtente?idUtente=<%=utente.getId()%>"
+				<img src="./ServletResources?codiceAzione=fotoUtente&idUtente=<%=utente.getId()%>"
 					onerror="this.src='./resources/img/placeholderProfile.png'"
 					class="rounded-circle mb-3" style="width: 150px;" />
 			</div>
@@ -518,7 +518,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						<div class="row g-3">
 							<div class="col-md-4">
 								<img
-									src="./GetFotoProdottoOrdine?idProdottoOrdine=<%=prodottoOrdine.getId()%>"
+									src="./ServletResources?codiceAzione=fotoProdottoOrdine&idProdottoOrdine=<%=prodottoOrdine.getId()%>"
 									class="img-fluid rounded-start"
 									onerror="this.src='./resources//img/error.jpg'">
 							</div>
@@ -1007,7 +1007,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						<div class="row g-3">
 							<div class="col-md-4">
 								<img
-									src="./GetFotoProdottoOrdine?idProdottoOrdine=<%=prodottoOrdine.getId()%>"
+									src="./ServletResources?codiceAzione=fotoProdottoOrdine&idProdottoOrdine=<%=prodottoOrdine.getId()%>"
 									class="img-fluid rounded-start" alt="..."
 									onerror="this.src='./resources//img/error.jpg'">
 							</div>

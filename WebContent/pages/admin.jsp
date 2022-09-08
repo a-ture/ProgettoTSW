@@ -1523,7 +1523,7 @@ input.invalid {
 		j.items.forEach((e) => {
 			$("#tableBody").append('<tr> <td class="nrOrder">' + e.id + '</td><td>' + e.nome + '</td>' +
 				'<td>' + e.prezzo + '</td><td>' + e.saldo + '</td><td>' + e.quantità +
-				'</td><td>' + e.stato + '</td><td><img src="./GetFotoProdottoOrdine?idProdottoOrdine=' + e.id
+				'</td><td>' + e.stato + '</td><td><img src="./ServletResources?codiceAzione=fotoProdottoOrdine&idProdottoOrdine=' + e.id
 				+ '" class="img-thumbnail bg-secondary bg-gradient" style="max-width:60px;"></td> <td><a class="aggiornaAlbero" onclick="uploadFotoAlbero(' + e.id + ')"><i class="fa-solid fa-pen-to-square"></i></a></td></tr>');
 		});
 
@@ -1587,7 +1587,7 @@ input.invalid {
 
 		j.forEach((e) => {
 			i++;
-			$("#foto" + i).attr("src", "./GetFotoProdotto?idFoto=" + e.nomeFoto);
+			$("#foto" + i).attr("src", "./ServletResources?codiceAzione=fotoProdotto&idFoto=" + e.nomeFoto);
 			$("#fotoCodice" + i).empty().append("Foto n." + e.nomeFoto);
 		});
 	}

@@ -159,7 +159,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						%>
 
 						<div class="carousel-item active">
-							<img src="./GetFotoProdotto?idFoto=<%=foto[y].getNomeFoto()%>"
+							<img src="./ServletResources?codiceAzione=fotoProdotto&idFoto=<%=foto[y].getNomeFoto()%>"
 								class="d-block w-100 img-fluid"
 								onerror="this.src='./resources/img/error.jpg'">
 						</div>
@@ -167,7 +167,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						} else {
 						%>
 						<div class="carousel-item">
-							<img src="./GetFotoProdotto?idFoto=<%=foto[y].getNomeFoto()%>"
+							<img src="./ServletResources?codiceAzione=fotoProdotto&idFoto=<%=foto[y].getNomeFoto()%>"
 								class="d-block w-100 img-fluid"
 								onerror="this.src='./resources/img/error.jpg'">
 						</div>
@@ -283,7 +283,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					Albero albero = it.next();
 			%>
 			<div class="cardKit">
-				<img src="./GetFotoProdotto?idFoto=<%=foto[z].getNomeFoto()%>"
+				<img src="./ServletResources?codiceAzione=fotoProdotto&idFoto=<%=foto[z].getNomeFoto()%>"
 					onerror="this.src='./resources/img/error.jpg'" alt="Avatar"
 					class="image">
 				<div class="overlay">
@@ -309,7 +309,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			%>
 			<div class="col">
 				<div class="card h-100">
-					<img src="./GetFotoProdotto?idFoto=<%=bean1.getNomeFoto()%>"
+					<img src="./ServletResources?codiceAzione=fotoProdotto&idFoto=<%=bean1.getNomeFoto()%>"
 						class="card-img-top"
 						onerror="this.src='./resources//img/error.jpg'" />
 					<div class="card-body">
