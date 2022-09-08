@@ -22,7 +22,7 @@ public class ServletRegalo extends HttpServlet {
 
 	public ServletRegalo() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)

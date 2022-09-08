@@ -28,7 +28,7 @@ public class ServletKitJSON extends HttpServlet {
 	}
 	
 	/**
-	 * Metodo Get per vedere tutti i prodotti alberi che fanno parte del kit avente il codice passato come paramtro
+	 * Metodo Get per vedere tutti i prodotti alberi che fanno parte del kit avente il codice passato come parametro
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
