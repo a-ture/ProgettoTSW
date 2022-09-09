@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ page contentType="text/html; charset=UTF-8"
 	import="java.util.*,it.unisa.beans.*, java.text.*"%>
+	
 <%
 Collection<?> ordini = (Collection<?>) request.getAttribute("ordini");
 Collection<?> utenti = (Collection<?>) request.getAttribute("utenti");
@@ -18,11 +19,13 @@ if (request.getAttribute("totaleIncassi") == null) {
 double totale = (double) request.getAttribute("totaleIncassi");
 DecimalFormat dFormat = new DecimalFormat("0.00");
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Admin</title>
+
 <!--CSS-->
 <link rel="stylesheet" type="text/css"
 	href="resources/css/bootstrap.css">
@@ -42,6 +45,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 <!-- FontAwesome -->
 <script src="https://kit.fontawesome.com/6bd8866cc2.js"
 	crossorigin="anonymous"></script>
+	
 <!-- jQuey -->
 <script src="https://code.jquery.com/jquery-3.6.0.js"
 	integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
@@ -51,6 +55,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 
 <!-- MyScript -->
 <script src="resources/scripts/adminScript.js"></script>
+
 <!-- MyScript -->
 <script src="resources/scripts/adminScriptTable.js"></script>
 
@@ -84,9 +89,12 @@ input.invalid {
 	background-color: #04AA6D;
 }
 </style>
+
 <!-- Favicon -->
 <link rel="icon" type="image/x-icon" href="resources/img/logo.png">
+
 </head>
+
 <body>
 	<div class="container-fluid">
 		<nav id="adminNav"
@@ -110,7 +118,7 @@ input.invalid {
 								class="fas fa-shopping-cart"> Gestione Ordini</i></a></li>
 						<li class="nav-item"><a class="nav-link" href="#user"><i
 								class="fas fa-user-circle"> Gestione Utenti</i></a></li>
-						<li class="nav-item "><a class="nav-link "
+						<li class="nav-item"><a class="nav-link" href="#"
 							data-bs-toggle="modal" data-bs-target="#exampleModal"><i
 								class="fas fa-sign-out-alt"> Log Out</i></a></li>
 					</ul>
@@ -124,43 +132,47 @@ input.invalid {
 				<div class="overview-boxes">
 
 					<div class="box">
+						<div class="left-side">
+						<i class='bx bx-cart-alt cart'><i class="fas fa-shopping-cart"></i></i>
+						</div>
 						<div class="right-side">
 							<div class="box-topic">Totale Ordini</div>
 							<div class="number"><%=ordini.size()%></div>
-
 						</div>
-						<i class='bx bx-cart-alt cart'><i class="fas fa-shopping-cart"></i></i>
 					</div>
 
 					<div class="box">
+						<div class="left-side">
+						<i class='bx bxs-cart-add cart two'><i
+							class="fas fa-user-circle"> </i></i>
+						</div>
 						<div class="right-side">
 							<div class="box-topic">Totale Utenti</div>
 							<div class="number"><%=utenti.size()%></div>
-
 						</div>
-						<i class='bx bxs-cart-add cart two'><i
-							class="fas fa-user-circle"> </i></i>
 					</div>
 
 					<div class="box">
+						<div class="left-side">
+						<i class='bx bx-cart cart three'><i class="fas fa-tshirt">
+						</i></i>
+						</div>
 						<div class="right-side">
 							<div class="box-topic">Totale Prodotti</div>
 							<div class="number"><%=prodotti.size() + kits.size()%></div>
-
-						</div>
-						<i class='bx bx-cart cart three'><i class="fas fa-tshirt">
-						</i></i>
+						</div>			
 					</div>
 
 					<div class="box">
+						<div class="left-side">
+						<i class='bx bxs-cart-download cart four'><i
+							class="fas fa-money-bill-alt"></i></i>
+						</div>
 						<div class="right-side">
 							<div class="box-topic">Totale Incassi</div>
 							<div class="number"><%=dFormat.format(totale)%>€
 							</div>
-
 						</div>
-						<i class='bx bxs-cart-download cart four'><i
-							class="fas fa-money-bill-alt"></i></i>
 					</div>
 				</div>
 			</div>
@@ -390,12 +402,12 @@ input.invalid {
 								<td><%=a.getOnSale()%></td>
 								<td><%=a.getSaldo()%></td>
 								<td><%=a.getQuantità()%></td>
-								<td><a class="botteneIdProdottoVedi"><i
+								<td><a class="botteneIdProdottoVedi" href="#prodottoIdAlert"><i
 										class="fa-solid fa-eye"></i></a> <a
-									class="botteneIdProdottoModifica"><i
+									class="botteneIdProdottoModifica" href="#ordine"><i
 										class="fa-solid fa-pen-to-square"></i></a> <a
 									href="Prodotto?action=eliminaAlberoCatalogo&id=<%=a.getId()%>"><i
-										class="fa-solid fa-circle-xmark"></i></a> <a class="vediFoto"><i
+										class="fa-solid fa-circle-xmark"></i></a> <a class="vediFoto" href="#prodottoFotoAlert"><i
 										class="fa-solid fa-images"></i></a></td>
 							</tr>
 							<%
@@ -543,8 +555,8 @@ input.invalid {
 							<td><%=k.getSaldo()%>%</td>
 							<td><%=dFormat.format(k.getPrezzoKit())%>€</td>
 							<td><%=k.isDisponibile()%></td>
-							<td><a class="botteneIdKitVedi"><i
-									class="fa-solid fa-eye"></i></a> <a class="botteneIdKitModifica"><i
+							<td><a class="botteneIdKitVedi" href="#kitDescrizioneAlert"><i
+									class="fa-solid fa-eye"></i></a> <a class="botteneIdKitModifica" href="#ordine"><i
 									class="fa-solid fa-pen-to-square"></i></a> <a
 								href="Prodotto?action=eliminaKitCatalogo&id=<%=k.getId()%>"><i
 									class="fa-solid fa-circle-xmark"></i></a></td>
@@ -1000,7 +1012,7 @@ input.invalid {
 				</div>
 				<div class="col-9">
 					<input class="form-control " type="text"
-						placeholder="Inserisci nome" name="idKit">
+						placeholder="Inserisci codice" name="idKit">
 
 				</div>
 			</div>
@@ -1083,7 +1095,7 @@ input.invalid {
 					<h5>Codice:</h5>
 				</div>
 				<div class="col-9">
-					<input type="text" class="form-control" name="codice"
+					<input type="text" class="form-control" placeholder="Inserisci codice" name="codice"
 						id="codiceProdottoUpload">
 				</div>
 			</div>
@@ -1105,7 +1117,7 @@ input.invalid {
 					<h5>Foto:</h5>
 				</div>
 				<div class="col-9">
-					<input type="file" class="form-control" id="inputGroupFile02"
+					<input type="file" class="form-control" placeholder="Carica immagine" id="inputGroupFile02"
 						name="foto">
 				</div>
 			</div>

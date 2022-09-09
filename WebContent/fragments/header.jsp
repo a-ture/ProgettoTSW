@@ -30,8 +30,8 @@
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 		<div class="container-fluid">
 			<button class="btn btn-primary">
-				<img class="navbar-brand" src="./resources/img/logo.png"
-					height="60px">
+				<a class ="nav-link active" href="Home"> <img class="navbar-brand"
+					src="./resources/img/logo.png" height="60px"> </a>
 			</button>
 			<button class="navbar-toggler" type="button"
 				data-bs-toggle="collapse" data-bs-target="#header"
@@ -55,7 +55,7 @@
 						<li class="nav-item"><a
 							class="btn btn-secondary my-2 my-sm-0" href="Login">Accedi</a></li>
 						<li class="nav-item"><a
-							href="Prodotto?action=visualizzaCarrello"><img
+							 href="Prodotto?action=visualizzaCarrello"><img
 								class="nav-link img-fluid"
 								src="./resources/img/icons8-carriola-50.png" width="40"
 								height="40"></a></li>
