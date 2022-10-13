@@ -1,5 +1,5 @@
 # ProgettoTSW
-Repository per documentazione del progetto di Tecnologie e Software per il Web.
+Repository per documentare il progetto di Tecnologie e Software per il Web.
 
 Requisiti del progetto
 - Il progetto deve essere realizzato in gruppo (max 4 componenti)
