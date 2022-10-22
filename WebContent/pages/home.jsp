@@ -18,56 +18,26 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 <head>
 <meta charset="UTF-8">
 <title>WoodLot</title>
-<!-- Favicon -->
-<link rel="icon" type="image/x-icon" href="resources/img/logo.png">
-<!--CSS-->
-<link rel="stylesheet" type="text/css"
-	href="resources/css/bootstrap.css">
-<link rel="stylesheet" type="text/css"
-	href="resources/css/_variables.scss">
-<link rel="stylesheet" type="text/css"
-	href="resources/css/_bootswatch.scss">
-<!-- <link rel="stylesheet" type="text/css" href="resources/css/style.css"> -->
-<link
-	href="https://fonts.googleapis.com/css?family=Do+Hyeon|Frijole|Josefin+Sans:300,400,400i,600,700|Viga"
-	rel="stylesheet">
-<!-- JavaScript Bundle with Popper -->
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
-	crossorigin="anonymous"></script>
-<!-- FontAwesome -->
-<script src="https://kit.fontawesome.com/6bd8866cc2.js"
-	crossorigin="anonymous"></script>
-	<!-- jQuey -->
-<script src="https://code.jquery.com/jquery-3.6.0.js"
-	integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-	crossorigin="anonymous"></script>
-<style>/* Ex6 Styling  */
-/* Ex2 Styling  */ 
+<link rel="stylesheet" type="text/css" href="resources/css/style.css">
+<style>
 .Banner2{
   display:none;
 }
-
 .Mega, .ShopNowEx2,.SalesEx2 {/* ex 2 texts  */
  display:none;
 }
-
 .BannerBorderLineEx2, .BannerBorderEx2{
    display:none;
 }
-
 .BannerHolderEx2{
  display:none;
 }
-
 .BorderAnimationEx2 {
   stroke-dasharray: 20;
   stroke-dashoffset: 20;
   animation:BannerBorder 50s linear alternate infinite;
   animation-delay: 0s;
 }
-
  /* Global Border Animation   */ 
 @keyframes BannerBorder {
   from {
@@ -77,102 +47,24 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
     stroke-dashoffset: 1;
   }
 }
-
 @-webkit-keyframes fadeinout {
   0%,100% { opacity: 0; }
   50% { opacity: 1; }
 }
-
 @keyframes fadeinout {
   0%,100% { opacity: 0; }
   50% { opacity: 1; }
 }
-
-
 @keyframes example {
     from {color: red;}
     to {color: yellow;}
 }
 </style>
-
 </head>
 
 <body>
 	<!-- Header -->
 	<%@ include file="../fragments/header.jsp"%>
-
-	<div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
-		<div class="carousel-indicators">
-			<button type="button" data-bs-target="#myCarousel"
-				data-bs-slide-to="0" class="active" aria-label="Slide 1"
-				aria-current="true"></button>
-			<button type="button" data-bs-target="#myCarousel"
-				data-bs-slide-to="1" aria-label="Slide 2" class=""></button>
-			<button type="button" data-bs-target="#myCarousel"
-				data-bs-slide-to="2" aria-label="Slide 3" class=""></button>
-		</div>
-
-		<div class="carousel-inner">
-			<div class="carousel-item active">
-				<svg class="bd-placeholder-img" width="100%" height="100%"
-					xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
-					preserveAspectRatio="xMidYMid slice" focusable="false">
-						<rect width="100%" height="100%" fill="#777"></rect></svg>
-
-				<div class="container">
-					<div class="carousel-caption text-start">
-						<h1>Example headline.</h1>
-						<p>Some representative placeholder content for the first slide
-							of the carousel.</p>
-						<p>
-							<a class="btn btn-lg btn-primary" href="#">Sign up today</a>
-						</p>
-					</div>
-				</div>
-			</div>
-			<!-- Seconda Slide -->
-			<div class="carousel-item">
-				<img class="bd-placeholder-img" width="100%" height="100%">
-
-				<div class="container">
-					<div class="carousel-caption">
-						<h1>Another example headline.</h1>
-						<p>Some representative placeholder content for the second
-							slide of the carousel.</p>
-						<p>
-							<a class="btn btn-lg btn-primary" href="#">Learn more</a>
-						</p>
-					</div>
-				</div>
-			</div>
-
-			<div class="carousel-item">
-				<img class="bd-placeholder-img" width="100%" height="100%"
-					src="resources/img/autumn-leaves.jpg">
-				<div class="container">
-					<div class="carousel-caption text-end">
-						<h1>One more for good measure.</h1>
-						<p>Some representative placeholder content for the third slide
-							of this carousel.</p>
-						<p>
-							<a class="btn btn-lg btn-primary" href="#">Browse gallery</a>
-						</p>
-
-					</div>
-				</div>
-			</div>
-		</div>
-		<button class="carousel-control-prev" type="button"
-			data-bs-target="#myCarousel" data-bs-slide="prev">
-			<span class="carousel-control-prev-icon" aria-hidden="true"></span> <span
-				class="visually-hidden">Previous</span>
-		</button>
-		<button class="carousel-control-next" type="button"
-			data-bs-target="#myCarousel" data-bs-slide="next">
-			<span class="carousel-control-next-icon" aria-hidden="true"></span> <span
-				class="visually-hidden">Next</span>
-		</button>
-	</div>
 
 	<!-- Hero Section -->
 	<div class="container my-5">
@@ -195,20 +87,29 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			</div>
 			<div class="col-lg-3 p-0 ">
 				<div id="wrapper">
-  
-     <svg class="Banner2" height="220" width="450"> 
 
-       <polygon class="BorderAnimationEx2 BannerBorderEx2" stroke-miterlimit="10" points="30 5, 20 200, 440 170, 440 55" style="fill:none; stroke:#000; stroke-width:5" />  
+					<svg class="Banner2" height="220" width="450"> 
 
-       <polygon class="BannerHolderEx2" points="5 31, 5 185, 410 205, 430 10" style="opacity:0.2;fill:#000;" />
-       <polygon class="BannerHolderEx2" points="5 31, 5 180, 410 200, 430 10" style="opacity:1;fill:#0ADBB3;" />  
+       <polygon class="BorderAnimationEx2 BannerBorderEx2"
+							stroke-miterlimit="10" points="30 5, 20 200, 440 170, 440 55"
+							style="fill:none; stroke:#000; stroke-width:5" />  
+
+       <polygon class="BannerHolderEx2"
+							points="5 31, 5 185, 410 205, 430 10"
+							style="opacity:0.2;fill:#000;" />
+       <polygon class="BannerHolderEx2"
+							points="5 31, 5 180, 410 200, 430 10"
+							style="opacity:1;fill:#0ADBB3;" />  
     
-       <text class="SalesEx2" font-family="Viga" font-size="65" >
-         <tspan fill="#000" opacity="0.8" x="43" y="120" font-family="Viga" font-size="65" opacity="1" >OFFER</tspan>
-         <tspan  x="43" y="117" font-family="Viga" font-size="65" opacity="1" fill="#fff">OFFER</tspan>
+       <text class="SalesEx2" font-family="Viga" font-size="65">
+         <tspan fill="#000" opacity="0.8" x="43" y="120"
+							font-family="Viga" font-size="65" opacity="1">OFFER</tspan>
+         <tspan x="43" y="117" font-family="Viga" font-size="65"
+							opacity="1" fill="#fff">OFFER</tspan>
        </text>
 
-     <text class="Mega"font-weight="300" font-family="Josefin Sans" font-size="23" fill="#000">
+     <text class="Mega" font-weight="300" font-family="Josefin Sans"
+							font-size="23" fill="#000">
          <tspan font-weight="700" x="280" y="60">MEGA</tspan>
          <tspan x="280" y="97">SALES</tspan>
          <tspan font-weight="700" x="270" y="136">LIMITED</tspan>
@@ -216,13 +117,16 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
        </text>
 
 
-       <text class="ShopNowEx2"   font-family="Josefin Sans" font-weight="700" font-size="20" fill="#fff">
-         <tspan  fill="#000"x="65" y="157">S H O P&nbsp; &nbsp;N O W</tspan>
+       <text class="ShopNowEx2" font-family="Josefin Sans"
+							font-weight="700" font-size="20" fill="#fff">
+         <tspan fill="#000" x="65" y="157">S H O P&nbsp; &nbsp;N O W</tspan>
        <tspan x="65" y="155">S H O P&nbsp; &nbsp;N O W</tspan>
            
            </text>
 
-       <polyline class="BorderAnimationEx2 BannerBorderLineEx2" points="30 3, 20 200" style="fill:none; stroke:#000; stroke-width:4.5;" /> 
+       <polyline class="BorderAnimationEx2 BannerBorderLineEx2"
+							points="30 3, 20 200"
+							style="fill:none; stroke:#000; stroke-width:4.5;" /> 
 
 
   Sorry, your browser does not support inline SVG.
@@ -233,8 +137,8 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 		</div>
 	</div>
 
-	<div class="b-example-divider"></div>
 
+	<div class="b-example-divider"></div>
 	<section class="py-5 text-center container">
 		<div class="row py-lg-5">
 			<div class="col-lg-6 col-md-8 mx-auto">
@@ -251,13 +155,13 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 		</div>
 	</section>
 
+
 	<br>
 	<br>
 	<!-- Fine Card Section -->
 	<div class="b-example-divider"></div>
 	<!-- Cosa Puoi Fare -->
 	<!-- Scritta -->
-
 
 	<!-- Cards  Cosa puoi fare-->
 	<div class="container" id="cosaPuoiFare">
@@ -324,6 +228,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 		</div>
 		<br>
 	</div>
+
 	<div class="b-example-divider"></div>
 	<div class="container px-4 py-5" id="hanging-icons">
 		<h2 class="pb-2 border-bottom">Come Funziona?</h2>
@@ -395,7 +300,6 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 	<!-- Card Section -->
 	<br>
 	<div class="b-example-divider"></div>
-
 	<!-- Scritta -->
 	<div class="container">
 		<div class="col-md-12 text-center mt-5">
@@ -419,7 +323,8 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			%>
 			<div class="col">
 				<div class="card h-100">
-					<img src="./ServletResources?codiceAzione=fotoProdotto&idFoto=<%=bean1.getNomeFoto()%>"
+					<img
+						src="./ServletResources?codiceAzione=fotoProdotto&idFoto=<%=bean1.getNomeFoto()%>"
 						class="card-img-top"
 						onerror="this.src='./resources//img/error.jpg'" />
 					<div class="card-body">
@@ -457,6 +362,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			%>
 		</div>
 	</div>
+
 	<br>
 	<br>
 	<!-- Bottone  Vedi Altri -->
@@ -529,7 +435,8 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 
 	<!-- Footer -->
 	<%@ include file="../fragments/footer.jsp"%>
-<script>
+	
+	<script>
 /* Ex2 */
 $(".Banner2").delay(6000).fadeIn(500);
 $(".BannerHolderEx2").delay(6500).fadeIn(500);
@@ -549,4 +456,3 @@ $(".ShopNowEx2").delay(4000).fadeIn(500);
 });
 </script>
 </body>
-</html>

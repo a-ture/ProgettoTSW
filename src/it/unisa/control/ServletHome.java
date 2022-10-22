@@ -62,7 +62,7 @@ public class ServletHome extends HttpServlet {
 			request.setAttribute("fotoProdotti", photos);
 		}
 
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/fragments/header.jsp");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/pages/home.jsp");
 		dispatcher.forward(request, response);
 	}
 
