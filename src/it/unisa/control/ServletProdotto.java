@@ -293,7 +293,7 @@ public class ServletProdotto extends HttpServlet {
 				double tasse = Double.parseDouble(request.getParameter("tasse"));
 				String paeseDiOrigine = request.getParameter("paese");
 				
-				if (paeseDiOrigine.equals("PerÃ¹"))
+				if (paeseDiOrigine.equals("Perù"))
 					paeseDiOrigine = "Perù";
 			
 				int disponibile = Integer.parseInt(request.getParameter("disponibile"));

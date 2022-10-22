@@ -60,6 +60,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 <script src="resources/scripts/adminScriptTable.js"></script>
 
 <style>
+
 input.invalid {
 	background-color: #ffdddd;
 }
@@ -186,9 +187,9 @@ input.invalid {
 						</div>
 					</div>
 
-					<div class="row mt-1" style="display: flex;">
+					<div class="row mt-1" style="display: flex">
 						<!-- Cerca Per id   -->
-						<div class="col-md-3 mx-5">
+						<div class="col-sm-3 mx-5">
 							<div class="input-group mb-3">
 								<input type="text" class="form-control"
 									placeholder="Cerca per id" aria-label="Recipient's username"
@@ -202,7 +203,7 @@ input.invalid {
 						</div>
 
 						<!-- Cerca Per Cliente   -->
-						<div class="col-md-3 mx-5">
+						<div class="col-sm-3 mx-5">
 							<div class="input-group mb-3">
 								<input type="text" class="form-control"
 									placeholder="Cerca per cliente"
@@ -218,7 +219,7 @@ input.invalid {
 						</div>
 
 						<!-- Cerca Per Data  -->
-						<div class="col-md-3 mx-5">
+						<div class="col-sm-3 mx-5">
 							<div class="input-group mb-3">
 								<input type="text" class="form-control"
 									placeholder="dd/MM/yy - dd/MM/yy"
@@ -962,7 +963,7 @@ input.invalid {
 					</div>
 				</div>
 				<div style="text-align: center; margin-top: 40px;">
-					<span class="step"></span> <span class="step"></span> <span
+					<span class="step"></span> <span class="step"></span> <span class="step"></span> <span
 						class="step"></span> <span class="step"></span> <span class="step"></span><span
 						class="step"></span>
 				</div>

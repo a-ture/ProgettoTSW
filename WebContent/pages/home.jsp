@@ -27,7 +27,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 	href="resources/css/_variables.scss">
 <link rel="stylesheet" type="text/css"
 	href="resources/css/_bootswatch.scss">
-<link rel="stylesheet" type="text/css" href="resources/css/style.css">
+<!-- <link rel="stylesheet" type="text/css" href="resources/css/style.css"> -->
 <link
 	href="https://fonts.googleapis.com/css?family=Do+Hyeon|Frijole|Josefin+Sans:300,400,400i,600,700|Viga"
 	rel="stylesheet">

@@ -15,6 +15,7 @@
 <link rel="stylesheet" type="text/css"
 	href="resources/css/_bootswatch.scss">
 
+
 <!-- JavaScript Bundle with Popper -->
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
@@ -24,25 +25,22 @@
 <!-- FontAwesome -->
 <script src="https://kit.fontawesome.com/6bd8866cc2.js"
 	crossorigin="anonymous"></script>
+	
+<!-- jQuey -->
+<script src="https://code.jquery.com/jquery-3.6.0.js"
+	integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+	crossorigin="anonymous"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	
 </head>
 
 <body>
-	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+	<nav class="navbar navbar-light navbar-dark bg-primary">
 		<div class="container-fluid">
-			<button class="btn btn-primary">
-				<a class ="nav-link active" href="Home"> <img class="navbar-brand"
-					src="./resources/img/logo.png" height="60px"> </a>
-			</button>
-			<button class="navbar-toggler" type="button"
-				data-bs-toggle="collapse" data-bs-target="#header"
-				aria-controls="navbarColor01" aria-expanded="false"
-				aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="navbar-collapse collapse" id="header">
-				<ul class="navbar-nav me-auto">
+			<div class="navbar" id="header">
+				<ul class="navbar-nav">
 					<li class="nav-item"><a class="nav-link active" href="Home">Home
-							<span class="visually-hidden">(current)</span>
 					</a></li>
 					<li class="nav-item"><a class="nav-link" href="Catalogo">Alberi</a></li>
 					<li class="nav-item"><a class="nav-link"
@@ -51,9 +49,9 @@
 						class="btn btn-primary" href="Regalo"> Hai un Treecode?</a></li>
 				</ul>
 				<div>
-					<ul class="navbar-nav me-auto">
+					<ul class="navbar-nav">
 						<li class="nav-item"><a
-							class="btn btn-secondary my-2 my-sm-0" href="Login">Accedi</a></li>
+							class="nav-link active" href="Login">Accedi</a></li>
 						<li class="nav-item"><a
 							 href="Prodotto?action=visualizzaCarrello"><img
 								class="nav-link img-fluid"
@@ -65,6 +63,15 @@
 
 		</div>
 	</nav>
+	
+	<!--  <script type="text/javascript">
+	function collapse(){
+		setTimeout(
+			() => {$('#header').removeClass('show')},320		
+		)
+		}
+	</script>-->
+	
 </body>
 
 </html>

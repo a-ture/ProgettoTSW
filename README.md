@@ -21,17 +21,16 @@ Requisiti del progetto
 - Usare la sicurezza programmatica, ovvere il "token nella sessione" (ovvero il bean rappresentante l'utente)
 - Le form sono controllati con javascript
   - I dati delle form vengono inviati al server solo se corretti
-  - Usare le espressioni regolati per validare i campi delle form
+  - Usare le espressioni regolari per validare i campi delle form
   - Mettere il "focus" sul campo in cui l'utente sta scrivendo
-  - Visualizzare le istruzioni di compilazione di ongi campo di input nel placeholder
+  - Visualizzare le istruzioni di compilazione di ogni campo di input nel placeholder
   - Fornire i messaggi di errore quando l'utente preme il submit
 - Usare JQuery per modificare il DOM in qualche pagina
 - Usare JQuery + AJAX per scambiare piccole informazioni con il server (in formato JSON)
-- Usare JQuewy per animare le immagini al passaggio del mouse
+- Usare JQuery per animare le immagini al passaggio del mouse
 - Gestire le sessioni per memorizzare lo stato del carrello
   - Si salva l'ordine nel DB dopo l'acquisto
-- Usare i fragment (comn include) nelle pagine JSP per creare header, footer
+- Usare i fragment (con include) nelle pagine JSP per creare header, footer
 - Il database deve essere strutturato in modo tale che
   - Se vengono modificati il prezzo o l'iva di un prodotto acquistato successivamente all'acquisto l'ordine del cliente mantiene i dati corretti
   - Se l'amministratore cancella un prodotto non deve scomparire dagli ordini effettuati    
-
