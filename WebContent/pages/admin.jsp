@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ page contentType="text/html; charset=UTF-8"
 	import="java.util.*,it.unisa.beans.*, java.text.*"%>
-	
+
 <%
 Collection<?> ordini = (Collection<?>) request.getAttribute("ordini");
 Collection<?> utenti = (Collection<?>) request.getAttribute("utenti");
@@ -45,7 +45,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 <!-- FontAwesome -->
 <script src="https://kit.fontawesome.com/6bd8866cc2.js"
 	crossorigin="anonymous"></script>
-	
+
 <!-- jQuey -->
 <script src="https://code.jquery.com/jquery-3.6.0.js"
 	integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
@@ -58,39 +58,6 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 
 <!-- MyScript -->
 <script src="resources/scripts/adminScriptTable.js"></script>
-
-<style>
-
-input.invalid {
-	background-color: #ffdddd;
-}
-/* Hide all steps by default: */
-.tab {
-	display: none;
-}
-/* Make circles that indicate the steps of the form: */
-.step {
-	height: 15px;
-	width: 15px;
-	margin: 0 2px;
-	background-color: #bbbbbb;
-	border: none;
-	border-radius: 50%;
-	display: inline-block;
-	opacity: 0.5;
-}
-
-/* Mark the active step: */
-.step.active {
-	opacity: 1;
-}
-
-/* Mark the steps that are finished and valid: */
-.step.finish {
-	background-color: #04AA6D;
-}
-</style>
-
 <!-- Favicon -->
 <link rel="icon" type="image/x-icon" href="resources/img/logo.png">
 
@@ -128,506 +95,486 @@ input.invalid {
 		</nav>
 
 		<div id="dashboard">
-			<div class="home-content">
-				<h1 class="mb-5 border-bottom text-center">Welcome back!</h1>
-				<div class="overview-boxes">
 
-					<div class="box">
-						<div class="left-side">
-						<i class='bx bx-cart-alt cart'><i class="fas fa-shopping-cart"></i></i>
-						</div>
-						<div class="right-side">
-							<div class="box-topic">Totale Ordini</div>
-							<div class="number"><%=ordini.size()%></div>
-						</div>
-					</div>
-
-					<div class="box">
-						<div class="left-side">
-						<i class='bx bxs-cart-add cart two'><i
-							class="fas fa-user-circle"> </i></i>
-						</div>
-						<div class="right-side">
-							<div class="box-topic">Totale Utenti</div>
-							<div class="number"><%=utenti.size()%></div>
-						</div>
-					</div>
-
-					<div class="box">
-						<div class="left-side">
-						<i class='bx bx-cart cart three'><i class="fas fa-tshirt">
-						</i></i>
-						</div>
-						<div class="right-side">
-							<div class="box-topic">Totale Prodotti</div>
-							<div class="number"><%=prodotti.size() + kits.size()%></div>
-						</div>			
-					</div>
-
-					<div class="box">
-						<div class="left-side">
-						<i class='bx bxs-cart-download cart four'><i
-							class="fas fa-money-bill-alt"></i></i>
-						</div>
-						<div class="right-side">
-							<div class="box-topic">Totale Incassi</div>
-							<div class="number"><%=dFormat.format(totale)%>€
-							</div>
+			<h1 class="mb-5 border-bottom text-center">Welcome back!</h1>
+			<div class="count-up mt-3 mb-5 text-center">
+				<div class="wrapper">
+					<div class="card h-100 w-100">
+						<img src="resources/img/chiSiamoPage/info_users.svg" height="200"
+							width="200" class="card-img-top">
+						<div class="card-body">
+							<h5 class="card-title">Utenti</h5>
+							<div class="counter" data-count="<%=utenti.size()%>">0</div>
 						</div>
 					</div>
 				</div>
-			</div>
-
-			<div class="row d-flex justify-content-center my-5">
-				<div class="tabb">
-
-					<div class="row mt-2">
-						<div class="col">
-							<div class="text-center fw-bold h3">Ordini</div>
+				<div class="wrapper">
+					<div class="card h-100">
+						<img src="resources/img/chiSiamoPage/info_countries.svg"
+							height="200" width="200" class="card-img-top">
+						<div class="card-body">
+							<h5 class="card-title text-center">Ordini</h5>
+							<div class="counter" data-count="<%=ordini.size()%>">0</div>
 						</div>
-					</div>
-
-					<div class="row mt-1" style="display: flex">
-						<!-- Cerca Per id   -->
-						<div class="col-sm-3 mx-5">
-							<div class="input-group mb-3">
-								<input type="text" class="form-control"
-									placeholder="Cerca per id" aria-label="Recipient's username"
-									aria-describedby="button-addon2" id="myInput1"
-									onkeyup="myFunctionId(0,'myInput1','myTable')">
-								<button class="btn btn-outline-secondary" type="button"
-									id="button-addon2">
-									<i class="fa-solid fa-magnifying-glass"></i>
-								</button>
-							</div>
-						</div>
-
-						<!-- Cerca Per Cliente   -->
-						<div class="col-sm-3 mx-5">
-							<div class="input-group mb-3">
-								<input type="text" class="form-control"
-									placeholder="Cerca per cliente"
-									aria-label="Recipient's username"
-									aria-describedby="button-addon2" id="myInput2"
-									onkeyup="myFunctionId(1,'myInput2','myTable')">
-								<button class="btn btn-outline-secondary" type="button"
-									id="button-addon2">
-									<i class="fa-solid fa-magnifying-glass"></i>
-
-								</button>
-							</div>
-						</div>
-
-						<!-- Cerca Per Data  -->
-						<div class="col-sm-3 mx-5">
-							<div class="input-group mb-3">
-								<input type="text" class="form-control"
-									placeholder="dd/MM/yy - dd/MM/yy"
-									aria-label="Recipient's username"
-									aria-describedby="button-addon2" id="myInput3">
-								<button class="btn btn-outline-secondary" type="button"
-									id="button-addon2" onclick="myFunctionOrderData()">
-									<i class="fa-solid fa-magnifying-glass"></i>
-								</button>
-							</div>
-						</div>
-					</div>
-
-					<table class="table" id="myTable">
-						<thead>
-							<tr>
-								<th scope="col">Codice</th>
-								<th scope="col">Utente</th>
-								<th scope="col">Totale</th>
-								<th scope="col">N. Prodotti</th>
-								<th scope="col">Data</th>
-								<th scope="col">Azioni</th>
-							</tr>
-						</thead>
-						<tbody id="tableBodyOrdini">
-							<%
-							if (ordini != null && ordini.size() != 0) {
-								Iterator<?> it2 = ordini.iterator();
-								while (it2.hasNext()) {
-									Ordine o = (Ordine) it2.next();
-							%>
-							<tr>
-								<td scope="row" class="nr"><%=o.getId()%></td>
-								<td class="utente"><%=o.getUtente().getEmail()%></td>
-								<td class="totale"><%=dFormat.format(o.getTotalePagato())%>€</td>
-								<td class="nProdotti"><%=o.getTotaleProdotti()%></td>
-								<td class="data"><%=o.getCreatoIl()%></td>
-								<td><a class="botteneIdOrdine"> <i
-										class="fa-solid fa-eye"></i></a> <a class="vediFotoOrdine"><i
-										class="fa-solid fa-images"></i></a></td>
-
-							</tr>
-							<%
-							}
-							}
-							%>
-						</tbody>
-
-					</table>
-				</div>
-			</div>
-			<!-- Ordini -->
-			<div id="ordineAlert" class="alert alert-success m-5 d-none"
-				role="alert">
-				<div class="row">
-					<div class="col">
-						<h4 class="alert-heading" id="numeroOrdineAlert"></h4>
-					</div>
-					<div class="col-1 text-end">
-						<button type="button" class="btn-close" id="closeOrdineAlert"
-							aria-label="Close"></button>
 					</div>
 				</div>
-				<p>L'ordine contiene i seguenti prodotti:</p>
-				<ol id="prodottiOrdineAlert"></ol>
-				<hr>
-				<p class="mb-0" id="dettaglioOrdineAlert"></p>
-				<hr>
-				<p class="mb-0" id="UtenteOrdineAlert"></p>
-			</div>
-
-			<div class="alert alert-success  m-5 d-none" role="alert"
-				id="ordineFotoAlert">
-				<div class="row">
-					<div class="col">
-						<h4 class="alert-heading" id="ordineFotoIdAlert"></h4>
-					</div>
-					<div class="col-1 text-end">
-						<button type="button" class="btn-close" id="closeOrdineFotoAlert"
-							aria-label="Close"></button>
+				<div class="wrapper">
+					<div class="card h-100">
+						<img src="resources/img/chiSiamoPage/info_trees.svg" height="200"
+							width="200" class="card-img-top">
+						<div class="card-body">
+							<h5 class="card-title">Prodotti</h5>
+							<div class="counter"
+								data-count="<%=prodotti.size() + kits.size()%>">0</div>
+						</div>
 					</div>
 				</div>
-				<div class="row">
-					<table class="table">
-						<thead>
-							<tr>
-								<th scope="col">Id</th>
-								<th scope="col">Nome</th>
-								<th scope="col">Prezzo</th>
-								<th scope="col">Saldo</th>
-								<th scope="col">Quantità</th>
-								<th scope="col">Stato</th>
-								<th scope="col">Foto</th>
-								<th scope="col">Azioni</th>
-							</tr>
-						</thead>
-						<tbody id="tableBody">
-
-						</tbody>
-					</table>
-				</div>
-			</div>
-
-			<div class="row d-flex justify-content-center my-5">
-				<div class="tabb">
-					<div class="row mt-2">
-						<div class="text-center fw-bold h3">Alberi</div>
-					</div>
-					<div class="row mt-1" style="display: flex;">
-						<!-- Cerca Per Id -->
-						<div class="col-md-3 m-5">
-							<div class="input-group mb-3">
-								<input type="text" class="form-control"
-									placeholder="Cerca per id" aria-label="Recipient's username"
-									aria-describedby="button-addon2" id="myInput4"
-									onkeyup="myFunctionId(0,'myInput4','myTable2')">
-								<button class="btn btn-outline-secondary" type="button"
-									id="button-addon2">
-									<i class="fa-solid fa-magnifying-glass"></i>
-								</button>
-							</div>
-						</div>
-						<!-- Cerca Per Paese  -->
-						<div class="col-md-3 m-5">
-							<div class="input-group mb-3">
-								<input type="text" class="form-control"
-									placeholder="Cerca per paese" aria-label="Recipient's username"
-									aria-describedby="button-addon2" id="myInput5"
-									onkeyup="myFunctionId(2,'myInput5','myTable2')">
-								<button class="btn btn-outline-secondary" type="button"
-									id="button-addon2">
-									<i class="fa-solid fa-magnifying-glass"></i>
-								</button>
-							</div>
-						</div>
-
-
-						<!-- Cerca Per Disponibile/ In Saldo / Prezzo  -->
-						<div class="col-md-3 m-5">
-							<div class="dropdown">
-								<button class="btn btn-secondary dropdown-toggle" type="button"
-									id="dropdownMenuButton2" data-bs-toggle="dropdown"
-									aria-expanded="false">Ordina Per</button>
-								<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
-
-									<li onclick="sortTableNumb('myTable2',5)"><a
-										class="dropdown-item">Saldo</a></li>
-									<li onclick="sortTableNumb('myTable2',6)"><a
-										class="dropdown-item">Quantità</a></li>
-
-								</ul>
-							</div>
+				<div class="wrapper">
+					<div class="card h-100">
+						<img src="resources/img/chiSiamoPage/info_trees.svg" height="200"
+							width="200" class="card-img-top">
+						<div class="card-body">
+							<h5 class="card-title">Incassi</h5>
+							<div class="counter" data-count="<%=totale%>">0</div>
 						</div>
 					</div>
-
-					<table class="table" id="myTable2">
-						<thead>
-							<tr>
-								<th scope="col">Id</th>
-								<th scope="col" onclick="sortTableAlf(1,'myTable2')">Nome</th>
-								<th scope="col" onclick="sortTableAlf(2,'myTable2')">Paese</th>
-								<th scope="col" onclick="sortTableAlf(3,'myTable2')">Prezzo</th>
-								<th scope="col">In saldo</th>
-								<th scope="col">Saldo</th>
-								<th scope="col">Quantità</th>
-								<th scope="col">Azioni</th>
-							</tr>
-						</thead>
-						<tbody>
-							<%
-							if (prodotti != null && prodotti.size() != 0) {
-								Iterator<?> it12 = prodotti.iterator();
-								while (it12.hasNext()) {
-									Albero a = (Albero) it12.next();
-							%>
-							<tr>
-								<td scope="row" class="nr"><%=a.getId()%></td>
-								<td><%=a.getNome()%></td>
-								<td><%=a.getPaeseDiOrigine()%></td>
-								<td><%=dFormat.format(a.getPrezzo())%>€</td>
-								<td><%=a.getOnSale()%></td>
-								<td><%=a.getSaldo()%></td>
-								<td><%=a.getQuantità()%></td>
-								<td><a class="botteneIdProdottoVedi" href="#prodottoIdAlert"><i
-										class="fa-solid fa-eye"></i></a> <a
-									class="botteneIdProdottoModifica" href="#ordine"><i
-										class="fa-solid fa-pen-to-square"></i></a> <a
-									href="Prodotto?action=eliminaAlberoCatalogo&id=<%=a.getId()%>"><i
-										class="fa-solid fa-circle-xmark"></i></a> <a class="vediFoto" href="#prodottoFotoAlert"><i
-										class="fa-solid fa-images"></i></a></td>
-							</tr>
-							<%
-							}
-							}
-							%>
-						</tbody>
-					</table>
-				</div>
-			</div>
-
-			<div id="prodottoAlert" class="alert alert-success m-5 d-none"
-				role="alert">
-				<div class="row">
-					<div class="col">
-						<h4 class="alert-heading" id="prodottoIdAlert"></h4>
-					</div>
-					<div class="col-1 text-end">
-						<button type="button" class="btn-close" id="closeProdottoAlert"
-							aria-label="Close"></button>
-					</div>
-				</div>
-				<p id="prodottoDescrizioneAlert"></p>
-				<hr>
-				<p>L'albero ha i seguenti benefici:</p>
-				<ol id="prodottoBeneficiAlert"></ol>
-				<hr>
-				<p>L'albero ha le seguenti categorie:</p>
-				<ol id="prodottoCategorieAlert"></ol>
-				<hr>
-				<p>L'albero ha i seguenti usi locali:</p>
-				<ol id="prodottoUsiLocaliAlert"></ol>
-				<hr>
-			</div>
-
-			<div class="alert alert-success  m-5 d-none" role="alert"
-				id="prodottoFotoAlert">
-				<div class="row">
-					<div class="col">
-						<h4 class="alert-heading" id="prodottoFotoIdAlert"></h4>
-					</div>
-					<div class="col-1 text-end">
-						<button type="button" class="btn-close"
-							id="closeProdottoFotoAlert" aria-label="Close"></button>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-4">
-						<div class="row">
-							<img src="" class="rounded " alt="..." id="foto1"
-								onerror="this.src='./resources//img/error.jpg'">
-						</div>
-						<p id="fotoCodice1">Foto n.</p>
-						<a class="btn btn-primary my-3 uploadFoto-1"> Upload Foto</a>
-					</div>
-					<div class="col-4">
-						<div class="row">
-							<img src="" class="rounded  " alt="..." id="foto2"
-								onerror="this.src='./resources//img/error.jpg'">
-						</div>
-						<p id="fotoCodice2">Foto n.</p>
-						<a class="btn btn-primary my-3 uploadFoto-2"> Upload Foto</a>
-
-					</div>
-					<div class="col-4">
-						<div class="row">
-							<img src="" class="rounded  " alt="..." id="foto3"
-								onerror="this.src='./resources//img/error.jpg'">
-						</div>
-						<p id="fotoCodice3">Foto n.</p>
-						<a class="btn btn-primary my-3 uploadFoto-3"> Upload Foto</a>
-					</div>
-				</div>
-
-			</div>
-
-			<div class="row d-flex justify-content-center my-5">
-				<div class="tabb">
-					<div class="row mt-2">
-						<div class="text-center fw-bold h3">Kits</div>
-					</div>
-					<div class="row mt-1" style="display: flex;">
-						<!-- Cerca Per Id -->
-						<div class="col-md-3 m-5">
-							<div class="input-group mb-3">
-								<input type="text" class="form-control"
-									placeholder="Cerca per id" aria-label="Recipient's username"
-									aria-describedby="button-addon2" id="myInput6"
-									onkeyup="myFunctionId(0,'myInput6','myTable4')">
-								<button class="btn btn-outline-secondary" type="button"
-									id="button-addon2">
-									<i class="fa-solid fa-magnifying-glass"></i>
-								</button>
-							</div>
-						</div>
-						<!-- Cerca Per Nome  -->
-						<div class="col-md-3 m-5">
-							<div class="input-group mb-3">
-								<input type="text" class="form-control"
-									placeholder="Cerca per nome" aria-label="Recipient's username"
-									aria-describedby="button-addon2" id="myInput7"
-									onkeyup="myFunctionId(1,'myInput7','myTable4')">
-								<button class="btn btn-outline-secondary" type="button"
-									id="button-addon2">
-									<i class="fa-solid fa-magnifying-glass"></i>
-								</button>
-							</div>
-						</div>
-						<!-- Cerca Per Disponibile/ In Saldo  -->
-						<div class="col-md-3 m-5">
-							<div class="dropdown">
-								<button class="btn btn-secondary dropdown-toggle" type="button"
-									id="dropdownMenuButton1" data-bs-toggle="dropdown"
-									aria-expanded="false">Ordina Per</button>
-								<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton5">
-									<li onclick="sortTableNumb(4,'myTable4')"><a
-										class="dropdown-item">Disponibilità</a></li>
-									<li onclick="sortTableNumb('myTable4',3)"><a
-										class="dropdown-item">Prezzo</a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-
-					<table class="table" id="myTable4">
-						<thead>
-							<tr>
-								<td scope="row">Id</td>
-								<td onclick="sortTableAlf(1,'myTable4')">Nome</td>
-								<td>Saldo</td>
-								<td>Prezzo Kit</td>
-								<td>Disponibile</td>
-								<td>Azioni</td>
-							</tr>
-						</thead>
-						<%
-						if (kits != null && kits.size() != 0) {
-							Iterator<?> it13 = kits.iterator();
-							while (it13.hasNext()) {
-								KitAlberi k = (KitAlberi) it13.next();
-						%>
-						<tr>
-							<td scope="row" class="nr"><%=k.getId()%></td>
-							<td><%=k.getNome()%></td>
-							<td><%=k.getSaldo()%>%</td>
-							<td><%=dFormat.format(k.getPrezzoKit())%>€</td>
-							<td><%=k.isDisponibile()%></td>
-							<td><a class="botteneIdKitVedi" href="#kitDescrizioneAlert"><i
-									class="fa-solid fa-eye"></i></a> <a class="botteneIdKitModifica" href="#ordine"><i
-									class="fa-solid fa-pen-to-square"></i></a> <a
-								href="Prodotto?action=eliminaKitCatalogo&id=<%=k.getId()%>"><i
-									class="fa-solid fa-circle-xmark"></i></a></td>
-						</tr>
-						<%
-						}
-						}
-						%>
-					</table>
-				</div>
-			</div>
-
-			<div id="kitAlert" class="alert alert-success m-5 d-none"
-				role="alert">
-				<div class="row">
-					<div class="col">
-						<h4 class="alert-heading" id="kitIdAlert"></h4>
-					</div>
-					<div class="col-1 text-end">
-						<button type="button" class="btn-close" id="closeKitAlert"
-							aria-label="Close"></button>
-					</div>
-				</div>
-				<p id="kitDescrizioneAlert"></p>
-				<hr>
-				<p>Il kit comprende i seguenti alberi:</p>
-				<ol id="prdottiKitAlert"></ol>
-				<hr>
-			</div>
-
-			<div class="row d-flex justify-content-center my-5">
-				<div class="tabb">
-					<div class="row mt-2">
-						<div class="text-center fw-bold h3">Utenti</div>
-					</div>
-
-					<table class="table" id="myTable3">
-						<thead>
-							<tr>
-								<th scope="col">Id</th>
-								<th scope="col" onclick="sortTableAlf(1,'myTable3')">Username</th>
-								<th scope="col" onclick="sortTableAlf(2,'myTable3')">Email</th>
-								<th scope="col" onclick="sortTableAlf(3,'myTable3')">Nome</th>
-								<th scope="col" onclick="sortTableAlf(4,'myTable3')">Cognome</th>
-
-							</tr>
-						</thead>
-						<%
-						if (utenti != null && utenti.size() != 0) {
-							Iterator<?> it14 = utenti.iterator();
-							while (it14.hasNext()) {
-								Utente u = (Utente) it14.next();
-						%>
-						<tr>
-							<td scope="row"><%=u.getId()%></td>
-							<td><%=u.getUsername()%></td>
-							<td><%=u.getEmail()%></td>
-							<td><%=u.getNome()%></td>
-							<td><%=u.getCognome()%></td>
-
-						</tr>
-						<%
-						}
-						}
-						%>
-						</tbody>
-					</table>
 				</div>
 			</div>
 		</div>
+
+		<div class="container my-5" id="registroDegliAlberi">
+			<h1 class="text-center mb-3">Ordini</h1>
+			<div
+				class="row row-cols-1  row-cols-sm-1  row-cols-md-3 g-3 text-center">
+
+				<!-- Cerca Per id   -->
+				<div class="col">
+					<div class="input-group mb-3">
+						<input type="text" class="form-control" placeholder="Cerca per id"
+							aria-label="Recipient's username"
+							aria-describedby="button-addon2" id="myInput1"
+							onkeyup="myFunctionId(0,'myInput1','myTable')">
+						<button class="btn btn-outline-secondary" type="button"
+							id="button-addon2">
+							<i class="fa-solid fa-magnifying-glass"></i>
+						</button>
+					</div>
+				</div>
+
+				<!-- Cerca Per Cliente   -->
+				<div class="col">
+					<div class="input-group mb-3">
+						<input type="text" class="form-control"
+							placeholder="Cerca per cliente" aria-label="Recipient's username"
+							aria-describedby="button-addon2" id="myInput2"
+							onkeyup="myFunctionId(1,'myInput2','myTable')">
+						<button class="btn btn-outline-secondary" type="button"
+							id="button-addon2">
+							<i class="fa-solid fa-magnifying-glass"></i>
+
+						</button>
+					</div>
+				</div>
+
+				<!-- Cerca Per Data  -->
+				<div class="col">
+					<div class="input-group mb-3">
+						<input type="text" class="form-control"
+							placeholder="dd/MM/yy - dd/MM/yy"
+							aria-label="Recipient's username"
+							aria-describedby="button-addon2" id="myInput3">
+						<button class="btn btn-outline-secondary" type="button"
+							id="button-addon2" onclick="myFunctionOrderData()">
+							<i class="fa-solid fa-magnifying-glass"></i>
+						</button>
+					</div>
+				</div>
+			</div>
+
+			<table class="table text-center my-2 bg-white" id="myTable">
+				<thead>
+					<tr>
+						<th scope="col">Codice</th>
+						<th scope="col">Utente</th>
+						<th scope="col">Totale</th>
+						<th scope="col">N. Prodotti</th>
+						<th scope="col">Data</th>
+						<th scope="col">Azioni</th>
+					</tr>
+				</thead>
+				<tbody id="tableBodyOrdini">
+					<%
+					if (ordini != null && ordini.size() != 0) {
+						Iterator<?> it2 = ordini.iterator();
+						while (it2.hasNext()) {
+							Ordine o = (Ordine) it2.next();
+					%>
+					<tr>
+						<td scope="row" class="nr"><%=o.getId()%></td>
+						<td class="utente"><%=o.getUtente().getEmail()%></td>
+						<td class="totale"><%=dFormat.format(o.getTotalePagato())%>€</td>
+						<td class="nProdotti"><%=o.getTotaleProdotti()%></td>
+						<td class="data"><%=o.getCreatoIl()%></td>
+						<td><a class="botteneIdOrdine"> <i
+								class="fa-solid fa-eye"></i></a> <a class="vediFotoOrdine"><i
+								class="fa-solid fa-images"></i></a></td>
+
+					</tr>
+					<%
+					}
+					}
+					%>
+				</tbody>
+			</table>
+		</div>
+
+		<!-- Ordini -->
+		<div id="ordineAlert" class="alert alert-success m-5 d-none"
+			role="alert">
+			<div class="row">
+				<div class="col">
+					<h4 class="alert-heading" id="numeroOrdineAlert"></h4>
+				</div>
+				<div class="col-1 text-end">
+					<button type="button" class="btn-close" id="closeOrdineAlert"
+						aria-label="Close"></button>
+				</div>
+			</div>
+			<p>L'ordine contiene i seguenti prodotti:</p>
+			<ol id="prodottiOrdineAlert"></ol>
+			<hr>
+			<p class="mb-0" id="dettaglioOrdineAlert"></p>
+			<hr>
+			<p class="mb-0" id="UtenteOrdineAlert"></p>
+		</div>
+
+		<div class="alert alert-success  m-5 d-none" role="alert"
+			id="ordineFotoAlert">
+			<div class="row">
+				<div class="col">
+					<h4 class="alert-heading" id="ordineFotoIdAlert"></h4>
+				</div>
+				<div class="col-1 text-end">
+					<button type="button" class="btn-close" id="closeOrdineFotoAlert"
+						aria-label="Close"></button>
+				</div>
+			</div>
+			<div class="row">
+				<table class="table bg-white">
+					<thead>
+						<tr>
+							<th scope="col">Id</th>
+							<th scope="col">Nome</th>
+							<th scope="col">Prezzo</th>
+							<th scope="col">Saldo</th>
+							<th scope="col">Quantità</th>
+							<th scope="col">Stato</th>
+							<th scope="col">Foto</th>
+							<th scope="col">Azioni</th>
+						</tr>
+					</thead>
+					<tbody id="tableBody">
+
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+
+		<div class="container my-5" id="registroDegliAlberi">
+			<h1 class="text-center mb-3">Alberi</h1>
+			<div
+				class="row row-cols-1  row-cols-sm-1  row-cols-md-3 g-3 text-center">
+				<!-- Cerca Per Id -->
+				<div class="col ">
+					<div class="input-group mb-3">
+						<input type="text" class="form-control" placeholder="Cerca per id"
+							aria-label="Recipient's username"
+							aria-describedby="button-addon2" id="myInput4"
+							onkeyup="myFunctionId(0,'myInput4','myTable2')">
+						<button class="btn btn-outline-secondary" type="button"
+							id="button-addon2">
+							<i class="fa-solid fa-magnifying-glass"></i>
+						</button>
+					</div>
+				</div>
+				<!-- Cerca Per Paese  -->
+				<div class="col ">
+					<div class="input-group mb-3">
+						<input type="text" class="form-control"
+							placeholder="Cerca per paese" aria-label="Recipient's username"
+							aria-describedby="button-addon2" id="myInput5"
+							onkeyup="myFunctionId(2,'myInput5','myTable2')">
+						<button class="btn btn-outline-secondary" type="button"
+							id="button-addon2">
+							<i class="fa-solid fa-magnifying-glass"></i>
+						</button>
+					</div>
+				</div>
+				<!-- Cerca Per Disponibile/ In Saldo / Prezzo  -->
+				<div class="col">
+					<div class="dropdown">
+						<button class="btn btn-secondary dropdown-toggle" type="button"
+							id="dropdownMenuButton2" data-bs-toggle="dropdown"
+							aria-expanded="false">Ordina Per</button>
+						<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
+
+							<li onclick="sortTableNumb('myTable2',5)"><a
+								class="dropdown-item">Saldo</a></li>
+							<li onclick="sortTableNumb('myTable2',6)"><a
+								class="dropdown-item">Quantità</a></li>
+
+						</ul>
+					</div>
+				</div>
+			</div>
+			<table class="table bg-white" id="myTable2">
+				<thead>
+					<tr>
+						<th scope="col">Id</th>
+						<th scope="col" onclick="sortTableAlf(1,'myTable2')">Nome</th>
+						<th scope="col" onclick="sortTableAlf(2,'myTable2')">Paese</th>
+						<th scope="col" onclick="sortTableAlf(3,'myTable2')">Prezzo</th>
+						<th scope="col">In saldo</th>
+						<th scope="col">Saldo</th>
+						<th scope="col">Quantità</th>
+						<th scope="col">Azioni</th>
+					</tr>
+				</thead>
+				<tbody>
+					<%
+					if (prodotti != null && prodotti.size() != 0) {
+						Iterator<?> it12 = prodotti.iterator();
+						while (it12.hasNext()) {
+							Albero a = (Albero) it12.next();
+					%>
+					<tr>
+						<td scope="row" class="nr"><%=a.getId()%></td>
+						<td><%=a.getNome()%></td>
+						<td><%=a.getPaeseDiOrigine()%></td>
+						<td><%=dFormat.format(a.getPrezzo())%>€</td>
+						<td><%=a.getOnSale()%></td>
+						<td><%=a.getSaldo()%></td>
+						<td><%=a.getQuantità()%></td>
+						<td><a class="botteneIdProdottoVedi" href="#prodottoIdAlert"><i
+								class="fa-solid fa-eye"></i></a> <a
+							class="botteneIdProdottoModifica" href="#ordine"><i
+								class="fa-solid fa-pen-to-square"></i></a> <a
+							href="Prodotto?action=eliminaAlberoCatalogo&id=<%=a.getId()%>"><i
+								class="fa-solid fa-circle-xmark"></i></a> <a class="vediFoto"
+							href="#prodottoFotoAlert"><i class="fa-solid fa-images"></i></a></td>
+					</tr>
+					<%
+					}
+					}
+					%>
+				</tbody>
+			</table>
+		</div>
+
+		<div id="prodottoAlert" class="alert alert-success m-5 d-none"
+			role="alert">
+			<div class="row">
+				<div class="col">
+					<h4 class="alert-heading" id="prodottoIdAlert"></h4>
+				</div>
+				<div class="col-1 text-end">
+					<button type="button" class="btn-close" id="closeProdottoAlert"
+						aria-label="Close"></button>
+				</div>
+			</div>
+			<p id="prodottoDescrizioneAlert"></p>
+			<hr>
+			<p>L'albero ha i seguenti benefici:</p>
+			<ol id="prodottoBeneficiAlert"></ol>
+			<hr>
+			<p>L'albero ha le seguenti categorie:</p>
+			<ol id="prodottoCategorieAlert"></ol>
+			<hr>
+			<p>L'albero ha i seguenti usi locali:</p>
+			<ol id="prodottoUsiLocaliAlert"></ol>
+			<hr>
+		</div>
+
+		<div class="alert alert-success  m-5 d-none" role="alert"
+			id="prodottoFotoAlert">
+			<div class="row">
+				<div class="col">
+					<h4 class="alert-heading" id="prodottoFotoIdAlert"></h4>
+				</div>
+				<div class="col-1 text-end">
+					<button type="button" class="btn-close" id="closeProdottoFotoAlert"
+						aria-label="Close"></button>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-4">
+					<div class="row">
+						<img src="" class="rounded " alt="..." id="foto1"
+							onerror="this.src='./resources//img/error.jpg'">
+					</div>
+					<p id="fotoCodice1">Foto n.</p>
+					<a class="btn btn-primary my-3 uploadFoto-1"> Upload Foto</a>
+				</div>
+				<div class="col-4">
+					<div class="row">
+						<img src="" class="rounded  " alt="..." id="foto2"
+							onerror="this.src='./resources//img/error.jpg'">
+					</div>
+					<p id="fotoCodice2">Foto n.</p>
+					<a class="btn btn-primary my-3 uploadFoto-2"> Upload Foto</a>
+
+				</div>
+				<div class="col-4">
+					<div class="row">
+						<img src="" class="rounded  " alt="..." id="foto3"
+							onerror="this.src='./resources//img/error.jpg'">
+					</div>
+					<p id="fotoCodice3">Foto n.</p>
+					<a class="btn btn-primary my-3 uploadFoto-3"> Upload Foto</a>
+				</div>
+			</div>
+
+		</div>
+
+
+		<div class="container my-5" id="registroDegliAlberi">
+			<h1 class="text-center mb-3">Kits</h1>
+			<div
+				class="row row-cols-1  row-cols-sm-1  row-cols-md-3 g-3 text-center">
+
+				<!-- Cerca Per Id -->
+				<div class="col">
+					<div class="input-group mb-3">
+						<input type="text" class="form-control" placeholder="Cerca per id"
+							aria-label="Recipient's username"
+							aria-describedby="button-addon2" id="myInput6"
+							onkeyup="myFunctionId(0,'myInput6','myTable4')">
+						<button class="btn btn-outline-secondary" type="button"
+							id="button-addon2">
+							<i class="fa-solid fa-magnifying-glass"></i>
+						</button>
+					</div>
+				</div>
+				<!-- Cerca Per Nome  -->
+				<div class="col">
+					<div class="input-group mb-3">
+						<input type="text" class="form-control"
+							placeholder="Cerca per nome" aria-label="Recipient's username"
+							aria-describedby="button-addon2" id="myInput7"
+							onkeyup="myFunctionId(1,'myInput7','myTable4')">
+						<button class="btn btn-outline-secondary" type="button"
+							id="button-addon2">
+							<i class="fa-solid fa-magnifying-glass"></i>
+						</button>
+					</div>
+				</div>
+				<!-- Cerca Per Disponibile/ In Saldo  -->
+				<div class="col">
+					<div class="dropdown">
+						<button class="btn btn-secondary dropdown-toggle" type="button"
+							id="dropdownMenuButton1" data-bs-toggle="dropdown"
+							aria-expanded="false">Ordina Per</button>
+						<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton5">
+							<li onclick="sortTableNumb(4,'myTable4')"><a
+								class="dropdown-item">Disponibilità</a></li>
+							<li onclick="sortTableNumb('myTable4',3)"><a
+								class="dropdown-item">Prezzo</a></li>
+						</ul>
+					</div>
+				</div>
+
+			</div>
+			<table class="table bg-white" id="myTable4">
+				<thead>
+					<tr>
+						<td scope="row">Id</td>
+						<td onclick="sortTableAlf(1,'myTable4')">Nome</td>
+						<td>Saldo</td>
+						<td>Prezzo Kit</td>
+						<td>Disponibile</td>
+						<td>Azioni</td>
+					</tr>
+				</thead>
+				<%
+				if (kits != null && kits.size() != 0) {
+					Iterator<?> it13 = kits.iterator();
+					while (it13.hasNext()) {
+						KitAlberi k = (KitAlberi) it13.next();
+				%>
+				<tr>
+					<td scope="row" class="nr"><%=k.getId()%></td>
+					<td><%=k.getNome()%></td>
+					<td><%=k.getSaldo()%>%</td>
+					<td><%=dFormat.format(k.getPrezzoKit())%>€</td>
+					<td><%=k.isDisponibile()%></td>
+					<td><a class="botteneIdKitVedi" href="#kitDescrizioneAlert"><i
+							class="fa-solid fa-eye"></i></a> <a class="botteneIdKitModifica"
+						href="#ordine"><i class="fa-solid fa-pen-to-square"></i></a> <a
+						href="Prodotto?action=eliminaKitCatalogo&id=<%=k.getId()%>"><i
+							class="fa-solid fa-circle-xmark"></i></a></td>
+				</tr>
+				<%
+				}
+				}
+				%>
+			</table>
+		</div>
+
+		<div id="kitAlert" class="alert alert-success m-5 d-none" role="alert">
+			<div class="row">
+				<div class="col">
+					<h4 class="alert-heading" id="kitIdAlert"></h4>
+				</div>
+				<div class="col-1 text-end">
+					<button type="button" class="btn-close" id="closeKitAlert"
+						aria-label="Close"></button>
+				</div>
+			</div>
+			<p id="kitDescrizioneAlert"></p>
+			<hr>
+			<p>Il kit comprende i seguenti alberi:</p>
+			<ol id="prdottiKitAlert"></ol>
+			<hr>
+		</div>
+
+
+		<div class="container my-5" id="registroDegliAlberi">
+			<h1 class="text-center mb-3">Utenti</h1>
+
+			<table class="table bg-white  " id="myTable3">
+				<thead>
+					<tr>
+						<th scope="col">Id</th>
+						<th scope="col" onclick="sortTableAlf(1,'myTable3')">Username</th>
+						<th scope="col" onclick="sortTableAlf(2,'myTable3')">Email</th>
+						<th scope="col" onclick="sortTableAlf(3,'myTable3')">Nome</th>
+						<th scope="col" onclick="sortTableAlf(4,'myTable3')">Cognome</th>
+
+					</tr>
+				</thead>
+				<%
+				if (utenti != null && utenti.size() != 0) {
+					Iterator<?> it14 = utenti.iterator();
+					while (it14.hasNext()) {
+						Utente u = (Utente) it14.next();
+				%>
+				<tr>
+					<td scope="row"><%=u.getId()%></td>
+					<td><%=u.getUsername()%></td>
+					<td><%=u.getEmail()%></td>
+					<td><%=u.getNome()%></td>
+					<td><%=u.getCognome()%></td>
+
+				</tr>
+				<%
+				}
+				}
+				%>
+				</tbody>
+			</table>
+		</div>
+
 		<!-- Prodotto -->
 
 		<div id="prod" class="text-center fw-bold h3">Gestione Prodotti</div>
@@ -963,9 +910,9 @@ input.invalid {
 					</div>
 				</div>
 				<div style="text-align: center; margin-top: 40px;">
-					<span class="step"></span> <span class="step"></span> <span class="step"></span> <span
-						class="step"></span> <span class="step"></span> <span class="step"></span><span
-						class="step"></span>
+					<span class="step"></span> <span class="step"></span> <span
+						class="step"></span> <span class="step"></span> <span class="step"></span>
+					<span class="step"></span><span class="step"></span>
 				</div>
 			</div>
 		</div>
@@ -1096,7 +1043,8 @@ input.invalid {
 					<h5>Codice:</h5>
 				</div>
 				<div class="col-9">
-					<input type="text" class="form-control" placeholder="Inserisci codice" name="codice"
+					<input type="text" class="form-control"
+						placeholder="Inserisci codice" name="codice"
 						id="codiceProdottoUpload">
 				</div>
 			</div>
@@ -1118,8 +1066,8 @@ input.invalid {
 					<h5>Foto:</h5>
 				</div>
 				<div class="col-9">
-					<input type="file" class="form-control" placeholder="Carica immagine" id="inputGroupFile02"
-						name="foto">
+					<input type="file" class="form-control"
+						placeholder="Carica immagine" id="inputGroupFile02" name="foto">
 				</div>
 			</div>
 			<div class="row justify-content-center mt-4">
@@ -1677,6 +1625,33 @@ input.invalid {
 				$('select[name=alberiKit] option[value="alb' + e.id + '"]').attr("selected", 1);
 			});
 	}
+	</script>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$(".counter").each(function() {
+				var count = $(this);
+				var countTo = count.attr('data-count');
+				$({
+					countNum : count.text()
+				}).animate({
+					countNum : countTo,
+				}, {
+					duration : 3000,
+					easing : 'linear',
+					step : function() {
+						count.text(Math.floor(this.countNum));
+					},
+					complete : function() {
+						count.text(this.countNum);
+					}
+				});
+			});
+
+			$('.effect').mouseleave(function() {
+				$(this).removeClass('effect');
+			})
+		});
 	</script>
 </body>
 </html>

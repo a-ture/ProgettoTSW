@@ -9,7 +9,7 @@
 <body>
 	<footer class="bg-dark text-center text-black sticky-bottom">
 		<!-- Section: Social media -->
-		<section class="mb-4">
+		<div class="mb-4 mt-1">
 			<!-- Facebook -->
 			<a class="btn btn-outline-light btn-floating m-1"
 				href="https://www.facebook.com" role="button"><i
@@ -39,7 +39,7 @@
 			<a class="btn btn-outline-light btn-floating m-1"
 				href="https://www.pinterest.com" role="button"><i
 				class="fa-brands fa-pinterest"></i></a>
-		</section>
+		</div>
 		<!-- Section: Social media -->
 		<ul class="list-inline">
 			<li class="list-inline-item"><a href="Catalogo">Alberi</a></li>

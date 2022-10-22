@@ -12,110 +12,80 @@ body {
 	background: #EBF2F2;
 }
 
-.home-content {
-	position: relative;
-	padding-top: 104px;
+input.invalid {
+	background-color: #ffdddd;
 }
-
-.home-content .overview-boxes {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	flex-wrap: wrap;
-	padding: 0 20px;
-	margin-bottom: 26px;
+/* Hide all steps by default: */
+.tab {
+	display: none;
 }
-
-.overview-boxes .box {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: calc(100%/ 4 - 15px);
-	background: #fff;
-	padding: 15px 14px;
-	border-radius: 12px;
-	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-}
-
-.overview-boxes .box-topic {
-	font-size: 20px;
-	font-weight: 500;
-}
-
-.home-content .box .number {
-	display: inline-block;
-	font-size: 35px;
-	margin-top: -6px;
-	font-weight: 500;
-}
-
-.home-content .box .indicator {
-	display: flex;
-	align-items: center;
-}
-
-.home-content .box .indicator i {
-	height: 20px;
-	width: 20px;
-	background: #8FDACB;
-	line-height: 20px;
-	text-align: center;
+/* Make circles that indicate the steps of the form: */
+.step {
+	height: 15px;
+	width: 15px;
+	margin: 0 2px;
+	background-color: #bbbbbb;
+	border: none;
 	border-radius: 50%;
-	color: #fff;
-	font-size: 20px;
-	margin-right: 5px;
-}
-
-.box .indicator i.down {
-	background: #e87d88;
-}
-
-.home-content .box .indicator .text {
-	font-size: 12px;
-}
-
-.home-content .box .cart {
 	display: inline-block;
-	font-size: 32px;
-	height: 50px;
-	width: 50px;
-	background: #cce5ff;
-	line-height: 50px;
-	text-align: center;
-	color: #66b0ff;
-	border-radius: 12px;
-	margin: -15px 0 0 6px;
+	opacity: 0.5;
 }
 
-.box {
-	min-width: 140px;
+/* Mark the active step: */
+.step.active {
+	opacity: 1;
 }
 
-.left-side{
-	margin-right:30px;
+/* Mark the steps that are finished and valid: */
+.step.finish {
+	background-color: #04AA6D;
 }
 
-.ordiniRecenti .prodotti {
-	min-width: 50px;
+.course-title {
+	display: flex;
+	justify-content: center;
+	font-weight: bold;
+	font-size: 34px;
+	color: #fff;
 }
 
-.home-content .box .cart.two {
-	color: #2BD47D;
-	background: #C0F2D8;
+.count-up {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
 }
 
-.home-content .box .cart.three {
-	color: #ffc233;
-	background: #ffe8b3;
+.wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	position: relative;
+	margin: 20px;
+	box-shadow: -4px 2px 10px 0 rgba(0, 0, 0, 0.2);
+	background-color: #fff;
+	width: 250px;
+	height: 300px;
 }
 
-.home-content .box .cart.four {
-	color: #e05260;
-	background: #f7d4d7;
+.counter {
+	font-size: 40px;
+	font-weight: bold;
+	background-color: #fff;
+	border-radius: 3px;
+	position: relative;
+	color: #3e3e3e;
+}
+
+.wrapper i {
+	color: #17a2b8;
+	z-index: 1;
+	font-size: 64px;
+	margin-bottom: 5px
 }
 
 .form {
-	width: 99%;
 	background: #fff;
 	padding: 20px 20px 20px 20px;
 	margin: 0 10px;

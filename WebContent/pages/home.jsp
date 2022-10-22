@@ -19,47 +19,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 <meta charset="UTF-8">
 <title>WoodLot</title>
 <link rel="stylesheet" type="text/css" href="resources/css/style.css">
-<style>
-.Banner2{
-  display:none;
-}
-.Mega, .ShopNowEx2,.SalesEx2 {/* ex 2 texts  */
- display:none;
-}
-.BannerBorderLineEx2, .BannerBorderEx2{
-   display:none;
-}
-.BannerHolderEx2{
- display:none;
-}
-.BorderAnimationEx2 {
-  stroke-dasharray: 20;
-  stroke-dashoffset: 20;
-  animation:BannerBorder 50s linear alternate infinite;
-  animation-delay: 0s;
-}
- /* Global Border Animation   */ 
-@keyframes BannerBorder {
-  from {
-    stroke-dashoffset: 2000;
-  }
-  to {
-    stroke-dashoffset: 1;
-  }
-}
-@-webkit-keyframes fadeinout {
-  0%,100% { opacity: 0; }
-  50% { opacity: 1; }
-}
-@keyframes fadeinout {
-  0%,100% { opacity: 0; }
-  50% { opacity: 1; }
-}
-@keyframes example {
-    from {color: red;}
-    to {color: yellow;}
-}
-</style>
+
 </head>
 
 <body>
@@ -136,8 +96,6 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			</div>
 		</div>
 	</div>
-
-
 	<div class="b-example-divider"></div>
 	<section class="py-5 text-center container">
 		<div class="row py-lg-5">
@@ -154,8 +112,6 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			</div>
 		</div>
 	</section>
-
-
 	<br>
 	<br>
 	<!-- Fine Card Section -->
@@ -164,16 +120,16 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 	<!-- Scritta -->
 
 	<!-- Cards  Cosa puoi fare-->
-	<div class="container" id="cosaPuoiFare">
-		<div class="col-md-12 text-center pt-5">
+	<div class="container text-center" id="cosaPuoiFare">
+		<div class="col-md-12  pt-5">
 			<h1>Cosa puoi fare</h1>
 			<br> <br>
 		</div>
 		<div
-			class="row row-cols-1 row-cols-md-5 g-4 d-flex justify-content-between mb-5">
+			class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-4 g-4 d-flex align-items-center p-5">
 			<div class="col">
-				<div class="card text-center shadow-lg bg-white rounded h-100"
-					style="max-width: 18rem;">
+				<div class="card text-center shadow-lg bg-white rounded h-100 "
+					>
 					<img src="./resources/img/cosaPuoiFare/whatucando-gift-icon.png"
 						class="card-img-top" width="206px" height="206px">
 					<div class="card-body">
@@ -185,8 +141,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				</div>
 			</div>
 			<div class="col">
-				<div class="card  text-center shadow-lg bg-white rounded h-100"
-					style="max-width: 18rem;">
+				<div class="card text-center shadow-lg bg-white rounded h-100">
 					<img
 						src="./resources/img/cosaPuoiFare/whatucando-discover-icon.png"
 						class="card-img-top" width="206px" height="206px">
@@ -199,8 +154,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				</div>
 			</div>
 			<div class="col">
-				<div class="card text-center shadow-lg bg-white rounded h-100"
-					style="max-width: 18rem;">
+				<div class="card text-center shadow-lg bg-white rounded h-100">
 					<img src="./resources/img/chiSiamoPage/info_trees.svg"
 						class="card-img-top" width="206px" height="206px">
 					<div class="card-body">
@@ -212,8 +166,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				</div>
 			</div>
 			<div class="col">
-				<div class="card text-center shadow-lg bg-white rounded h-100"
-					style="max-width: 18rem;">
+				<div class="card text-center shadow-lg bg-white rounded h-100">
 					<img
 						src="./resources/img/cosaPuoiFare/whatucando-horoscope-icon-2.png"
 						class="card-img-top" width="206px" height="206px">
@@ -226,7 +179,6 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				</div>
 			</div>
 		</div>
-		<br>
 	</div>
 
 	<div class="b-example-divider"></div>
@@ -312,7 +264,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			<br> <br>
 		</div>
 
-		<div class="row row-cols-1 row-cols-md-4" id="scegliIlTuoAlbero">
+		<div class="row row-cols-1 row-cols-md-2 row-cols-lg-4" id="scegliIlTuoAlbero">
 			<%
 			if (prodotti != null && prodotti.size() != 0) {
 				Iterator<?> it = prodotti.iterator();

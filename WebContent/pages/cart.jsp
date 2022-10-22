@@ -65,7 +65,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			<div
 				class="row d-flex justify-content-center align-items-center h-100">
 				<div class="col-12">
-					<div class="card card-registration card-registration-2"
+					<div class="card"
 						style="border-radius: 15px;">
 						<div class="card-body p-0">
 							<div class="row g-0">

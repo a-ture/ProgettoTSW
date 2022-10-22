@@ -558,9 +558,9 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 
 	<div class="container my-5" id="registroDegliAlberi">
 		<h1 class="text-center mb-3">Registro degli alberi</h1>
-		<div class="row g-3 text-center">
+		<div class="row row-cols-1  row-cols-sm-1  row-cols-md-3 g-3 text-center">
 
-			<div class="col-md-3 mx-5">
+			<div class="col">
 				<div class="input-group mb-3">
 					<input type="text" class="form-control" placeholder="Cerca per id"
 						aria-label="Recipient's username" aria-describedby="button-addon2"
@@ -572,7 +572,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				</div>
 			</div>
 
-			<div class="col-md-3 mx-5">
+			<div class="col">
 				<div class="input-group mb-3">
 					<input type="text" class="form-control"
 						placeholder="Cerca per username" aria-label="Recipient's username"
@@ -585,7 +585,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				</div>
 			</div>
 
-			<div class="col-md-3 mx-5">
+			<div class="col">
 				<div class="input-group mb-3">
 					<input type="text" class="form-control"
 						placeholder="Cerca per tipo albero"

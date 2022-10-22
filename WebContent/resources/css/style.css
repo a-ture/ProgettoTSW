@@ -1,5 +1,6 @@
 @charset "UTF-8";
 
+/*Stile pagina home*/
 /* Carousel pagina home */
 .carousel {
 	margin-bottom: 4rem;
@@ -194,4 +195,179 @@
 #scegliIlTuoAlbero .card:hover {
 	border-color: rgb(13, 110, 253);
 	box-shadow: 0px 0px 10px 2px rgb(13, 110, 253);
+}
+/*Stile per il coso delle offerte*/
+.Banner2{
+  display:none;
+}
+.Mega, .ShopNowEx2,.SalesEx2 {/* ex 2 texts  */
+ display:none;
+}
+.BannerBorderLineEx2, .BannerBorderEx2{
+   display:none;
+}
+.BannerHolderEx2{
+ display:none;
+}
+.BorderAnimationEx2 {
+  stroke-dasharray: 20;
+  stroke-dashoffset: 20;
+  animation:BannerBorder 50s linear alternate infinite;
+  animation-delay: 0s;
+}
+ /* Global Border Animation   */ 
+@keyframes BannerBorder {
+  from {
+    stroke-dashoffset: 2000;
+  }
+  to {
+    stroke-dashoffset: 1;
+  }
+}
+@-webkit-keyframes fadeinout {
+  0%,100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+@keyframes fadeinout {
+  0%,100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+@keyframes example {
+    from {color: red;}
+    to {color: yellow;}
+}
+
+/* --Stile per la pagina prodotto--*/
+
+.checked { /*<!-- Per cambiare il colore delle stelline -->*/
+	color: orange;
+}
+
+#btnCart {
+	transition: all 0.5s;
+}
+
+#btnCart span {
+	cursor: pointer;
+	display: inline-block;
+	position: relative;
+	transition: 0.5s;
+}
+
+#btnCart span:after {
+	content: '\002B';
+	position: absolute;
+	opacity: 0;
+	top: 0;
+	right: -20px;
+	transition: 0.5s;
+}
+
+#btnCart:hover span {
+	padding-right: 25px;
+}
+
+#btnCart:hover span:after {
+	opacity: 1;
+	right: 0;
+}
+
+.avatar {
+	width: 68px;
+	height: 68px;
+	border-radius: 50%;
+}
+
+.years-5 {
+	height: 98px;
+	text-align: center;
+	width: 98px;
+	border-radius: 100%;
+	border-style: solid;
+	border-width: 14px;
+	border-bottom-color: #5e7250;
+	border-left-color: #5e7250;
+	border-right-color: #5e7250;
+	border-top-color: #5e7250;
+}
+
+.years-4 {
+	height: 98px;
+	text-align: center;
+	width: 98px;
+	border-radius: 100%;
+	border-style: solid;
+	border-width: 14px;
+	border-bottom-color: #e5c59c;
+	border-left-color: #5e7250;
+	border-right-color: #5e7250;
+	border-top-color: #5e7250;
+}
+
+.years-3 {
+	height: 98px;
+	text-align: center;
+	width: 98px;
+	border-radius: 100%;
+	border-style: solid;
+	border-width: 14px;
+	border-bottom-color: #e5c59c;
+	border-left-color: #e5c59c;
+	border-right-color: #5e7250;
+	border-top-color: #5e7250;
+}
+
+.years-2 {
+	height: 98px;
+	text-align: center;
+	width: 98px;
+	border-radius: 100%;
+	border-style: solid;
+	border-width: 14px;
+	border-bottom-color: #e5c59c;
+	border-left-color: #e5c59c;
+	border-right-color: #e5c59c;
+	border-top-color: #5e7250;
+}
+
+.years-1 {
+	height: 98px;
+	text-align: center;
+	width: 98px;
+	border-radius: 100%;
+	border-style: solid;
+	border-width: 14px;
+	border-bottom-color: #e5c59c;
+	border-left-color: #e5c59c;
+	border-right-color: #e5c59c;
+	border-top-color: #e5c59c;
+}
+
+.box {
+	color: white;
+	background: #c4d89d;
+	width: 500px;
+	height: max-content;
+	border-bottom-right-radius: 20px;
+	border-top-left-radius: 20px;
+	padding: 20px;
+	padding-right: 60px;
+	box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px
+		-12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px
+		12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+#imageCategorie {
+	margin-top: 100px;
+	margin-left: -40px;
+	
+	box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px
+		-12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px
+		12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+#categorie {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }

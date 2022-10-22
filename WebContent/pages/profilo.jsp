@@ -148,9 +148,10 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 	<br>
 	<div class="container">
 		<div
-			class="row d-flex row-cols-1 row-cols-md-3 row-cols-sm-1 justify-content-center">
-			<div class="col-2">
-				<img src="./ServletResources?codiceAzione=fotoUtente&idUtente=<%=utente.getId()%>"
+			class="row d-flex align-items-center row-cols-1 row-cols-md-3 row-cols-sm-1 px-5 ">
+			<div class="col">
+				<img
+					src="./ServletResources?codiceAzione=fotoUtente&idUtente=<%=utente.getId()%>"
 					onerror="this.src='./resources/img/placeholderProfile.png'"
 					class="rounded-circle mb-3" style="width: 150px;" />
 			</div>
@@ -211,76 +212,52 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 	<div class="container">
 
 		<div class="row g-4">
-			<!-- Sidenav START -->
-			<div class="col-lg-3">
-				<div class="d-flex align-items-center d-lg-none">
-					<button class="border-0 bg-transparent" type="button"
-						data-bs-toggle="offcanvas" data-bs-target="#offcanvasSideNavbar"
-						aria-controls="offcanvasSideNavbar">
-						<i class="btn btn-primary fw-bold fa-solid fa-sliders-h"></i> <span
-							class="h6 mb-0 fw-bold d-lg-none ms-2">My profile</span>
-					</button>
-				</div>
-				<!-- Navbar START-->
-				<nav class="navbar navbar-expand-lg mx-0">
-					<div class="offcanvas offcanvas-start" tabindex="-1"
-						id="offcanvasSideNavbar">
-						<!-- Offcanvas header -->
-						<div class="offcanvas-header">
-							<button type="button" class="btn-close text-reset ms-auto"
-								data-bs-dismiss="offcanvas" aria-label="Close"></button>
-						</div>
-						<!-- Offcanvas body -->
-						<div class="offcanvas-body d-block px-2 px-lg-0">
-							<!-- Card START -->
-							<div class="card overflow-hidden">
-								<!-- Card body START -->
-								<div class="card-body pt-0">
-									<!-- Side Nav START -->
-									<ul class="nav nav-link-secondary flex-column fw-bold gap-2">
-										<li class="nav-item"><a class="nav-link" href="#news"
-											id="newsButton"> <i class="fa-solid fa-newspaper"></i> <span>News</span>
-										</a></li>
-										<li class="nav-item"><a class="nav-link" href="#ordini"
-											id="ordiniButton"><i class="fa-solid fa-clipboard-list"></i><span>
-													Ordini </span></a></li>
-										<li class="nav-item"><a class="nav-link" href="#woodLot"
-											id="woodLotButton"> <i class="fa-solid fa-tree"></i><span>
-													Il tuo WoodLot </span></a></li>
-
-										<li class="nav-item"><a class="nav-link" href="#badge"
-											id="badgeButton"> <i class="fa-solid fa-award"></i><span>
-													Badge </span>
-										</a></li>
-										<li class="nav-item"><a class="nav-link" href="#regali"
-											id="regaliButton"> <span> <i
-													class="fa-solid fa-gifts"></i> Regali
-											</span>
-										</a></li>
-										<li class="nav-item"><a class="nav-link"
-											href="#indirizzo" id="indirizzoButton"> <i
-												class="fa-solid fa-map-location-dot"></i><span>
-													Indirizzi </span></a></li>
-										<li class="nav-item"><a class="nav-link" href="#logout"
-											id="logoutButton"> <i
-												class="fa-solid fa-right-from-bracket"></i><span>Logout
-											</span>
-										</a></li>
-									</ul>
-									<!-- Side Nav END -->
-								</div>
-								<!-- Card body END -->
-							</div>
-							<!-- Card END -->
-						</div>
-					</div>
-				</nav>
-				<!-- Navbar END-->
+			<div class="d-flex align-items-center d-lg-none" >
+				<button class="border-0 bg-transparent" type="button" id="myProfileButton">
+					<i class="btn btn-primary fw-bold fa-solid fa-sliders-h"></i> <span
+						class="h6 mb-0 fw-bold d-lg-none ms-2">My profile</span>
+				</button>
 			</div>
-			<!-- Sidenav END -->
+			<!-- Sidebar -->
+			<div class="d-flex flex-column flex-shrink-0 p-3 bg-light d-none d-lg-block" id="myProfileMenu"
+				style="width: 280px;">
+				<a href="#"
+					class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+					<span class="fs-4">Il mio profilo</span>
+				</a>
+				<hr>
+				<ul class="nav nav-pills flex-column mb-auto">
+					<li class="nav-item"><a class="nav-link" href="#news"
+						id="newsButton"> <i class="fa-solid fa-newspaper"></i> <span>News</span>
+					</a></li>
+					<li class="nav-item"><a class="nav-link" href="#ordini"
+						id="ordiniButton"><i class="fa-solid fa-clipboard-list"></i><span>
+								Ordini </span></a></li>
+					<li class="nav-item"><a class="nav-link" href="#woodLot"
+						id="woodLotButton"> <i class="fa-solid fa-tree"></i><span>
+								Il tuo WoodLot </span></a></li>
+
+					<li class="nav-item"><a class="nav-link" href="#badge"
+						id="badgeButton"> <i class="fa-solid fa-award"></i><span>
+								Badge </span>
+					</a></li>
+					<li class="nav-item"><a class="nav-link" href="#regali"
+						id="regaliButton"> <span> <i class="fa-solid fa-gifts"></i>
+								Regali
+						</span>
+					</a></li>
+					<li class="nav-item"><a class="nav-link" href="#indirizzo"
+						id="indirizzoButton"> <i class="fa-solid fa-map-location-dot"></i><span>
+								Indirizzi </span></a></li>
+					<li class="nav-item"><a class="nav-link" href="#logout"
+						id="logoutButton"> <i class="fa-solid fa-right-from-bracket"></i><span>Logout
+						</span>
+					</a></li>
+				</ul>
+			</div>
 
 			<!-- Main content START -->
-			<div class="col-md-8 col-lg-6 vstack gap-4">
+			<div class="col-md-8 col-lg-6 vstack gap-4 " id="content">
 				<!-- News -->
 				<div id="news" class="row d-none">
 					<h1 class="text-center mb-5">Le ultime news</h1>
@@ -832,7 +809,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					<h1 class="text-center">I tuoi indirizzi</h1>
 					<%
 					Collection<Indirizzo> indirizzi = utente.getIndirizzi();
-					
+
 					if (indirizzi != null && indirizzi.size() != 0) {
 						Iterator<?> it = indirizzi.iterator();
 					%>
@@ -843,7 +820,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					while (it.hasNext()) {
 						Indirizzo indirizzo = (Indirizzo) it.next();
 					%>
-					<div class="card col-4 text-center">
+					<div class="card col-5 text-center">
 						<a href="Utente?action=elimina&idIndirizzo=<%=indirizzo.getId()%>"
 							class="text-end text-danger p-2"><i
 							class="fa-solid fa-xmark "></i> </a>
@@ -1342,6 +1319,10 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 	</div>
 	<script>
 	$(document).ready(function() {
+		
+		$("#myProfileButton").click(function() {
+			$("#myProfileMenu").toggleClass("d-none");
+		});
 
 	$("#ordiniButton").click(function() {
 		$("#ordini").removeClass("d-none");
@@ -1352,6 +1333,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 		$("#logout").addClass("d-none");
 		$("#modificaInformazioni").addClass("d-none");
 		$("#regali").addClass("d-none");
+		$("#myProfileMenu").toggleClass("d-none");
 	});
 
 	$("#badgeButton").click(function() {
@@ -1363,6 +1345,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 		$("#logout").addClass("d-none");
 		$("#modificaInformazioni").addClass("d-none");
 		$("#regali").addClass("d-none");
+		$("#myProfileMenu").toggleClass("d-none");
 	});
 
 	$("#woodLotButton").click(function() {
@@ -1374,6 +1357,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 		$("#logout").addClass("d-none");
 		$("#modificaInformazioni").addClass("d-none");
 		$("#regali").addClass("d-none");
+		$("#myProfileMenu").toggleClass("d-none");
 	});
 
 	$("#newsButton").click(function() {
@@ -1385,6 +1369,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 		$("#logout").addClass("d-none");
 		$("#modificaInformazioni").addClass("d-none");
 		$("#regali").addClass("d-none");
+		$("#myProfileMenu").toggleClass("d-none");
 	});
 
 	$("#indirizzoButton").click(function() {
@@ -1396,6 +1381,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 		$("#logout").addClass("d-none");
 		$("#modificaInformazioni").addClass("d-none");
 		$("#regali").addClass("d-none");
+		$("#myProfileMenu").toggleClass("d-none");
 	});
 
 	$("#modificaInformazioniButton").click(function() {
@@ -1407,6 +1393,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 		$("#indirizzo").addClass("d-none");
 		$("#logout").addClass("d-none");
 		$("#regali").addClass("d-none");
+		$("#myProfileMenu").toggleClass("d-none");
 	});
 
 	$("#logoutButton").click(function() {
@@ -1418,6 +1405,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 		$("#indirizzo").addClass("d-none");
 		$("#modificaInformazioni").addClass("d-none");
 		$("#regali").addClass("d-none");
+		$("#myProfileMenu").toggleClass("d-none");
 	});
 
 	$("#regaliButton").click(function() {
@@ -1429,6 +1417,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 		$("#indirizzo").addClass("d-none");
 		$("#modificaInformazioni").addClass("d-none");
 		$("#logout").addClass("d-none");
+		$("#myProfileMenu").toggleClass("d-none");
 	});
 
 	$(".botteneIdOrdine").click(function() {

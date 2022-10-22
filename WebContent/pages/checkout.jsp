@@ -244,7 +244,7 @@ input.invalid {
 									name="nomeTitolare"> <small class="text-muted">Inserisci
 									il nome che apparre sulla carta</small>
 								<div class="invalid-feedback">Il nome del titolare è
-									obbgligatorio</div>
+									obbligatorio</div>
 							</div>
 
 							<div class="col-md-6">
@@ -253,7 +253,7 @@ input.invalid {
 									id="cartaCreditoNumero" placeholder="XXXX-XXXX-XXXX" required
 									name="cartaCreditoNumero">
 								<div class="invalid-feedback">Il numero della carta di
-									credito è obbgligatorio</div>
+									credito è obbligatorio</div>
 							</div>
 
 							<div class="col-md-3">
@@ -262,7 +262,7 @@ input.invalid {
 									id="cc-expiration" placeholder="23-02-2026" required
 									name="dataScadenza">
 								<div class="invalid-feedback">La data di scadenza è
-									obbgligatoria</div>
+									obbligatorio</div>
 							</div>
 
 							<div class="col-md-3">

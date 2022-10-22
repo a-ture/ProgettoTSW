@@ -97,7 +97,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 		<h5>Scegli l’albero in base alle sue caratteristiche</h5>
 
 		<!-- Filtri -->
-		<div>
+		<div class="row row-cols-1  row-cols-sm-2  row-cols-md-3 row-cols-lg-6 g-4">
 			<!-- Prezzo -->
 			<div class="btn-group" role="group"
 				aria-label="Button group with nested dropdown">
@@ -219,7 +219,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			<%
 			}
 			%>
-			<div class="row row-cols-1 row-cols-md-4 g-3" id="catalogo">
+			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3" id="catalogo">
 				<%
 				if (prodotti != null && prodotti.size() != 0) {
 					Iterator<?> it = prodotti.iterator();
@@ -293,7 +293,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			<%
 			}
 			%>
-			<div class="row row-cols-1 row-cols-md-4 g-3">
+			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
 				<%
 				if (kits != null && kits.size() != 0) {
 					Iterator<?> it2 = kits.iterator();
@@ -738,7 +738,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 
 	<div class="b-example-divider"></div>
 
-	<div class="container  m-5">
+	<div class="container">
 		<h1 class="text-center m-1">Domande frequenti</h1>
 
 		<div class="accordion" id="accordionExample">

@@ -32,10 +32,10 @@ Collection<?> errori = (Collection<?>) request.getAttribute("errori");
 <link rel="icon" type="image/x-icon" href="resources/img/logo.png">
 </head>
 <body>
-	<section class="vh-100" style="background-color: #9A616D;">
-		<div class="container py-5 h-100">
+	<div class="vh-100 bg-dark">
+		<div class="container">
 			<div
-				class="row d-flex justify-content-center align-items-center h-100">
+				class="row py-3 d-flex justify-content-center align-items-center">
 				<div class="col col-xl-10">
 					<div class="card" style="border-radius: 1rem;">
 						<div class="row g-0">
@@ -94,8 +94,6 @@ Collection<?> errori = (Collection<?>) request.getAttribute("errori");
 
 								</div>
 								<!-- errori -->
-
-
 							</div>
 						</div>
 						<div>
@@ -118,8 +116,7 @@ Collection<?> errori = (Collection<?>) request.getAttribute("errori");
 			</div>
 
 		</div>
-	</section>
-
+	</div>
 
 	<!-- Modal -->
 	<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"

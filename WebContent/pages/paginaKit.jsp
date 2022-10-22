@@ -107,7 +107,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 	<div class="container-fluid">
 		<!-- Foto Prodotto -->
 		<div class="row">
-			<div class=" col-5">
+			<div class="col-lg-5 col-sm-12 col-md-7">
 				<!-- Carousel -->
 				<div id="demo" class="carousel slide" data-bs-ride="carousel">
 					<!-- Indicators/dots -->
@@ -255,7 +255,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 
 			</div>
 		</div>
-		<div class="layout   row row-cols-1 row-cols-md-6">
+		<div class="layout row row-cols-1 row-cols-md-4 row-cols-lg-6">
 			<%
 			int z = 0;
 			Collection<Albero> alberi = kit.getAlberi();
@@ -281,7 +281,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 		</div>
 		<!-- Prodotti Consigliati  -->
 		<h1 class="m-3 text-center">Pianta altri alberi</h1>
-		<div class="row row-cols-1 row-cols-md-4 mb-5 text-center">
+		<div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 mb-5 text-center">
 			<%
 			if (prodotti != null && prodotti.size() != 0) {
 				Iterator<?> it = prodotti.iterator();

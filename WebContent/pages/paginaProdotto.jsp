@@ -34,145 +34,6 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 <link rel="stylesheet" type="text/css" href="resources/css/style.css">
 
 </head>
-
-
-<style>
-.checked { /*<!-- Per cambiare il colore delle stelline -->*/
-	color: orange;
-}
-
-#btnCart {
-	transition: all 0.5s;
-}
-
-#btnCart span {
-	cursor: pointer;
-	display: inline-block;
-	position: relative;
-	transition: 0.5s;
-}
-
-#btnCart span:after {
-	content: '\002B';
-	position: absolute;
-	opacity: 0;
-	top: 0;
-	right: -20px;
-	transition: 0.5s;
-}
-
-#btnCart:hover span {
-	padding-right: 25px;
-}
-
-#btnCart:hover span:after {
-	opacity: 1;
-	right: 0;
-}
-
-.avatar {
-	width: 68px;
-	height: 68px;
-	border-radius: 50%;
-}
-
-.years-5 {
-	height: 98px;
-	text-align: center;
-	width: 98px;
-	border-radius: 100%;
-	border-style: solid;
-	border-width: 14px;
-	border-bottom-color: #5e7250;
-	border-left-color: #5e7250;
-	border-right-color: #5e7250;
-	border-top-color: #5e7250;
-}
-
-.years-4 {
-	height: 98px;
-	text-align: center;
-	width: 98px;
-	border-radius: 100%;
-	border-style: solid;
-	border-width: 14px;
-	border-bottom-color: #e5c59c;
-	border-left-color: #5e7250;
-	border-right-color: #5e7250;
-	border-top-color: #5e7250;
-}
-
-.years-3 {
-	height: 98px;
-	text-align: center;
-	width: 98px;
-	border-radius: 100%;
-	border-style: solid;
-	border-width: 14px;
-	border-bottom-color: #e5c59c;
-	border-left-color: #e5c59c;
-	border-right-color: #5e7250;
-	border-top-color: #5e7250;
-}
-
-.years-2 {
-	height: 98px;
-	text-align: center;
-	width: 98px;
-	border-radius: 100%;
-	border-style: solid;
-	border-width: 14px;
-	border-bottom-color: #e5c59c;
-	border-left-color: #e5c59c;
-	border-right-color: #e5c59c;
-	border-top-color: #5e7250;
-}
-
-.years-1 {
-	height: 98px;
-	text-align: center;
-	width: 98px;
-	border-radius: 100%;
-	border-style: solid;
-	border-width: 14px;
-	border-bottom-color: #e5c59c;
-	border-left-color: #e5c59c;
-	border-right-color: #e5c59c;
-	border-top-color: #e5c59c;
-}
-
-.box {
-	color: white;
-	background: #c4d89d;
-	width: 500px;
-	height: max-content;
-	border-bottom-right-radius: 20px;
-	border-top-left-radius: 20px;
-	padding: 20px;
-	padding-right: 60px;
-	box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px
-		-12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px
-		12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-}
-
-#imageCategorie {
-	width: 550px;
-	z-index: 23062002;
-	margin-top: 100px;
-	margin-left: -40px;
-	border-bottom-left-radius: 20px;
-	border-top-right-radius: 20px;
-	box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px
-		-12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px
-		12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-}
-
-#categorie {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-</style>
 <body>
 	<!-- Header -->
 	<%@ include file="../fragments/header.jsp"%>
@@ -183,7 +44,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 	<div class="container-fluid">
 		<!-- Foto Prodotto -->
 		<div class="row">
-			<div class=" col-5">
+			<div class="col-lg-5 col-sm-12 col-md-7">
 				<!-- Carousel -->
 				<div id="demo" class="carousel slide" data-bs-ride="carousel">
 					<!-- Indicators/dots -->
@@ -198,18 +59,21 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					<div class="carousel-inner">
 						<div class="carousel-item active">
 
-							<img src="./ServletResources?codiceAzione=fotoProdotto&idFoto=<%=foto[0].getNomeFoto()%>"
+							<img
+								src="./ServletResources?codiceAzione=fotoProdotto&idFoto=<%=foto[0].getNomeFoto()%>"
 								class="d-block w-100 img-fluid"
 								onerror="this.src='./resources/img/error.jpg'">
 
 						</div>
 						<div class="carousel-item">
-							<img src="./ServletResources?codiceAzione=fotoProdotto&idFoto=<%=foto[1].getNomeFoto()%>"
+							<img
+								src="./ServletResources?codiceAzione=fotoProdotto&idFoto=<%=foto[1].getNomeFoto()%>"
 								class="d-block w-100 img-fluid"
 								onerror="this.src='./resources/img/error.jpg'">
 						</div>
 						<div class="carousel-item">
-							<img src="./ServletResources?codiceAzione=fotoProdotto&idFoto=<%=foto[2].getNomeFoto()%>"
+							<img
+								src="./ServletResources?codiceAzione=fotoProdotto&idFoto=<%=foto[2].getNomeFoto()%>"
 								class="d-block w-100 img-fluid"
 								onerror="this.src='./resources//img/error.jpg'">
 						</div>
@@ -317,13 +181,13 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					<%
 					if (prodotto.isDisponibile()) {
 					%>
-					<a type="button" class="btn btn-primary"
+					<a type="button" class="btn btn-primary mb-3"
 						href="Prodotto?action=aggiungiCarrello&id=<%=prodotto.getId()%>"
 						id="btnCart"><span>Acquista</span></a>
 					<%
 					} else {
 					%>
-					<a type="button" class="btn btn-dark"> Prodotto Sold Out</a>
+					<a type="button" class="btn btn-dark mb-3"> Prodotto Sold Out</a>
 					<%
 					}
 					%>
@@ -333,8 +197,8 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 		<!-- Dettagli Prodotto -->
 		<!-- Breve Descrizione  -->
 		<div
-			class="row text-center m-4 g-4 row-cols-1 row-cols-xs-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-2">
-			<div class="col-6">
+			class="row row-cols-1 row-cols-lg-1 row-cols-xl-2 text-center  g-4">
+			<div class="col">
 				<div class="card" style="background: #c4d89d;">
 					<div class="card-body">
 						<h4 class="card-title">Descrizione Breve</h4>
@@ -342,7 +206,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					</div>
 				</div>
 			</div>
-			<div class="col-6">
+			<div class="col">
 				<div class="col">
 					<div class="card" style="background: #c4d89d;">
 						<div class="card-body">
@@ -401,7 +265,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					</div>
 				</div>
 			</div>
-			<div class="col-6">
+			<div class="col">
 				<div class="card" style="background: #c4d89d;">
 					<div class="card-body">
 						<h4 class="card-title">
@@ -433,9 +297,9 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					</div>
 				</div>
 			</div>
-			<div class="col-6">
-				<div class="card" style="background: #c4d89d;">
-
+			<div class="col">
+				<div class="card d-flex align-items-center d-none d-md-block"
+					style="background: #c4d89d;">
 					<div class="card-body">
 						<h4 class="card-title">
 							Benefici <a class="card-link" data-bs-toggle="modal"
@@ -452,7 +316,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 								while (it2.hasNext()) {
 									Beneficio cat = (Beneficio) it2.next();
 							%>
-							<li class="list-group-item">
+							<li class="list-group-item" style="max-width: 13rem;">
 								<div class="years-<%=(int) cat.getPercentuale()%> m-2">
 									<img onerror="this.src='./resources//img/error.jpg'"
 										src="./ServletResources?codiceAzione=fotoBeneficio&idBeneficio=<%=cat.getId()%>"
@@ -502,11 +366,12 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					Perchè
 					<%=c.getNome()%>?
 				</h1><%=c.getDescrizione()%></div>
-
-			<img id="imageCategorie"
-				onerror="this.src='./resources//img/error.jpg'"
-				src="./ServletResources?codiceAzione=fotoCategoria&idCategoria=<%=c.getId()%>"
-				alt="img-200-300">
+			<div id="imageCategorie">
+				<img class="img-fluid rounded"
+					onerror="this.src='./resources//img/error.jpg'"
+					src="./ServletResources?codiceAzione=fotoCategoria&idCategoria=<%=c.getId()%>"
+					alt="img-200-300">
+			</div>
 		</div>
 		<%
 		}
@@ -515,10 +380,11 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 		<div class="m-5"></div>
 		<div class="row b-example-divider"></div>
 		<!-- Cosa Vuol Dire Piantare Un albero con WoodLot -->
-		<div class="row text-center m-5">
-			<br> <br>
-			<h2>Cosa vuol dire piantare un albero con WoodLot</h2>
-			<div class="col-4">
+		<br> <br>
+		<h2 class="text-center">Cosa vuol dire piantare un albero con WoodLot</h2>
+		<div
+			class="row row-cols-1 row-cols-md-3 row-cols-lg-3 text-center m-5">
+			<div class="col">
 				<h1>
 					<i class="fa-solid fa-location-dot text-info"></i>
 				</h1>
@@ -528,7 +394,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					da alcune settimane a qualche mese prima che un albero sia pronto
 					per essere piantato.</p>
 			</div>
-			<div class="col-4">
+			<div class="col">
 				<h1>
 					<i class="fa-solid fa-book text-warning"></i>
 				</h1>
@@ -537,7 +403,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					scoprirai le sue caratteristiche e seguirai la storia del progetto
 					di cui fa parte.</p>
 			</div>
-			<div class="col-4">
+			<div class="col">
 				<h1>
 					<i class="fa-solid fa-gift text-danger"></i>
 				</h1>
@@ -552,7 +418,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 		<div class="row b-example-divider"></div>
 		<!-- Prodotti Consigliati  -->
 		<h1 class="m-3 text-center">Pianta altri alberi</h1>
-		<div class="row row-cols-1 row-cols-md-4 mb-5 text-center">
+		<div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 mb-5 text-center">
 			<%
 			if (prodotti != null && prodotti.size() != 0) {
 				Iterator<?> it = prodotti.iterator();
@@ -563,7 +429,8 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			%>
 			<div class="col">
 				<div class="card h-100">
-					<img src="./ServletResources?codiceAzione=fotoProdotto&idFoto=<%=bean1.getNomeFoto()%>"
+					<img
+						src="./ServletResources?codiceAzione=fotoProdotto&idFoto=<%=bean1.getNomeFoto()%>"
 						class="card-img-top"
 						onerror="this.src='./resources//img/error.jpg'" />
 					<div class="card-body">
@@ -724,104 +591,5 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 	</div>
 	<!-- Footer -->
 	<%@ include file="../fragments/footer.jsp"%>
-	<script type="text/javascript">
-		// Zoom images
-
-		// Add zoom-image class to the container of the image that you want to apply the zoom to.
-
-		jQuery(document)
-				.ready(
-						function($) {
-
-							$('.zoom-image img').click(function(event) {
-								var ix = $(this).offset().left;
-								var iy = $(this).offset().top;
-								console.log(ix + '-' + iy);
-
-								var mx = event.pageX;
-								var my = event.pageY;
-								console.log(mx + '-' + my);
-							})
-
-							$('.zoom-image img')
-									.hover(
-											function() {
-
-												var img = $(this).attr('src');
-
-												$(this)
-														.after(
-																"<div class='hover-image' style='background-image: url("
-																		+ img
-																		+ "); background-size: 1200px;'></div>");
-
-												$(this)
-														.mousemove(
-																function(event) {
-
-																	// Mouse Position
-																	var mx = event.pageX;
-																	var my = event.pageY;
-
-																	// Image Position
-																	var ix = $(
-																			this)
-																			.offset().left;
-																	var iy = $(
-																			this)
-																			.offset().top;
-
-																	// Mouse Position Relavtive to Image
-																	var x = mx
-																			- (ix);
-																	var y = my
-																			- (iy);
-
-																	// Image Height and Width
-																	var w = $(
-																			this)
-																			.width();
-																	var h = $(
-																			this)
-																			.height();
-
-																	// Mouse Position Relative to Image, in %
-																	var xp = (-x / w)
-																			* -100;
-																	var yp = (-y / h)
-																			* -100;
-
-																	$(this)
-																			.parent()
-																			.find(
-																					'.hover-image')
-																			.attr(
-																					'style',
-
-																					"background-image: url("
-																							+ img
-																							+ "); background-size: 1200px; background-repeat: no-repeat; background-position: "
-																							+ xp
-																							+ "% "
-																							+ yp
-																							+ "%; top: "
-																							+ y
-																							+ "px; left: "
-																							+ x
-																							+ "px;");
-
-																});
-
-											},
-											function() {
-
-												$(this).parent().find(
-														'.hover-image')
-														.remove();
-
-											});
-
-						});
-	</script>
 </body>
 </html>
