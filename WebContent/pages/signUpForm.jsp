@@ -30,6 +30,13 @@ Collection<?> errori = (Collection<?>) request.getAttribute("errori");
 <!-- FontAwesome -->
 <script src="https://kit.fontawesome.com/6bd8866cc2.js"
 	crossorigin="anonymous"></script>
+	
+<!-- jQuey -->
+<script src="https://code.jquery.com/jquery-3.6.0.js"
+	integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+	crossorigin="anonymous"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <!-- Favicon -->
 <link rel="icon" type="image/x-icon" href="resources/img/logo.png">
 </head>
@@ -49,7 +56,7 @@ Collection<?> errori = (Collection<?>) request.getAttribute("errori");
 									<form action="Login?action=registrazione" name="signIn"
 										enctype='multipart/form-data' method="POST"
 										class="mx-1 mx-md-4 needs-validation" novalidate
-										autocomplete="off">
+										autocomplete="off" id="formId" onsubmit="return false;">
 
 										<div class="d-flex flex-row align-items-center mb-4">
 											<i class="fas fa-user fa-lg me-3 fa-fw"></i>
@@ -142,8 +149,7 @@ Collection<?> errori = (Collection<?>) request.getAttribute("errori");
 										</div>
 
 										<div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-											<button type="submit" class="btn btn-primary btn-lg"
-												id="submit">Registrati</button>
+											<button class="btn btn-primary btn-lg" onClick="doCheck()">Registrati</button>
 										</div>
 									</form>
 								</div>
@@ -178,7 +184,7 @@ Collection<?> errori = (Collection<?>) request.getAttribute("errori");
 
 	<script type="text/javascript">
 
-
+			var username = document.signIn.username;
 			var email = document.signIn.email;
 			var password = document.signIn.password;
 			var password1 = document.signIn.password1;
@@ -193,29 +199,52 @@ Collection<?> errori = (Collection<?>) request.getAttribute("errori");
 			let validPassword = false;
 			let validPassword1 = false;
 			let validCondizioni = false;
+			let validUsername = false;
+			
+			username.addEventListener('blur', () => {
+			    let regex = /^[a-zA-Z]([0-9a-zA-Z]){1,10}$/;
+			    let str = username.value;
+			    if (regex.test(str)) {
+			        username.classList.add("is-valid");
+			        username.classList.remove("is-invalid");
+			        validUsername = true;
+			        
+			    } else {
+			    	username.classList.add("is-invalid");
+			    	username.classList.remove("is-valid");
+			        validUsername = false;
+			    }
+			    
+			    username.classList.add("was-validated");
+			});
 			
 			nome.addEventListener('blur', () => {
 			    let regex = /^[a-zA-Z]([0-9a-zA-Z]){1,10}$/;
 			    let str = nome.value;
 			    if (regex.test(str)) {
 			        nome.classList.add("is-valid");
+			        nome.classList.remove("is-invalid");
 			        validNome = true;
+			        
 			    } else {
 			        nome.classList.add("is-invalid");
+			        nome.classList.remove("is-valid");
 			        validNome = false;
 			    }
 			    
-			    nome.classList.add("was-validated");
+			   nome.classList.add("was-validated");
 			});
 			
 			cognome.addEventListener('blur', () => {
 			    let regex = /^[a-zA-Z]([0-9a-zA-Z]){1,10}$/;
 			    let str = cognome.value;
 			    if (regex.test(str)) {
-			        cognome.classList.add("is-valid"); 
+			        cognome.classList.add("is-valid");
+			        cognome.classList.remove("is-invalid");
 			        validCognome = true;
 			    } else {
 			        cognome.classList.add("is-invalid");
+			        cognome.classList.remove("is-valid");
 			        validCognome = false;
 			    }
 			    
@@ -227,9 +256,11 @@ Collection<?> errori = (Collection<?>) request.getAttribute("errori");
 			    let str = email.value;
 			    if (regex.test(str)) {
 			        email.classList.add("is-valid");
+			        email.classList.remove("is-invalid");
 			        validEmail = true;
 			    } else {
 			        email.classList.add("is-invalid");
+			        email.classList.remove("is-valid");
 			        validEmail = false;
 			    }
 			    
@@ -242,9 +273,11 @@ Collection<?> errori = (Collection<?>) request.getAttribute("errori");
 				
 			    if (password_lengh ==0 || password_lengh < 3 || password_lengh > 20) { 
 			    	password.classList.add("is-invalid");
+			    	password.classList.remove("is-valid");
 			        validPassword = false;
 			    } else {
 			        password.classList.add("is-valid");
+			        password.classList.remove("is-invalid");
 			        validPassword = true;
 			    }
 			    password.classList.add("was-validated");
@@ -257,10 +290,14 @@ Collection<?> errori = (Collection<?>) request.getAttribute("errori");
 			    if (password.value != password1.value ) {
 			    	password1.classList.add("is-invalid");
 			    	password.classList.add("is-invalid");
+			    	password1.classList.remove("is-valid");
+			        password.classList.remove("is-valid");
 			        validPassword1 = false;
 			    } else {
 			        password1.classList.add("is-valid");
 			        password.classList.add("is-valid");
+			        password1.classList.remove("is-invalid");
+			    	password.classList.remove("is-invalid");
 			        validPassword1 = true;
 			    }
 			    password1.classList.add("was-validated");
@@ -268,28 +305,78 @@ Collection<?> errori = (Collection<?>) request.getAttribute("errori");
 			
 			condizioni.addEventListener('blur', () => {	
 			    if (condizioni.checked == false) {
-			    	condizioni.classList.add("is-invalid");   
+			    	condizioni.classList.add("is-invalid");
+			    	condizioni.classList.remove("is-valid");
 			        validCondizioni = false;
 			    } else {
 			        condizioni.classList.add("is-valid");
+			        condizioni.classList.remove("is-invalid");
 			        validCondizioni = true;
 			    }
 			    condizioni.classList.add("was-validated");
 			});
 			
-			let submit = document.getElementById("submit");
-			submit.addEventListener("submit", (e) => {
-			    e.preventDefault();
-			    if (validEmail && validNome && validCognome && validPassword1 && validPassword && validCondizioni) {
-			        form.classList.add("was-validated");
+			function doCheck(){
+				if (validUsername && validEmail && validNome && validCognome && validPassword1 && validPassword && validCondizioni){
+					//check email
+					var rispostaEmail = checkIfEmailExists($('#email').val());
+					if(rispostaEmail.responseJSON == 'no'){
+						email.classList.add("is-invalid");
+				        email.classList.remove("is-valid");
+				        validEmail = false;
+				        return;
+					}
+					
+						//check username
+						var rispostaUsername = checkIfUsernameExists($('#username').val());
+						if(rispostaUsername.responseJSON == 'no'){
+							username.classList.add("is-invalid");
+					    	username.classList.remove("is-valid");
+					        validUsername = false;
+					        return;
+						}
+					
+					document.getElementById('formId').onsubmit='';
+					document.getElementById("formId").submit();
+				}
+				return;
+			};
 			
-			        return true ;
-			    } else {
-			    	form.classList.add("was-validated");
-			        return false; 
+			function checkIfEmailExists(email) {
+			      return $.ajax({
+			            url: "Api/Utente",
+			            type: 'GET',
+			            async: false,
+			            cache: false,
+			            timeout: 30000,
+			            dataType: "json",
+			            data: { action:"checkEmail", email:email },
+			            success: function(data){
+			              return data
+			            },
+			            fail: function(msg){
+			                return true;
+			            }
+			        });
 			    }
-			    
-			});
+			
+			function checkIfUsernameExists(username) {
+			      return $.ajax({
+			            url: "Api/Utente",
+			            type: 'GET',
+			            async: false,
+			            cache: false,
+			            timeout: 30000,
+			            dataType: "json",
+			            data: { action:"checkUsername", username:username},
+			            success: function(data){
+			              return data
+			            },
+			            fail: function(msg){
+			                return true;
+			            }
+			        });
+			    }
 	
 	</script>
 </body>

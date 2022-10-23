@@ -298,6 +298,45 @@ public class UtenteDAO implements GenericDAO<Utente> {
 		return bean;
 
 	}
+	
+	public Utente doRetriveByUsername(String username) throws SQLException {
+		
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		Utente bean = new Utente();
+		
+		String selectSQL = "SELECT * FROM " + UtenteDAO.TABLE_NAME + "WHERE username = ?";
+		
+		try {
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setString(1, username);
+			
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			while (rs.next()) {
+				
+				bean.setCognome(rs.getString("cognome"));
+				bean.setEmail(rs.getString("email"));
+				bean.setId(rs.getInt("id"));
+				bean.setNome(rs.getString("nome"));
+				bean.setPassword(rs.getString("password"));
+				bean.setUsername(rs.getString("username"));
+				bean.setRole(rs.getString("role"));
+				bean.setIndirizzi(doRetriveByUser(bean.getId()));
+			}
+		}finally {
+			try {
+				if(preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null)
+					connection.close();
+			}
+		}
+		return bean;
+	}
 
 	public Collection<Indirizzo> doRetriveByUser(int i) throws SQLException {
 
