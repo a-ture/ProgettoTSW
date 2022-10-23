@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page contentType="text/html; charset=UTF-8"
-	import="java.util.*,it.unisa.beans.*, java.text.*"%>
+	import="java.util.*,it.unisa.beans.*, java.text.*, java.time.*, java.time.format.DateTimeFormatter"%>
 
 <%
 Collection<?> ordini = (Collection<?>) request.getAttribute("ordini");
@@ -11,12 +11,6 @@ Collection<?> kits = (Collection<?>) request.getAttribute("kits");
 Collection<?> categorie = (Collection<?>) request.getAttribute("categorie");
 Collection<?> usi = (Collection<?>) request.getAttribute("usi");
 
-if (request.getAttribute("totaleIncassi") == null) {
-	response.sendRedirect("./Admin");
-	return;
-}
-
-double totale = (double) request.getAttribute("totaleIncassi");
 DecimalFormat dFormat = new DecimalFormat("0.00");
 %>
 
@@ -95,8 +89,9 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 		</nav>
 
 		<div id="dashboard">
-
-			<h1 class="mb-5 border-bottom text-center">Welcome back!</h1>
+			<br>
+			<br>
+			<h1 class="my-5 border-bottom text-center">Welcome back!</h1>
 			<div class="count-up mt-3 mb-5 text-center">
 				<div class="wrapper">
 					<div class="card h-100 w-100">
@@ -126,16 +121,6 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 							<h5 class="card-title">Prodotti</h5>
 							<div class="counter"
 								data-count="<%=prodotti.size() + kits.size()%>">0</div>
-						</div>
-					</div>
-				</div>
-				<div class="wrapper">
-					<div class="card h-100">
-						<img src="resources/img/chiSiamoPage/info_trees.svg" height="200"
-							width="200" class="card-img-top">
-						<div class="card-body">
-							<h5 class="card-title">Incassi</h5>
-							<div class="counter" data-count="<%=totale%>">0</div>
 						</div>
 					</div>
 				</div>
@@ -190,42 +175,46 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					</div>
 				</div>
 			</div>
+			<div class="table-responsive-sm">
+				<table class="table text-center my-2 bg-white " id="myTable">
+					<thead>
+						<tr>
+							<th scope="col">Codice</th>
+							<th scope="col">Utente</th>
+							<th scope="col">Totale</th>
+							<th scope="col">N. Prodotti</th>
+							<th scope="col">Data</th>
+							<th scope="col">Azioni</th>
+						</tr>
+					</thead>
+					<tbody id="tableBodyOrdini">
+						<%
+						if (ordini != null && ordini.size() != 0) {
+							Iterator<?> it2 = ordini.iterator();
+							while (it2.hasNext()) {
+								Ordine o = (Ordine) it2.next();
+								DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+								String formatDateTime = o.getCreatoIl().format(format);
+						%>
+						<tr>
+							<td scope="row" class="nr"><%=o.getId()%></td>
+							<td class="utente"><%=o.getUtente().getEmail()%></td>
+							<td class="totale"><%=dFormat.format(o.getTotalePagato())%>€</td>
+							<td class="nProdotti"><%=o.getTotaleProdotti()%></td>
+							<td class="data"><%=formatDateTime%></td>
+							<td><a class="botteneIdOrdine"> <i
+									class="fa-solid fa-eye"></i></a> <a class="vediFotoOrdine"><i
+									class="fa-solid fa-images"></i></a></td>
 
-			<table class="table text-center my-2 bg-white" id="myTable">
-				<thead>
-					<tr>
-						<th scope="col">Codice</th>
-						<th scope="col">Utente</th>
-						<th scope="col">Totale</th>
-						<th scope="col">N. Prodotti</th>
-						<th scope="col">Data</th>
-						<th scope="col">Azioni</th>
-					</tr>
-				</thead>
-				<tbody id="tableBodyOrdini">
-					<%
-					if (ordini != null && ordini.size() != 0) {
-						Iterator<?> it2 = ordini.iterator();
-						while (it2.hasNext()) {
-							Ordine o = (Ordine) it2.next();
-					%>
-					<tr>
-						<td scope="row" class="nr"><%=o.getId()%></td>
-						<td class="utente"><%=o.getUtente().getEmail()%></td>
-						<td class="totale"><%=dFormat.format(o.getTotalePagato())%>€</td>
-						<td class="nProdotti"><%=o.getTotaleProdotti()%></td>
-						<td class="data"><%=o.getCreatoIl()%></td>
-						<td><a class="botteneIdOrdine"> <i
-								class="fa-solid fa-eye"></i></a> <a class="vediFotoOrdine"><i
-								class="fa-solid fa-images"></i></a></td>
+						</tr>
+						<%
+						}
+						}
+						%>
+					</tbody>
+				</table>
+			</div>
 
-					</tr>
-					<%
-					}
-					}
-					%>
-				</tbody>
-			</table>
 		</div>
 
 		<!-- Ordini -->
@@ -260,23 +249,25 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				</div>
 			</div>
 			<div class="row">
-				<table class="table bg-white">
-					<thead>
-						<tr>
-							<th scope="col">Id</th>
-							<th scope="col">Nome</th>
-							<th scope="col">Prezzo</th>
-							<th scope="col">Saldo</th>
-							<th scope="col">Quantità</th>
-							<th scope="col">Stato</th>
-							<th scope="col">Foto</th>
-							<th scope="col">Azioni</th>
-						</tr>
-					</thead>
-					<tbody id="tableBody">
+				<div class="table-responsive-md">
+					<table class="table bg-white">
+						<thead>
+							<tr>
+								<th scope="col">Id</th>
+								<th scope="col">Nome</th>
+								<th scope="col">Prezzo</th>
+								<th scope="col">Saldo</th>
+								<th scope="col">Quantità</th>
+								<th scope="col">Stato</th>
+								<th scope="col">Foto</th>
+								<th scope="col">Azioni</th>
+							</tr>
+						</thead>
+						<tbody id="tableBody">
 
-					</tbody>
-				</table>
+						</tbody>
+					</table>
+				</div>
 			</div>
 		</div>
 
@@ -328,48 +319,50 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					</div>
 				</div>
 			</div>
-			<table class="table bg-white" id="myTable2">
-				<thead>
-					<tr>
-						<th scope="col">Id</th>
-						<th scope="col" onclick="sortTableAlf(1,'myTable2')">Nome</th>
-						<th scope="col" onclick="sortTableAlf(2,'myTable2')">Paese</th>
-						<th scope="col" onclick="sortTableAlf(3,'myTable2')">Prezzo</th>
-						<th scope="col">In saldo</th>
-						<th scope="col">Saldo</th>
-						<th scope="col">Quantità</th>
-						<th scope="col">Azioni</th>
-					</tr>
-				</thead>
-				<tbody>
-					<%
-					if (prodotti != null && prodotti.size() != 0) {
-						Iterator<?> it12 = prodotti.iterator();
-						while (it12.hasNext()) {
-							Albero a = (Albero) it12.next();
-					%>
-					<tr>
-						<td scope="row" class="nr"><%=a.getId()%></td>
-						<td><%=a.getNome()%></td>
-						<td><%=a.getPaeseDiOrigine()%></td>
-						<td><%=dFormat.format(a.getPrezzo())%>€</td>
-						<td><%=a.getOnSale()%></td>
-						<td><%=a.getSaldo()%></td>
-						<td><%=a.getQuantità()%></td>
-						<td><a class="botteneIdProdottoVedi" href="#prodottoIdAlert"><i
-								class="fa-solid fa-eye"></i></a> <a
-							class="botteneIdProdottoModifica" href="#ordine"><i
-								class="fa-solid fa-pen-to-square"></i></a> <a
-							href="Prodotto?action=eliminaAlberoCatalogo&id=<%=a.getId()%>"><i
-								class="fa-solid fa-circle-xmark"></i></a> <a class="vediFoto"
-							href="#prodottoFotoAlert"><i class="fa-solid fa-images"></i></a></td>
-					</tr>
-					<%
-					}
-					}
-					%>
-				</tbody>
-			</table>
+			<div class="table-responsive-sm">
+				<table class="table bg-white" id="myTable2">
+					<thead>
+						<tr>
+							<th scope="col">Id</th>
+							<th scope="col" onclick="sortTableAlf(1,'myTable2')">Nome</th>
+							<th scope="col" onclick="sortTableAlf(2,'myTable2')">Paese</th>
+							<th scope="col" onclick="sortTableAlf(3,'myTable2')">Prezzo</th>
+							<th scope="col">In saldo</th>
+							<th scope="col">Saldo</th>
+							<th scope="col">Quantità</th>
+							<th scope="col">Azioni</th>
+						</tr>
+					</thead>
+					<tbody>
+						<%
+						if (prodotti != null && prodotti.size() != 0) {
+							Iterator<?> it12 = prodotti.iterator();
+							while (it12.hasNext()) {
+								Albero a = (Albero) it12.next();
+						%>
+						<tr>
+							<td scope="row" class="nr"><%=a.getId()%></td>
+							<td><%=a.getNome()%></td>
+							<td><%=a.getPaeseDiOrigine()%></td>
+							<td><%=dFormat.format(a.getPrezzo())%>€</td>
+							<td><%=a.getOnSale()%></td>
+							<td><%=a.getSaldo()%></td>
+							<td><%=a.getQuantità()%></td>
+							<td><a class="botteneIdProdottoVedi" href="#prodottoIdAlert"><i
+									class="fa-solid fa-eye"></i></a> <a
+								class="botteneIdProdottoModifica" href="#ordine"><i
+									class="fa-solid fa-pen-to-square"></i></a> <a
+								href="Prodotto?action=eliminaAlberoCatalogo&id=<%=a.getId()%>"><i
+									class="fa-solid fa-circle-xmark"></i></a> <a class="vediFoto"
+								href="#prodottoFotoAlert"><i class="fa-solid fa-images"></i></a></td>
+						</tr>
+						<%
+						}
+						}
+						%>
+					</tbody>
+				</table>
+			</div>
 		</div>
 
 		<div id="prodottoAlert" class="alert alert-success m-5 d-none"
@@ -469,56 +462,43 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						</button>
 					</div>
 				</div>
-				<!-- Cerca Per Disponibile/ In Saldo  -->
-				<div class="col">
-					<div class="dropdown">
-						<button class="btn btn-secondary dropdown-toggle" type="button"
-							id="dropdownMenuButton1" data-bs-toggle="dropdown"
-							aria-expanded="false">Ordina Per</button>
-						<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton5">
-							<li onclick="sortTableNumb(4,'myTable4')"><a
-								class="dropdown-item">Disponibilità</a></li>
-							<li onclick="sortTableNumb('myTable4',3)"><a
-								class="dropdown-item">Prezzo</a></li>
-						</ul>
-					</div>
-				</div>
-
 			</div>
-			<table class="table bg-white" id="myTable4">
-				<thead>
+			<div class="table-responsive-sm">
+				<table class="table bg-white" id="myTable4">
+					<thead>
+						<tr>
+							<td scope="row">Id</td>
+							<td onclick="sortTableAlf(1,'myTable4')">Nome</td>
+							<td>Saldo</td>
+							<td>Prezzo Kit</td>
+							<td>Disponibile</td>
+							<td>Azioni</td>
+						</tr>
+					</thead>
+					<%
+					if (kits != null && kits.size() != 0) {
+						Iterator<?> it13 = kits.iterator();
+						while (it13.hasNext()) {
+							KitAlberi k = (KitAlberi) it13.next();
+					%>
 					<tr>
-						<td scope="row">Id</td>
-						<td onclick="sortTableAlf(1,'myTable4')">Nome</td>
-						<td>Saldo</td>
-						<td>Prezzo Kit</td>
-						<td>Disponibile</td>
-						<td>Azioni</td>
+						<td scope="row" class="nr"><%=k.getId()%></td>
+						<td><%=k.getNome()%></td>
+						<td><%=k.getSaldo()%>%</td>
+						<td><%=dFormat.format(k.getPrezzoKit())%>€</td>
+						<td><%=k.isDisponibile()%></td>
+						<td><a class="botteneIdKitVedi" href="#kitDescrizioneAlert"><i
+								class="fa-solid fa-eye"></i></a> <a class="botteneIdKitModifica"
+							href="#ordine"><i class="fa-solid fa-pen-to-square"></i></a> <a
+							href="Prodotto?action=eliminaKitCatalogo&id=<%=k.getId()%>"><i
+								class="fa-solid fa-circle-xmark"></i></a></td>
 					</tr>
-				</thead>
-				<%
-				if (kits != null && kits.size() != 0) {
-					Iterator<?> it13 = kits.iterator();
-					while (it13.hasNext()) {
-						KitAlberi k = (KitAlberi) it13.next();
-				%>
-				<tr>
-					<td scope="row" class="nr"><%=k.getId()%></td>
-					<td><%=k.getNome()%></td>
-					<td><%=k.getSaldo()%>%</td>
-					<td><%=dFormat.format(k.getPrezzoKit())%>€</td>
-					<td><%=k.isDisponibile()%></td>
-					<td><a class="botteneIdKitVedi" href="#kitDescrizioneAlert"><i
-							class="fa-solid fa-eye"></i></a> <a class="botteneIdKitModifica"
-						href="#ordine"><i class="fa-solid fa-pen-to-square"></i></a> <a
-						href="Prodotto?action=eliminaKitCatalogo&id=<%=k.getId()%>"><i
-							class="fa-solid fa-circle-xmark"></i></a></td>
-				</tr>
-				<%
-				}
-				}
-				%>
-			</table>
+					<%
+					}
+					}
+					%>
+				</table>
+			</div>
 		</div>
 
 		<div id="kitAlert" class="alert alert-success m-5 d-none" role="alert">
@@ -541,38 +521,37 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 
 		<div class="container my-5" id="registroDegliAlberi">
 			<h1 class="text-center mb-3">Utenti</h1>
+			<div class="table-responsive-sm">
+				<table class="table bg-white  " id="myTable3">
+					<thead>
+						<tr>
+							<th scope="col">Id</th>
+							<th scope="col" onclick="sortTableAlf(2,'myTable3')">Email</th>
+							<th scope="col" onclick="sortTableAlf(3,'myTable3')">Nome</th>
+							<th scope="col" onclick="sortTableAlf(4,'myTable3')">Cognome</th>
 
-			<table class="table bg-white  " id="myTable3">
-				<thead>
+						</tr>
+					</thead>
+					<%
+					if (utenti != null && utenti.size() != 0) {
+						Iterator<?> it14 = utenti.iterator();
+						while (it14.hasNext()) {
+							Utente u = (Utente) it14.next();
+					%>
 					<tr>
-						<th scope="col">Id</th>
-						<th scope="col" onclick="sortTableAlf(1,'myTable3')">Username</th>
-						<th scope="col" onclick="sortTableAlf(2,'myTable3')">Email</th>
-						<th scope="col" onclick="sortTableAlf(3,'myTable3')">Nome</th>
-						<th scope="col" onclick="sortTableAlf(4,'myTable3')">Cognome</th>
+						<td scope="row"><%=u.getId()%></td>
+						<td><%=u.getEmail()%></td>
+						<td><%=u.getNome()%></td>
+						<td><%=u.getCognome()%></td>
 
 					</tr>
-				</thead>
-				<%
-				if (utenti != null && utenti.size() != 0) {
-					Iterator<?> it14 = utenti.iterator();
-					while (it14.hasNext()) {
-						Utente u = (Utente) it14.next();
-				%>
-				<tr>
-					<td scope="row"><%=u.getId()%></td>
-					<td><%=u.getUsername()%></td>
-					<td><%=u.getEmail()%></td>
-					<td><%=u.getNome()%></td>
-					<td><%=u.getCognome()%></td>
-
-				</tr>
-				<%
-				}
-				}
-				%>
-				</tbody>
-			</table>
+					<%
+					}
+					}
+					%>
+					</tbody>
+				</table>
+			</div>
 		</div>
 
 		<!-- Prodotto -->
@@ -752,7 +731,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						</div>
 						<div class="col-9">
 							<select class="form-select form-select-sm" name="paese">
-								<option selected value="Per&ugrave;">Perù</option>
+								<option selected value="Perù">Perù</option>
 								<option value="Guatemala">Guatemala</option>
 								<option value="Italia">Italia</option>
 							</select>
@@ -1335,13 +1314,11 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 	<script>
 	
 	function myFunctionOrderData() {
-		
 		$.get('OrdineJSON?action=data&date=' + $("#myInput3").val(), function(resp) {
 			printTableOrder(resp);
 		}).fail(function() {
 			alert("Request failed.");
 		});
-
 	}
 	
 	function printTableOrder(j){
@@ -1349,11 +1326,10 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 		
 		j.forEach((e) => {
 			$("#tableBodyOrdini").append('<tr> <td scope="row" class="nr">'+e.id+'</td>'+
-					'<td>'+e.utente.email+'</td><td>'+e.totalePagato+'</td><td>'+e.totaleProdotti+'</td><td>'+e.creatoIl.date+'</td>'+
+					'<td>'+e.utente.email+'</td><td>'+e.totalePagato+'€</td><td>'+e.totaleProdotti+'</td><td>'+e.creatoIl.date.day+'/'+ e.creatoIl.date.month+'/'+e.creatoIl.date.year+'</td>'+
 					'<td> <a class="botteneIdOrdine"> <i class="fa-solid fa-eye"></i> </a> '+
 					'<a class="vediFotoOrdine"> <i class="fa-solid fa-images"> </i></a> </td> </tr>'); 
 		});
-		
 	}
 	
 	function myFunctionKitsPrice(){
@@ -1361,7 +1337,6 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 	}
 	
 	$(document).ready(function() {
-
 		$(".botteneIdKitVedi").click(function() {
 			var $row = $(this).closest("tr");
 			var $id = $row.find(".nr").text();
@@ -1472,20 +1447,22 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 		});
 
 	});
+	
 	function uploadFotoAlbero(id) {
 		$("#uploadFotoOrdineForm").removeClass("d-none");
 		$("#codiceProdottoUpload").val(id);
 	}
+	
 	function printFotoOrdine(j) {
 		var i = 0;
 		$("#ordineFotoAlert").removeClass("d-none");
-
+		$("#ordineFotoIdAlert").empty().append("<h4>Foto ordine n." + j.id + "</h4>");
 		$("#tableBody").empty();
 		j.items.forEach((e) => {
 			$("#tableBody").append('<tr> <td class="nrOrder">' + e.id + '</td><td>' + e.nome + '</td>' +
-				'<td>' + e.prezzo + '</td><td>' + e.saldo + '</td><td>' + e.quantità +
+				'<td>' + e.prezzo+'€' + '</td><td>' + e.saldo + '</td><td>' + e.quantità +
 				'</td><td>' + e.stato + '</td><td><img src="./ServletResources?codiceAzione=fotoProdottoOrdine&idProdottoOrdine=' + e.id
-				+ '" class="img-thumbnail bg-secondary bg-gradient" style="max-width:60px;"></td> <td><a class="aggiornaAlbero" onclick="uploadFotoAlbero(' + e.id + ')"><i class="fa-solid fa-pen-to-square"></i></a></td></tr>');
+				+ '" class="img-thumbnail bg-secondary bg-gradient" style="max-width:60px;"></td> <td><a class="aggiornaAlbero" onclick="uploadFotoAlbero(' + e.id + ')"><i class=" text-dark fa-solid fa-pen-to-square"></i></a></td></tr>');
 		});
 
 	}
@@ -1496,13 +1473,13 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 
 		$("#prodottiOrdineAlert").empty();
 		json.items.forEach((e) => {
-			$("#prodottiOrdineAlert").append("<li>" + "<b>Nome:</b> " + e.nome + ", Prezzo: " + e.prezzo + ", Quantità: "
+			$("#prodottiOrdineAlert").append("<li>" + "<b>Nome:</b> " + e.nome + ", Prezzo: " + e.prezzo + "€, Quantità: "
 				+ e.quantità + ", Saldo: " + e.saldo + "%, tasse: " + e.tasse + "%, Stato: " + e.stato +
 				"</li>");
 		});
 
 		$("#dettaglioOrdineAlert").empty().append("<b>N. Prodotti:</b>" + json.totaleProdotti + ", ");
-		$("#dettaglioOrdineAlert").append("<b>Totale Ordine:</b>" + json.totalePagato + ", ");
+		$("#dettaglioOrdineAlert").append("<b>Totale Ordine:</b>" + json.totalePagato + "€, ");
 		$("#dettaglioOrdineAlert").append("<b>Regalo?:</b>" + ", ");
 		$("#dettaglioOrdineAlert").append("<b>Messaggio Regalo</b>" + json.messaggioRegalo + ", ");
 		$("#dettaglioOrdineAlert").append("<b>Destinatario Regalo</b>" + json.destinatarioRegalo + ", ");
@@ -1613,6 +1590,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 	}
 
 	function printKitForm(j) {
+		alert(j);
 		$('#kitForm').attr("action", "Prodotto?action=aggiornaKit")
 		$('#kitFormButton').html("Modifica")
 		$('#idKitForm').removeClass("d-none")

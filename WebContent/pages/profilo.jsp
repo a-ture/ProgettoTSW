@@ -4,7 +4,7 @@
 <%@ page session="true"%>
 
 <%@ page contentType="text/html; charset=UTF-8"
-	import="java.util.*, it.unisa.beans.*,java.text.*"%>
+	import="java.util.*, it.unisa.beans.*,java.text.*,java.time.*, java.time.format.DateTimeFormatter "%>
 <%
 Utente utente = (Utente) request.getSession().getAttribute("utente");
 
@@ -339,9 +339,9 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 									mondo in cui viviamo</b>
 							</p>
 							<p>Siate i benvenuti! Se siete arrivati fin qui,
-								probabilmente sapete già che Treedom pianta alberi con un metodo
+								probabilmente sapete già che WoodLot pianta alberi con un metodo
 								che porta benefici sia all’ambiente, che alle persone che lo
-								abitano. Ma forse non sapete che Treedom è anche una community
+								abitano. Ma forse non sapete che WoodLot è anche una community
 								virtuale di custodi di alberi, che vive in un luogo speciale: il
 								Diario dell’Albero.</p>
 							<p>Se deciderai di piantare un albero, su questo wall
@@ -372,7 +372,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 							<p>Dicono che i regali più belli sono quelli che non si
 								possono incartare.</p>
 							<p>In qualsiasi momento, e per qualsiasi occasione, puoi
-								regalare un albero Treedom a qualcuno che ami. Basta una mail o
+								regalare un albero WoodLot a qualcuno che ami. Basta una mail o
 								un messaggio per consegnarlo al suo destinatario, e renderlo
 								parte di una community di custodi di alberi che cresce ogni
 								giorno.</p>
@@ -404,12 +404,14 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 							Iterator<?> it = ordini.iterator();
 							while (it.hasNext()) {
 								Ordine ordine = (Ordine) it.next();
+								DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+								String formatDateTime = ordine.getCreatoIl().format(format);
 							%>
 							<tr>
 								<th scope="row" class="nr"><a class="botteneIdOrdine"><%=ordine.getId()%></a></th>
 								<td><%=dFormat.format(ordine.getTotalePagato())%> €</td>
 								<td><%=ordine.getTotaleProdotti()%></td>
-								<td><%=ordine.getCreatoIl()%></td>
+								<td><%=formatDateTime%></td>
 							</tr>
 							<%
 							}
@@ -470,12 +472,14 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					while (it2.hasNext()) {
 
 						ProdottoOrdine prodottoOrdine = it2.next();
+						DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+						String formatDateTime = ordine.getCreatoIl().format(format);
 					%>
 
-					<div class="card m-3" style="max-width: 1440px;">
-						<div class="row g-3">
+					<div class="card my-3" style="max-width:1300px; ">
+						<div class="row">
 							<div class="col-md-4">
-								<img
+								<img style="max-heigt:90px;"
 									src="./ServletResources?codiceAzione=fotoProdottoOrdine&idProdottoOrdine=<%=prodottoOrdine.getId()%>"
 									class="img-fluid rounded-start"
 									onerror="this.src='./resources//img/error.jpg'">
@@ -485,7 +489,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 									<h5 class="card-title"><%=prodottoOrdine.getNome()%></h5>
 									<p class="card-text"><%=prodottoOrdine.getDescrizione()%></p>
 									<p class="card-text">
-										<b>Data di nascita:</b><%=ordine.getCreatoIl()%>
+										<b>Data di nascita:</b><%=formatDateTime%>
 									</p>
 									<%
 									String descrizione = prodottoOrdine.getBreveDescrizione();
@@ -1447,13 +1451,13 @@ function printDettagliOrdine(json) {
 
 	$("#prodottiOrdineAlert").empty();
 	json.items.forEach((e) => {
-		$("#prodottiOrdineAlert").append("<li>" + "<b>Nome:</b> " + e.nome + ", Prezzo: " + e.prezzo + ", Quantità: "
+		$("#prodottiOrdineAlert").append("<li>" + "<b>Nome:</b> " + e.nome + ", Prezzo: " + e.prezzo + "€, Quantità: "
 			+ e.quantità + ", Saldo: " + e.saldo + "%, tasse: " + e.tasse + "%, Stato: " + e.stato +
 			"</li>");
 	});
 
 	$("#dettaglioOrdineAlert").empty().append("<b>N. Prodotti:</b>" + json.totaleProdotti + ", ");
-	$("#dettaglioOrdineAlert").append("<b>Totale Ordine:</b>" + json.totalePagato + ", ");
+	$("#dettaglioOrdineAlert").append("<b>Totale Ordine:</b>" + json.totalePagato + "€, ");
 	$("#dettaglioOrdineAlert").append("<b>Regalo?:</b>" + json.regalo + ", ");
 	$("#dettaglioOrdineAlert").append("<b>Messaggio Regalo</b>" + json.messaggioRegalo + ", ");
 	$("#dettaglioOrdineAlert").append("<b>Destinatario Regalo</b>" + json.destinatarioRegalo + ", ");

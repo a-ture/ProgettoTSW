@@ -34,8 +34,8 @@
 		<h3>PREMESSA</h3>
 		<p>
 			Si disciplinano in questa sede le condizioni applicate agli acquisti
-			effettuati dell'utente sulla piattaforma web di proprietà di Treedom,
-			<a href="www.treedom.net">www.treedom.net</a>. Si invita l’Utente a
+			effettuati dell'utente sulla piattaforma web di proprietà di WoodLot,
+			<a href="www.treedom.net">www.WoodLot.net</a>. Si invita l’Utente a
 			leggere con attenzione i seguenti termini e condizioni prima di
 			procedere ad un qualunque acquisto. L'utente che procede ad
 			acquistare un servizio su tale piattaforma dichiara di aver visionato
@@ -43,7 +43,7 @@
 
 			L'utente della piattaforma (sia esso un individuo, un'azienda,
 			un'istituzione etc.), può richiedere che siano piantati, all'interno
-			dei progetti agroforestali promossi da Treedom, uno o più alberi a
+			dei progetti agroforestali promossi da WoodLot, uno o più alberi a
 			proprio nome o a nome di terzi; nel primo caso il servizio viene
 			genericamente indicato come "piantare" uno o più alberi, mentre nel
 			secondo caso come "regala un albero", essendo indicato un terzo
@@ -51,10 +51,10 @@
 			di un determinato quantitativo di kg di CO<sub>2</sub>, che
 			rappresenta una stima prudenziale di quanta CO<sub>2</sub>
 			quell'albero assorbirà, salvo quanto dettagliato al punto 6
-			(Procedure informatiche). Treedom procede per conto proprio o di
+			(Procedure informatiche). WoodLot procede per conto proprio o di
 			terzi ad effettuare la piantumazione richiesta dall'utente. La
 			piantumazione viene effettuata all'interno di progetti agroforestali
-			dislocati in tutto il mondo, approvati da Treedom se ritenuti idonei
+			dislocati in tutto il mondo, approvati da WoodLot se ritenuti idonei
 			a essere promossi sulla piattaforma, ossia rispondenti ai principi ed
 			ai criteri operativi richiesti. Tali progetti sono realizzati da
 			agricoltori locali, che procedono alla messa a dimora di nuovi alberi
@@ -65,8 +65,8 @@
 		<h4>
 			<br>1. IDENTITÀ DEL PROFESSIONISTA
 		</h4>
-		<p>Treedom s.r.l., con sede legale in Firenze, Italia, viale
-			Augusto Righi 66, 50137 Tel - Fax +39 055 050 3228, info@treedom.net
+		<p>WoodLot s.r.l., con sede legale in Firenze, Italia, viale
+			Augusto Righi 66, 50137 Tel - Fax +39 055 050 3228, info@WoodLot.net
 
 			Iscritta al Registro delle Imprese di Firenze, C.F. e P.I.
 			06054770489</p>
@@ -75,27 +75,27 @@
 		</h4>
 		<p>L'utente acquista, dietro un corrispettivo monetario, il
 			servizio di piantumazione di uno o più alberi all'interno dei
-			progetti promossi da Treedom. Treedom procede, per conto proprio o
+			progetti promossi da WoodLot. WoodLot procede, per conto proprio o
 			tramite terzi, ad effettuare il servizio di piantumazione richiesto
 			dall'utente. Essendo l'oggetto della transazione costituito da un
 			servizio, all'utente non viene consegnato fisicamente nessun elemento
 			arboreo; gli alberi vengono infatti esclusivamente piantati
 			all'interno dei terreni interessati dai progetti approvati e
-			sostenuti da Treedom, e non in eventuali terreni di cui dispone
+			sostenuti da WoodLot, e non in eventuali terreni di cui dispone
 			l'utente. Ne consegue che l'utente non possa vantare né rivendicare
 			alcun diritto di proprietà sugli alberi di cui ha richiesto la
 			piantumazione né su eventuali frutti. L'utente, con l'effettuazione
 			del proprio ordine d'acquisto, dichiara di aver preso visione e di
 			aver accettato le condizioni generali di contratto di seguito
 			specificate e si obbliga ad osservarle e rispettarle nei suoi
-			rapporti con Treedom e con terzi nell'ambito del servizio in
-			questione. Il contratto relativo al servizio offerto da Treedom si
+			rapporti con WoodLot e con terzi nell'ambito del servizio in
+			questione. Il contratto relativo al servizio offerto da WoodLot si
 			considera concluso nel momento in cui perviene, da parte dell'utente,
-			la richiesta di piantumazione. Treedom invierà tempestivamente
+			la richiesta di piantumazione. WoodLot invierà tempestivamente
 			all'utente una notifica dell'avvenuta ricezione dell'ordine di
 			piantumazione (via e-mail). Alla luce della natura del servizio, con
 			la sottoscrizione del presente contratto il cliente acconsente
-			all'immediata esecuzione dello stesso, nel senso che Treedom, fin da
+			all'immediata esecuzione dello stesso, nel senso che WoodLot, fin da
 			subito, potrà procedere con l'erogazione del servizio di
 			piantumazione richiesto.</p>
 		<h4>
@@ -111,7 +111,7 @@
 			ciascun elemento arboreo sarà diverso da specie a specie e la
 			medesima specie potrà avere prezzi diversi in periodi diversi. Il
 			listino dei prezzi aggiornato è pubblicato al seguente indirizzo: <a
-				href="https://www.treedom.net/it/plant-a-tree">https://www.treedom.net/it/plant-a-tree</a>
+				href="https://www.treedom.net/it/plant-a-tree">https://www.WoodLot.net/it/plant-a-tree</a>
 			ed i prezzi ivi indicati dovranno essere presi a riferimento,
 			dall'utente, al momento dell'effettuazione di ciascun ordine. Il
 			prezzo indicato è comprensivo di ogni onere, iva inclusa, ed è
@@ -119,7 +119,7 @@
 			richiede pertanto, da parte dell'utente, alcun costo aggiuntivo.
 
 			Laddove l'utente, contestualmente, richieda la piantumazione di più
-			elementi arborei, l'importo totale da corrispondere a Treedom sarà
+			elementi arborei, l'importo totale da corrispondere a WoodLot sarà
 			indicato complessivamente al termine della sessione di acquisto,
 			ossia prima di procedere al pagamento. Il pagamento avviene in
 			un'unica soluzione al momento dell'acquisto online. La modalità è
@@ -132,7 +132,7 @@
 		<h4>4. MODALITÀ DI ESECUZIONE</h4>
 		<p>Al momento dell'acquisto, l'utente indica il quantitativo di
 			alberi che desidera piantare, scegliendo fra le specie disponibili.
-			Treedom procede, per conto proprio o tramite terzi, ad effettuare il
+			WoodLot procede, per conto proprio o tramite terzi, ad effettuare il
 			servizio di piantumazione richiesto dall'utente con le tempistiche di
 			seguito indicate. Il servizio di piantumazione viene solitamente
 			effettuato in due momenti: quello della messa a vivaio dell'albero e
@@ -140,12 +140,12 @@
 			dalla richiesta dell'utente, mentre il secondo entro e non oltre 18
 			mesi dalla richiesta stessa. Tali tempistiche possono variare in
 			funzione delle condizioni e dei cicli stagionali delle aree in cui
-			vengono realizzati i progetti di piantumazione. Treedom si impegna a
+			vengono realizzati i progetti di piantumazione. WoodLot si impegna a
 			sostituire eventuali fallanze (piante che non hanno attecchito) per i
 			tre anni successivi dalla data di effettuazione della richiesta di
 			piantumazione da parte dell'utente.</p>
 		<h4>5. CAUSA DI FORZA MAGGIORE</h4>
-		<p>Treedom è esentata da tutte le responsabilità per il totale o
+		<p>WoodLot è esentata da tutte le responsabilità per il totale o
 			parziale inadempimento di qualsiasi obbligazione riportata nelle
 			presenti condizioni generali di vendita, qualora tale inadempimento
 			sia causato da eventi imprevedibili e/o eventi naturali al di fuori
@@ -165,18 +165,18 @@
 				operative di corretta gestione e manutenzione del progetto;</li>
 			<li>sopravvenuta impossibilità di operare, in condizioni di
 				sicurezza, nei paesi in cui è possibile piantare la specie
-				richiesta, sia dal punto di vista del personale di Treedom che dal
+				richiesta, sia dal punto di vista del personale di WoodLot che dal
 				punto di vista agricolo - ambientale per la crescita degli alberi;</li>
 			<li>mancato attecchimento della specie nel vivaio o elevata
 				probabilità che la specie, una volta trapiantata, non attecchirebbe;
 			</li>
 			<li>eventuale impossibilità di piantare la specie prescelta
 				dall'utente a causa di eventi non preventivabili e non riconducibili
-				all'operato di Treedom, quali – a titolo esemplificativo e non
+				all'operato di WoodLot, quali – a titolo esemplificativo e non
 				esaustivo – l'improvvisa difficoltà nel reperire le materie agricole
 				prime o l'inaspettato ed imprevedibile innalzamento dei costi di
 				piantumazione e gestione della specie stessa, determinato da eventi
-				estranei al rapporto tra Treedom e l'utente (a titolo
+				estranei al rapporto tra WoodLot e l'utente (a titolo
 				esemplificativo e non esaustivo, scoperte farmaceutiche) che non
 				consentano di dare attuazione, alle condizioni pattuite, all'accordo
 				intercorso tra le parti.</li>
@@ -196,7 +196,7 @@
 			Per poter richiede il servizio di piantumazione online (a proprio
 			nome o a nome di terzi nell'ambito del servizio "regala un albero"),
 			l'utente deve necessariamente essere registrato sulla community di
-			Treedom ed avere preso visione ed accettato l'Informativa sul
+			WoodLot ed avere preso visione ed accettato l'Informativa sul
 			trattamento dei Dati Personali. In conseguenza della registrazione,
 			l'utente può usufruire dei servizi e delle informazioni disponibili
 			sulla piattaforma ed ivi dettagliatamente descritti. A seguito
@@ -214,7 +214,7 @@
 			per 6 mesi consecutivi, la CO<sub>2</sub> potenzialmente assorbibile
 			dagli alberi di cui è intestatario diverrebbe utilizzabile in tutto o
 			in parte da altri utenti. Prima che ciò accada, l'utente viene
-			informato ed invitato da Treedom ad effettuare un log in sulla
+			informato ed invitato da WoodLot ad effettuare un log in sulla
 			piattaforma, al fine di restare intestatario della CO<sub>2</sub>.
 
 			Relativamente al servizio "regala un albero", laddove il destinatario
@@ -231,22 +231,22 @@
 			nonché per eventuali reclami, il Cliente potrà contattarci al numero
 			+39 055 050 3228 dal Lunedì al Venerdì, dalle ore 9:30 alle ore 13:30
 			(GMT+1) o scriverci all'indirizzo di posta elettronica
-			info@treedom.net.</p>
+			info@WoodLot.net.</p>
 		<h4>8. LEGGE APPLICABILE E RISOLUZIONE DELLE CONTROVERSIE</h4>
-		<p>Il contratto tra Treedom e l'Utente è regolato dalla legge
-			italiana. Nel caso di controversia tra Treedom e l'Utente, laddove
+		<p>Il contratto tra WoodLot e l'Utente è regolato dalla legge
+			italiana. Nel caso di controversia tra WoodLot e l'Utente, laddove
 			l'Utente sia un "Consumatore", la competenza territoriale è quella
 			del foro di riferimento del suo comune di residenza, ai sensi del
 			d.lgs. 6 settembre 2005, n. 206; in tutti gli altri casi, la
 			competenza territoriale è esclusivamente quella del Foro di Firenze.
 		</p>
 		<h4>9. MODIFICHE DEL SERVIZIO O VARIAZIONE DELLE CONDIZIONI</h4>
-		<p>Treedom si riserva il diritto di modificare i Servizi offerti,
+		<p>WoodLot si riserva il diritto di modificare i Servizi offerti,
 			le politiche ed i presenti Termini e Condizioni in qualsiasi momento
 			per offrire nuovi prodotti o servizi o per adeguarsi a disposizioni
 			di legge e regolamentari. L’Utente sarà soggetto alle politiche e ai
 			termini dei presenti Termini e Condizioni di volta in volta vigenti
-			nel momento in cui utilizzi i Servizi di Treedom. Qualora una
+			nel momento in cui utilizzi i Servizi di WoodLot. Qualora una
 			qualsiasi previsione delle presenti condizioni fosse ritenuta
 			invalida, nulla o per qualunque motivo inapplicabile, tale condizione
 			non pregiudicherà comunque la validità e l'efficacia delle altre
@@ -255,7 +255,7 @@
 			È compito del cliente fare riferimento sempre all’ultima versione
 			pubblicata sul sito.</p>
 		<h4>10. TUTELA DELLA PRIVACY</h4>
-		<p>I dati degli Utenti sono trattati da Treedom conformemente a
+		<p>I dati degli Utenti sono trattati da WoodLot conformemente a
 			quanto previsto dalla normativa vigente in materia di protezione dei
 			dati personali, come meglio specificato nella apposita Informativa
 			sulla Privacy nonché all’interno delle Privacy e Cookie Policy.</p>

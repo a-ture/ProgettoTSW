@@ -49,7 +49,7 @@ public class ServletAdmin extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		request.setCharacterEncoding("UTF-8");
 		AlberoDAO dao = new AlberoDAO();
 		OrdineDAO dao1 = new OrdineDAO();
 		UtenteDAO dao2 = new UtenteDAO();
@@ -105,6 +105,7 @@ public class ServletAdmin extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		OrdineDAO dao = new OrdineDAO();
 		String action = request.getParameter("action");
 		if (action != null) {
@@ -112,7 +113,7 @@ public class ServletAdmin extends HttpServlet {
 
 				String id = request.getParameter("codice");
 				String stato = request.getParameter("stato");
-				System.out.println(id + " " + stato);
+				
 				try {
 					dao.doUpdateProduct(Integer.parseInt(id), stato);
 				} catch (NumberFormatException e) {

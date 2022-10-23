@@ -31,8 +31,186 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 <meta charset="UTF-8">
 <title><%=prodotto.getNome()%></title>
 <!--CSS-->
-<link rel="stylesheet" type="text/css" href="resources/css/style.css">
 
+<style>
+.checked { /*<!-- Per cambiare il colore delle stelline -->*/
+	color: orange;
+}
+
+#btnCart {
+	transition: all 0.5s;
+}
+
+#btnCart span {
+	cursor: pointer;
+	display: inline-block;
+	position: relative;
+	transition: 0.5s;
+}
+
+#btnCart span:after {
+	content: '\002B';
+	position: absolute;
+	opacity: 0;
+	top: 0;
+	right: -20px;
+	transition: 0.5s;
+}
+
+#btnCart:hover span {
+	padding-right: 25px;
+}
+
+#btnCart:hover span:after {
+	opacity: 1;
+	right: 0;
+}
+
+.avatar {
+	width: 68px;
+	height: 68px;
+	border-radius: 50%;
+}
+
+.years-5 {
+	height: 98px;
+	text-align: center;
+	width: 98px;
+	border-radius: 100%;
+	border-style: solid;
+	border-width: 14px;
+	border-bottom-color: #5e7250;
+	border-left-color: #5e7250;
+	border-right-color: #5e7250;
+	border-top-color: #5e7250;
+}
+
+.years-4 {
+	height: 98px;
+	text-align: center;
+	width: 98px;
+	border-radius: 100%;
+	border-style: solid;
+	border-width: 14px;
+	border-bottom-color: #e5c59c;
+	border-left-color: #5e7250;
+	border-right-color: #5e7250;
+	border-top-color: #5e7250;
+}
+
+.years-3 {
+	height: 98px;
+	text-align: center;
+	width: 98px;
+	border-radius: 100%;
+	border-style: solid;
+	border-width: 14px;
+	border-bottom-color: #e5c59c;
+	border-left-color: #e5c59c;
+	border-right-color: #5e7250;
+	border-top-color: #5e7250;
+}
+
+.years-2 {
+	height: 98px;
+	text-align: center;
+	width: 98px;
+	border-radius: 100%;
+	border-style: solid;
+	border-width: 14px;
+	border-bottom-color: #e5c59c;
+	border-left-color: #e5c59c;
+	border-right-color: #e5c59c;
+	border-top-color: #5e7250;
+}
+
+.years-1 {
+	height: 98px;
+	text-align: center;
+	width: 98px;
+	border-radius: 100%;
+	border-style: solid;
+	border-width: 14px;
+	border-bottom-color: #e5c59c;
+	border-left-color: #e5c59c;
+	border-right-color: #e5c59c;
+	border-top-color: #e5c59c;
+}
+
+.box {
+	color: white;
+	background: #c4d89d;
+	width: 500px;
+	height: max-content;
+	border-bottom-right-radius: 20px;
+	border-top-left-radius: 20px;
+	padding: 20px;
+	padding-right: 60px;
+	box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px
+		-12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px
+		12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+#imageCategorie {
+	transition: transform .1s ease;
+	margin-top: 100px;
+	margin-left: -40px;
+	box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px
+		-12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px
+		12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+#imageCategorie:hover {
+	transform: scale(1.1);
+	/*
+  Change the scale value as much as you want to change the amount of zoom on hover.
+  */
+}
+
+#categorie {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.magnifier {
+	width: 640px;
+	margin: 50px auto;
+	position: relative;
+}
+
+.magnifier:hover {
+	cursor: none;
+	/*   cursor: crosshair; */
+}
+
+.large {
+	width: 175px;
+	height: 175px;
+	position: absolute;
+	border-radius: 100%;
+	box-shadow: 0 0 0 7px rgba(191, 191, 191, 0.85), 0 0 7px 7px
+		rgba(0, 0, 0, 0.25), inset 0 0 40px 2px rgba(191, 191, 191, 0.25);
+	display: none;
+}
+
+.small {
+	display: block;
+}
+
+.cardCategoriaImage img {
+	opacity: .8;
+	transform: translate(0, 0);
+	/*
+  Change the opacity value to change how "faded" you want the image to appear when it is not hovered.
+  */
+	transition: opacity .25s ease-in-out;
+}
+
+.cardCategoriaImage img:hover {
+	opacity: 1;
+}
+</style>
 </head>
 <body>
 	<!-- Header -->
@@ -345,20 +523,22 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			<p class="lead"><%=prodotto.getDoveVienePiantato()%></p>
 		</div>
 		<div class="text-center">
-			<img
-				src="./ServletResources?codiceAzione=fotoPaeseDiOrigine&idPaese=<%=prodotto.getPaeseDiOrigine()%>"
-				class="img-fluid" height="626px" width="925px"
-				onerror="this.src='./resources//img/error.jpg'">
-		</div>
+			<div class="magnifier d-none d-sm-block">
+				<div class="large"
+					style="background: url('./ServletResources?codiceAzione=fotoPaeseDiOrigine&idPaese=<%=prodotto.getPaeseDiOrigine()%>') no-repeat;"></div>
 
+				<img
+					src="./ServletResources?codiceAzione=fotoPaeseDiOrigine&idPaese=<%=prodotto.getPaeseDiOrigine()%>"
+					class="img-fluid small" height="626px" width="925px"
+					onerror="this.src='./resources//img/error.jpg'">
+			</div>
+		</div>
 		<!-- Categorie -->
-		<%
-		Collection<Categoria> cat = prodotto.getCategorie();
-		if (cat != null && cat.size() != 0) {
-			Iterator<Categoria> it = cat.iterator();
-			while (it.hasNext()) {
-				Categoria c = it.next();
-		%>
+		<%Collection<Categoria> cat = prodotto.getCategorie();
+if (cat != null && cat.size() != 0) {
+	Iterator<Categoria> it = cat.iterator();
+	while (it.hasNext()) {
+		Categoria c = it.next();%>
 
 		<div id="categorie">
 			<div class="box">
@@ -366,22 +546,23 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					Perchè
 					<%=c.getNome()%>?
 				</h1><%=c.getDescrizione()%></div>
-			<div id="imageCategorie">
-				<img class="img-fluid rounded"
-					onerror="this.src='./resources//img/error.jpg'"
-					src="./ServletResources?codiceAzione=fotoCategoria&idCategoria=<%=c.getId()%>"
-					alt="img-200-300">
+			<div class="cardCategoriaImage">
+				<div id="imageCategorie">
+					<img id="<%=c.getId()%>" class="img-fluid rounded" height="600px"
+						width="600px" onerror="this.src='./resources//img/error.jpg'"
+						src="./ServletResources?codiceAzione=fotoCategoria&idCategoria=<%=c.getId()%>"
+						alt="img-200-300">
+				</div>
 			</div>
 		</div>
-		<%
-		}
-		}
-		%>
+		<%}
+}%>
 		<div class="m-5"></div>
 		<div class="row b-example-divider"></div>
 		<!-- Cosa Vuol Dire Piantare Un albero con WoodLot -->
 		<br> <br>
-		<h2 class="text-center">Cosa vuol dire piantare un albero con WoodLot</h2>
+		<h2 class="text-center">Cosa vuol dire piantare un albero con
+			WoodLot</h2>
 		<div
 			class="row row-cols-1 row-cols-md-3 row-cols-lg-3 text-center m-5">
 			<div class="col">
@@ -418,7 +599,8 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 		<div class="row b-example-divider"></div>
 		<!-- Prodotti Consigliati  -->
 		<h1 class="m-3 text-center">Pianta altri alberi</h1>
-		<div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 mb-5 text-center">
+		<div
+			class="row row-cols-1 row-cols-md-2 row-cols-lg-4 mb-5 text-center">
 			<%
 			if (prodotti != null && prodotti.size() != 0) {
 				Iterator<?> it = prodotti.iterator();
@@ -435,12 +617,9 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						onerror="this.src='./resources//img/error.jpg'" />
 					<div class="card-body">
 						<h5 class="card-title"><%=bean.getNome()%>
-							<%
-							if (bean.getOnSale() != 0) {
-							%><span class="badge mx-2 bg-secondary">In Saldo</span>
-							<%
-							}
-							%>
+							<%if (bean.getOnSale() != 0) {%><span
+								class="badge mx-2 bg-secondary">In Saldo</span>
+							<%}%>
 						</h5>
 						<p class="card-text"><%=bean.getDescrizioneBreve()%></p>
 						<p class="card-text text-center"><%=dFormat.format(bean.getPrezzo())%>
@@ -449,23 +628,17 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						<div class="text-center">
 							<a class="btn btn-success position-relative"
 								href="Prodotto?action=leggiProdotto&id=<%=bean.getId()%>">Piantalo
-								Ora <%
-							if (bean.getOnSale() != 0) {
-							%><span
+								Ora <%if (bean.getOnSale() != 0) {%><span
 								class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
 									<span class="visually-hidden">In Saldo</span>
-							</span> <%
- }
- %>
+							</span> <%}%>
 							</a>
 						</div>
 					</div>
 				</div>
 			</div>
-			<%
-			}
-			}
-			%>
+			<%}
+}%>
 		</div>
 		<div class="col-md-12 text-center">
 			<a class="btn btn-primary m-3" href="Catalogo" role="button">Vedi
@@ -494,10 +667,8 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 								<h5 class="mb-0"><%=uso.getNome()%></h5>
 								<%=uso.getDescrizione()%>
 							</div></li>
-						<%
-						}
-						}
-						%>
+						<%}
+}%>
 					</ul>
 					<button type="button" class="btn btn-lg btn-primary mt-5 w-100"
 						data-bs-dismiss="modal">Ho capito!</button>
@@ -528,10 +699,8 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 								<h5 class="mb-0"><%=ben.getNome()%></h5>
 								<%=ben.getDescrizione()%>
 							</div></li>
-						<%
-						}
-						}
-						%>
+						<%}
+}%>
 					</ul>
 					<button type="button" class="btn btn-lg btn-primary mt-5 w-100"
 						data-bs-dismiss="modal">Ho capito!</button>
@@ -547,9 +716,9 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					<h2 class="fw-bold mb-3">Cos'è incluso nel prezzo?</h2>
 					<img class="mx-5 my-1" src="resources/img/treedom-about-price.png"
 						width="350px">
-					<p class="m-1">Piantare un albero con Treedom significa
+					<p class="m-1">Piantare un albero con WoodLot significa
 						finanziare un contadino per piantare un albero e sostenerlo fino a
-						quando non sarà produttivo. Con Treedom infatti un albero è molto
+						quando non sarà produttivo. Con WoodLot infatti un albero è molto
 						più di un albero. Ecco cosa è incluso nel prezzo:</p>
 					<ol class="d-grid gap-4 my-2 list-group list-group-numbered">
 						<li class="d-flex">Avvio del progetto</li>
@@ -591,5 +760,72 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 	</div>
 	<!-- Footer -->
 	<%@ include file="../fragments/footer.jsp"%>
+
+	<!-- Script per animare le img della categoria -->
+	<script type="text/javascript">
+		//Creates an event that fires every time the mouse moves over any div with the class of "img".
+		$(".img").mousemove(
+				function(event) {
+
+					//Both the x and y value are calculated by taking the mouse x,y position on the page and subtracting it from the x,y position of the image on the page. "this" is the hovered element with the class of "img"
+					var mousex = event.pageX - $(this).offset().left;
+					var mousey = event.pageY - $(this).offset().top;
+
+					//If you just used the mouse position values the translation effect will only go up and to the right, by subtracting half of the length / width of the imagevfrom the values  we get either a positive or negitive number so that the image will move in any direction.
+
+					//The 40 controls the amount of "movement" that will happen by giving us a smaller number, feel free to change it to get the effect that you want.
+					var imgx = (mousex - 300) / 40;
+					var imgy = (mousey - 200) / 40;
+
+					//Adds a translation css styles to the image element
+					$(this).css("transform",
+							"translate(" + imgx + "px," + imgy + "px)");
+				});
+
+		//This function will fire every time the user mouses off of the image. It resets the translation back to 0.
+		$(".img").mouseout(function() {
+			$(this).css("transform", "translate(0px,0px)");
+		});
+	</script>
+	<!-- Script per animare le img di dove viene piantato  -->
+	<script type="text/javascript">
+	$(document).ready(function() {
+		  var native_width = 0;
+		  var native_height = 0;
+		  $(".magnifier").mousemove(function(e) {
+		    if (!native_width && !native_height) {
+		      var image_object = new Image();
+		      image_object.src = $(".small").attr("src");
+		      native_width = image_object.width;
+		      native_height = image_object.height;
+		    } else {
+		      var magnify_offset = $(this).offset();
+		      var mx = e.pageX - magnify_offset.left;
+		      var my = e.pageY - magnify_offset.top;
+
+		      if (mx < $(this).width() && my < $(this).height() && mx > 0 && my > 0) {
+		        $(".large").fadeIn(100);
+		      } else {
+		        $(".large").fadeOut(100);
+		      }
+		      if ($(".large").is(":visible")) {
+		        var rx =
+		          Math.round(
+		            mx / $(".small").width() * native_width - $(".large").width() / 2
+		          ) * -1;
+		        var ry =
+		          Math.round(
+		            my / $(".small").height() * native_height - $(".large").height() / 2
+		          ) * -1;
+		        var bgp = rx + "px " + ry + "px";
+
+		        var px = mx - $(".large").width() / 2;
+		        var py = my - $(".large").height() / 2;
+		        $(".large").css({ left: px, top: py, backgroundPosition: bgp });
+		      }
+		    }
+		  });
+		});
+	</script>
 </body>
 </html>

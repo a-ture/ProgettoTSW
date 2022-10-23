@@ -97,7 +97,8 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 		<h5>Scegli l’albero in base alle sue caratteristiche</h5>
 
 		<!-- Filtri -->
-		<div class="row row-cols-1  row-cols-sm-2  row-cols-md-3 row-cols-lg-6 g-4">
+		<div
+			class="row row-cols-1  row-cols-sm-2  row-cols-md-3 row-cols-lg-6 g-4">
 			<!-- Prezzo -->
 			<div class="btn-group" role="group"
 				aria-label="Button group with nested dropdown">
@@ -219,7 +220,9 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			<%
 			}
 			%>
-			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3" id="catalogo">
+			<div
+				class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3"
+				id="catalogo">
 				<%
 				if (prodotti != null && prodotti.size() != 0) {
 					Iterator<?> it = prodotti.iterator();
@@ -231,9 +234,10 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				<!-- Card  -->
 				<div class="col ">
 					<div class="card h-100">
-						<img src="./ServletResources?codiceAzione=fotoProdotto&idFoto=<%=bean1.getNomeFoto()%>"
+						<img
+							src="./ServletResources?codiceAzione=fotoProdotto&idFoto=<%=bean1.getNomeFoto()%>"
 							onerror="this.src='./resources//img/error.jpg'"
-							class="card-img-top <%if (!bean.isDisponibile())%> badgeImg"
+							class="img-prod card-img-top <%if (!bean.isDisponibile())%> badgeImg"
 							alt="..." />
 						<div class="card-body">
 							<h5 class="card-title text-center"><%=bean.getNome()%>
@@ -293,7 +297,8 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			<%
 			}
 			%>
-			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
+			<div
+				class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
 				<%
 				if (kits != null && kits.size() != 0) {
 					Iterator<?> it2 = kits.iterator();
@@ -303,7 +308,8 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				<!-- Card  -->
 				<div class="col ">
 					<div class="card h-100">
-						<img src="./ServletResources?codiceAzione=fotoKit&idKit=<%=kit.getId()%>"
+						<img
+							src="./ServletResources?codiceAzione=fotoKit&idKit=<%=kit.getId()%>"
 							onerror="this.src='./resources//img/error.jpg'"
 							class="card-img-top <%if (!kit.isDisponibile())%> badgeImg"
 							alt="..." />
@@ -859,7 +865,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 							codice che trovi sul biglietto o sul gadget e, seguendo poche
 							semplici istruzioni, potrai vedere il tuo albero. Tieni presente
 							che per vedere l’albero è necessario iscriversi (se non hai già
-							un profilo su Treedom) o accedere con le credenziali che hai
+							un profilo su WoodLot) o accedere con le credenziali che hai
 							scelto al momento dell’iscrizione. Se hai ricevuto l’albero via
 							mail, nella mail trovi il tasto “ritira il tuo regalo”: cliccaci
 							e ti verranno date le istruzioni per creare un account o accedere
@@ -869,7 +875,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 							arriverai direttamente nella sezione dedicata al tuo regalo, dove
 							seguendo poche semplici istruzioni potrai vederlo. Tieni presente
 							che per vedere l’albero è necessario iscriversi (se non hai già
-							un profilo su Treedom) o accedere con le credenziali che hai
+							un profilo su WoodLot) o accedere con le credenziali che hai
 							scelto al momento dell’iscrizione. In tutti i casi, questa
 							procedura devi effettuarla solo la prima volta. In futuro potrai
 							sempre vedere il tuo albero all’interno del tuo profilo,
@@ -910,7 +916,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 							suo significato ed una speciale grafica. Ogni Albero
 							dell’Oroscopo riceve gli aggiornamenti che parlano della sua
 							specie e del progetto di cui fa parte, esattamente come ogni
-							altro albero Treedom, ma riceve in più 12 contenuti, uno al mese
+							altro albero WoodLot, ma riceve in più 12 contenuti, uno al mese
 							per un intero anno, dell’Oroscopo degli Alberi.</p>
 					</div>
 				</div>
@@ -926,7 +932,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					aria-labelledby="headingThree" data-bs-parent="#accordionExample">
 					<div class="accordion-body">
 						<p>Un Albero dell’Oroscopo può essere regalato esattamente
-							come ogni altro albero Treedom, secondo la normale procedura. Se
+							come ogni altro albero WoodLot, secondo la normale procedura. Se
 							l’albero viene regalato, il nuovo proprietario sarà colui a cui
 							verranno notificati gli aggiornamenti, compresi quelli relativi
 							all’Oroscopo degli Alberi.</p>
@@ -1049,7 +1055,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 								<h5 class="mb-0">In molte culture, alla nascita di un
 									bambino, era tradizione piantare un nuovo albero. Un gesto
 									concreto e di grande valenza simbolica. Oggi puoi piantare un
-									albero con Treedom e farne un regalo per neonati o utilizzarlo
+									albero con WoodLot e farne un regalo per neonati o utilizzarlo
 									come idea regalo per un battesimo.</h5>
 							</div></li>
 					</ul>
@@ -1171,7 +1177,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 							height="98">
 							<div>
 								<h5 class="mb-0">Non è come regalare una stella. Un albero
-									ha solide radici e con Treedom può diventare una perfetta idea
+									ha solide radici e con WoodLot può diventare una perfetta idea
 									regalo. Un regalo solidale ed ecosostenibile. Un regalo per
 									offrire un pensiero green ed un gesto concreto.</h5>
 							</div></li>
@@ -1195,7 +1201,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 							<div>
 								<h5 class="mb-0">Fare un regalo a qualcuno di famiglia non
 									è mai semplice, anche se si tratta di persone che conosci molto
-									bene! Fare di un albero Treedom il regalo per qualsivoglia
+									bene! Fare di un albero WoodLot il regalo per qualsivoglia
 									parente è la soluzione perfetta per sorprenderli tutti!</h5>
 							</div></li>
 					</ul>
@@ -1261,6 +1267,15 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 		}
 	</script>
-
+	<!-- Cambiare src on hover -->
+	<script>$(".img-social").hover(function(){
+	    $(this).attr("src", function(index, attr){
+	        return attr.replace(".png", "-active.png");
+	    })
+	}, function(){
+	    $(this).attr("src", function(index, attr){
+	        return attr.replace("-active.png", ".png");
+	    });
+	});</script>
 </body>
 </html>

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page contentType="text/html; charset=UTF-8"
-	import="java.util.*,it.unisa.beans.*, java.text.*"%>
+	import="java.util.*,it.unisa.beans.*, java.text.*, java.time.*, java.time.format.DateTimeFormatter"%>
 <%
 int utentiTotali = (int) request.getAttribute("utentiTotali");
 int paesiTotali = (int) request.getAttribute("paesiTotali");
@@ -24,49 +24,6 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 <style>
-.course-title {
-	display: flex;
-	justify-content: center;
-	font-weight: bold;
-	font-size: 34px;
-	color: #fff;
-}
-
-.count-up {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-wrap: wrap;
-}
-
-.wrapper {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
-	position: relative;
-	margin: 20px;
-	box-shadow: -4px 2px 10px 0 rgba(0, 0, 0, 0.2);
-	background-color: #fff;
-	width: 250px;
-	height: 300px;
-}
-
-.counter {
-	font-size: 40px;
-	font-weight: bold;
-	background-color: #fff;
-	border-radius: 3px;
-	position: relative;
-	color: #3e3e3e;
-}
-
-.wrapper i {
-	color: #17a2b8;
-	z-index: 1;
-	font-size: 64px;
-	margin-bottom: 5px
-}
 </style>
 <!-- Favicon -->
 <link rel="icon" type="image/x-icon" href="resources/img/logo.png">
@@ -75,7 +32,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 	<!-- Header -->
 	<%@ include file="../fragments/header.jsp"%>
 	<!-- HERO -->
-	<div class="px-4 py-5 my-5 text-center" id="welcome">
+	<div class="px-4 py-5 text-center" id="welcome">
 		<h1 class="display-5 fw-bold">Chi Siamo</h1>
 		<div class="col-lg-6 mx-auto">
 			<p class="lead mb-4">La riforestazione è una delle azioni più
@@ -83,12 +40,14 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				nascere nuovi alberi nelle regioni del mondo vittime di grandi
 				deforestazioni.</p>
 			<div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-				<button type="button" class="btn btn-primary btn-lg px-4 gap-3">Primary
-					button</button>
-				<button type="button" class="btn btn-outline-secondary btn-lg px-4">Secondary</button>
+				<button type="button" class="btn btn-primary btn-lg px-4 gap-3"
+					id="perchèWL">Perchè WoodLot?</button>
+				<button type="button" class="btn btn-outline-secondary btn-lg px-4"
+					id="ideaAlbero">Un albero che idea!</button>
 			</div>
 		</div>
 	</div>
+	<!-- Perchè WoodLot -->
 
 	<!-- Divider -->
 	<div class="b-example-divider"></div>
@@ -113,10 +72,6 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					futuro della terra. Troppo spesso in maniera negativa! Il nostro
 					progetto nasce per permettere a chiunque di fare la sua parte nel
 					contrastare la crisi climatica. PIA</p>
-				<a href="#" class="icon-link"> Pianta un albero <svg class="bi"
-						width="1em" height="1em">
-						<use xlink:href="#chevron-right"></use></svg>
-				</a>
 			</div>
 			<div class="feature col">
 				<div class="feature-icon bg-primary bg-gradient">
@@ -135,10 +90,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					contadine locali generando sicurezza alimentare e sostegno
 					economico. Crediamo moltissimo nell’educazione, per questo,
 					formiamo le comunità sulla gestione sostenibile della terra.</p>
-				<a href="#" class="icon-link"> Call to action <svg class="bi"
-						width="1em" height="1em">
-						<use xlink:href="#chevron-right"></use></svg>
-				</a>
+
 			</div>
 			<div class="feature col">
 				<div class="feature-icon bg-primary bg-gradient">
@@ -150,10 +102,6 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					Grazie a Chloe, il nostro sistema di tracciamento e trasparenza,
 					puoi monitorare la crescita di ogni singolo albero della tua
 					foresta attraverso periodici aggiornamenti personalizzati.</p>
-				<a href="#" class="icon-link"> Call to action <svg class="bi"
-						width="1em" height="1em">
-						<use xlink:href="#chevron-right"></use></svg>
-				</a>
 			</div>
 		</div>
 	</div>
@@ -200,7 +148,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 
 
 		<h4>Scopri chi ha piantato più alberi.</h4>
-		<table class="table m-3">
+		<table class="table my-3">
 			<thead>
 				<tr>
 					<th scope="col">Posizione</th>
@@ -274,6 +222,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 		<div class="row text-center">
 
 			<div class="col-lg-6">
+
 				<svg class="bd-placeholder-img rounded-circle" width="140"
 					height="140" xmlns="http://www.w3.org/2000/svg" role="img"
 					aria-label="Placeholder: 140x140"
@@ -288,17 +237,19 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			</div>
 
 			<div class="col-lg-6">
-				<svg class="bd-placeholder-img rounded-circle" width="140"
+					<svg class="bd-placeholder-img rounded-circle" width="140"
 					height="140" xmlns="http://www.w3.org/2000/svg" role="img"
 					aria-label="Placeholder: 140x140"
 					preserveAspectRatio="xMidYMid slice" focusable="false">
 						<title>Placeholder</title><rect width="100%" height="100%"
 						fill="#777"></rect>
 						<text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-
+				
 				<h2>Alessia Ture</h2>
-				<p>Another exciting bit of representative placeholder content.
-					This time, we've moved on to the second column.</p>
+				<p>La mia idea di progresso è un mondo più sano e sostenibile.
+					Da sempre curiosa di intraprendere nuove sfide e nuovi percorsi e
+					convinta della necessità di un cambiamento, ho deciso che WoodLot è
+					la mia idea di progresso.</p>
 			</div>
 
 		</div>
@@ -308,9 +259,9 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 	<!-- /.row -->
 	<!-- START THE FEATURETTES -->
 	<div class="container marketing">
-		<div class="row featurette text-center m-5">
+		<div class="row featurette text-center my-5">
 			<h1 class="featurette-heading">Molto più di un albero</h1>
-			<p class="lead">Treedom finanzia direttamente progetti
+			<p class="lead">WoodLot finanzia direttamente progetti
 				agroforestali, diffusi sul territorio. La filosofia è quella di
 				realizzare ecosistemi sostenibili e permettere a migliaia di
 				contadini di far fronte ai costi iniziali della piantumazione di
@@ -333,11 +284,11 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					beneficio per l’intero pianeta.</p>
 			</div>
 			<div class="col-md-5">
-
-				<img src="resources/img/chiSiamoPage/chiSiamo3.jpg"
-					class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
-					width="500" height="500">
-
+			
+					<img src="resources/img/chiSiamoPage/chiSiamo3.jpg"
+						class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
+						width="500" height="500">
+					
 			</div>
 		</div>
 
@@ -346,7 +297,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 		<div class="row featurette">
 			<div class="col-md-7 order-md-2">
 				<h2 class="featurette-heading">Benefici sociali</h2>
-				<p class="lead">Treedom finanzia progetti presso comunità rurali
+				<p class="lead">WoodLot finanzia progetti presso comunità rurali
 					in vari paesi del mondo e realizza anche in Italia progetti a forte
 					valenza sociale. Il primo passo è la formazione e il finanziamento
 					delle comunità coinvolte nei progetti, ottenendo straordinari
@@ -354,15 +305,18 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					loro frutti sono di proprietà dei contadini, permettendo loro di
 					diversificare ed integrare il proprio reddito e in alcuni casi di
 					avviare iniziative di microimprenditorialità. Finanziare la
-					piantumazione di nuovi alberi con Treedom, serve a sostenerne la
+					piantumazione di nuovi alberi con WoodLot, serve a sostenerne la
 					cura nei primi anni di vita, quando non sono ancora produttivi in
 					termini di frutti.</p>
 			</div>
 			<div class="col-md-5 order-md-1">
-				<img
-					class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
-					width="500" height="500"
-					src="resources/img/chiSiamoPage/chiSiamo.jpg">
+			
+					<img
+						class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
+						width="500" height="500"
+						src="resources/img/chiSiamoPage/chiSiamo.jpg">
+				
+
 			</div>
 		</div>
 
@@ -379,7 +333,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					questo le sosteniamo finanziariamente e le aiutiamo a piantare e
 					far crescere alberi nei loro terreni. Gli alberi daranno benefici a
 					loro, al luogo in cui vivono e a tutto il pianeta. Crediamo nel
-					legame che, attraverso gli alberi e grazie a Treedom, si può creare
+					legame che, attraverso gli alberi e grazie a WoodLot, si può creare
 					tra persone lontane. Crediamo che ciascuno di noi debba impegnarsi
 					per ridurre le proprie emissioni di CO2 e che nel farlo possa
 					contribuire anche ad assorbirne piantando alberi. Crediamo che si
@@ -387,10 +341,13 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					giusto.</p>
 			</div>
 			<div class="col-md-5 ">
-				<img
-					class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
-					width="500" height="500"
-					src="resources/img/chiSiamoPage/chiSiamo2.jpg">
+				
+					<img
+						class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
+						width="500" height="500"
+						src="resources/img/chiSiamoPage/chiSiamo2.jpg">
+					
+
 			</div>
 		</div>
 
@@ -422,9 +379,11 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					pianeta e per le comunità locali</p>
 			</div>
 			<div class="col-md-5">
-				<img src="resources/img/chiSiamoPage/chiSiamo1.jpeg"
-					class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
-					width="500" height="500">
+			
+					<img src="resources/img/chiSiamoPage/chiSiamo1.jpeg"
+						class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
+						width="500" height="500">
+					
 			</div>
 		</div>
 
@@ -438,7 +397,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				nell’amazzonia peruviana ed in tutte le regioni italiane</p>
 
 			<div
-				class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
+				class="row row-cols-1 row-cols-lg-3 align-items-stretch gy-4">
 				<div class="col">
 					<div
 						class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg"
@@ -475,7 +434,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				</div>
 
 			</div>
-			<div class="row m-5">
+			<div class="row my-5">
 				<h3>Perchè tutto è iniziato dal Guatemala?</h3>
 				<p>Il contesto però è fondamentale: l’area boschiva del
 					Guatemala è stata letteralmente depredata negli ultimi 40 anni:
@@ -558,7 +517,8 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 
 	<div class="container my-5" id="registroDegliAlberi">
 		<h1 class="text-center mb-3">Registro degli alberi</h1>
-		<div class="row row-cols-1  row-cols-sm-1  row-cols-md-3 g-3 text-center">
+		<div
+			class="row row-cols-1  row-cols-sm-1  row-cols-md-3 text-center">
 
 			<div class="col">
 				<div class="input-group mb-3">
@@ -599,7 +559,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			</div>
 
 		</div>
-		<table class="table text-center my-2" id="myTable">
+		<table class="table text-center" id="myTable">
 			<thead style="background-color: #e5c59c;">
 				<tr>
 					<th scope="col">Id</th>
@@ -621,13 +581,15 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						while (it4.hasNext()) {
 
 					ProdottoOrdine p = (ProdottoOrdine) it4.next();
+					DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+					String formatDateTime = ordine.getCreatoIl().format(format);
 				%>
 				<tr>
 					<td scope="row"><%=p.getId()%></td>
 					<td><%=p.getNome()%></td>
 					<td><%=p.getStato()%></td>
 					<td><%=ordine.getUtente().getUsername()%></td>
-					<td><%=ordine.getCreatoIl()%></td>
+					<td><%=formatDateTime%></td>
 				</tr>
 				<%
 				}
@@ -727,6 +689,60 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				$(this).removeClass('effect');
 			})
 		});
+	</script>
+	<!-- Per animare il team -->
+	<script type="text/javascript">
+		$(".hover").mouseleave(function() {
+			$(this).removeClass("hover");
+		});
+	</script>
+
+	<!--Manipolazione DOM  su pulsante Perchè WoodLot? -->
+	<script>
+		$("#perchèWL")
+				.click(
+						function() {
+							$("div").remove(".ideaAlberoDiv");
+							$("div").remove(".perchèWLDiv");
+							$("<div class=' perchèWLDiv px-4 my-5 '></div>")
+									.insertAfter("#welcome");
+							$(".perchèWLDiv")
+									.append(
+											"<h1 class='mt-1 display-5 fw-bold text-center'>Perchè WoodLot?</h1>");
+							$(".perchèWLDiv").append(
+									"<ol class='perchèWLOl'></ol>");
+							$(".perchèWLOl")
+									.append(
+											"<li><b>Innovazione</b>:Se milioni di persone spendono soldi per piantare alberi virtuali su FarmVille, perché non creare qualcosa che permetta loro di piantarne di veri. "
+													+ "Ed ecco che una semplice idea si è trasformata in innovazione ed un semplice albero è diventato lo strumento per creare una community. Creatività, innovazione e condivisione sono da sempre nel nostro DNA.</li>");
+							$(".perchèWLOl")
+									.append(
+											"<li><b>Il Business che fa bene</b>:Non crediamo di dover essere la migliore azienda del mondo, ma la migliore azienda per il mondo. Per questo, dal 2014, facciamo parte delle Certified B Corporations, il network di imprese che si contraddistinguono per elevate performance ambientali e sociali..</li>");
+							$(".perchèWLOl")
+									.append(
+											"<li><b>Una bella storia è importante:</b> Un albero WoodLot è una storia che emoziona che chiunque può vivere in prima persona. È un racconto fatto di natura e dei contadini che se ne prendono cura. Un albero può raccontare la storia in cui credi e che vuoi condividere.</li>");
+
+						});
+	</script>
+	<!--Manipolazione DOM  su pulsante Un albero, che idea! -->
+	<script>
+		$("#ideaAlbero")
+				.click(
+						function() {
+							$("div").remove(".ideaAlberoDiv");
+							$("div").remove(".perchèWLDiv");
+							$(
+									"<div class='ideaAlberoDiv px-4 my-5 text-center'></div>")
+									.insertAfter("#welcome");
+							$(".ideaAlberoDiv")
+									.append(
+											"<h1 class='mt-1 display-5 fw-bold'>Un albero, che idea!</h1>");
+							$(".ideaAlberoDiv")
+									.append(
+											"<p class='lead mb-4'>WoodLot è la prima piattaforma al mondo che permette di piantare un albero a distanza e"
+													+ "seguire la storia del progetto online. Originariamente ispirato dal celebre gioco online FarmVille,"
+													+ "WoodLot ha aggiornato il concetto del piantare alberi grazie alla propria piattaforma interattiva </p>");
+						});
 	</script>
 </body>
 </html>

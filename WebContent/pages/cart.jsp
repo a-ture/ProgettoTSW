@@ -69,7 +69,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						style="border-radius: 15px;">
 						<div class="card-body p-0">
 							<div class="row g-0">
-								<div class="col-lg-8">
+								<div class="col-lg-8 col-md-6">
 									<div class="p-5">
 										<div
 											class="d-flex justify-content-between align-items-center mb-5">
@@ -141,18 +141,14 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 										</div>
 									</div>
 								</div>
+				
 								<div class="col-lg-4 bg-light">
 									<div class="p-5">
 										<h3 class="fw-bold mb-5 mt-2 pt-1">Riepilogo</h3>
 										<hr class="my-4">
-										<div class="d-flex justify-content-between">
-											<p class="mb-2">Totale del carrello (IVA esclusa)</p>
-											<p class="mb-2"><%=dFormat.format(carrello.getPrezzoTotaleProdotti())%>
-												€
-											</p>
-										</div>
+				
 										<div class="d-flex justify-content-between mb-4">
-											<p class="mb-2">Totale(IVA inclusa)</p>
+											<p class="mb-2">Totale</p>
 											<p class="mb-2"><%=dFormat.format(carrello.getPrezzoTotaleProdotti())%>
 												€
 											</p>

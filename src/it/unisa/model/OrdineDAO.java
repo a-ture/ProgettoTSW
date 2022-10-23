@@ -190,7 +190,7 @@ public class OrdineDAO implements GenericDAO<Ordine> {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			conn.rollback();
+		
 		}
 
 		return 0;
@@ -450,7 +450,7 @@ public class OrdineDAO implements GenericDAO<Ordine> {
 				stmt.setInt(2, idA);
 
 				stmt.executeUpdate();
-				con.commit();
+				
 			} catch (FileNotFoundException e) {
 				System.out.println(e);
 			} catch (IOException e) {
@@ -461,7 +461,7 @@ public class OrdineDAO implements GenericDAO<Ordine> {
 				if (stmt != null)
 					stmt.close();
 			} catch (SQLException sqlException) {
-				System.out.println(sqlException);
+				sqlException.printStackTrace();
 			} finally {
 				if (con != null)
 					con.close();
