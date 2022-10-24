@@ -56,7 +56,6 @@ public class UtenteDAO implements GenericDAO<Utente> {
 					bean.setEmail(rs.getString("email"));
 					bean.setPassword(rs.getString("password"));
 					bean.setRole(rs.getString("role"));
-					bean.setUsername(rs.getString("username"));
 					bean.setIndirizzi(doRetriveByUser(bean.getId()));
 				}
 
@@ -163,18 +162,17 @@ public class UtenteDAO implements GenericDAO<Utente> {
 		PreparedStatement preparedStatement = null;
 
 		String insertSQL = "INSERT INTO " + UtenteDAO.TABLE_NAME
-				+ " (username,password,email,nome,cognome,role) VALUES (?,?,?,?,?,?)";
+				+ " (password,email,nome,cognome,role) VALUES (?,?,?,?,?)";
 
 		try {
 			connection = ds.getConnection();
 			connection.setAutoCommit(false);
 			preparedStatement = connection.prepareStatement(insertSQL);
-			preparedStatement.setString(1, item.getUsername());
-			preparedStatement.setString(2, item.getPassword());
-			preparedStatement.setString(3, item.getEmail());
-			preparedStatement.setString(4, item.getNome());
-			preparedStatement.setString(5, item.getCognome());
-			preparedStatement.setString(6, item.getRole());
+			preparedStatement.setString(1, item.getPassword());
+			preparedStatement.setString(2, item.getEmail());
+			preparedStatement.setString(3, item.getNome());
+			preparedStatement.setString(4, item.getCognome());
+			preparedStatement.setString(5, item.getRole());
 
 			preparedStatement.executeUpdate();
 
@@ -199,7 +197,7 @@ public class UtenteDAO implements GenericDAO<Utente> {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
-		String insertSQL = "UPDATE " + UtenteDAO.TABLE_NAME + " SET nome = ?, cognome = ?, username = ?, email = ?"
+		String insertSQL = "UPDATE " + UtenteDAO.TABLE_NAME + " SET nome = ?, cognome = ?, email = ?"
 				+ " WHERE id = ? ";
 
 		try {
@@ -209,9 +207,8 @@ public class UtenteDAO implements GenericDAO<Utente> {
 			preparedStatement = connection.prepareStatement(insertSQL);
 			preparedStatement.setString(1, item.getNome());
 			preparedStatement.setString(2, item.getCognome());
-			preparedStatement.setString(3, item.getUsername());
-			preparedStatement.setString(4, item.getEmail());
-			preparedStatement.setInt(5, item.getId());
+			preparedStatement.setString(3, item.getEmail());
+			preparedStatement.setInt(4, item.getId());
 			preparedStatement.executeUpdate();
 
 			connection.commit();
@@ -281,7 +278,6 @@ public class UtenteDAO implements GenericDAO<Utente> {
 				bean.setId(rs.getInt("id"));
 				bean.setNome(rs.getString("nome"));
 				bean.setPassword(rs.getString("password"));
-				bean.setUsername(rs.getString("username"));
 				bean.setRole(rs.getString("role"));
 				bean.setIndirizzi(doRetriveByUser(bean.getId()));
 			}
@@ -299,44 +295,6 @@ public class UtenteDAO implements GenericDAO<Utente> {
 
 	}
 	
-	public Utente doRetriveByUsername(String username) throws SQLException {
-		
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
-		
-		Utente bean = new Utente();
-		
-		String selectSQL = "SELECT * FROM " + UtenteDAO.TABLE_NAME + "WHERE username = ?";
-		
-		try {
-			connection = ds.getConnection();
-			preparedStatement = connection.prepareStatement(selectSQL);
-			preparedStatement.setString(1, username);
-			
-			ResultSet rs = preparedStatement.executeQuery();
-			
-			while (rs.next()) {
-				
-				bean.setCognome(rs.getString("cognome"));
-				bean.setEmail(rs.getString("email"));
-				bean.setId(rs.getInt("id"));
-				bean.setNome(rs.getString("nome"));
-				bean.setPassword(rs.getString("password"));
-				bean.setUsername(rs.getString("username"));
-				bean.setRole(rs.getString("role"));
-				bean.setIndirizzi(doRetriveByUser(bean.getId()));
-			}
-		}finally {
-			try {
-				if(preparedStatement != null)
-					preparedStatement.close();
-			} finally {
-				if (connection != null)
-					connection.close();
-			}
-		}
-		return bean;
-	}
 
 	public Collection<Indirizzo> doRetriveByUser(int i) throws SQLException {
 
@@ -381,79 +339,8 @@ public class UtenteDAO implements GenericDAO<Utente> {
 		return beans;
 	}
 
-	public synchronized static byte[] load(int i) {
+	
 
-		Connection connection = null;
-		PreparedStatement stmt = null;
-		ResultSet rs = null;
-
-		byte[] bt = null;
-
-		try {
-			connection = ds.getConnection();
-			String sql = "SELECT foto FROM " + UtenteDAO.TABLE_NAME + " WHERE id = ?";
-			stmt = connection.prepareStatement(sql);
-
-			stmt.setInt(1, i);
-			rs = stmt.executeQuery();
-
-			if (rs.next()) {
-				bt = rs.getBytes("foto");
-			}
-
-		} catch (SQLException sqlException) {
-			System.out.println(sqlException);
-		} finally {
-			try {
-				if (stmt != null)
-					stmt.close();
-			} catch (SQLException sqlException) {
-				System.out.println(sqlException);
-			} finally {
-				if (connection != null)
-					try {
-						connection.close();
-					} catch (SQLException e) {
-						System.out.println(e);
-					}
-			}
-		}
-		return bt;
-
-	}
-
-	public synchronized static void updatePhoto(int i, String photo) throws SQLException {
-		Connection con = null;
-		PreparedStatement stmt = null;
-
-		try {
-			con = ds.getConnection();
-			stmt = con.prepareStatement("UPDATE " + UtenteDAO.TABLE_NAME + " SET foto = ? WHERE id = ?");
-
-			File file = new File(photo);
-			try {
-				FileInputStream fis = new FileInputStream(file);
-				stmt.setBinaryStream(1, fis, fis.available());
-				stmt.setInt(2, i);
-
-				stmt.executeUpdate();
-
-			} catch (FileNotFoundException e) {
-				System.out.println(e);
-			} catch (IOException e) {
-				System.out.println(e);
-			}
-		} finally {
-			try {
-				if (stmt != null)
-					stmt.close();
-			} catch (SQLException sqlException) {
-				System.out.println(sqlException);
-			} finally {
-				if (con != null)
-					con.close();
-			}
-		}
-	}
+	
 
 }

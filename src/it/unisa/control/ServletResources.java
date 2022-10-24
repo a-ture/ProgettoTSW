@@ -81,12 +81,6 @@ public class ServletResources extends HttpServlet {
 			recuperoFotoUsoLocale(id,response);
 			break;
 		}
-		case "fotoUtente": {
-			String id = request.getParameter("idUtente");
-			if(id == null) return;
-			recuperoFotoUtente(id,response);
-			break;
-		}
 		default:
 			return;
 		}
@@ -188,16 +182,5 @@ public class ServletResources extends HttpServlet {
 		out.close();
 	}
 	
-	private void recuperoFotoUtente(String idUtente, HttpServletResponse response)
-			throws ServletException, IOException {
-		byte[] bt = UtenteDAO.load(Integer.parseInt(idUtente));
-		
-		ServletOutputStream out = response.getOutputStream();
-		if (bt != null) {
-			out.write(bt);
-			response.setContentType("image/jpeg");
-		}
-		out.close();
-	}
 
 }

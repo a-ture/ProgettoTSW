@@ -58,18 +58,7 @@ Collection<?> errori = (Collection<?>) request.getAttribute("errori");
 										class="mx-1 mx-md-4 needs-validation" novalidate
 										autocomplete="off" id="formId" onsubmit="return false;">
 
-										<div class="d-flex flex-row align-items-center mb-4">
-											<i class="fas fa-user fa-lg me-3 fa-fw"></i>
-											<div class="form-outline flex-fill mb-0">
-												<input type="text" id="username" class="form-control"
-													placeholder="il tuo username" required name="username" />
-												<label class="form-label" for="username">Il tuo
-													username</label>
-												<div class="valid-feedback">Looks good!</div>
-												<div class="invalid-feedback">Inserisci un username
-													valido</div>
-											</div>
-										</div>
+										
 										<div class="d-flex flex-row align-items-center mb-4">
 											<i class="fas fa-user fa-lg me-3 fa-fw"></i>
 											<div class="form-outline flex-fill mb-0">
@@ -130,14 +119,6 @@ Collection<?> errori = (Collection<?>) request.getAttribute("errori");
 													coincidono</div>
 											</div>
 										</div>
-										<div class="d-flex flex-row align-items-center mb-4">
-											<i class="fa-solid fa-camera  fa-lg me-3 fa-fw"></i>
-											<div class="form-outline flex-fill mb-0">
-												<input class="form-control" type="file" id="formFile"
-													name="formFile"><label for="formFile"
-													class="form-label">Inserisci una foto profilo </label>
-											</div>
-										</div>
 										<div class="form-check align-items-center">
 											<input class="form-check-input" type="checkbox" value=""
 												id="condizioni" aria-describedby="invalidCheck3Feedback"
@@ -184,7 +165,6 @@ Collection<?> errori = (Collection<?>) request.getAttribute("errori");
 
 	<script type="text/javascript">
 
-			var username = document.signIn.username;
 			var email = document.signIn.email;
 			var password = document.signIn.password;
 			var password1 = document.signIn.password1;
@@ -199,27 +179,10 @@ Collection<?> errori = (Collection<?>) request.getAttribute("errori");
 			let validPassword = false;
 			let validPassword1 = false;
 			let validCondizioni = false;
-			let validUsername = false;
 			
-			username.addEventListener('blur', () => {
-			    let regex = /^[a-zA-Z]([0-9a-zA-Z]){1,10}$/;
-			    let str = username.value;
-			    if (regex.test(str)) {
-			        username.classList.add("is-valid");
-			        username.classList.remove("is-invalid");
-			        validUsername = true;
-			        
-			    } else {
-			    	username.classList.add("is-invalid");
-			    	username.classList.remove("is-valid");
-			        validUsername = false;
-			    }
-			    
-			    username.classList.add("was-validated");
-			});
 			
 			nome.addEventListener('blur', () => {
-			    let regex = /^[a-zA-Z]([0-9a-zA-Z]){1,10}$/;
+			    let regex = /^[a-zA-Z]([ a-zA-Z]){1,10}$/;
 			    let str = nome.value;
 			    if (regex.test(str)) {
 			        nome.classList.add("is-valid");
@@ -236,7 +199,7 @@ Collection<?> errori = (Collection<?>) request.getAttribute("errori");
 			});
 			
 			cognome.addEventListener('blur', () => {
-			    let regex = /^[a-zA-Z]([0-9a-zA-Z]){1,10}$/;
+			    let regex = /^[a-zA-Z]([ a-zA-Z]){1,10}$/;
 			    let str = cognome.value;
 			    if (regex.test(str)) {
 			        cognome.classList.add("is-valid");
@@ -271,7 +234,7 @@ Collection<?> errori = (Collection<?>) request.getAttribute("errori");
 				var password_lengh= password.value.length;
 				var password_lengh1= password1.value.length;
 				
-			    if (password_lengh ==0 || password_lengh < 3 || password_lengh > 20) { 
+			    if (password_lengh == 0 || password_lengh < 3 || password_lengh > 20) { 
 			    	password.classList.add("is-invalid");
 			    	password.classList.remove("is-valid");
 			        validPassword = false;
@@ -289,15 +252,11 @@ Collection<?> errori = (Collection<?>) request.getAttribute("errori");
 				
 			    if (password.value != password1.value ) {
 			    	password1.classList.add("is-invalid");
-			    	password.classList.add("is-invalid");
 			    	password1.classList.remove("is-valid");
-			        password.classList.remove("is-valid");
 			        validPassword1 = false;
 			    } else {
 			        password1.classList.add("is-valid");
-			        password.classList.add("is-valid");
 			        password1.classList.remove("is-invalid");
-			    	password.classList.remove("is-invalid");
 			        validPassword1 = true;
 			    }
 			    password1.classList.add("was-validated");
@@ -317,7 +276,7 @@ Collection<?> errori = (Collection<?>) request.getAttribute("errori");
 			});
 			
 			function doCheck(){
-				if (validUsername && validEmail && validNome && validCognome && validPassword1 && validPassword && validCondizioni){
+				if (validEmail && validNome && validCognome && validPassword1 && validPassword && validCondizioni){
 					//check email
 					var rispostaEmail = checkIfEmailExists($('#email').val());
 					if(rispostaEmail.responseJSON == 'no'){
@@ -326,15 +285,6 @@ Collection<?> errori = (Collection<?>) request.getAttribute("errori");
 				        validEmail = false;
 				        return;
 					}
-					
-						//check username
-						var rispostaUsername = checkIfUsernameExists($('#username').val());
-						if(rispostaUsername.responseJSON == 'no'){
-							username.classList.add("is-invalid");
-					    	username.classList.remove("is-valid");
-					        validUsername = false;
-					        return;
-						}
 					
 					document.getElementById('formId').onsubmit='';
 					document.getElementById("formId").submit();
@@ -360,23 +310,6 @@ Collection<?> errori = (Collection<?>) request.getAttribute("errori");
 			        });
 			    }
 			
-			function checkIfUsernameExists(username) {
-			      return $.ajax({
-			            url: "Api/Utente",
-			            type: 'GET',
-			            async: false,
-			            cache: false,
-			            timeout: 30000,
-			            dataType: "json",
-			            data: { action:"checkUsername", username:username},
-			            success: function(data){
-			              return data
-			            },
-			            fail: function(msg){
-			                return true;
-			            }
-			        });
-			    }
 	
 	</script>
 </body>

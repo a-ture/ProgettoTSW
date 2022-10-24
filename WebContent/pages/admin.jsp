@@ -136,7 +136,6 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				<div class="col">
 					<div class="input-group mb-3">
 						<input type="text" class="form-control" placeholder="Cerca per id"
-							aria-label="Recipient's username"
 							aria-describedby="button-addon2" id="myInput1"
 							onkeyup="myFunctionId(0,'myInput1','myTable')">
 						<button class="btn btn-outline-secondary" type="button"
@@ -150,7 +149,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				<div class="col">
 					<div class="input-group mb-3">
 						<input type="text" class="form-control"
-							placeholder="Cerca per cliente" aria-label="Recipient's username"
+							placeholder="Cerca per cliente"
 							aria-describedby="button-addon2" id="myInput2"
 							onkeyup="myFunctionId(1,'myInput2','myTable')">
 						<button class="btn btn-outline-secondary" type="button"
@@ -166,7 +165,6 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					<div class="input-group mb-3">
 						<input type="text" class="form-control"
 							placeholder="dd/MM/yy - dd/MM/yy"
-							aria-label="Recipient's username"
 							aria-describedby="button-addon2" id="myInput3">
 						<button class="btn btn-outline-secondary" type="button"
 							id="button-addon2" onclick="myFunctionOrderData()">
@@ -280,7 +278,6 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				<div class="col ">
 					<div class="input-group mb-3">
 						<input type="text" class="form-control" placeholder="Cerca per id"
-							aria-label="Recipient's username"
 							aria-describedby="button-addon2" id="myInput4"
 							onkeyup="myFunctionId(0,'myInput4','myTable2')">
 						<button class="btn btn-outline-secondary" type="button"
@@ -293,7 +290,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				<div class="col ">
 					<div class="input-group mb-3">
 						<input type="text" class="form-control"
-							placeholder="Cerca per paese" aria-label="Recipient's username"
+							placeholder="Cerca per paese"
 							aria-describedby="button-addon2" id="myInput5"
 							onkeyup="myFunctionId(2,'myInput5','myTable2')">
 						<button class="btn btn-outline-secondary" type="button"
@@ -440,7 +437,6 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				<div class="col">
 					<div class="input-group mb-3">
 						<input type="text" class="form-control" placeholder="Cerca per id"
-							aria-label="Recipient's username"
 							aria-describedby="button-addon2" id="myInput6"
 							onkeyup="myFunctionId(0,'myInput6','myTable4')">
 						<button class="btn btn-outline-secondary" type="button"
@@ -453,7 +449,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				<div class="col">
 					<div class="input-group mb-3">
 						<input type="text" class="form-control"
-							placeholder="Cerca per nome" aria-label="Recipient's username"
+							placeholder="Cerca per nome"
 							aria-describedby="button-addon2" id="myInput7"
 							onkeyup="myFunctionId(1,'myInput7','myTable4')">
 						<button class="btn btn-outline-secondary" type="button"

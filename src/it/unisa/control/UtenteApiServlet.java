@@ -55,21 +55,7 @@ public class UtenteApiServlet extends HttpServlet {
 	        return;
 	      }
 	    }
-	    if(action.equals("checkUsername")) {
-	    	 UtenteDAO dao = new UtenteDAO();
-	    	 try {
-	    		 Utente u = dao.doRetriveByUsername(request.getParameter("username"));
-	 	        response.setStatus(200);
-	 	        response.getWriter().print(gson.toJson(u.getUsername() == null ? "ok" : "no"));
-	 	        response.getWriter().flush();
-		        return;
-		      } catch (SQLException e) {
-		        response.setStatus(500);
-		        response.getWriter().print(gson.toJson( "error"));
-		        response.getWriter().flush();
-		        return;
-		      }
-	    }
+	   
 	   
 	    
 	    

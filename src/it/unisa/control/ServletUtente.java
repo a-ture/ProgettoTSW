@@ -44,10 +44,7 @@ public class ServletUtente extends HttpServlet {
 			throws ServletException, IOException {
 		// UtenteDAO model = new UtenteDAO();
 		OrdineDAO model1 = new OrdineDAO();
-		IndirizzoDAO model2 = new IndirizzoDAO();
-		UtenteDAO model3 = new UtenteDAO();
 
-		String action = request.getParameter("action");
 		Utente utente = (Utente) request.getSession().getAttribute("utente");
 
 		if (utente == null) {
@@ -86,134 +83,10 @@ public class ServletUtente extends HttpServlet {
 			e.printStackTrace();
 		}
 
-		if (action != null) {
-			if (action.equals("elimina")) {
-				String id = request.getParameter("idIndirizzo");
-				if (id != null) {
-					try {
-						Indirizzo indirizzo = model2.doRetriveByKey(id);
-
-						model2.doDelete(indirizzo);
-						utente.setIndirizzi(model3.doRetriveByUser(utente.getId()));
-					} catch (SQLException e) {
-
-						e.printStackTrace();
-					}
-				}
-			}
-			request.removeAttribute(action);
-		}
-
 		String redirectPage = "/pages/profilo.jsp";
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(redirectPage);
 		dispatcher.forward(request, response);
 
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
-		String action = request.getParameter("action");
-		Utente utente = (Utente) request.getSession().getAttribute("utente");
-
-		if (action != null) {
-			if (action.equals("preferred")) {
-				IndirizzoDAO dao = new IndirizzoDAO();
-				String id = request.getParameter("idIndirizzo");
-				if (id != null) {
-
-					try {
-						Indirizzo indirizzo = dao.doRetriveByKey(id);
-						indirizzo.setPreferred(true);
-
-						dao.doUpdate(indirizzo);
-
-					} catch (SQLException e) {
-						e.printStackTrace();
-					}
-				}
-
-			} else if (action.equals("modificaInformazioni")) {
-				UtenteDAO dao = new UtenteDAO();
-				String id = request.getParameter("idUtente");
-				if (id != null) {
-					utente.setCognome(request.getParameter("cognome"));
-					utente.setNome(request.getParameter("nome"));
-					utente.setEmail(request.getParameter("email"));
-					utente.setUsername(request.getParameter("username"));
-				}
-
-				salvaFotoProfilo(request, utente);
-
-				try {
-					dao.doUpdate(utente);
-					utente = dao.doRetriveByKey(id);
-					request.getSession().removeAttribute("utente");
-					request.getSession().setAttribute("utente", utente);
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			} else if (action.equals("salvaIndirizzo")) {
-
-				Indirizzo indirizzo = new Indirizzo();
-				IndirizzoDAO model = new IndirizzoDAO();
-
-				indirizzo.setNome(request.getParameter("nome"));
-				indirizzo.setCognome(request.getParameter("cognome"));
-				indirizzo.setCAP(request.getParameter("cap"));
-				indirizzo.setCittà(request.getParameter("citta"));
-				indirizzo.setVia(request.getParameter("via"));
-				indirizzo.setProvincia(request.getParameter("provincia"));
-				indirizzo.setUid(utente.getId());
-				indirizzo.setCivico(request.getParameter("civico"));
-				indirizzo.setPreferred(false);
-
-				try {
-					model.doSave(indirizzo);
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			request.removeAttribute(action);
-			String redirectPage = "/pages/profilo.jsp";
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(redirectPage);
-			dispatcher.forward(request, response);
-		}
-	}
-
-	private void salvaFotoProfilo(HttpServletRequest request, Utente utente) throws IOException, ServletException {
-
-		String SAVE_DIR = "/uploadTemp";
-
-		String appPath = request.getServletContext().getRealPath("");
-		String savePath = appPath + File.separator + SAVE_DIR;
-
-		File fileSaveDir = new File(savePath);
-		if (!fileSaveDir.exists()) {
-			fileSaveDir.mkdir();
-		}
-
-		for (Part part : request.getParts()) {
-			String fileName = extractFileName(part);
-			if (fileName != null && !fileName.equals("")) {
-				part.write(savePath + File.separator + fileName);
-				try {
-					UtenteDAO.updatePhoto(utente.getId(), savePath + File.separator + fileName);
-				} catch (SQLException sqlException) {
-					System.out.println(sqlException);
-				}
-			}
-		}
-	}
-
-	private String extractFileName(Part part) {
-		String contentDisp = part.getHeader("content-disposition");
-		String[] items = contentDisp.split(";");
-		for (String s : items) {
-			if (s.trim().startsWith("filename")) {
-				return s.substring(s.indexOf("=") + 2, s.length() - 1);
-			}
-		}
-		return "";
-	}
 }

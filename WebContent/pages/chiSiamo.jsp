@@ -152,7 +152,6 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			<thead>
 				<tr>
 					<th scope="col">Posizione</th>
-					<th scope="col">Username</th>
 					<th scope="col">Nome</th>
 					<th scope="col">Cognome</th>
 				</tr>
@@ -168,7 +167,6 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				%>
 				<tr>
 					<th scope="row"><%=i%></th>
-					<td><%=utente.getUsername()%></td>
 					<td><%=utente.getNome()%></td>
 					<td><%=utente.getCognome()%></td>
 				</tr>
@@ -518,12 +516,12 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 	<div class="container my-5" id="registroDegliAlberi">
 		<h1 class="text-center mb-3">Registro degli alberi</h1>
 		<div
-			class="row row-cols-1  row-cols-sm-1  row-cols-md-3 text-center">
+			class="row row-cols-1  row-cols-sm-1  row-cols-md-2 text-center">
 
 			<div class="col">
 				<div class="input-group mb-3">
 					<input type="text" class="form-control" placeholder="Cerca per id"
-						aria-label="Recipient's username" aria-describedby="button-addon2"
+					 aria-describedby="button-addon2"
 						id="myInput" onkeyup="myFunctionId()">
 					<button class="btn btn-outline-secondary" type="button"
 						id="button-addon2">
@@ -535,21 +533,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			<div class="col">
 				<div class="input-group mb-3">
 					<input type="text" class="form-control"
-						placeholder="Cerca per username" aria-label="Recipient's username"
-						aria-describedby="button-addon2" id="myInputUsername"
-						onkeyup="myFunctionName()">
-					<button class="btn btn-outline-secondary" type="button"
-						id="button-addon2">
-						<i class="fa-solid fa-magnifying-glass"></i>
-					</button>
-				</div>
-			</div>
-
-			<div class="col">
-				<div class="input-group mb-3">
-					<input type="text" class="form-control"
-						placeholder="Cerca per tipo albero"
-						aria-label="Recipient's username" aria-describedby="button-addon2"
+						placeholder="Cerca per tipo albero" aria-describedby="button-addon2"
 						id="myInputTree" onkeyup="myFunctionNameTree()">
 					<button class="btn btn-outline-secondary" type="button"
 						id="button-addon2">
@@ -588,7 +572,6 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					<td scope="row"><%=p.getId()%></td>
 					<td><%=p.getNome()%></td>
 					<td><%=p.getStato()%></td>
-					<td><%=ordine.getUtente().getUsername()%></td>
 					<td><%=formatDateTime%></td>
 				</tr>
 				<%
@@ -615,25 +598,6 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			tr = table.getElementsByTagName("tr");
 			for (i = 0; i < tr.length; i++) {
 				td = tr[i].getElementsByTagName("td")[0];
-				if (td) {
-					txtValue = td.textContent || td.innerText;
-					if (txtValue.toUpperCase().indexOf(filter) > -1) {
-						tr[i].style.display = "";
-					} else {
-						tr[i].style.display = "none";
-					}
-				}
-			}
-		}
-
-		function myFunctionName() {
-			var input, filter, table, tr, td, i, txtValue;
-			input = document.getElementById("myInputUsername");
-			filter = input.value.toUpperCase();
-			table = document.getElementById("myTable");
-			tr = table.getElementsByTagName("tr");
-			for (i = 0; i < tr.length; i++) {
-				td = tr[i].getElementsByTagName("td")[3];
 				if (td) {
 					txtValue = td.textContent || td.innerText;
 					if (txtValue.toUpperCase().indexOf(filter) > -1) {

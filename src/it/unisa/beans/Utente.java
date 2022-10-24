@@ -20,7 +20,6 @@ public class Utente implements Cloneable, Serializable {
 	private String email;
 	private String password;
 	private String role;
-	private String username;
 	private boolean active;
 
 	/**
@@ -40,10 +39,9 @@ public class Utente implements Cloneable, Serializable {
 	 * @param email     email dell'utente
 	 * @param password  password dell'utente
 	 * @param role      ruolo dell'utente
-	 * @param username  username dell'utente
 	 */
 	public Utente(int id, String nome, String cognome, Collection<Indirizzo> indirizzi, String email, String password,
-			String role, String username) {
+			String role) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -52,7 +50,6 @@ public class Utente implements Cloneable, Serializable {
 		this.email = email;
 		this.password = password;
 		this.role = role;
-		this.username = username;
 	}
 
 	public int getId() {
@@ -118,7 +115,7 @@ public class Utente implements Cloneable, Serializable {
 	@Override
 	public String toString() {
 		return "Utente [id=" + id + ", nome=" + nome + ", cognome=" + cognome + ", indirizzi=" + indirizzi + ", email="
-				+ email + ", password=" + password + ", role=" + role + ", username=" + username + "]";
+				+ email + ", password=" + password + ", role=" + role + "]";
 	}
 
 	@Override
@@ -133,7 +130,6 @@ public class Utente implements Cloneable, Serializable {
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((role == null) ? 0 : role.hashCode());
-		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
 	}
 
@@ -180,21 +176,9 @@ public class Utente implements Cloneable, Serializable {
 				return false;
 		} else if (!role.equals(other.role))
 			return false;
-		if (username == null) {
-			if (other.username != null)
-				return false;
-		} else if (!username.equals(other.username))
-			return false;
 		return true;
 	}
 
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
 
 	public Indirizzo getPreferredAddress() {
 		if (this.indirizzi == null)

@@ -152,7 +152,6 @@ public class ServletLogin extends HttpServlet {
 		if (validateForm(request)) {
 			Utente utente = new Utente();
 			UtenteDAO dao = new UtenteDAO();
-			utente.setUsername(request.getParameter("username"));
 			utente.setNome(request.getParameter("nome"));
 			utente.setCognome(request.getParameter("cognome"));
 			utente.setEmail(request.getParameter("email"));
@@ -161,7 +160,6 @@ public class ServletLogin extends HttpServlet {
 			try {
 				dao.doSave(utente);
 				utente = dao.doRetriveByEmail(utente.getEmail());
-				salvaFotoProfilo(request, utente);
 				request.getSession().setAttribute("user", utente);
 
 				// registered by the buynow button cart
@@ -213,43 +211,6 @@ public class ServletLogin extends HttpServlet {
 		return errors.size() > 0;
 	}
 
-	/**
-	 * Metodo per salvaree la foto dell'utente
-	 */
-	private void salvaFotoProfilo(HttpServletRequest request, Utente utente) throws IOException, ServletException {
 
-		String SAVE_DIR = "/uploadTemp";
-
-		String appPath = request.getServletContext().getRealPath("");
-		String savePath = appPath + File.separator + SAVE_DIR;
-
-		File fileSaveDir = new File(savePath);
-		if (!fileSaveDir.exists()) {
-			fileSaveDir.mkdir();
-		}
-
-		for (Part part : request.getParts()) {
-			String fileName = extractFileName(part);
-			if (fileName != null && !fileName.equals("")) {
-				part.write(savePath + File.separator + fileName);
-				try {
-					UtenteDAO.updatePhoto(utente.getId(), savePath + File.separator + fileName);
-				} catch (SQLException sqlException) {
-					System.out.println(sqlException);
-				}
-			}
-		}
-	}
-
-	private String extractFileName(Part part) {
-		String contentDisp = part.getHeader("content-disposition");
-		String[] items = contentDisp.split(";");
-		for (String s : items) {
-			if (s.trim().startsWith("filename")) {
-				return s.substring(s.indexOf("=") + 2, s.length() - 1);
-			}
-		}
-		return "";
-	}
 
 }

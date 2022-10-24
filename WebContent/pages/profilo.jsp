@@ -148,13 +148,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 	<br>
 	<div class="container">
 		<div
-			class="row d-flex align-items-center row-cols-1 row-cols-md-3 row-cols-sm-1 px-5 ">
-			<div class="col">
-				<img
-					src="./ServletResources?codiceAzione=fotoUtente&idUtente=<%=utente.getId()%>"
-					onerror="this.src='./resources/img/placeholderProfile.png'"
-					class="rounded-circle mb-3" style="width: 150px;" />
-			</div>
+			class="row d-flex align-items-center row-cols-1 row-cols-md-2 row-cols-sm-1 px-5 ">
 			<div class="col">
 				<div class="row">
 					<p>
@@ -169,14 +163,6 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						<b>Email:</b>
 						<%=utente.getEmail()%>
 					</p>
-					<p>
-						<b>Username:</b>
-						<%=utente.getUsername()%>
-					</p>
-				</div>
-				<div class="row">
-					<a href="#modificaInformazioni" class="btn btn-primary col-5"
-						id="modificaInformazioniButton">Modifica </a>
 				</div>
 			</div>
 			<div class="col">
@@ -249,7 +235,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					<li class="nav-item"><a class="nav-link" href="#indirizzo"
 						id="indirizzoButton"> <i class="fa-solid fa-map-location-dot"></i><span>
 								Indirizzi </span></a></li>
-					<li class="nav-item"><a class="nav-link" href="#logout"
+					<li class="nav-item"><a class="nav-link" href="Login?action=logout"
 						id="logoutButton"> <i class="fa-solid fa-right-from-bracket"></i><span>Logout
 						</span>
 					</a></li>
@@ -809,7 +795,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				</div>
 
 				<!-- Indirizzo -->
-				<div id="indirizzo" class="row d-none px-5  pb-5">
+				<div id="indirizzo" class="row px-5  pb-5">
 					<h1 class="text-center">I tuoi indirizzi</h1>
 					<%
 					Collection<Indirizzo> indirizzi = utente.getIndirizzi();
@@ -825,7 +811,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						Indirizzo indirizzo = (Indirizzo) it.next();
 					%>
 					<div class="card col-5 text-center">
-						<a href="Utente?action=elimina&idIndirizzo=<%=indirizzo.getId()%>"
+						<a href="Indirizzi?action=elimina&idIndirizzo=<%=indirizzo.getId()%>"
 							class="text-end text-danger p-2"><i
 							class="fa-solid fa-xmark "></i> </a>
 						<div class="card-body">
@@ -847,7 +833,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 								<%=indirizzo.getCivico()%>
 							</p>
 							<p class="card-text">
-								<b>Città: </b>
+								<b>Citta: </b>
 								<%=indirizzo.getCittà()%>
 							</p>
 							<p class="card-text">
@@ -863,9 +849,9 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 								<%=indirizzo.isPreferred()%>
 							</p>
 							<form
-								action="Utente?action=preferred&idIndirizzo=<%=indirizzo.getId()%>"
+								action="Indirizzi?action=preferred&idIndirizzo=<%=indirizzo.getId()%>"
 								method="POST">
-								<input class="form-check-input" type="submit" value=""
+								<input class="form-type-radio" type="submit" value="<%=indirizzo.isPreferred()%>"
 									id="preferred"> <label class="form-check-label"
 									for="preferred"> Rendi preferito </label>
 							</form>
@@ -888,63 +874,62 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						<h4 class="mb-3">Inidirizzo di fatturazione</h4>
 
 						<form class="needs-validation" novalidate autocomplete="off"
-							name="salvaIndirizzo" action="Utente?action=salvaIndirizzo"
-							method="POST" onSubmit="return validateAdress()">
+							name="salvaIndirizzo" action="Indirizzi?action=salvaIndirizzo"
+							method="POST" id="formAddress" onsubmit="return false;">
 							<div class="row g-3">
 								<div class="col-sm-6">
 									<label for="nome" class="form-label">Nome</label> <input
 										name="nome" type="text" class="form-control" id="nome"
-										placeholder="Mario" required value="">
-									<div class="invalid-feedback">Inserisci il tuo nome.</div>
+										placeholder="Mario" required>
+									<div class="valid-feedback">Looks good!</div>
+												<div class="invalid-feedback">Il nome non è valido.</div>
 								</div>
 								<div class="col-sm-6">
 									<label for="cognome" class="form-label">Cognome</label> <input
 										name="cognome" type="text" class="form-control" id="cognome"
-										placeholder="Rossi" value="" required>
-									<div class="invalid-feedback">Inserisci il tuo cognome.</div>
+										placeholder="Rossi" required>
+									<div class="valid-feedback">Looks good!</div>
+												<div class="invalid-feedback">Il cognome non è valido.</div>
 								</div>
 								<div class="col-md-5">
 									<label for="via" class="form-label">Via</label> <input
 										name="via" type="text" class="form-control" id="via"
 										placeholder="Via Roma" required>
-									<div class="invalid-feedback">Inserisci un indirizzo
-										valido</div>
+									<div class="valid-feedback">Looks good!</div>
+												<div class="invalid-feedback">La via non è corretta.</div>
 								</div>
 								<div class="col-md-3">
 									<label for="civico" class="form-label">Civico</label> <input
 										name="civico" type="text" class="form-control" id="civico"
 										placeholder="100" required>
-									<div class="invalid-feedback">Inserisci un civico valido</div>
+									<div class="valid-feedback">Looks good!</div>
+												<div class="invalid-feedback">Il civico non è corretto.</div>
 								</div>
 								<div class="col-md-3">
 									<label for="citta" class="form-label">Città</label> <input
 										type="text" class="form-control" id="citta" name="citta"
 										placeholder="Roma" required>
-									<div class="invalid-feedback">Inserisci una città valida</div>
+									<div class="valid-feedback">Looks good!</div>
+												<div class="invalid-feedback">La città non è corretta.</div>
 								</div>
 								<div class="col-md-3">
 									<label for="provincia" class="form-label">Provincia</label> <input
 										name="provincia" type="text" class="form-control"
 										id="provincia" placeholder="RO" required>
-									<div class="invalid-feedback">Inserisci una provincia
-										valida</div>
+									<div class="valid-feedback">Looks good!</div>
+												<div class="invalid-feedback">La provincia non è corretta.</div>
 								</div>
 								<div class="col-md-3">
 									<label for="cap" class="form-label">CAP</label> <input
 										name="cap" type="text" class="form-control" id="cap"
 										placeholder="00123" required>
-									<div class="invalid-feedback">Inserisci un CAP valido.</div>
+									<div class="valid-feedback">Looks good!</div>
+												<div class="invalid-feedback">Il CAP non è corretto.</div>
 								</div>
 							</div>
 							<hr class="my-4">
-							<div class="form-check mb-2">
-								<input type="checkbox" class="form-check-input"
-									id="preferredAddress" name="preferredAddress"> <label
-									class="form-check-label" for="preferredAddress">Salva
-									queste informazioni per la prossima volta</label>
-							</div>
-							<button class="w-100 btn btn-primary btn-lg mb-5" type="submit"
-								id="salva">Salva</button>
+							<button class="w-100 btn btn-primary btn-lg mb-5"
+								id="formAddress" onClick="doCheck()">Salva</button>
 						</form>
 
 					</div>
@@ -976,7 +961,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 							<div class="col-md-8">
 								<div class="card-body">
 									<h5 class="card-title"><%=prodottoOrdine.getNome()%></h5>
-									<h6 class="card-title"><%=ordine.getUtente().getUsername()%>
+									<h6 class="card-title"><%=ordine.getUtente().getNome()%>
 										ti ha regalato questo albero
 									</h6>
 									<p class="card-text"><%=prodottoOrdine.getDescrizione()%></p>
@@ -1129,64 +1114,6 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					}
 					%>
 				</div>
-				<!-- Logout -->
-				<div id="logout" class="row d-none">
-					<p>
-						Clicca <a href="Login?action=logout">qui</a> per effettuare il
-						logout
-					</p>
-				</div>
-
-				<!-- Modifica Informazioni -->
-				<div class="row d-none p-5" id="modificaInformazioni">
-					<h4 class="mb-3">Modifica Informazioni</h4>
-					<form class="needs-validation" novalidate autocomplete="off"
-						name="modificaInformazioni"
-						action="Utente?action=modificaInformazioni&idUtente=<%=utente.getId()%>"
-						method="POST" enctype="multipart/form-data">
-						<div class="row g-3">
-							<div class="col-sm-6">
-								<label for="nome" class="form-label">Nome</label> <input
-									type="text" class="form-control" id="nome" placeholder="Mario"
-									value="<%=utente.getNome()%>" name="nome">
-								<div class="invalid-feedback">Inserisci il tuo nome.</div>
-							</div>
-							<div class="col-sm-6">
-								<label for="cognome" class="form-label">Congnome</label> <input
-									type="text" class="form-control" id="cognome"
-									placeholder="Rossi" value="<%=utente.getCognome()%>"
-									name="cognome">
-								<div class="invalid-feedback">Inserisci il tuo cognome.</div>
-							</div>
-						</div>
-						<div class="col-12">
-							<label for="username" class="form-label">Username</label>
-							<div class="input-group has-validation">
-								<input type="text" class="form-control" id="username"
-									placeholder="mariorossi" value="<%=utente.getUsername()%>"
-									name="username">
-								<div class="invalid-feedback">Inserisci il tuo username</div>
-							</div>
-						</div>
-						<div class="col-12">
-							<label for="email" class="form-label">Email</label> <input
-								type="email" class="form-control" id="email"
-								placeholder="you@example.com" value=<%=utente.getEmail()%>
-								name="email">
-							<div class="invalid-feedback">Inserisci una email valida
-								per ricere tutti gli aggiornamenti sul tuo ordine.</div>
-						</div>
-						<div class="col-12 mb-5">
-							<div class="form-group">
-								<label for="formFile" class="form-label mt-4">Inserisci
-									una nuova foto profilo </label> <input class="form-control" type="file"
-									id="formFile" name="formFile">
-							</div>
-						</div>
-						<button class="w-100 btn btn-primary btn-lg" type="submit"
-							id="modifica">Modifica</button>
-					</form>
-				</div>
 				<!-- Row END -->
 			</div>
 		</div>
@@ -1334,8 +1261,6 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 		$("#woodLot").addClass("d-none");
 		$("#news").addClass("d-none");
 		$("#indirizzo").addClass("d-none");
-		$("#logout").addClass("d-none");
-		$("#modificaInformazioni").addClass("d-none");
 		$("#regali").addClass("d-none");
 		$("#myProfileMenu").toggleClass("d-none");
 	});
@@ -1346,8 +1271,6 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 		$("#woodLot").addClass("d-none");
 		$("#news").addClass("d-none");
 		$("#indirizzo").addClass("d-none");
-		$("#logout").addClass("d-none");
-		$("#modificaInformazioni").addClass("d-none");
 		$("#regali").addClass("d-none");
 		$("#myProfileMenu").toggleClass("d-none");
 	});
@@ -1358,8 +1281,6 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 		$("#ordini").addClass("d-none");
 		$("#news").addClass("d-none");
 		$("#indirizzo").addClass("d-none");
-		$("#logout").addClass("d-none");
-		$("#modificaInformazioni").addClass("d-none");
 		$("#regali").addClass("d-none");
 		$("#myProfileMenu").toggleClass("d-none");
 	});
@@ -1370,8 +1291,6 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 		$("#ordini").addClass("d-none");
 		$("#woodLot").addClass("d-none");
 		$("#indirizzo").addClass("d-none");
-		$("#logout").addClass("d-none");
-		$("#modificaInformazioni").addClass("d-none");
 		$("#regali").addClass("d-none");
 		$("#myProfileMenu").toggleClass("d-none");
 	});
@@ -1382,32 +1301,6 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 		$("#ordini").addClass("d-none");
 		$("#woodLot").addClass("d-none");
 		$("#news").addClass("d-none");
-		$("#logout").addClass("d-none");
-		$("#modificaInformazioni").addClass("d-none");
-		$("#regali").addClass("d-none");
-		$("#myProfileMenu").toggleClass("d-none");
-	});
-
-	$("#modificaInformazioniButton").click(function() {
-		$("#modificaInformazioni").removeClass("d-none");
-		$("#badge").addClass("d-none");
-		$("#ordini").addClass("d-none");
-		$("#woodLot").addClass("d-none");
-		$("#news").addClass("d-none");
-		$("#indirizzo").addClass("d-none");
-		$("#logout").addClass("d-none");
-		$("#regali").addClass("d-none");
-		$("#myProfileMenu").toggleClass("d-none");
-	});
-
-	$("#logoutButton").click(function() {
-		$("#logout").removeClass("d-none");
-		$("#badge").addClass("d-none");
-		$("#ordini").addClass("d-none");
-		$("#woodLot").addClass("d-none");
-		$("#news").addClass("d-none");
-		$("#indirizzo").addClass("d-none");
-		$("#modificaInformazioni").addClass("d-none");
 		$("#regali").addClass("d-none");
 		$("#myProfileMenu").toggleClass("d-none");
 	});
@@ -1419,8 +1312,6 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 		$("#woodLot").addClass("d-none");
 		$("#news").addClass("d-none");
 		$("#indirizzo").addClass("d-none");
-		$("#modificaInformazioni").addClass("d-none");
-		$("#logout").addClass("d-none");
 		$("#myProfileMenu").toggleClass("d-none");
 	});
 
@@ -1463,102 +1354,146 @@ function printDettagliOrdine(json) {
 	$("#dettaglioOrdineAlert").append("<b>Destinatario Regalo</b>" + json.destinatarioRegalo + ", ");
 }
 </script>
-	<script>
-	function validateAdress(){
+		<script type="text/javascript">
 		
-		var valid= true; 
-		
-		var nome= document.salvaIndirizzo.nome;
-		var cognome=document.salvaIndirizzo.cognome;
-		var città = document.salvaIndirizzo.città; 
+		var nome = document.salvaIndirizzo.nome;
+		var cognome = document.salvaIndirizzo.cognome;
+		var citta = document.salvaIndirizzo.citta; 
 		var via = document.salvaIndirizzo.via;
 		var civico = document.salvaIndirizzo.civico; 
-		var provincia =  document.salvaIndirizzo.provincia; 
-		var cap =  document.salvaIndirizzo.cap; 
+		var provincia = document.salvaIndirizzo.provincia; 
+		var cap =  document.salvaIndirizzo.cap;
 		
-		if (validateText(nome)) {
+		let validNome = false;
+		let validCognome = false;
+		let validCitta = false;
+		let validVia = false;
+		let validCivico = false;
+		let validProvincia = false;
+		let validCap = false;
+		
+		nome.addEventListener('blur', () => {
+			let regex = /^[a-zA-Z]([ a-zA-Z]){1,10}$/;
+			let str = nome.value;
+			if (regex.test(str)) {
+				nome.classList.add("is-valid");
+				nome.classList.remove("is-invalid");
+				validNome = true;
+			} else {
+				nome.classList.add("is-invalid");
+				nome.classList.remove("is-valid");
+				validNome = false;
+			}
+			
 			nome.classList.add("was-validated");
-			nome.classList.add("is-valid");
-		} else {
-			nome.classList.add("is-invalid");
-			nome.classList.add("was-validated");
-			valid = false;
-		}
+		});
 		
-		if (validateText(cognome)) {
+		cognome.addEventListener('blur', () => {
+			let regex = /^[a-zA-Z]([ a-zA-Z]){1,10}$/;
+			let str = cognome.value;
+			if (regex.test(str)) {
+				cognome.classList.add("is-valid");
+				cognome.classList.remove("is-invalid");
+				validCognome = true;
+			} else {
+				cognome.classList.add("is-invalid");
+				cognome.classList.remove("is-valid");
+				validCognome = false;
+			}
+			
 			cognome.classList.add("was-validated");
-			cognome.classList.add("is-valid");
-		} else {
-			cognome.classList.add("is-invalid");
-			cognome.classList.add("was-validated");
-			valid = false;
-		}
+		});
 		
-		if (validateText(provincia)) {
+		provincia.addEventListener('blur', () => {
+			let regex = /^[A-Z]{2}$/;
+			let str = provincia.value;
+			if (regex.test(str)) {
+				provincia.classList.add("is-valid");
+				provincia.classList.remove("is-invalid");
+				validProvincia = true;
+			} else {
+				provincia.classList.add("is-invalid");
+				provincia.classList.remove("is-valid");
+				validProvincia = false;
+			}
+			
 			provincia.classList.add("was-validated");
-			provincia.classList.add("is-valid");
-		} else {
-			provincia.classList.add("is-invalid");
-			valid = false;
-		}
+		});
 		
-		if (validateText(città)) {
-			città.classList.add("was-validated");
-			città.classList.add("is-valid");
-		} else {
-			città.classList.add("is-invalid");
-			città.classList.add("was-validated");
-			valid = false;
-		}
+		citta.addEventListener('blur', () => {
+			let regex = /^[a-zA-Z]([ a-zA-Z]){1,10}$/;
+			let str = citta.value;
+			if (regex.test(str)) {
+				citta.classList.add("is-valid");
+				citta.classList.remove("is-invalid");
+				validCitta = true;
+			} else {
+				citta.classList.add("is-invalid");
+				citta.classList.remove("is-valid");
+				validCitta = false;
+			}
+			
+			citta.classList.add("was-validated");
+		});
 		
-		if (via.value == " ") {
-			via.classList.add("is-invalid");
+		via.addEventListener('blur', () => {
+			let regex = /^[a-zA-Z]([ a-zA-Z])+$/;
+			let str = via.value;
+			if (regex.test(str)) {
+				via.classList.add("is-valid");
+				via.classList.remove("is-invalid");
+				validVia = true;
+			} else {
+				via.classList.add("is-invalid");
+				via.classList.remove("is-valid");
+				validVia = false;
+			}
+			
 			via.classList.add("was-validated");
-			valid = false;
-		} else {
-			via.classList.add("is-valid");
-			via.classList.add("was-validated");
-		}
-		
-		if (validateNumber(cap)) {
+		});
+
+		cap.addEventListener('blur', () => {
+			let regex = /^\d{5}$/;
+			let str = cap.value;
+			if (regex.test(str)) {
+				cap.classList.add("is-valid");
+				cap.classList.remove("is-invalid");
+				validCap = true;
+			} else {
+				cap.classList.add("is-invalid");
+				cap.classList.remove("is-valid");
+				validCap = false;
+			}
+			
 			cap.classList.add("was-validated");
-			cap.classList.add("is-valid");
-		} else {
-			cap.classList.add("is-invalid");
-			cap.classList.add("was-validated");
-			valid = false;
+		});
+		
+		civico.addEventListener('blur', () => {
+			let regex = /^[0-9]+$/;
+			let str = civico.value;
+			if (regex.test(str)) {
+				civico.classList.add("is-valid");
+				civico.classList.remove("is-invalid");
+				validCivico = true;
+			} else {
+				civico.classList.add("is-invalid");
+				civivo.classList.remove("is-valid");
+				validCivico = false;
+			}
+			
+			civico.classList.add("was-validated");
+		});
+		
+		function doCheck(){
+			if(validNome && validCognome && validCitta && validVia && validCivico && validProvincia && validCap){
+				document.getElementById('formAddress').onsubmit='';
+				document.getElementById("formAddress").submit();
+			}
+			return;
 		}
 		
-		if (validateNumber(civico)) {
-			civico.classList.add("was-validated");
-			civico.classList.add("is-valid");
-		} else {
-			civico.classList.add("was-validated");
-			civico.classList.add("is-invalid");
-			valid = false;
-		}
-		
-		return valid;
-}
 	
-	function validateText(y) {
-		let regex = /^[a-zA-Z]([0-9a-zA-Z]){1,10}$/;
-		let str = y.value;
-		if (regex.test(str)) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-	function validateNumber(y) {
-		let regex = /^[0-9]+$/;
-		let str = y.value;
-		if (str.match(regex)) {
-			return true;
-		} else {
-			return false;
-		}
-	}
+	
 	</script>
 	<!-- Footer -->
 	<%@ include file="../fragments/footer.jsp"%>

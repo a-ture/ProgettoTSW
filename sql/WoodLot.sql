@@ -127,14 +127,12 @@ CREATE TABLE benefici_prodotti (
 
 CREATE TABLE utente (
     id BIGINT NOT NULL AUTO_INCREMENT,
-    username VARCHAR(45) NOT NULL UNIQUE,
     email VARCHAR(45) NOT NULL UNIQUE,
     nome VARCHAR(45) NOT NULL,
     cognome VARCHAR(45) NOT NULL,
     password VARCHAR(45) NOT NULL,
     role VARCHAR(45) NOT NULL,
     active BOOLEAN NOT NULL DEFAULT 0,
-    foto MEDIUMBLOB DEFAULT NULL,
     PRIMARY KEY (id)
 );
 
@@ -144,8 +142,7 @@ CREATE TABLE ordine (
     totaleProdotti INT NOT NULL,
     totalePagato DOUBLE NOT NULL,
     regalo BOOLEAN DEFAULT FALSE,
-    messaggioRegalo VARCHAR(255) NULL, /* all'inizio ci sta una dedica poi quando
-    l'utente lo riscatta mettiamo riscattato cosi */
+    messaggioRegalo VARCHAR(255) NULL,
     destinatarioRegalo VARCHAR(255) NULL,
     creatoIl TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
@@ -165,7 +162,7 @@ CREATE TABLE prodottoOrdine (
     quantità INT NOT NULL DEFAULT 0,
     tasse DOUBLE NOT NULL DEFAULT 0,
     stato VARCHAR(128) NOT NULL ,
-    foto MEDIUMBLOB DEFAULT NULL, /*questa foto all'inizio è di default poi viene cambiata quando l'albero viene fotografato*/
+    foto MEDIUMBLOB DEFAULT NULL,
     PRIMARY KEY (id),
     CONSTRAINT fk_order FOREIGN KEY (oid)
         REFERENCES ordine (id)
@@ -184,7 +181,6 @@ CREATE TABLE indirizzo (
     civico INT NOT NULL,
     preferred BOOLEAN DEFAULT NULL,
     PRIMARY KEY (id),
-  /* UNIQUE INDEX cid_preferred (cid , preferred),*/
     CONSTRAINT FK__useres FOREIGN KEY (cid)
         REFERENCES utente (id)
         ON DELETE CASCADE ON UPDATE CASCADE
@@ -197,12 +193,14 @@ INSERT INTO paeseDiOrigine (nome)
 INSERT INTO paeseDiOrigine (nome)
 	VALUES ("Italia");
 
-INSERT INTO utente (username,password,email,nome,cognome,role) 
-	VALUES ("alessiature","alessiature","alessiature@gmail.com","Alessia","Ture","cliente");
-INSERT INTO utente (username,password,email,nome,cognome,role) 
-	VALUES ("cliente","cliente","cliente@gmail.com","cliente","cliente","cliente");
-INSERT INTO utente (username,password,email,nome,cognome,role) 
-	VALUES ("admin","admin","admin@gmail.com","admin","admin","admin");
+INSERT INTO utente (password,email,nome,cognome,role) 
+	VALUES ("alessiature","alessiature@gmail.com","Alessia","Ture","cliente");
+INSERT INTO utente (password,email,nome,cognome,role) 
+	VALUES ("frida","raffaella@gmail.com","Raffaella","Spagnuolo","cliente");
+INSERT INTO utente (password,email,nome,cognome,role) 
+	VALUES ("cliente","cliente@gmail.com","cliente","cliente","cliente");
+INSERT INTO utente (password,email,nome,cognome,role) 
+	VALUES ("admin","admin@gmail.com","admin","admin","admin");
     
 INSERT INTO prodotto (nome, nomeScientifico, descrizione, sottotitolo, altezza, prezzo, pid, quantità, co2, salvaguardia, descrizioneBreve, doveVienePiantato) 
 	VALUES ("Avocado", "Persea americana Mill.","Un frutto che piace a tutti, ricco di vitamine e nutrienti, per questo particolarmente apprezzato dalle mamme. In Guatemala viene utilizzato per la preparazione di molti piatti tipici, tra cui il guacamole. Le nostre piante di Avocado in Guatemala sono sostenibili a 360°: offrono supporto economico e sostegno alimentare, senza venir meno alla sostenibilità ambientale.", "65 Kg/anno di frutta prodotta", 10.00, 19.00, "Guatemala", 10, 4, 5,"Gli antichi popoli del Centro America consideravano l'Avocado un frutto dall'incredibile potere afrodisiaco, definito anche 'frutto dell'amore' il suo nome deriva dalla parola azteca ahuacalt che significa ... testicolo","Piantiamo l’avocado in Guatemala, nella regione del Petén in terreni a forte rischio desertificazione. Le piantagioni a monocoltura intensive richiedono tanta acqua, fertilizzanti e pesticidi chimici. Al contrario, nei nostri sistemi agroforestali misti, la varietà di specie assicura la stabilità e la resilienza dell’impianto. Un sistema agroforestale stabile infatti, richiede meno input, rigenera il suolo e la biodiversità e produce costantemente produzioni variegate.");
