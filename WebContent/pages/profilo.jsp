@@ -198,15 +198,17 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 	<div class="container">
 
 		<div class="row g-4">
-			<div class="d-flex align-items-center d-lg-none" >
-				<button class="border-0 bg-transparent" type="button" id="myProfileButton">
+			<div class="d-flex align-items-center d-lg-none">
+				<button class="border-0 bg-transparent" type="button"
+					id="myProfileButton">
 					<i class="btn btn-primary fw-bold fa-solid fa-sliders-h"></i> <span
 						class="h6 mb-0 fw-bold d-lg-none ms-2">My profile</span>
 				</button>
 			</div>
 			<!-- Sidebar -->
-			<div class="d-flex flex-column flex-shrink-0 p-3 bg-light d-none d-lg-block" id="myProfileMenu"
-				style="width: 280px;">
+			<div
+				class="d-flex flex-column flex-shrink-0 p-3 bg-light d-none d-lg-block"
+				id="myProfileMenu" style="width: 280px;">
 				<a href="#"
 					class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
 					<span class="fs-4">Il mio profilo</span>
@@ -235,9 +237,9 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					<li class="nav-item"><a class="nav-link" href="#indirizzo"
 						id="indirizzoButton"> <i class="fa-solid fa-map-location-dot"></i><span>
 								Indirizzi </span></a></li>
-					<li class="nav-item"><a class="nav-link" href="Login?action=logout"
-						id="logoutButton"> <i class="fa-solid fa-right-from-bracket"></i><span>Logout
-						</span>
+					<li class="nav-item"><a class="nav-link"
+						href="Login?action=logout" id="logoutButton"> <i
+							class="fa-solid fa-right-from-bracket"></i><span>Logout </span>
 					</a></li>
 				</ul>
 			</div>
@@ -440,7 +442,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					<%
 					if (numeroAlberiAcquistati == 0) {
 					%>
-					<p>
+					<p class="text-center mb-3">
 						Non hai ancora alberi ...torna al <a href="Catalogo">negozio</a>
 					</p>
 					<%
@@ -462,10 +464,10 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						String formatDateTime = ordine.getCreatoIl().format(format);
 					%>
 
-					<div class="card my-3" style="max-width:1300px; ">
+					<div class="card my-3" style="max-width: 1300px;">
 						<div class="row">
 							<div class="col-md-4">
-								<img style="max-heigt:90px;"
+								<img style="max-heigt: 90px;"
 									src="./ServletResources?codiceAzione=fotoProdottoOrdine&idProdottoOrdine=<%=prodottoOrdine.getId()%>"
 									class="img-fluid rounded-start"
 									onerror="this.src='./resources//img/error.jpg'">
@@ -811,7 +813,8 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						Indirizzo indirizzo = (Indirizzo) it.next();
 					%>
 					<div class="card col-5 text-center">
-						<a href="Indirizzi?action=elimina&idIndirizzo=<%=indirizzo.getId()%>"
+						<a
+							href="Indirizzi?action=elimina&idIndirizzo=<%=indirizzo.getId()%>"
 							class="text-end text-danger p-2"><i
 							class="fa-solid fa-xmark "></i> </a>
 						<div class="card-body">
@@ -844,16 +847,14 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 								<b>Provincia:</b>
 								<%=indirizzo.getProvincia()%>
 							</p>
-							<p class="card-text">
-								<b>Preferred:</b>
-								<%=indirizzo.isPreferred()%>
-							</p>
 							<form
 								action="Indirizzi?action=preferred&idIndirizzo=<%=indirizzo.getId()%>"
 								method="POST">
-								<input class="form-type-radio" type="submit" value="<%=indirizzo.isPreferred()%>"
-									id="preferred"> <label class="form-check-label"
-									for="preferred"> Rendi preferito </label>
+								<div class="form-check form-switch">
+									<input class="form-check-input" type="checkbox" role="switch"
+										id="preferred" onchange="this.form.submit()" <%if(indirizzo.isPreferred()){%> checked <%} %>> <label
+										class="form-check-label" for="preferred">Preferito</label>
+								</div>
 							</form>
 						</div>
 					</div>
@@ -882,49 +883,50 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 										name="nome" type="text" class="form-control" id="nome"
 										placeholder="Mario" required>
 									<div class="valid-feedback">Looks good!</div>
-												<div class="invalid-feedback">Il nome non è valido.</div>
+									<div class="invalid-feedback">Il nome non è valido.</div>
 								</div>
 								<div class="col-sm-6">
 									<label for="cognome" class="form-label">Cognome</label> <input
 										name="cognome" type="text" class="form-control" id="cognome"
 										placeholder="Rossi" required>
 									<div class="valid-feedback">Looks good!</div>
-												<div class="invalid-feedback">Il cognome non è valido.</div>
+									<div class="invalid-feedback">Il cognome non è valido.</div>
 								</div>
 								<div class="col-md-5">
 									<label for="via" class="form-label">Via</label> <input
 										name="via" type="text" class="form-control" id="via"
 										placeholder="Via Roma" required>
 									<div class="valid-feedback">Looks good!</div>
-												<div class="invalid-feedback">La via non è corretta.</div>
+									<div class="invalid-feedback">La via non è corretta.</div>
 								</div>
 								<div class="col-md-3">
 									<label for="civico" class="form-label">Civico</label> <input
 										name="civico" type="text" class="form-control" id="civico"
 										placeholder="100" required>
 									<div class="valid-feedback">Looks good!</div>
-												<div class="invalid-feedback">Il civico non è corretto.</div>
+									<div class="invalid-feedback">Il civico non è corretto.</div>
 								</div>
 								<div class="col-md-3">
 									<label for="citta" class="form-label">Città</label> <input
 										type="text" class="form-control" id="citta" name="citta"
 										placeholder="Roma" required>
 									<div class="valid-feedback">Looks good!</div>
-												<div class="invalid-feedback">La città non è corretta.</div>
+									<div class="invalid-feedback">La città non è corretta.</div>
 								</div>
 								<div class="col-md-3">
 									<label for="provincia" class="form-label">Provincia</label> <input
 										name="provincia" type="text" class="form-control"
 										id="provincia" placeholder="RO" required>
 									<div class="valid-feedback">Looks good!</div>
-												<div class="invalid-feedback">La provincia non è corretta.</div>
+									<div class="invalid-feedback">La provincia non è
+										corretta.</div>
 								</div>
 								<div class="col-md-3">
 									<label for="cap" class="form-label">CAP</label> <input
 										name="cap" type="text" class="form-control" id="cap"
 										placeholder="00123" required>
 									<div class="valid-feedback">Looks good!</div>
-												<div class="invalid-feedback">Il CAP non è corretto.</div>
+									<div class="invalid-feedback">Il CAP non è corretto.</div>
 								</div>
 							</div>
 							<hr class="my-4">
@@ -1354,7 +1356,7 @@ function printDettagliOrdine(json) {
 	$("#dettaglioOrdineAlert").append("<b>Destinatario Regalo</b>" + json.destinatarioRegalo + ", ");
 }
 </script>
-		<script type="text/javascript">
+	<script type="text/javascript">
 		
 		var nome = document.salvaIndirizzo.nome;
 		var cognome = document.salvaIndirizzo.cognome;

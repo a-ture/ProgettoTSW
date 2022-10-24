@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<!-- accesso alla sessione -->
+<%@ page session="true"%>
 
+<%@ page contentType="text/html; charset=UTF-8"
+	import="java.util.*, it.unisa.beans.*"%>
+
+<% Utente utenteHeader = (Utente) request.getSession().getAttribute("utente");%>
 <!DOCTYPE html>
 <html>
 
@@ -59,8 +65,9 @@
 				</ul>
 				<div>
 					<ul class="navbar-nav me-auto">
- 						<li class="nav-item"><a
- 							class="btn btn-secondary my-2 my-sm-0" href="Login">Accedi</a></li>
+ 						<li class="nav-item"><%if(utenteHeader == null) {%><a
+ 							class="btn btn-secondary my-2 my-sm-0" href="Login">Accedi</a><%} else { %><a
+ 							class="btn btn-secondary my-2 my-sm-0" href="Utente">Profilo</a><%}%></li>
  						<li class="nav-item"><a
  							href="Prodotto?action=visualizzaCarrello"><img
  								class="nav-link img-fluid"
@@ -72,13 +79,6 @@
 		</div>
 	</nav>
 	
-	<!--  <script type="text/javascript">
-	function collapse(){
-		setTimeout(
-			() => {$('#header').removeClass('show')},320		
-		)
-		}
-	</script>-->
 	
 </header>
 

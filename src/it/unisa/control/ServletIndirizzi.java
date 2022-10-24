@@ -78,11 +78,13 @@ public class ServletIndirizzi extends HttpServlet {
 						dao.doUpdate(indirizzo);
 						ArrayList<Indirizzo> listIndirizzi = (ArrayList<Indirizzo>) utente.getIndirizzi();
 						for(Indirizzo i: listIndirizzi) {
-							if((String.valueOf(i.getId())).equals(id)) {
+							if(i.getId() == Integer.parseInt(id)) {
 								i.setPreferred(true);
 							}
-							else {i.setPreferred(false);
-							dao.doUpdate(i);}
+							else {
+								i.setPreferred(false);
+								dao.doUpdate(i);
+							}
 						}
 
 					} catch (SQLException e) {

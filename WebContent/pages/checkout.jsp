@@ -98,7 +98,7 @@ input.invalid {
 
 				<form class="needs-validation" novalidate autocomplete="off"
 					name="pagamento" action="Ordini?action=compra" method="POST"
-					id="pagamento">
+					id="formPagamento">
 					<div class="tab">
 						<%
 						Indirizzo i = utente.getPreferredAddress();
@@ -109,103 +109,108 @@ input.invalid {
 							<div class="col-sm-6">
 								<label for="nome" class="form-label">Nome</label> <input
 									name="nome" type="text" class="form-control" id="nome"
-									placeholder="Mario" required value="<%=i.getNome()%>">
-								<div class="invalid-feedback">Inserisci il tuo nome.</div>
+									placeholder="Mario" required value="<%=i.getNome()%>" >
+								<div class="valid-feedback">Looks good!</div>
+									<div class="invalid-feedback">Il nome non è valido.</div>
 							</div>
 							<div class="col-sm-6">
 								<label for="cognome" class="form-label">Cognome</label> <input
 									name="cognome" type="text" class="form-control" id="cognome"
 									placeholder="Rossi" value="<%=i.getCognome()%>" required>
-								<div class="invalid-feedback">Inserisci il tuo cognome.</div>
+								<div class="valid-feedback">Looks good!</div>
+									<div class="invalid-feedback">Il cognome non è valido.</div>
 							</div>
 							<div class="col-md-5">
 								<label for="via" class="form-label">Via</label> <input
 									name="via" type="text" class="form-control" id="via"
 									placeholder="Via Roma" required value="<%=i.getVia()%>">
-								<div class="invalid-feedback">Inserisci un indirizzo
-									valido</div>
+								<div class="valid-feedback">Looks good!</div>
+									<div class="invalid-feedback">La via non è corretta.</div>
 							</div>
 							<div class="col-md-3">
 								<label for="civico" class="form-label">Civico</label> <input
 									name="civico" type="text" class="form-control" id="civico"
 									placeholder="100" required value="<%=i.getCivico()%>">
-								<div class="invalid-feedback">Inserisci un civico valido</div>
+								<div class="valid-feedback">Looks good!</div>
+									<div class="invalid-feedback">Il civico non è corretto.</div>
 							</div>
 							<div class="col-md-3">
 								<label for="citta" class="form-label">Città</label> <input
 									type="text" class="form-control" id="citta" name="citta"
 									placeholder="Roma" required value="<%=i.getCittà()%>">
-								<div class="invalid-feedback">Inserisci una città valida</div>
+								<div class="valid-feedback">Looks good!</div>
+									<div class="invalid-feedback">La città non è corretta.</div>
 							</div>
 							<div class="col-md-3">
 								<label for="provincia" class="form-label">Provincia</label> <input
 									name="provincia" type="text" class="form-control"
 									id="provincia" placeholder="RO" required
 									value="<%=i.getProvincia()%>">
-								<div class="invalid-feedback">Inserisci una provincia
-									valida</div>
+								<div class="valid-feedback">Looks good!</div>
+									<div class="invalid-feedback">La provincia non è
+										corretta.</div>
 							</div>
 							<div class="col-md-3">
 								<label for="cap" class="form-label">CAP</label> <input
 									name="cap" type="text" class="form-control" id="cap"
 									placeholder="00123" required value="<%=i.getCAP()%>">
-								<div class="invalid-feedback">Inserisci un CAP valido.</div>
+								<div class="valid-feedback">Looks good!</div>
+									<div class="invalid-feedback">Il CAP non è corretto.</div>
 							</div>
 						</div>
 						<%} else {%>
-						<h4 class="mb-3">Inidirizzo di fatturazione</h4>
+						<h4 class="mb-3">Indirizzo di fatturazione</h4>
 						<div class="row g-3">
 							<div class="col-sm-6">
 								<label for="nome" class="form-label">Nome</label> <input
 									name="nome" type="text" class="form-control" id="nome"
 									placeholder="Mario" required value="">
-								<div class="invalid-feedback">Inserisci il tuo nome.</div>
+								<div class="valid-feedback">Looks good!</div>
+									<div class="invalid-feedback">Il nome non è valido.</div>
 							</div>
 							<div class="col-sm-6">
 								<label for="cognome" class="form-label">Cognome</label> <input
 									name="cognome" type="text" class="form-control" id="cognome"
 									placeholder="Rossi" value="" required>
-								<div class="invalid-feedback">Inserisci il tuo cognome.</div>
+								<div class="valid-feedback">Looks good!</div>
+									<div class="invalid-feedback">Il cognome non è valido.</div>
 							</div>
 							<div class="col-md-5">
 								<label for="via" class="form-label">Via</label> <input
 									name="via" type="text" class="form-control" id="via"
 									placeholder="Via Roma" required>
-								<div class="invalid-feedback">Inserisci un indirizzo
-									valido</div>
+								<div class="valid-feedback">Looks good!</div>
+									<div class="invalid-feedback">La via non è corretta.</div>
 							</div>
 							<div class="col-md-3">
 								<label for="civico" class="form-label">Civico</label> <input
 									name="civico" type="text" class="form-control" id="civico"
 									placeholder="100" required>
-								<div class="invalid-feedback">Inserisci un civico valido</div>
+								<div class="valid-feedback">Looks good!</div>
+									<div class="invalid-feedback">Il civico non è corretto.</div>
 							</div>
 							<div class="col-md-3">
 								<label for="citta" class="form-label">Città</label> <input
 									type="text" class="form-control" id="citta" name="citta"
 									placeholder="Roma" required>
-								<div class="invalid-feedback">Inserisci una città valida</div>
+								<div class="valid-feedback">Looks good!</div>
+									<div class="invalid-feedback">La città non è corretta.</div>
 							</div>
 							<div class="col-md-3">
 								<label for="provincia" class="form-label">Provincia</label> <input
 									name="provincia" type="text" class="form-control"
 									id="provincia" placeholder="RO" required>
-								<div class="invalid-feedback">Inserisci una provincia
-									valida</div>
+								<div class="valid-feedback">Looks good!</div>
+									<div class="invalid-feedback">La provincia non è
+										corretta.</div>
 							</div>
 							<div class="col-md-3">
 								<label for="cap" class="form-label">CAP</label> <input
 									name="cap" type="text" class="form-control" id="cap"
 									placeholder="00123" required>
-								<div class="invalid-feedback">Inserisci un CAP valido.</div>
+								<div class="valid-feedback">Looks good!</div>
+									<div class="invalid-feedback">Il CAP non è corretto.</div>
 							</div>
-						</div>
-						<hr class="my-4">
-						<div class="form-check mb-2">
-							<input type="checkbox" class="form-check-input"
-								id="preferredAddress" name="preferredAddress"> <label
-								class="form-check-label" for="preferredAddress">Salva
-								queste informazioni per la prossima volta</label>
 						</div>
 						<%
 						}
@@ -259,7 +264,7 @@ input.invalid {
 							<div class="col-md-3">
 								<label for="dataScadenza" class="form-label">Data di
 									Scadenza</label> <input type="text" class="form-control"
-									id="cc-expiration" placeholder="23-02-2026" required
+									id="cc-expiration" placeholder="02/2026" required
 									name="dataScadenza">
 								<div class="invalid-feedback">La data di scadenza è
 									obbligatorio</div>
@@ -355,7 +360,6 @@ input.invalid {
 		});
 	</script>
 	<script>
-		// per il form
 		var currentTab = 0;
 		showTab(currentTab);
 
@@ -383,7 +387,7 @@ input.invalid {
 			currentTab = currentTab + n;
 
 			if (currentTab >= x.length) {
-				document.getElementById("pagamento").submit();
+				document.getElementById("formPagamento").submit();
 				return false;
 			}
 			showTab(currentTab);
@@ -396,112 +400,188 @@ input.invalid {
 
 			for (i = 0; i < y.length; i++) {
 
-				if (y[i].name == "nome" || y[i].name == "cognome"
-						|| y[i].name == "citta" || y[i].name == "provincia") {
-					if (validateText(y[i])) {
-						y[i].classList.add("was-validated");
+				
+				if (y[i].name == "nome" ) {
+					if (validateNome(y[i])) {
 						y[i].classList.add("is-valid");
+						y[i].classList.remove("is-invalid");
 					}	else {
 						y[i].classList.add("is-invalid");
+						y[i].classList.remove("is-valid");
 						valid = false;
 					}
-
-				} else if (y[i].name == "via") {
-					if (y[i].value == "") {
-						y[i].classList.add("is-invalid");
-						valid = false;
-					} else {
+					y[i].classList.add("was-validated");
+				}else if(y[i].name == "cognome"){
+					if (validateCognome(y[i])) {
 						y[i].classList.add("is-valid");
-						y[i].classList.add("was-validated");
+						y[i].classList.remove("is-invalid");
+					}	else {
+						y[i].classList.add("is-invalid");
+						y[i].classList.remove("is-valid");
+						valid = false;
 					}
+					y[i].classList.add("was-validated");
+				}else if(y[i].name == "citta"){
+					if (validateCitta(y[i])) {
+						y[i].classList.add("is-valid");
+						y[i].classList.remove("is-invalid");
+					}	else {
+						y[i].classList.add("is-invalid");
+						y[i].classList.remove("is-valid");
+						valid = false;
+					}
+					y[i].classList.add("was-validated");
+				}else if(y[i].name == "provincia"){
+					if (validateProvincia(y[i])) {
+						y[i].classList.add("is-valid");
+						y[i].classList.remove("is-invalid");
+					}	else {
+						y[i].classList.add("is-invalid");
+						y[i].classList.remove("is-valid");
+						valid = false;
+					}
+					y[i].classList.add("was-validated");
+					
+				} else if (y[i].name == "via") {
+					if(validateVia(y[i])){
+						y[i].classList.add("is-valid");
+						y[i].classList.remove("is-invalid");
+					} else {
+						y[i].classList.add("is-invalid");
+						y[i].classList.remove("is-valid");
+						valid = false;
+					}
+					y[i].classList.add("was-validated");
+					
 				} else if (y[i].name == "nomeTitolare") {
 					if (validateNome(y[i])) {
-						y[i].classList.add("was-validated");
 						y[i].classList.add("is-valid");
+						y[i].classList.remove("is-invalid");
 					} else {
 						y[i].classList.add("is-invalid");
+						y[i].classList.remove("is-valid");
 						valid = false;
 					}
-				} else if (y[i].name == "civico" || y[i].name == "cap") {
-					if (validateNumber(y[i])) {
-						y[i].classList.add("was-validated");
+					y[i].classList.add("was-validated");
+					
+				}else if(y[i].name == "cap"){
+					if (validateCAP(y[i])) {
 						y[i].classList.add("is-valid");
+						y[i].classList.remove("is-invalid");
 					} else {
 						y[i].classList.add("is-invalid");
+						y[i].classList.remove("is-valid");
 						valid = false;
 					}
+					y[i].classList.add("was-validated");
+					
+				} else if (y[i].name == "civico") {
+					if (validateCivico(y[i])) {
+						y[i].classList.add("is-valid");
+						y[i].classList.remove("is-invalid");
+					} else {
+						y[i].classList.add("is-invalid");
+						y[i].classList.remove("is-valid");
+						valid = false;
+					}
+					y[i].classList.add("was-validated");
+					
 				} else if (y[i].name == "dataScadenza") {
 					if (validateData(y[i])) {
-						y[i].classList.add("was-validated");
 						y[i].classList.add("is-valid");
+						y[i].classList.remove("is-invalid");
 					} else {
 						y[i].classList.add("is-invalid");
+						y[i].classList.remove("is-valid");
 						valid = false;
 					}
+					y[i].classList.add("was-validated");
+					
 				} else if (y[i].name == "cvv") {
 					if (validateCvv(y[i])) {
-						y[i].classList.add("was-validated");
 						y[i].classList.add("is-valid");
+						y[i].classList.remove("is-invalid");
 					} else {
 						y[i].classList.add("is-invalid");
+						y[i].classList.remove("is-valid");
 						valid = false;
 					}
+					y[i].classList.add("was-validated");
+					
 				} else if (y[i].name == "cartaCreditoNumero") {
 					if (document.getElementById('cc-amex').checked) {
 						if (validateAmerican(y[i])) {
-							y[i].classList.add("was-validated");
 							y[i].classList.add("is-valid");
+							y[i].classList.remove("is-invalid");
 						} else {
 							y[i].classList.add("is-invalid");
+							y[i].classList.remove("is-valid");
 							valid = false;
 						}
+						y[i].classList.add("was-validated");
+						
 					} else if (document.getElementById('cc-visa').checked) {
 						if (validateVisa(y[i])) {
-							y[i].classList.add("was-validated");
 							y[i].classList.add("is-valid");
+							y[i].classList.remove("is-invalid");
 						} else {
 							y[i].classList.add("is-invalid");
+							y[i].classList.remove("is-valid");
 							valid = false;
 						}
+						y[i].classList.add("was-validated");
+						
 					} else if (document.getElementById('cc-mastercard').checked) {
 						if (validateMasterCard(y[i])) {
-							y[i].classList.add("was-validated");
 							y[i].classList.add("is-valid");
+							y[i].classList.remove("is-invalid");
 						} else {
 							y[i].classList.add("is-invalid");
+							y[i].classList.remove("is-valid");
 							valid = false;
 						}
 					}
+					y[i].classList.add("was-validated");
+					
 				} else if (y[i].name == "mailRegalo") {
 					if (document.getElementById('regalo').checked) {
-						if (validateMail(y[i])) {
-							y[i].classList.add("was-validated");
+						if (validateEmail(y[i])) {
 							y[i].classList.add("is-valid");
+							y[i].classList.remove("is-invalid");
 						} else {
 							y[i].classList.add("is-invalid");
+							y[i].classList.remove("is-valid");
 							valid = false;
 						}
 					}
+					y[i].classList.add("was-validated");
+					
 				} else if (y[i].name == "messaggioRegalo") {
 					if (document.getElementById('regalo').checked) {
-						if (y[i].value == "") {
-							y[i].classList.add("is-invalid");
-							valid = false;
-						} else {
+						if (y[i].value != "") {
 							y[i].classList.add("is-valid");
-							y[i].classList.add("was-validated");
+							y[i].classList.remove("is-invalid");
+						} else {
+							y[i].classList.add("is-invalid");
+							y[i].classList.remove("is-valid");
+							valid = false;
 						}
 					}
+					y[i].classList.add("was-validated");
+					
 				} else if (y[i].name == "nomeRegalo") {
 					if (document.getElementById('regalo').checked) {
-						if (y[i].value == "") {
-							y[i].classList.add("is-invalid");
-							valid = false;
-						} else {
+						if (y[i].value != "") {
 							y[i].classList.add("is-valid");
-							y[i].classList.add("was-validated");
+							y[i].classList.remove("is-invalid");
+						} else {
+							y[i].classList.add("is-invalid");
+							y[i].classList.remove("is-valid");
+							valid = false;
 						}
 					}
+					y[i].classList.add("was-validated");
+					
 				}
 			}
 			if (valid) {
@@ -518,9 +598,10 @@ input.invalid {
 			}
 			x[n].className += " active";
 		}
-
-		function validateText(y) {
-			let regex = /^[a-zA-Z]([0-9a-zA-Z]){1,10}$/;
+		
+		
+		function validateNome(y) {
+			let regex = /^[a-zA-Z]([ a-zA-Z])+$/;
 			let str = y.value;
 			if (regex.test(str)) {
 				return true;
@@ -528,69 +609,119 @@ input.invalid {
 				return false;
 			}
 		}
-		function validateNome(y) {
-			let regex = /^[A-Za-z_ ]+$/;
+		
+		function validateCognome(y) {
+			let regex = /^[a-zA-Z]([ a-zA-Z]){1,10}$/;
 			let str = y.value;
-			if (str.match(regex)) {
+			if (regex.test(str)) {
 				return true;
 			} else {
 				return false;
 			}
 		}
-		function validateData(r) {
-			var date = new Date(r.value);
-			var currentTime = new Date();
-
-			var x = date.getTime();
-			var y = currentTime.getTime();
-
-			if (x <= y) {
-				return false;
-			} else {
+		
+		function validateProvincia(y) {
+			let regex = /^[A-Z]{2}$/;
+			let str = y.value;
+			if (regex.test(str)) {
 				return true;
+			} else {
+				return false;
 			}
 		}
-		function validateNumber(y) {
+		
+		function validateCitta(y) {
+			let regex = /^[a-zA-Z]([ a-zA-Z]){1,10}$/;
+			let str = y.value;
+			if (regex.test(str)) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+		
+		function validateVia(y) {
+			let regex = /^[a-zA-Z]([ a-zA-Z])+$/;
+			let str = y.value;
+			if (regex.test(str)) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+		
+		function validateCAP(y) {
+			let regex = /^\d{5}$/;
+			let str = y.value;
+			if (regex.test(str)) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+		
+		function validateCivico(y) {
 			let regex = /^[0-9]+$/;
 			let str = y.value;
-			if (str.match(regex)) {
+			if (regex.test(str)) {
 				return true;
 			} else {
 				return false;
 			}
 		}
-		function validateMail(y) {
-			let regex = /^([_\-\.a-zA-Z0-9]+)@([_\-\.a-zA-Z0-9]+)\.([a-zA-Z]){2,7}$/;
-			let str = y.value;
-			if (str.match(regex)) {
-				return true;
-			} else {
-				return false;
-			}
-		}
+		
+		function validateData(r) {
+			let regex = /^(0?[1-9]|1[012])[\/\-]\d{4}$/;
+			let str = r.value;
+			if(regex.test(str)){
+				var mese = str.substring(0,2);
+				var anno  = str. substring(3,7);
+				var today = new Date();
+				var someday = new Date();
+				someday.setFullYear(anno, mese, 1);
 
-		function validateMasterCard(y) {
+				if (someday < today) {
+				   return false;
+				}
+				return true;
+			}else{
+				return false;
+			}
+			
+		}
+		
+		function validateEmail(y) {
+		    let regex = /^([_\-\.a-zA-Z0-9]+)@([_\-\.a-zA-Z0-9]+)\.([a-zA-Z]){2,7}$/;
+		    let str = y.value;
+		    if (regex.test(str)) {
+		       return true;
+		    } else {
+		       return false;
+		    }
+		}
+		
+		function validateMasterCard(y) { //5342987654320009
 			let cardno = /^(?:5[1-5][0-9]{14})$/;
 			let str = y.value;
-			if (str.match(cardno)) {
+			if (cardno.test(str)) {
 				return true;
 			} else {
 				return false;
 			}
 		}
-		function validateVisa(y) {
+		function validateVisa(y) { //4000123498760000
 			let cardno = /^(?:4[0-9]{12}(?:[0-9]{3})?)$/;
 			let str = y.value;
-			if (str.match(cardno)) {
+			if (cardno.test(str)) {
 				return true;
 			} else {
 				return false;
 			}
 		}
-		function validateAmerican(y) {
+		function validateAmerican(y) {	//375987654321001
 			let cardno = /^(?:3[47][0-9]{13})$/;
 			let str = y.value;
-			if (str.match(cardno)) {
+			if (cardno.test(str)) {
 				return true;
 			} else {
 				return false;
@@ -598,9 +729,9 @@ input.invalid {
 
 		}
 		function validateCvv(y) {
-			let number = /^[0-9]+$/;
+			let number = /^[0-9]{3}$/;
 			let str = y.value;
-			if (str.match(number)) {
+			if (number.test(str)) {
 				return true;
 			} else {
 				return false;

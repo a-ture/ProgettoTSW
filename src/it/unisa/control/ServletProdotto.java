@@ -105,7 +105,11 @@ public class ServletProdotto extends HttpServlet {
 						}
 						carrello.aggiornaProdotti(a, quantità + 1);
 					} else if (azione.equals("meno")) {
-						carrello.aggiornaProdotti(model.doRetriveByKey(id), quantità - 1);
+						if((quantità-1) == 0) {
+							carrello.rimuoviProdotto(model.doRetriveByKey(id));
+						} else {
+							carrello.aggiornaProdotti(model.doRetriveByKey(id), quantità - 1);
+						}
 					}
 					redirectPage = "/pages/cart.jsp";
 				} else if (action.equalsIgnoreCase("visualizzaCarrello")) {
