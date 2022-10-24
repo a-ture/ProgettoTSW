@@ -1,7 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
+<!-- accesso alla sessione -->
+<%@ page session="true"%>
+
+<%@ page contentType="text/html; charset=UTF-8"
+	import="java.util.*, it.unisa.beans.*,java.text.*,java.time.*, java.time.format.DateTimeFormatter "%>
 <%
+Utente utente = (Utente) request.getSession().getAttribute("utente");
 String error = (String) request.getAttribute("error");
+
+if (utente == null) {
+	response.sendRedirect("./Login");
+	return;
+}
 %>
 <!DOCTYPE html>
 <html>

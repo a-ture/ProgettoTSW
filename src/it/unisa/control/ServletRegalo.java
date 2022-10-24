@@ -47,8 +47,7 @@ public class ServletRegalo extends HttpServlet {
 
 				if (ordine != null) {
 					if ((ordine.isRegalo() == true) && (ordine.getDestinatarioRegalo().equals(email))) {
-						error = "Hai riscatto correttamente il tuo regalo! Lo puoi visualizzare nel tuo profilo.\n"
-								+ "Se non sei registrato effettua la registrazione con l'email: "+ email;
+						error = "Hai riscatto correttamente il tuo regalo! Lo puoi visualizzare nel tuo profilo";	
 						ordine.setMessaggioRegalo("riscattato");
 						dao.doUpdateMexGift(ordine);
 					} else {

@@ -160,7 +160,7 @@ public class ServletLogin extends HttpServlet {
 			try {
 				dao.doSave(utente);
 				utente = dao.doRetriveByEmail(utente.getEmail());
-				request.getSession().setAttribute("user", utente);
+				request.getSession().setAttribute("utente", utente);
 
 				// registered by the buynow button cart
 				String tryLoggin = (String) request.getSession().getAttribute("tryLoggin");
@@ -170,7 +170,7 @@ public class ServletLogin extends HttpServlet {
 					response.sendRedirect("Ordini?action=checkout");
 					return;
 				} else {
-					response.sendRedirect("Home"); // dopo la registrazione vai alla home
+					response.sendRedirect("Utente");
 					return;
 				}
 
