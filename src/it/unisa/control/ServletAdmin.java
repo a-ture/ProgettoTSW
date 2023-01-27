@@ -19,13 +19,11 @@ import it.unisa.beans.Ordine;
 import it.unisa.beans.UsoLocale;
 import it.unisa.beans.Albero;
 import it.unisa.beans.Categoria;
-import it.unisa.beans.KitAlberi;
 import it.unisa.beans.Utente;
 import it.unisa.model.OrdineDAO;
 import it.unisa.model.UsoLocaleDAO;
 import it.unisa.model.AlberoDAO;
 import it.unisa.model.CategoriaDAO;
-import it.unisa.model.KitAlberiDAO;
 import it.unisa.model.UtenteDAO;
 
 /**
@@ -53,7 +51,6 @@ public class ServletAdmin extends HttpServlet {
 		AlberoDAO dao = new AlberoDAO();
 		OrdineDAO dao1 = new OrdineDAO();
 		UtenteDAO dao2 = new UtenteDAO();
-		KitAlberiDAO dao3 = new KitAlberiDAO();
 		CategoriaDAO dao4 = new CategoriaDAO();
 		UsoLocaleDAO dao5 = new UsoLocaleDAO();
 
@@ -83,8 +80,6 @@ public class ServletAdmin extends HttpServlet {
 			Collection<Utente> utenti = dao2.doRetriveAll("");
 			request.setAttribute("utenti", utenti);
 
-			Collection<KitAlberi> kits = dao3.doRetriveAll(null);
-			request.setAttribute("kits", kits);
 
 			Collection<Categoria> categorie = dao4.doRetriveAll(null);
 			request.setAttribute("categorie", categorie);

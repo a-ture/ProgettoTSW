@@ -24,8 +24,9 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 #cosaPuoiFare {
 	background-color: #C4D89F;
 }
-#scegliIlTuoAlbero .card{
-border-radius:25px;
+
+#scegliIlTuoAlbero .card {
+	border-radius: 25px;
 }
 </style>
 </head>
@@ -190,8 +191,7 @@ border-radius:25px;
 			<br> <br>
 		</div>
 
-		<div class="row text-center mx-5 g-3"
-			id="scegliIlTuoAlbero">
+		<div class="row text-center mx-5 g-3" id="scegliIlTuoAlbero">
 			<%
 			if (prodotti != null && prodotti.size() != 0) {
 				Iterator<?> it = prodotti.iterator();
@@ -200,31 +200,35 @@ border-radius:25px;
 					Albero bean = (Albero) it.next();
 					FotoProdotto bean1 = (FotoProdotto) it1.next();
 			%>
-			<div class="col-lg-3 col-md-6 col-xs-12 col-sm-6
+			<div
+				class="col-lg-3 col-md-6 col-xs-12 col-sm-6
                             col-xs-12 d-flex justify-content-center">
 
 				<div class="card text-center"
 					style="max-width: 18rem; border-radius: 25px;">
-					<img src="./ServletResources?codiceAzione=fotoProdotto&idFoto=<%=bean1.getNomeFoto()%>" class="card-img-top" />
+					<img
+						src="./ServletResources?codiceAzione=fotoProdotto&idFoto=<%=bean1.getNomeFoto()%>"
+						onerror="this.src='./resources//img/error.jpg'"
+						class="card-img-top" />
 					<div class="card-body">
 						<h5 class="card-title"><%=bean.getNome()%></h5>
 						<p class="card-text">
-							<strong>CO<sub>2</sub></strong>: <%=bean.getCo2()%> kg
+							<strong>CO<sub>2</sub></strong>:
+							<%=bean.getCo2()%>
+							kg
 						</p>
 					</div>
 					<ul class="list-group list-group-light list-group-small">
-						<li class="list-group-item px-4"><strong>Prezzo:</strong>
-							<%=dFormat.format(bean.getPrezzo())%> €</li>
+						<li class="list-group-item px-4"><strong>Prezzo:</strong> <%=dFormat.format(bean.getPrezzo())%>
+							€</li>
 					</ul>
 					<div class="card-body">
-						<a href="Prodotto?action=leggiProdotto&id=<%=bean.getId()%>" class="btn btn-rounded"
+						<a href="Prodotto?action=leggiProdotto&id=<%=bean.getId()%>"
+							class="btn btn-rounded"
 							style="background-color: #5E7250; color: white">Scopri di
 							più!</a>
 					</div>
 				</div>
-				
-			
-
 			</div>
 			<%
 			}
@@ -233,75 +237,75 @@ border-radius:25px;
 		</div>
 
 
-	<br>
-	<br>
-	<!-- Bottone  Vedi Altri -->
-	<div class="col-md-12 text-center mb-5">
-		<a type="button" class="btn btn-primary btn-lg" href="Catalogo">Scopri
-			tutti gli alberi!</a>
-	</div>
+		<br> <br>
+		<!-- Bottone  Vedi Altri -->
+		<div class="col-md-12 text-center mb-5">
+			<a type="button" class="btn btn-primary btn-lg" href="Catalogo">Scopri
+				tutti gli alberi!</a>
+		</div>
 
-	<div class="container px-4 py-5" id="icon-grid">
-		<h2 class="pb-2">Tutto molto trasparente</h2>
+		<div class="container px-4 py-5" id="icon-grid">
+			<h2 class="pb-2">Tutto molto trasparente</h2>
 
-		<div
-			class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 g-4 py-5">
-			<div class="col d-flex align-items-start">
-				<i
-					class="fs-1 fa-solid fa-money-bill-wave bi  flex-shrink-0 me-3 text-success"></i>
-				<div>
-					<h4 class="fw-bold mb-0">Sì, lo paghi una volta sola</h4>
-					<p>Non ti chiediamo ulteriori pagamenti, ci serve solo un primo
-						contributo per poterlo piantare!</p>
+			<div
+				class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 g-4 py-5">
+				<div class="col d-flex align-items-start">
+					<i
+						class="fs-1 fa-solid fa-money-bill-wave bi  flex-shrink-0 me-3 text-success"></i>
+					<div>
+						<h4 class="fw-bold mb-0">Sì, lo paghi una volta sola</h4>
+						<p>Non ti chiediamo ulteriori pagamenti, ci serve solo un
+							primo contributo per poterlo piantare!</p>
+					</div>
 				</div>
-			</div>
-			<div class="col d-flex align-items-start">
-				<i
-					class="fa-solid fa-house-chimney flex-shrink-0 me-3 bi fs-1 text-warning"></i>
-				<div>
-					<h4 class="fw-bold mb-0">No, non ti arriva a casa l’albero</h4>
-					<p>Il germoglio crescerà nel vivaio e poi verrà donato a una
-						famiglia di contadini</p>
+				<div class="col d-flex align-items-start">
+					<i
+						class="fa-solid fa-house-chimney flex-shrink-0 me-3 bi fs-1 text-warning"></i>
+					<div>
+						<h4 class="fw-bold mb-0">No, non ti arriva a casa l’albero</h4>
+						<p>Il germoglio crescerà nel vivaio e poi verrà donato a una
+							famiglia di contadini</p>
+					</div>
 				</div>
-			</div>
-			<div class="col d-flex align-items-start">
-				<i
-					class="fa-solid fa-apple-whole flex-shrink-0 me-3 bi fs-1 text-danger"></i>
-				<div>
-					<h4 class="fw-bold mb-0">No, non ti arriva a casa la frutta</h4>
-					<p>Saranno di sostentamento alle famiglie che si prendono cura
-						dell’albero</p>
+				<div class="col d-flex align-items-start">
+					<i
+						class="fa-solid fa-apple-whole flex-shrink-0 me-3 bi fs-1 text-danger"></i>
+					<div>
+						<h4 class="fw-bold mb-0">No, non ti arriva a casa la frutta</h4>
+						<p>Saranno di sostentamento alle famiglie che si prendono cura
+							dell’albero</p>
+					</div>
 				</div>
-			</div>
-			<div class="col d-flex align-items-start">
-				<i
-					class="fa-solid fa-hand-holding-droplet flex-shrink-0 me-3 bi fs-1 text-info"></i>
-				<div>
-					<h4 class="fw-bold mb-0">Sì, lo piantiamo davvero</h4>
-					<p>E puoi vederlo da subito, dai primi giorni che trascorre nel
-						nostro vivaio</p>
+				<div class="col d-flex align-items-start">
+					<i
+						class="fa-solid fa-hand-holding-droplet flex-shrink-0 me-3 bi fs-1 text-info"></i>
+					<div>
+						<h4 class="fw-bold mb-0">Sì, lo piantiamo davvero</h4>
+						<p>E puoi vederlo da subito, dai primi giorni che trascorre
+							nel nostro vivaio</p>
+					</div>
 				</div>
-			</div>
-			<div class="col d-flex align-items-start">
-				<i
-					class="fa-solid fa-seedling flex-shrink-0 me-3 bi fs-1 text-primary"></i>
-				<div>
-					<h4 class="fw-bold mb-0">Sì, lo vedrai crescere online</h4>
-					<p>Potrai monitorarlo accedendo alla tua pagina personale!</p>
+				<div class="col d-flex align-items-start">
+					<i
+						class="fa-solid fa-seedling flex-shrink-0 me-3 bi fs-1 text-primary"></i>
+					<div>
+						<h4 class="fw-bold mb-0">Sì, lo vedrai crescere online</h4>
+						<p>Potrai monitorarlo accedendo alla tua pagina personale!</p>
+					</div>
 				</div>
-			</div>
-			<div class="col d-flex align-items-start">
-				<i class="fa-solid fa-envelope-open-text flex-shrink-0 me-3 bi fs-1"
-					style="color: #6f42c1"></i>
-				<div>
-					<h4 class="fw-bold mb-0">Sì, ricevi una foto</h4>
-					<p>Al momento della piantumazione riceverai una foto del tuo
-						albero.</p>
+				<div class="col d-flex align-items-start">
+					<i
+						class="fa-solid fa-envelope-open-text flex-shrink-0 me-3 bi fs-1"
+						style="color: #6f42c1"></i>
+					<div>
+						<h4 class="fw-bold mb-0">Sì, ricevi una foto</h4>
+						<p>Al momento della piantumazione riceverai una foto del tuo
+							albero.</p>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
 	<!-- Footer -->
 	<%@ include file="../fragments/footer.jsp"%>
 </body>

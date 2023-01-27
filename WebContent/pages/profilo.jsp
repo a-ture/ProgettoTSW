@@ -1095,26 +1095,16 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					} else {
 					%>
 					<p class="text-center text-danger">
-						Non hai riscatto il tuo regalo!Se hai un treecode puoi riscattare
-						il tuo regalo <a href="Regalo">qui</a>
+						
 					</p>
 					<%
 					}
 					}
 					%>
 					<%
-					} else {
+					} 
 					%>
-					<div class="text-center">
-						<img src="resources/img/noGift.jpeg" class="w-25">
-						<p>OPS! Non hai ancora ricevuto regali</p>
-						<p>
-							Se hai un treecode puoi riscattare il tuo regalo <a href="Regalo">qui</a>
-						</p>
-					</div>
-					<%
-					}
-					%>
+					
 				</div>
 				<!-- Row END -->
 			</div>
@@ -1250,6 +1240,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			</div>
 		</div>
 	</div>
+	<!-- DOM Manipulation -->
 	<script>
 	$(document).ready(function() {
 		

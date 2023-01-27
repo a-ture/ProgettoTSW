@@ -5,7 +5,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.LinkedList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,12 +15,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import it.unisa.beans.Categoria;
 import it.unisa.beans.FotoProdotto;
-import it.unisa.beans.KitAlberi;
 import it.unisa.beans.UsoLocale;
 import it.unisa.beans.Albero;
 import it.unisa.model.CategoriaDAO;
 import it.unisa.model.FotoProdottoDAO;
-import it.unisa.model.KitAlberiDAO;
 import it.unisa.model.AlberoDAO;
 import it.unisa.model.UsoLocaleDAO;
 
@@ -38,7 +35,7 @@ public class ServletCatalogo extends HttpServlet {
 	}
 
 	/**
-	 *Mostra il catalogo analizzando il paramtro action
+	 * Mostra il catalogo analizzando il paramtro action
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -46,24 +43,21 @@ public class ServletCatalogo extends HttpServlet {
 		String action = request.getParameter("action");
 
 		Collection<Albero> prodotti = new ArrayList<Albero>();
-		Collection<KitAlberi> kits = new ArrayList<KitAlberi>();
+
 		Collection<Categoria> categorie = new ArrayList<Categoria>();
 		Collection<UsoLocale> usiLocali = new ArrayList<UsoLocale>();
 
 		AlberoDAO model = new AlberoDAO();
 		CategoriaDAO model2 = new CategoriaDAO();
-		KitAlberiDAO model3 = new KitAlberiDAO();
 		UsoLocaleDAO model4 = new UsoLocaleDAO();
 
 		if (action != null) {
 			if (action.equals("prezzo")) {
 				String sort = request.getParameter("sort");
-				Collection<KitAlberi> kitsOrdinati = new LinkedList<KitAlberi>();
+			
 				try {
 					prodotti = model.doRetriveAll(sort);
 
-					kits = model3.doRetriveAll(null);
-					// devo ordinare i kit
 
 				} catch (SQLException e1) {
 					e1.printStackTrace();
@@ -72,9 +66,7 @@ public class ServletCatalogo extends HttpServlet {
 				request.removeAttribute("prodotti");
 				request.setAttribute("prodotti", prodotti);
 
-				request.removeAttribute("kits");
-				request.setAttribute("kits", kits);
-
+			
 			} else if (action.equals("saldi")) {
 				// esegue un filtro che restituisce il catalogo ordinato in base ai saldi
 				try {
@@ -115,18 +107,8 @@ public class ServletCatalogo extends HttpServlet {
 				}
 				request.removeAttribute("prodotti");
 				request.setAttribute("prodotti", prodotti);
-				request.removeAttribute("kits");
-			} else if (action.equals("vediKit")) {
-				// esegue un filtro che restituisce il catalogo ordinato in base ai kit
-				try {
-					kits = model3.doRetriveAll(null);
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-				request.removeAttribute("prodotti");
-				request.removeAttribute("kits");
-				request.setAttribute("kits", kits);
-			} else if (action.equals("paese")) {
+			
+			}  else if (action.equals("paese")) {
 				// esegue un filtro che restituisce il catalogo ordinato in base al paese
 				String paese = request.getParameter("paese");
 				if (paese != null) {
@@ -190,16 +172,12 @@ public class ServletCatalogo extends HttpServlet {
 			try {
 				prodotti = model.doRetriveAll(null);
 
-				kits = model3.doRetriveAll(null);
 			} catch (SQLException e) {
 
 				e.printStackTrace();
 			}
 			request.removeAttribute("prodotti");
 			request.setAttribute("prodotti", prodotti);
-
-			request.removeAttribute("kits");
-			request.setAttribute("kits", kits);
 		}
 
 		try {

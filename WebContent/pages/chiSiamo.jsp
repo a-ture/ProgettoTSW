@@ -32,30 +32,35 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 	<!-- Header -->
 	<%@ include file="../fragments/header.jsp"%>
 	<!-- HERO -->
-	<div class="px-4 py-5 text-center" id="welcome">
-		<h1 class="display-5 fw-bold">Chi Siamo</h1>
-		<div class="col-lg-6 mx-auto">
-			<p class="lead mb-4">La riforestazione è una delle azioni più
+
+	<div class="p-5 text-center bg-image" id="welcome"
+		style="background-image: url('./resources/img/chiSiamoPage/intestazioneChiSiamo.avif'); height: 600px;">
+		<div class="mask" style="background-color: rgba(0, 0, 0, 0.6);">
+			<div class="mask h-100">
+				<div class="d-flex my-5 py-5 align-items-middle h-100" >
+					<div>
+						<h1 class="mb-3 text-white">Chi Siamo</h1>
+						<h4 class="m-3 text-white">La riforestazione è una delle azioni più
 				efficaci nel contrasto alla crisi climatica. Noi ci impegniamo a far
 				nascere nuovi alberi nelle regioni del mondo vittime di grandi
-				deforestazioni.</p>
-			<div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-				<button type="button" class="btn btn-primary btn-lg px-4 gap-3"
-					id="perchèWL">Perchè WoodLot?</button>
-				<button type="button" class="btn btn-outline-secondary btn-lg px-4"
-					id="ideaAlbero">Un albero che idea!</button>
+				deforestazioni..</h4>
+						<div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+							<button type="button" class="btn btn-primary btn-lg px-4 gap-3"
+								id="perchèWL">Perchè WoodLot?</button>
+							<button type="button"
+								class="btn btn-outline-secondary btn-lg px-4" id="ideaAlbero">Un
+								albero che idea!</button>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
-	<!-- Perchè WoodLot -->
-
-	<!-- Divider -->
-	<div class="b-example-divider"></div>
 
 	<!-- I nostri valori -->
 	<div class="container px-4 py-5" id="featured-3">
 		<h2 class="pb-2  text-center">I valori principali di WoodLot</h2>
-		<p class="border-bottom text-center">Il nostro obiettivo
+		<p class="text-center">Il nostro obiettivo
 			principale è contrastare la crisi climatica alimentando un modello di
 			sviluppo sostenibile.</p>
 		<div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
@@ -108,7 +113,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 
 	<div class="container text-center">
 		<h1 class="pb-2">I nostri numeri</h1>
-		<p class="border-bottom text-center">Il nostro obiettivo
+		<p class="Sì, questo è esempio di DOM manipulation con jQuery. Nello specifico, questo codice gestisce gli eventi click su diversi elementi della pagina (ad esempio, il bottone "myProfileButton") e modifica la classe degli elementi correlati (ad esempio, il div "myProfileMenu") in base all'evento triggerato. In questo caso, la classe "d-none" viene aggiunta o rimossa dagli elementi per mostrarli o nasconderli.text-center">Il nostro obiettivo
 			principale è contrastare la crisi climatica alimentando un modello di
 			sviluppo sostenibile.</p>
 
@@ -235,14 +240,14 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			</div>
 
 			<div class="col-lg-6">
-					<svg class="bd-placeholder-img rounded-circle" width="140"
+				<svg class="bd-placeholder-img rounded-circle" width="140"
 					height="140" xmlns="http://www.w3.org/2000/svg" role="img"
 					aria-label="Placeholder: 140x140"
 					preserveAspectRatio="xMidYMid slice" focusable="false">
 						<title>Placeholder</title><rect width="100%" height="100%"
 						fill="#777"></rect>
 						<text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-				
+
 				<h2>Alessia Ture</h2>
 				<p>La mia idea di progresso è un mondo più sano e sostenibile.
 					Da sempre curiosa di intraprendere nuove sfide e nuovi percorsi e
@@ -253,7 +258,6 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 		</div>
 	</div>
 
-	<div class="b-example-divider"></div>
 	<!-- /.row -->
 	<!-- START THE FEATURETTES -->
 	<div class="container marketing">
@@ -282,11 +286,11 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					beneficio per l’intero pianeta.</p>
 			</div>
 			<div class="col-md-5">
-			
-					<img src="resources/img/chiSiamoPage/chiSiamo3.jpg"
-						class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
-						width="500" height="500">
-					
+
+				<img src="resources/img/chiSiamoPage/chiSiamo3.jpg"
+					class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
+					width="500" height="500">
+
 			</div>
 		</div>
 
@@ -308,12 +312,12 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					termini di frutti.</p>
 			</div>
 			<div class="col-md-5 order-md-1">
-			
-					<img
-						class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
-						width="500" height="500"
-						src="resources/img/chiSiamoPage/chiSiamo.jpg">
-				
+
+				<img
+					class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
+					width="500" height="500"
+					src="resources/img/chiSiamoPage/chiSiamo.jpg">
+
 
 			</div>
 		</div>
@@ -339,12 +343,12 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					giusto.</p>
 			</div>
 			<div class="col-md-5 ">
-				
-					<img
-						class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
-						width="500" height="500"
-						src="resources/img/chiSiamoPage/chiSiamo2.jpg">
-					
+
+				<img
+					class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
+					width="500" height="500"
+					src="resources/img/chiSiamoPage/chiSiamo2.jpg">
+
 
 			</div>
 		</div>
@@ -377,11 +381,11 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					pianeta e per le comunità locali</p>
 			</div>
 			<div class="col-md-5">
-			
-					<img src="resources/img/chiSiamoPage/chiSiamo1.jpeg"
-						class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
-						width="500" height="500">
-					
+
+				<img src="resources/img/chiSiamoPage/chiSiamo1.jpeg"
+					class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
+					width="500" height="500">
+
 			</div>
 		</div>
 
@@ -394,8 +398,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			<p>Tutto è iniziato in Guatemala. Abbiamo poi messo nuove radici
 				nell’amazzonia peruviana ed in tutte le regioni italiane</p>
 
-			<div
-				class="row row-cols-1 row-cols-lg-3 align-items-stretch gy-4">
+			<div class="row row-cols-1 row-cols-lg-3 align-items-stretch gy-4">
 				<div class="col">
 					<div
 						class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg"
@@ -515,14 +518,13 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 
 	<div class="container my-5" id="registroDegliAlberi">
 		<h1 class="text-center mb-3">Registro degli alberi</h1>
-		<div
-			class="row row-cols-1  row-cols-sm-1  row-cols-md-2 text-center">
+		<div class="row row-cols-1  row-cols-sm-1  row-cols-md-2 text-center">
 
 			<div class="col">
 				<div class="input-group mb-3">
 					<input type="text" class="form-control" placeholder="Cerca per id"
-					 aria-describedby="button-addon2"
-						id="myInput" onkeyup="myFunctionId()">
+						aria-describedby="button-addon2" id="myInput"
+						onkeyup="myFunctionId()">
 					<button class="btn btn-outline-secondary" type="button"
 						id="button-addon2">
 						<i class="fa-solid fa-magnifying-glass"></i>
@@ -533,8 +535,9 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			<div class="col">
 				<div class="input-group mb-3">
 					<input type="text" class="form-control"
-						placeholder="Cerca per tipo albero" aria-describedby="button-addon2"
-						id="myInputTree" onkeyup="myFunctionNameTree()">
+						placeholder="Cerca per tipo albero"
+						aria-describedby="button-addon2" id="myInputTree"
+						onkeyup="myFunctionNameTree()">
 					<button class="btn btn-outline-secondary" type="button"
 						id="button-addon2">
 						<i class="fa-solid fa-magnifying-glass"></i>
@@ -674,19 +677,21 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 									.append(
 											"<h1 class='mt-1 display-5 fw-bold text-center'>Perchè WoodLot?</h1>");
 							$(".perchèWLDiv").append(
-									"<ol class='perchèWLOl'></ol>");
+									"<ol class='perchèWLOl text-dark'></ol>");
 							$(".perchèWLOl")
 									.append(
-											"<li><b>Innovazione</b>:Se milioni di persone spendono soldi per piantare alberi virtuali su FarmVille, perché non creare qualcosa che permetta loro di piantarne di veri. "
+											"<li><b>Innovazione</b>: se milioni di persone spendono soldi per piantare alberi virtuali su FarmVille, perché non creare qualcosa che permetta loro di piantarne di veri. "
 													+ "Ed ecco che una semplice idea si è trasformata in innovazione ed un semplice albero è diventato lo strumento per creare una community. Creatività, innovazione e condivisione sono da sempre nel nostro DNA.</li>");
 							$(".perchèWLOl")
 									.append(
-											"<li><b>Il Business che fa bene</b>:Non crediamo di dover essere la migliore azienda del mondo, ma la migliore azienda per il mondo. Per questo, dal 2014, facciamo parte delle Certified B Corporations, il network di imprese che si contraddistinguono per elevate performance ambientali e sociali..</li>");
+											"<li><b>Il Business che fa bene</b>: non crediamo di dover essere la migliore azienda del mondo, ma la migliore azienda per il mondo. Per questo, dal 2014, facciamo parte delle Certified B Corporations, il network di imprese che si contraddistinguono per elevate performance ambientali e sociali.</li>");
 							$(".perchèWLOl")
 									.append(
-											"<li><b>Una bella storia è importante:</b> Un albero WoodLot è una storia che emoziona che chiunque può vivere in prima persona. È un racconto fatto di natura e dei contadini che se ne prendono cura. Un albero può raccontare la storia in cui credi e che vuoi condividere.</li>");
+											"<li><b>Una bella storia è importante:</b> un albero WoodLot è una storia che emoziona che chiunque può vivere in prima persona. È un racconto fatto di natura e dei contadini che se ne prendono cura. Un albero può raccontare la storia in cui credi e che vuoi condividere.</li>");
 
 						});
+		
+		
 	</script>
 	<!--Manipolazione DOM  su pulsante Un albero, che idea! -->
 	<script>
@@ -707,6 +712,8 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 													+ "seguire la storia del progetto online. Originariamente ispirato dal celebre gioco online FarmVille,"
 													+ "WoodLot ha aggiornato il concetto del piantare alberi grazie alla propria piattaforma interattiva </p>");
 						});
+		var p = $( "p" ).first();
+		$( "p" ).last().text( "scrollTop:" + p.scrollTop() );
 	</script>
 </body>
 </html>

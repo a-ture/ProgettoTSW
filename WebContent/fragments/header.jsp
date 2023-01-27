@@ -94,11 +94,6 @@ Utente utenteHeader = (Utente) request.getSession().getAttribute("utente");
 					<li class="nav-item"><a class="nav-link" href="Catalogo">Alberi</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="ChiSiamoServlet">Chi Siamo</a></li>
-
-
-					<li class="nav-item"><a
-						class="btn btn-secondary my-2 my-lg-0 my-md-2"
-						class="btn btn-primary" href="Regalo"> Hai un Treecode?</a></li>
 				</ul>
 				<div>
 					<ul class="navbar-nav me-auto">
