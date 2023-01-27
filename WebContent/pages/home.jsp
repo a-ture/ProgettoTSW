@@ -20,173 +20,46 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 <title>WoodLot</title>
 <link rel="stylesheet" type="text/css" href="resources/css/style.css">
 
+<style>
+#cosaPuoiFare {
+	background-color: #C4D89F;
+}
+#scegliIlTuoAlbero .card{
+border-radius:25px;
+}
+</style>
 </head>
 
 <body>
 	<!-- Header -->
 	<%@ include file="../fragments/header.jsp"%>
 
-	<!-- Hero Section -->
-	<div class="container my-5">
-		<div
-			class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">
-			<div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
-				<h1 class="display-4 fw-bold lh-1">Border hero with cropped
-					image and shadows</h1>
-				<p class="lead">Quickly design and customize responsive
-					mobile-first sites with Bootstrap, the world’s most popular
-					front-end open source toolkit, featuring Sass variables and mixins,
-					responsive grid system, extensive prebuilt components, and powerful
-					JavaScript plugins.</p>
-				<div
-					class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3">
-					<button type="button"
-						class="btn btn-primary btn-lg px-4 me-md-2 fw-bold">Primary</button>
-					<button type="button" class="btn btn-outline-secondary btn-lg px-4">Default</button>
-				</div>
-			</div>
-			<div class="col-lg-3 p-0 ">
-				<div id="wrapper">
-
-					<svg class="Banner2" height="220" width="450"> 
-
-       <polygon class="BorderAnimationEx2 BannerBorderEx2"
-							stroke-miterlimit="10" points="30 5, 20 200, 440 170, 440 55"
-							style="fill:none; stroke:#000; stroke-width:5" />  
-
-       <polygon class="BannerHolderEx2"
-							points="5 31, 5 185, 410 205, 430 10"
-							style="opacity:0.2;fill:#000;" />
-       <polygon class="BannerHolderEx2"
-							points="5 31, 5 180, 410 200, 430 10"
-							style="opacity:1;fill:#0ADBB3;" />  
-    
-       <text class="SalesEx2" font-family="Viga" font-size="65">
-         <tspan fill="#000" opacity="0.8" x="43" y="120"
-							font-family="Viga" font-size="65" opacity="1">OFFER</tspan>
-         <tspan x="43" y="117" font-family="Viga" font-size="65"
-							opacity="1" fill="#fff">OFFER</tspan>
-       </text>
-
-     <text class="Mega" font-weight="300" font-family="Josefin Sans"
-							font-size="23" fill="#000">
-         <tspan font-weight="700" x="280" y="60">MEGA</tspan>
-         <tspan x="280" y="97">SALES</tspan>
-         <tspan font-weight="700" x="270" y="136">LIMITED</tspan>
-         <tspan x="260" y="175">QUANTITY</tspan>
-       </text>
-
-
-       <text class="ShopNowEx2" font-family="Josefin Sans"
-							font-weight="700" font-size="20" fill="#fff">
-         <tspan fill="#000" x="65" y="157">S H O P&nbsp; &nbsp;N O W</tspan>
-       <tspan x="65" y="155">S H O P&nbsp; &nbsp;N O W</tspan>
-           
-           </text>
-
-       <polyline class="BorderAnimationEx2 BannerBorderLineEx2"
-							points="30 3, 20 200"
-							style="fill:none; stroke:#000; stroke-width:4.5;" /> 
-
-
-  Sorry, your browser does not support inline SVG.
-</svg>
-
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="b-example-divider"></div>
-	<section class="py-5 text-center container">
-		<div class="row py-lg-5">
-			<div class="col-lg-6 col-md-8 mx-auto">
-				<h1 class="fw-light">Album example</h1>
-				<p class="lead text-muted">Something short and leading about the
-					collection below—its contents, the creator, etc. Make it short and
-					sweet, but not too short so folks don’t simply skip over it
-					entirely.</p>
-				<p>
-					<a href="#" class="btn btn-primary my-2">Main call to action</a> <a
-						href="#" class="btn btn-secondary my-2">Secondary action</a>
-				</p>
-			</div>
-		</div>
-	</section>
-	<br>
-	<br>
-	<!-- Fine Card Section -->
-	<div class="b-example-divider"></div>
-	<!-- Cosa Puoi Fare -->
-	<!-- Scritta -->
-
-	<!-- Cards  Cosa puoi fare-->
-	<div class="container text-center" id="cosaPuoiFare">
-		<div class="col-md-12  pt-5">
-			<h1>Cosa puoi fare</h1>
-			<br> <br>
-		</div>
-		<div
-			class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-4 g-4 d-flex align-items-center p-5">
-			<div class="col">
-				<div class="card text-center shadow-lg bg-white rounded h-100 "
-					>
-					<img src="./resources/img/cosaPuoiFare/whatucando-gift-icon.png"
-						class="card-img-top" width="206px" height="206px">
-					<div class="card-body">
-						<h5 class="card-title fw-bold">Regala</h5>
-						<p class="card-text">Un regalo originale per l’ambiente e per
-							le persone a cui vuoi bene</p>
-						<a class="btn btn-primary" href="Catalogo#regali">Regala</a>
-					</div>
-				</div>
-			</div>
-			<div class="col">
-				<div class="card text-center shadow-lg bg-white rounded h-100">
-					<img
-						src="./resources/img/cosaPuoiFare/whatucando-discover-icon.png"
-						class="card-img-top" width="206px" height="206px">
-					<div class="card-body">
-						<h5 class="card-title fw-bold">Pianta</h5>
-						<p class="card-text">Tante specie ognuna con le sue
-							caratteristiche ed i suoi poteri</p>
-						<a class="btn btn-primary" href="Catalogo">Pianta</a>
-					</div>
-				</div>
-			</div>
-			<div class="col">
-				<div class="card text-center shadow-lg bg-white rounded h-100">
-					<img src="./resources/img/chiSiamoPage/info_trees.svg"
-						class="card-img-top" width="206px" height="206px">
-					<div class="card-body">
-						<h5 class="card-title fw-bold">Crea il tuo WoodLot</h5>
-						<p class="card-text">Pianta alberi ogni mese e inizia il tuo
-							percorso green</p>
-						<a class="btn btn-primary" href="#">Crea</a>
-					</div>
-				</div>
-			</div>
-			<div class="col">
-				<div class="card text-center shadow-lg bg-white rounded h-100">
-					<img
-						src="./resources/img/cosaPuoiFare/whatucando-horoscope-icon-2.png"
-						class="card-img-top" width="206px" height="206px">
-					<div class="card-body">
-						<h5 class="card-title fw-bold">Scopri</h5>
-						<p class="card-text">Ogni segno zodiacale ha il proprio
-							albero, tu di che segno sei?</p>
-						<a class="btn btn-primary" href="Catalogo#zodiaco">Scopri</a>
+	<div class="p-5 text-center bg-image"
+		style="background-image: url('./resources/img/home/intestazione.jpeg'); height: 600px;">
+		<div class="mask" style="background-color: rgba(0, 0, 0, 0.6);">
+			<div class="mask h-100">
+				<div class="d-flex my-5 py-5 align-items-middle h-100">
+					<div>
+						<h1 class="mb-3 text-white">Pianta un albero, puoi regalarlo
+							a chi vuoi!</h1>
+						<h4 class="m-3 text-white">Siamo il primo sito che ti
+							permette di piantare un albero a distanza e seguire online la
+							storia del progetto che contribuirà a realizzare. Piantando i
+							tuoi alberi sosterrai comunità di contadini locali e renderai più
+							verde il nostro pianeta.</h4>
+						<a class="btn btn-outline-light btn-lg" href="Catalogo"
+							role="button"> Scegli e regala</a>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<div class="b-example-divider"></div>
 	<div class="container px-4 py-5" id="hanging-icons">
-		<h2 class="pb-2 border-bottom">Come Funziona?</h2>
+		<h2 class="pb-2">Come Funziona?</h2>
 		<div class="row g-4 py-5 row-cols-1 row-cols-lg-4">
 			<div class="col d-flex align-items-start">
-				<div class="icon-square bg-light text-dark flex-shrink-0 me-3">
+				<div class="icon-square  text-dark flex-shrink-0 me-3">
 					<svg class="bi text-success" xmlns="http://www.w3.org/2000/svg"
 						id="fir" width="1em" height="1em" viewBox="0 0 91.378 121.841">
 						<path class="a"
@@ -196,11 +69,11 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				<div>
 					<h3>Scegli un albero</h3>
 					<p>Scegli quale albero adottare virtualmente tra quelli che
-						trovi nel nostro shop!.</p>
+						trovi nel nostro shop!</p>
 				</div>
 			</div>
 			<div class="col d-flex align-items-start">
-				<div class="icon-square bg-light text-dark flex-shrink-0 me-3">
+				<div class="icon-square text-dark flex-shrink-0 me-3">
 					<svg class="bi text-warning" id="farmer"
 						xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
 						viewBox="0 0 93.873 129.498">
@@ -217,11 +90,11 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				<div>
 					<h3>Lo piantiamo e lo doniamo ad un contadino</h3>
 					<p>L’albero nasce e cresce in vivaio. Dopo un anno viene donato
-						a una famiglia contadina che se ne occupa..</p>
+						a una famiglia di contadini che se ne occupa.</p>
 				</div>
 			</div>
 			<div class="col d-flex align-items-start">
-				<div class="icon-square bg-light text-dark flex-shrink-0 me-3">
+				<div class="icon-square  text-dark flex-shrink-0 me-3">
 					<svg class="bi text-danger" xmlns="http://www.w3.org/2000/svg"
 						id="orange" width="1em" height="1em" viewBox="0 0 84.039 109.034">
 						<g transform="translate(-106.631 -2042.16)">
@@ -232,39 +105,93 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				</div>
 				<div>
 					<h3>Il contadino ne trae beneficio</h3>
-					<p>La famiglia contadina raccogliendo la frutta prodotta,
-						riceverà sicurezza alimentare e una nuova fonte di guadagno..</p>
+					<p>La famiglia di contadini raccogliendo la frutta prodotta,
+						riceverà sicurezza alimentare e una nuova fonte di guadagno.</p>
 				</div>
 			</div>
 			<div class="col d-flex align-items-start">
-				<div class="icon-square bg-light text-dark flex-shrink-0 me-3">
+				<div class="icon-square text-dark flex-shrink-0 me-3">
 					<i class="icon awesome fas fa-qrcode bi text-info"
 						aria-hidden="true"></i>
 				</div>
 				<div>
 					<h3>Tu lo vedi crescere</h3>
 					<p>Ricevi aggiornamenti fotografici periodici dal tuo albero.
-						Potrai monitorarlo grazie a Chloe..</p>
+						Potrai monitorarlo.</p>
 				</div>
 			</div>
 		</div>
 	</div>
+
+	<!-- Cards  Cosa puoi fare-->
+	<div class="text-center my-5" id="cosaPuoiFare">
+		<h1 class="my-5">Cosa puoi fare</h1>
+		<div class="row mx-5 d-flex justify-content-center">
+			<div class="row mx-5 d-flex justify-content-center">
+				<div
+					class="card text-center col-md-4 col-sm-12 col-xs-12 mx-auto d-flex justify-content-center mb-5"
+					style="width: 15rem; background-color: white; border-radius: 30px;">
+					<img src="./resources/img/cosaPuoiFare/13.png" class="card-img"
+						width="206px" height="206px" />
+					<div class="card-body">
+						<p class="card-title fw-bold">Regala</p>
+						<p>Un regalo originale per l’ambiente e per le persone a cui
+							vuoi bene</p>
+						<a class="btn btn-rounded" href="Catalogo"
+							style="background-color: #5E7250; color: white">Regala</a>
+					</div>
+				</div>
+
+				<div
+					class="card text-center  col-md-4 col-sm-12 col-xs-12 mx-auto d-flex justify-content-center mb-5"
+					style="width: 15rem; background-color: white; border-radius: 30px;">
+					<img src="./resources/img/cosaPuoiFare/12.png" class="card-img"
+						width="206px" height="206px" />
+					<div class="card-body">
+						<p class="card-title fw-bold">Pianta</p>
+						<p>Tante specie ognuna con le sue caratteristiche ed i suoi
+							poteri</p>
+						<a class="btn btn-rounded" href="Catalogo"
+							style="background-color: #5E7250; color: white">Pianta</a>
+					</div>
+				</div>
+				<div
+					class="card text-center col-md-4 col-sm-12 col-xs-12 mx-auto d-flex justify-content-center mb-5"
+					style="width: 15rem; background-color: white; border-radius: 30px;">
+					<img src="./resources/img/cosaPuoiFare/11.svg" class="card-img"
+						width="206px" height="206px" />
+					<div class="card-body">
+						<p class="card-title fw-bold">Crea il tuo WoodLot</p>
+						<p>Pianta alberi e crea il tuo bosco virtuale e segui la loro
+							storia</p>
+						<a class="btn btn-rounded" href="Utente"
+							style="background-color: #5E7250; color: white">Crea</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br>
+	</div>
+
 	<!-- Card Section -->
 	<br>
-	<div class="b-example-divider"></div>
+
 	<!-- Scritta -->
 	<div class="container">
 		<div class="col-md-12 text-center mt-5">
 			<h1>Scegli il tuo albero</h1>
-			<p>Puoi farlo per i benefici che è in grado di apportare, per la
-				CO2 che può assorbire o per fare un regalo originale. Un contadino
-				lo pianterà nella sua terra. Il tuo albero sarà fotografato,
-				geolocalizzato ed avrà la sua pagina online dove seguirai la storia
-				del progetto di cui farà parte.</p>
+			<p>
+				Puoi sceglierlo per i benefici che è in grado di apportare, per la
+				CO<sub>2</sub> che può assorbire o per fare un regalo originale. Un
+				contadino lo pianterà nella sua terra. Il tuo albero sarà
+				fotografato ed avrà la sua pagina online dove seguirai la storia del
+				progetto di cui farà parte.
+			</p>
 			<br> <br>
 		</div>
 
-		<div class="row row-cols-1 row-cols-md-2 row-cols-lg-4" id="scegliIlTuoAlbero">
+		<div class="row text-center mx-5 g-3"
+			id="scegliIlTuoAlbero">
 			<%
 			if (prodotti != null && prodotti.size() != 0) {
 				Iterator<?> it = prodotti.iterator();
@@ -273,47 +200,38 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					Albero bean = (Albero) it.next();
 					FotoProdotto bean1 = (FotoProdotto) it1.next();
 			%>
-			<div class="col">
-				<div class="card h-100">
-					<img
-						src="./ServletResources?codiceAzione=fotoProdotto&idFoto=<%=bean1.getNomeFoto()%>"
-						class="card-img-top"
-						onerror="this.src='./resources//img/error.jpg'" />
+			<div class="col-lg-3 col-md-6 col-xs-12 col-sm-6
+                            col-xs-12 d-flex justify-content-center">
+
+				<div class="card text-center"
+					style="max-width: 18rem; border-radius: 25px;">
+					<img src="./ServletResources?codiceAzione=fotoProdotto&idFoto=<%=bean1.getNomeFoto()%>" class="card-img-top" />
 					<div class="card-body">
-						<h5 class="card-title"><%=bean.getNome()%>
-							<%
-							if (bean.getOnSale() != 0) {
-							%><span class="badge mx-2 bg-secondary">In Saldo</span>
-							<%
-							}
-							%>
-						</h5>
-						<p class="card-text"><%=bean.getDescrizioneBreve()%></p>
-						<p class="card-text text-center"><%=dFormat.format(bean.getPrezzo())%>
-							€
+						<h5 class="card-title"><%=bean.getNome()%></h5>
+						<p class="card-text">
+							<strong>CO<sub>2</sub></strong>: <%=bean.getCo2()%> kg
 						</p>
-						<div class="text-center">
-							<a class="btn btn-success position-relative"
-								href="Prodotto?action=leggiProdotto&id=<%=bean.getId()%>">Piantalo
-								Ora <%
-							if (bean.getOnSale() != 0) {
-							%><span
-								class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
-									<span class="visually-hidden">In Saldo</span>
-							</span> <%
- }
- %>
-							</a>
-						</div>
+					</div>
+					<ul class="list-group list-group-light list-group-small">
+						<li class="list-group-item px-4"><strong>Prezzo:</strong>
+							<%=dFormat.format(bean.getPrezzo())%> €</li>
+					</ul>
+					<div class="card-body">
+						<a href="Prodotto?action=leggiProdotto&id=<%=bean.getId()%>" class="btn btn-rounded"
+							style="background-color: #5E7250; color: white">Scopri di
+							più!</a>
 					</div>
 				</div>
+				
+			
+
 			</div>
 			<%
 			}
 			}
 			%>
 		</div>
-	</div>
+
 
 	<br>
 	<br>
@@ -322,9 +240,9 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 		<a type="button" class="btn btn-primary btn-lg" href="Catalogo">Scopri
 			tutti gli alberi!</a>
 	</div>
-	<div class="b-example-divider"></div>
+
 	<div class="container px-4 py-5" id="icon-grid">
-		<h2 class="pb-2 border-bottom">Tutto molto trasparente</h2>
+		<h2 class="pb-2">Tutto molto trasparente</h2>
 
 		<div
 			class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 g-4 py-5">
@@ -343,7 +261,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				<div>
 					<h4 class="fw-bold mb-0">No, non ti arriva a casa l’albero</h4>
 					<p>Il germoglio crescerà nel vivaio e poi verrà donato a una
-						famiglia di contad</p>
+						famiglia di contadini</p>
 				</div>
 			</div>
 			<div class="col d-flex align-items-start">
@@ -369,42 +287,21 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					class="fa-solid fa-seedling flex-shrink-0 me-3 bi fs-1 text-primary"></i>
 				<div>
 					<h4 class="fw-bold mb-0">Sì, lo vedrai crescere online</h4>
-					<p>Potrai monitorarlo tramite il nostro sistema esclusivo di
-						tracciabilità, CHLOE!</p>
+					<p>Potrai monitorarlo accedendo alla tua pagina personale!</p>
 				</div>
 			</div>
 			<div class="col d-flex align-items-start">
 				<i class="fa-solid fa-envelope-open-text flex-shrink-0 me-3 bi fs-1"
 					style="color: #6f42c1"></i>
 				<div>
-					<h4 class="fw-bold mb-0">Sì, ricevi un certificato PDF</h4>
-					<p>Al momento dell’acquisto riceverai un attestato che attesta
-						la proprietà del tuo albero.</p>
+					<h4 class="fw-bold mb-0">Sì, ricevi una foto</h4>
+					<p>Al momento della piantumazione riceverai una foto del tuo
+						albero.</p>
 				</div>
 			</div>
 		</div>
 	</div>
-
+</div>
 	<!-- Footer -->
 	<%@ include file="../fragments/footer.jsp"%>
-	
-	<script>
-/* Ex2 */
-$(".Banner2").delay(6000).fadeIn(500);
-$(".BannerHolderEx2").delay(6500).fadeIn(500);
-$(".BannerBorderEx2,.BannerBorderLineEx2").delay(7000).fadeIn(500);
-$(".SalesEx2").delay(7300).fadeIn(500);
-$(".Mega").delay(8500).fadeIn(500);
-$(".ShopNowEx2").delay(9000).fadeIn(500);
-/* Ex2 */
-$( ".Banner2" ).click(function() {
-$(".BannerHolderEx2,.BannerBorderEx2,.BannerBorderLineEx2,.SalesEx2,.Mega,.ShopNowEx2").delay(0).fadeOut(500);  
-$(".Banner2").delay(1000).fadeIn(500);
-$(".BannerHolderEx2").delay(1500).fadeIn(500);
-$(".BannerBorderEx2,.BannerBorderLineEx2").delay(2000).fadeIn(500);
-$(".SalesEx2").delay(2300).fadeIn(500);
-$(".Mega").delay(3500).fadeIn(500);
-$(".ShopNowEx2").delay(4000).fadeIn(500);
-});
-</script>
 </body>
