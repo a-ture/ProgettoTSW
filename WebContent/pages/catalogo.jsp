@@ -70,6 +70,12 @@ a.dropdown-item:hover {
 	background-color: #C4D89F;
 	border-color: #C4D89F;
 }
+
+.btn-primary.dropdown-toggle:focus {
+	background-color: #C4D89F;
+	border-color: #C4D89F;
+	box-shadow: none;
+}
 </style>
 <!-- Favicon -->
 <link rel="icon" type="image/x-icon" href="resources/img/logo.png">
