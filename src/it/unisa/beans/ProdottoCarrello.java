@@ -21,9 +21,6 @@ public class ProdottoCarrello implements Serializable {
 		super();
 		this.setQuantità(0);
 		this.prodotto = prodotto;
-
-		this.sconto = prodotto.getSaldo();
-
 	}
 
 	public Albero getProdotto() {

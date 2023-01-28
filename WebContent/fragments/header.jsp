@@ -22,6 +22,7 @@ Utente utenteHeader = (Utente) request.getSession().getAttribute("utente");
 	href="resources/css/_variables.scss">
 <link rel="stylesheet" type="text/css"
 	href="resources/css/_bootswatch.scss">
+<link rel="stylesheet" type="text/css" href="resources/css/style.css">
 
 <!-- JavaScript Bundle with Popper -->
 <script
@@ -39,36 +40,7 @@ Utente utenteHeader = (Utente) request.getSession().getAttribute("utente");
 	crossorigin="anonymous"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<style>
-.btn-secondary {
-	background-color: #C4D89F;
-	border-color: #C4D89F;
-}
 
-.btn-secondary:hover {
-	background-color: #93C572;
-	border-color: #93C572;
-}
-
-.navbar-light .navbar-nav .show>.nav-link, .navbar-light .navbar-nav .nav-link.active
-	{
-	color: #94AD6E;
-}
-
-.navbar-light .navbar-nav .nav-link {
-	color: #94AD6E;
-}
-
-
-.navbar-toggler {
-	background-color: #C4D89F;
-}
-
-.navbar-light .navbar-toggler {
-	color: #C4D89F;
-	border-color: #C4D89F;
-}
-</style>
 </head>
 
 <header>
@@ -76,8 +48,7 @@ Utente utenteHeader = (Utente) request.getSession().getAttribute("utente");
 		<div class="container-fluid">
 			<button class="btn btn-white">
 				<a class="nav-link active" href="Home"> <img
-					class="navbar-brand" src="./resources/img/logo.png"
-					height="60px">
+					class="navbar-brand" src="./resources/img/logo.png" height="60px">
 				</a>
 			</button>
 			<button class="navbar-toggler" type="button"

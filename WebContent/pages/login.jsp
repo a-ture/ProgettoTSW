@@ -20,6 +20,7 @@ Collection<?> errori = (Collection<?>) request.getAttribute("errori");
 <link rel="stylesheet" type="text/css"
 	href="./resources/css/_bootswatch.scss">
 
+<link rel="stylesheet" type="text/css" href="resources/css/style.css">
 <!-- JavaScript Bundle with Popper -->
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
@@ -28,8 +29,8 @@ Collection<?> errori = (Collection<?>) request.getAttribute("errori");
 <!-- FontAwesome -->
 <script src="https://kit.fontawesome.com/6bd8866cc2.js"
 	crossorigin="anonymous"></script>
-	
-	<!-- jQuey -->
+
+<!-- jQuey -->
 <script src="https://code.jquery.com/jquery-3.6.0.js"
 	integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
 	crossorigin="anonymous"></script>
@@ -37,33 +38,32 @@ Collection<?> errori = (Collection<?>) request.getAttribute("errori");
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <!-- Favicon -->
 <link rel="icon" type="image/x-icon" href="resources/img/logo.png">
+
 </head>
 <body>
 	<div class="vh-100 bg-dark">
 		<div class="container">
 			<div
-				class="row py-3 d-flex justify-content-center align-items-center">
-				<div class="col col-xl-10">
+				class="row py-4 d-flex justify-content-center">
+				<div class="col-xl-8 ">
 					<div class="card" style="border-radius: 1rem;">
 						<div class="row g-0">
-							<div class="col-md-6 col-lg-5 d-none d-md-block">
-								<img
-									src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img1.webp"
-									alt="login form" class="img-fluid"
-									style="border-radius: 1rem 0 0 1rem;" />
+							<div class="col-md-6 d-none d-md-block">
+								<img src="./resources/img/login.jpeg" class="img-fluid"
+									style="border-radius: 1rem 0 0 1rem; max-height:641px;" />
 							</div>
-							<div class="col-md-6 col-lg-7 d-flex align-items-center">
-								<div class="card-body p-4 p-lg-5 text-black">
+							<div class="col-md-6">
+								<div class="card-body text-black">
 
 									<form method="POST" action="Login?action=login"
 										enctype="application/x-www-form-urlencoded">
-										<div class="d-flex align-items-center mb-3 pb-1">
+										<div class="d-flex align-items-center ">
 											<img src="./resources/img/logo.png" height="60px"> <span
-												class="h1 fw-bold mb-0"> &nbsp &nbsp WoodLot</span>
+												class="h3 fw-bold mb-0"> &nbsp WoodLot</span>
 										</div>
 
-										<h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Entra
-											nel tuo account</h5>
+										<h6 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Entra
+											nel tuo account</h6>
 
 										<div class="form-outline mb-4">
 											<input type="email" id="email" name="email"
@@ -77,30 +77,24 @@ Collection<?> errori = (Collection<?>) request.getAttribute("errori");
 												placeholder="la tua password" /> <label class="form-label"
 												for="password">Password</label>
 										</div>
-										<div class="pt-1 mb-4">
-											<button class="btn btn-dark btn-lg btn-block" type="submit">Login</button>
+										<div class="pt-1 mb-5 d-flex justify-content-center">
+											<button class="btn btn-primary btn-lg btn-block"
+												type="submit">Login</button>
 										</div>
 									</form>
-									<!-- Button trigger modal -->
-									<a class="small text-muted" data-bs-toggle="modal"
-										data-bs-target="#staticBackdrop">Password Dimenticata?
-										Clicca Qui!</a>
-									<form action="Login" method="get">
-										<div class="form-group">
-											<input type="hidden" name="action" value="registrazione">
-										</div>
-										<p class="mb-5 pb-lg-2" style="color: #393f81;">
-											Non hai un'account?
-											<button type="submit" class="btn btn-success"
-												style="color: #393f81;">Registrati qui</button>
-										</p>
-									</form>
-									<a href="condizioni.jsp" class="small text-muted">Condizioni
-										d'uso.</a> <a href="privacy.jsp" class="small text-muted">Privacy
-										policy</a>
 
+									<form action="Login" method="get">
+										<div class="form-group d-flex align-items-end">
+											<input type="hidden" name="action" value="registrazione">
+
+											<p>
+												Non hai un'account?
+												<button type="submit" class="btn btn-success">Registrati
+													qui</button>
+											</p>
+										</div>
+									</form>
 								</div>
-								<!-- errori -->
 							</div>
 						</div>
 						<div>

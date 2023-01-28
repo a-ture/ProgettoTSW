@@ -6,6 +6,7 @@ import java.util.Collection;
 
 /**
  * Questa classe rappresenta l'oggetto Albero
+ * 
  * @author raffaella & alessia
  */
 public class Albero implements Serializable {
@@ -14,108 +15,68 @@ public class Albero implements Serializable {
 	private int id;
 	private String nome;
 	private String nomeScientifico;
-	private String paeseDiOrigine;
+	private PaeseDiOrigine paeseDiOrigine;
 	private String descrizione;
 	private String descrizioneBreve;
 	private String sottotitolo;
-	private String doveVienePiantato;
 
 	private double prezzo;
 	private double altezza;
 	private int co2;
 	private int salvaguardia;
-	private double tasse;
-	private double saldo;
-
-	private int quantità;
-	private int onSale;
-
-	private boolean disponibile;
 
 	private Collection<UsoLocale> usiLocali;
 	private Collection<Categoria> categorie;
-	private Collection<Beneficio> benefici; 
-	
+	private Collection<Beneficio> benefici;
+
 	/**
 	 * Costruttore con parametri
-	 * @param id	codice identificativo
-	 * @param nome	nome dell'albero
-	 * @param nomeScientifico	nome scientifico dell'albero
-	 * @param paeseDiOrigine	paese di origine dell'albero
-	 * @param descrizione	descrizione dell'albero
-	 * @param descrizioneBreve	breve descrizione dell'albero
-	 * @param sottotitolo	informazione caratterizzante l'albero
-	 * @param doveVienePiantato	dove verrà piantato l'albero
-	 * @param prezzo	prezzo per piantare l'albero
-	 * @param altezza	altezza dell'albero
-	 * @param co2	quantità di co2 assorbita
-	 * @param salvaguardia	 caratteristiche ambientali
-	 * @param tasse	iva
-	 * @param saldo	tatale iva+prezzo
-	 * @param quantità	 di quanti alberi di qeusto tipo diponiamo
-	 * @param onSale	 percentuale di saldo
-	 * @param disponibile	TRUE è disponibile, FALSE non disponibile
-	 * @param usiLocali	gli usi che possono essere fatti con quell'albero
-	 * @param categorie	categoria a cui viene accomunato l'albero
+	 * 
+	 * @param id                codice identificativo
+	 * @param nome              nome dell'albero
+	 * @param nomeScientifico   nome scientifico dell'albero
+	 * @param paeseDiOrigine    paese di origine dell'albero
+	 * @param descrizione       descrizione dell'albero
+	 * @param descrizioneBreve  breve descrizione dell'albero
+	 * @param sottotitolo       informazione caratterizzante l'albero
+	 * @param doveVienePiantato dove verrà piantato l'albero
+	 * @param prezzo            prezzo per piantare l'albero
+	 * @param altezza           altezza dell'albero
+	 * @param co2               quantità di co2 assorbita
+	 * @param salvaguardia      caratteristiche ambientali
+	 * @param tasse             iva
+	 * @param saldo             tatale iva+prezzo
+	 * @param quantità          di quanti alberi di qeusto tipo diponiamo
+	 * @param onSale            percentuale di saldo
+	 * @param disponibile       TRUE è disponibile, FALSE non disponibile
+	 * @param usiLocali         gli usi che possono essere fatti con quell'albero
+	 * @param categorie         categoria a cui viene accomunato l'albero
 	 */
-	public Albero(int id, String nome, String nomeScientifico, String paeseDiOrigine, String descrizione,
-			String descrizioneBreve, String sottotitolo, String doveVienePiantato, double prezzo, double altezza,
-			int co2, int salvaguardia, double tasse, double saldo, int quantità, int onSale, boolean disponibile,
+	public Albero(int id, String nome, String nomeScientifico, PaeseDiOrigine paeseDiOrigine, String descrizione,
+			String descrizioneBreve, String sottotitolo, double prezzo, double altezza, int co2, int salvaguardia,
 			Collection<UsoLocale> usiLocali, Collection<Categoria> categorie) {
-		super();
 		this.id = id;
 		this.nome = nome;
 		this.nomeScientifico = nomeScientifico;
-		this.paeseDiOrigine = paeseDiOrigine;
 		this.descrizione = descrizione;
 		this.descrizioneBreve = descrizioneBreve;
 		this.sottotitolo = sottotitolo;
-		this.doveVienePiantato = doveVienePiantato;
 		this.prezzo = prezzo;
 		this.altezza = altezza;
 		this.co2 = co2;
 		this.salvaguardia = salvaguardia;
-		this.tasse = tasse;
-		this.saldo = saldo;
-		this.quantità = quantità;
-		this.onSale = onSale;
-		this.disponibile = disponibile;
 		this.usiLocali = usiLocali;
 		this.categorie = categorie;
 	}
 
-	public double getTasse() {
-		return tasse;
-	}
-
-	public void setTasse(double tasse) {
-		this.tasse = tasse;
-	}
-
-	public double getSaldo() {
-		return saldo;
-	}
-
-	public void setSaldo(double saldo) {
-		this.saldo = saldo;
-	}
- 
-	public boolean isDisponibile() {
-		return disponibile;
-	}
-
-	public void setDisponibile(boolean disponibile) {
-		this.disponibile = disponibile;
-	}
-
-	public String getPaeseDiOrigine() {
+	public PaeseDiOrigine getPaeseDiOrigine() {
 		return paeseDiOrigine;
 	}
 
-	public void setPaeseDiOrigine(String paeseDiOrigine) {
+	public void setPaeseDiOrigine(PaeseDiOrigine paeseDiOrigine) {
 		this.paeseDiOrigine = paeseDiOrigine;
 	}
-	
+
 	/**
 	 * Costruttore senza parametri
 	 */
@@ -194,22 +155,6 @@ public class Albero implements Serializable {
 		this.salvaguardia = salvaguardia;
 	}
 
-	public int getQuantità() {
-		return quantità;
-	}
-
-	public void setQuantità(int quantità) {
-		this.quantità = quantità;
-	}
-
-	public int getOnSale() {
-		return onSale;
-	}
-
-	public void setOnSale(int onSale) {
-		this.onSale = onSale;
-	}
-
 	public Collection<Categoria> getCategories() {
 		if (categorie == null)
 			categorie = new ArrayList<Categoria>();
@@ -222,6 +167,7 @@ public class Albero implements Serializable {
 
 	/**
 	 * Aggiunge una nuova categoria alla lista delle categorie
+	 * 
 	 * @param category la nuova categoria da aggiungere alla lista
 	 */
 	public void addCategory(Categoria category) {
@@ -237,14 +183,6 @@ public class Albero implements Serializable {
 
 	public void setSottotitolo(String sottotitolo) {
 		this.sottotitolo = sottotitolo;
-	}
-
-	public String getDoveVienePiantato() {
-		return doveVienePiantato;
-	}
-
-	public void setDoveVienePiantato(String doveVienePiantato) {
-		this.doveVienePiantato = doveVienePiantato;
 	}
 
 	public Collection<Categoria> getCategorie() {
@@ -275,22 +213,14 @@ public class Albero implements Serializable {
 		result = prime * result + co2;
 		result = prime * result + ((descrizione == null) ? 0 : descrizione.hashCode());
 		result = prime * result + ((descrizioneBreve == null) ? 0 : descrizioneBreve.hashCode());
-		result = prime * result + (disponibile ? 1231 : 1237);
-		result = prime * result + ((doveVienePiantato == null) ? 0 : doveVienePiantato.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		result = prime * result + ((nomeScientifico == null) ? 0 : nomeScientifico.hashCode());
-		result = prime * result + onSale;
 		result = prime * result + ((paeseDiOrigine == null) ? 0 : paeseDiOrigine.hashCode());
 		temp = Double.doubleToLongBits(prezzo);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + quantità;
-		temp = Double.doubleToLongBits(saldo);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + salvaguardia;
 		result = prime * result + ((sottotitolo == null) ? 0 : sottotitolo.hashCode());
-		temp = Double.doubleToLongBits(tasse);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((usiLocali == null) ? 0 : usiLocali.hashCode());
 		return result;
 	}
@@ -328,13 +258,6 @@ public class Albero implements Serializable {
 				return false;
 		} else if (!descrizioneBreve.equals(other.descrizioneBreve))
 			return false;
-		if (disponibile != other.disponibile)
-			return false;
-		if (doveVienePiantato == null) {
-			if (other.doveVienePiantato != null)
-				return false;
-		} else if (!doveVienePiantato.equals(other.doveVienePiantato))
-			return false;
 		if (id != other.id)
 			return false;
 		if (nome == null) {
@@ -347,8 +270,6 @@ public class Albero implements Serializable {
 				return false;
 		} else if (!nomeScientifico.equals(other.nomeScientifico))
 			return false;
-		if (onSale != other.onSale)
-			return false;
 		if (paeseDiOrigine == null) {
 			if (other.paeseDiOrigine != null)
 				return false;
@@ -356,18 +277,12 @@ public class Albero implements Serializable {
 			return false;
 		if (Double.doubleToLongBits(prezzo) != Double.doubleToLongBits(other.prezzo))
 			return false;
-		if (quantità != other.quantità)
-			return false;
-		if (Double.doubleToLongBits(saldo) != Double.doubleToLongBits(other.saldo))
-			return false;
 		if (salvaguardia != other.salvaguardia)
 			return false;
 		if (sottotitolo == null) {
 			if (other.sottotitolo != null)
 				return false;
 		} else if (!sottotitolo.equals(other.sottotitolo))
-			return false;
-		if (Double.doubleToLongBits(tasse) != Double.doubleToLongBits(other.tasse))
 			return false;
 		if (usiLocali == null) {
 			if (other.usiLocali != null)
@@ -381,10 +296,9 @@ public class Albero implements Serializable {
 	public String toString() {
 		return "Albero [id=" + id + ", nome=" + nome + ", nomeScientifico=" + nomeScientifico + ", paeseDiOrigine="
 				+ paeseDiOrigine + ", descrizione=" + descrizione + ", descrizioneBreve=" + descrizioneBreve
-				+ ", sottotitolo=" + sottotitolo + ", doveVienePiantato=" + doveVienePiantato + ", prezzo=" + prezzo
-				+ ", altezza=" + altezza + ", co2=" + co2 + ", salvaguardia=" + salvaguardia + ", tasse=" + tasse
-				+ ", saldo=" + saldo + ", quantità=" + quantità + ", onSale=" + onSale + ", disponibile=" + disponibile
-				+ ", usiLocali=" + usiLocali + ", categorie=" + categorie + ", benefici=" + benefici + "]";
+				+ ", sottotitolo=" + sottotitolo + ", prezzo=" + prezzo + ", altezza=" + altezza + ", co2=" + co2
+				+ ", salvaguardia=" + salvaguardia + ", usiLocali=" + usiLocali + ", categorie=" + categorie
+				+ ", benefici=" + benefici + "]";
 	}
 
 	public Collection<UsoLocale> getUsiLocali() {

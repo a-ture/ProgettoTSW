@@ -33,7 +33,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 
 
 	<div class="p-5 text-center bg-image" id="welcome"
-		style="background-image: url('./resources/img/chiSiamoPage/intestazioneChiSiamo.avif'); height: 600px;">
+		style="background-image: url('./resources/img/chiSiamo/intestazioneChiSiamo.avif'); height: 600px;">
 		<div class="mask" style="background-color: rgba(0, 0, 0, 0.6);">
 			<div class="mask h-100">
 				<div class="d-flex my-5 py-5 align-items-middle h-100">
@@ -76,7 +76,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				<p>Scelte e azioni quotidiane individuali, influiscono sul
 					futuro della terra. Troppo spesso in maniera negativa! Il nostro
 					progetto nasce per permettere a chiunque di fare la sua parte nel
-					contrastare la crisi climatica. PIA</p>
+					contrastare la crisi climatica.</p>
 			</div>
 
 			<div class="feature col-lg-4">
@@ -119,15 +119,14 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			class="Sì, questo è esempio di DOM manipulation con jQuery. Nello specifico, questo codice gestisce gli eventi click su diversi elementi della pagina (ad esempio, il bottone "
 			myProfileButton") e modifica la classe degli elementi correlati (ad
 			esempio, il div "myProfileMenu") in base all'evento triggerato. In
-			questo caso, la classe "d-none" viene aggiunta o rimossa dagli
-			elementipermostrarlionasconderli.text-center">Il nostro
-			obiettivo principale è contrastare la crisi climatica alimentando un
-			modello di sviluppo sostenibile.</p>
+			questo caso, la classe "d-none" viene aggiunta o rimossadaglielementipermostrarlionasconderli.text-center">Il
+			nostro obiettivo principale è contrastare la crisi climatica
+			alimentando un modello di sviluppo sostenibile.</p>
 
 		<div class="count-up mt-3 mb-5">
 			<div class="wrapper">
 				<div class="card h-100 w-100">
-					<img src="resources/img/chiSiamoPage/info_users.svg" height="200"
+					<img src="resources/img/chiSiamo/info_users.svg" height="200"
 						width="200" class="card-img-top">
 					<div class="card-body">
 						<h5 class="card-title">Persone</h5>
@@ -137,8 +136,8 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			</div>
 			<div class="wrapper">
 				<div class="card h-100">
-					<img src="resources/img/chiSiamoPage/info_countries.svg"
-						height="200" width="200" class="card-img-top">
+					<img src="resources/img/chiSiamo/info_countries.svg" height="200"
+						width="200" class="card-img-top">
 					<div class="card-body">
 						<h5 class="card-title text-center">Paesi</h5>
 						<div class="counter" data-count="<%=paesiTotali%>">0</div>
@@ -147,7 +146,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			</div>
 			<div class="wrapper">
 				<div class="card h-100">
-					<img src="resources/img/chiSiamoPage/info_trees.svg" height="200"
+					<img src="resources/img/chiSiamo/info_trees.svg" height="200"
 						width="200" class="card-img-top">
 					<div class="card-body">
 						<h5 class="card-title">Alberi</h5>
@@ -240,8 +239,10 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						<text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
 
 				<h2>Raffaella Spagnuolo</h2>
-				<p>Some representative placeholder content for the three columns
-					of text below the carousel. This is the first column.</p>
+				<p>Sono appassionata di viaggi, ho sempre creduto nella
+					responsabilità che ognuno di noi ha nel rendere il mondo un posto
+					migliore e preservare il nostro meraviglioso pianeta per le
+					generazioni future.</p>
 			</div>
 
 			<div class="col-lg-6">
@@ -265,7 +266,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 
 	<div class="container marketing">
 		<div class="row featurette text-center my-5">
-			<h1 class="featurette-heading">Molto più di un albero</h1>
+			<h1 class="">Molto più di un albero</h1>
 			<p class="lead">WoodLot finanzia direttamente progetti
 				agroforestali, diffusi sul territorio. La filosofia è quella di
 				realizzare ecosistemi sostenibili e permettere a migliaia di
@@ -276,21 +277,23 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 
 		<div class="row featurette">
 			<div class="col-md-7">
-				<h2 class="featurette-heading">Benefici ambientali</h2>
-				<p class="lead">La realizzazione di sistemi agroforestali
-					permette di operare scelte puntuali in relazione alle specifiche
-					caratteristiche e necessità di ogni area di progetto. Le specie
-					arboree piantate sono native o in rispetto della biodiversità dei
-					diversi territori. La pratica agroforestale integra inoltre la
-					piantumazione di alberi in un sistema agricolo, favorendo
-					l’interazione virtuosa tra le diverse specie ed un uso sostenibile
-					delle risorse e dei terreni. Tutti gli alberi, infine, nel corso
-					della propria crescita assorbono CO2 generando naturalmente un
-					beneficio per l’intero pianeta.</p>
+				<h2 class="">Benefici ambientali</h2>
+				<p class="lead">
+					La realizzazione di sistemi agroforestali permette di operare
+					scelte puntuali in relazione alle specifiche caratteristiche e
+					necessità di ogni area di progetto. Le specie arboree piantate sono
+					native o in rispetto della biodiversità dei diversi territori. La
+					pratica agroforestale integra inoltre la piantumazione di alberi in
+					un sistema agricolo, favorendo l’interazione virtuosa tra le
+					diverse specie ed un uso sostenibile delle risorse e dei terreni.
+					Tutti gli alberi, infine, nel corso della propria crescita
+					assorbono CO<sub>2</sub> generando naturalmente un beneficio per
+					l’intero pianeta.
+				</p>
 			</div>
 			<div class="col-md-5">
 
-				<img src="resources/img/chiSiamoPage/chiSiamo3.jpg"
+				<img src="resources/img/chiSiamo/chiSiamo3.jpg"
 					class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
 					width="500" height="500">
 
@@ -301,7 +304,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 
 		<div class="row featurette">
 			<div class="col-md-7 order-md-2">
-				<h2 class="featurette-heading">Benefici sociali</h2>
+				<h2 class="">Benefici sociali</h2>
 				<p class="lead">WoodLot finanzia progetti presso comunità rurali
 					in vari paesi del mondo e realizza anche in Italia progetti a forte
 					valenza sociale. Il primo passo è la formazione e il finanziamento
@@ -318,8 +321,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 
 				<img
 					class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
-					width="500" height="500"
-					src="resources/img/chiSiamoPage/chiSiamo.jpg">
+					width="500" height="500" src="resources/img/chiSiamo/chiSiamo.jpg">
 
 
 			</div>
@@ -329,28 +331,29 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 
 		<div class="row featurette">
 			<div class="col-md-7">
-				<h2 class="featurette-heading">Ogni albero nel modo giusto.</h2>
-				<p class="lead">Crediamo che gettare 100 semi in un campo, non
-					significhi aver piantato 100 alberi. E crediamo che piantare una
-					sola specie, in modo intensivo, non sia una scelta sostenibile e
-					rispettosa della biodiversità. Crediamo che le comunità di persone
-					che vivono in un luogo siano i migliori custodi degli alberi, per
-					questo le sosteniamo finanziariamente e le aiutiamo a piantare e
-					far crescere alberi nei loro terreni. Gli alberi daranno benefici a
-					loro, al luogo in cui vivono e a tutto il pianeta. Crediamo nel
-					legame che, attraverso gli alberi e grazie a WoodLot, si può creare
-					tra persone lontane. Crediamo che ciascuno di noi debba impegnarsi
-					per ridurre le proprie emissioni di CO2 e che nel farlo possa
+				<h2 class="">Ogni albero nel modo giusto.</h2>
+				<p class="lead">
+					Crediamo che gettare 100 semi in un campo, non significhi aver
+					piantato 100 alberi. E crediamo che piantare una sola specie, in
+					modo intensivo, non sia una scelta sostenibile e rispettosa della
+					biodiversità. Crediamo che le comunità di persone che vivono in un
+					luogo siano i migliori custodi degli alberi, per questo le
+					sosteniamo finanziariamente e le aiutiamo a piantare e far crescere
+					alberi nei loro terreni. Gli alberi daranno benefici a loro, al
+					luogo in cui vivono e a tutto il pianeta. Crediamo nel legame che,
+					attraverso gli alberi e grazie a WoodLot, si può creare tra persone
+					lontane. Crediamo che ciascuno di noi debba impegnarsi per ridurre
+					le proprie emissioni di CO<sub>2</sub> e che nel farlo possa
 					contribuire anche ad assorbirne piantando alberi. Crediamo che si
 					possa rendere questo pianeta più verde. E vogliamo farlo nel modo
-					giusto.</p>
+					giusto.
+				</p>
 			</div>
 			<div class="col-md-5 ">
 
 				<img
 					class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
-					width="500" height="500"
-					src="resources/img/chiSiamoPage/chiSiamo2.jpg">
+					width="500" height="500" src="resources/img/chiSiamo/chiSiamo2.jpg">
 
 
 			</div>
@@ -360,7 +363,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 
 		<div class="row featurette">
 			<div class="col-md-7 order-md-2">
-				<h2 class="featurette-heading">Piantare alberi è (sempre) una
+				<h2 class="">Piantare alberi è (sempre) una
 					buona idea?</h2>
 				<p class="lead">Negli ultimi anni sono stati annunciati enormi
 					progetti di piantumazione di alberi. Sono popolari, raccontati in
@@ -384,8 +387,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					pianeta e per le comunità locali</p>
 			</div>
 			<div class="col-md-5">
-
-				<img src="resources/img/chiSiamoPage/chiSiamo1.jpeg"
+				<img src="resources/img/chiSiamo/chiSiamo1.jpeg"
 					class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
 					width="500" height="500">
 
@@ -396,47 +398,56 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 
 		<div class="container px-4 py-5" id="custom-cards">
 
-			<h2 class="pb-2 border-bottom">I progetti attivi nel mondo</h2>
+			<h2 class="pb-2">I progetti attivi nel mondo</h2>
 
 			<p>Tutto è iniziato in Guatemala. Abbiamo poi messo nuove radici
 				nell’amazzonia peruviana ed in tutte le regioni italiane</p>
 
-			<div class="row row-cols-1 row-cols-lg-3 align-items-stretch gy-4">
+			<div class="row row-cols-1 row-cols-lg-4 align-items-stretch gy-4">
 				<div class="col">
 					<div
-						class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg"
-						style="background-image: url('resources/img/chiSiamoPage/guatemala.jpg');">
+						class="card card-cover h-100 overflow-hidden text-white bg-trasparent rounded-5 shadow-lg"
+						style="background-image: url('resources/img/chiSiamo/guatemala.jpg');">
 						<div
 							class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
-							<h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Guatemala
-								- Regione del Petén</h2>
+							<h4 class="pt-5 mt-5 mb-4 lh-1 fw-bold">Guatemala
+								- Regione del Petén</h4>
 						</div>
 					</div>
 				</div>
 
 				<div class="col">
 					<div
-						class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg"
-						style="background-image: url('resources/img/chiSiamoPage/pery.jpeg');">
+						class="card card-cover h-100 overflow-hidden text-white bg-trasparent rounded-5 shadow-lg"
+						style="background-image: url('resources/img/chiSiamo/pery.jpeg');">
 						<div
 							class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
-							<h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Perù -
-								Foresta amazzonica</h2>
+							<h3 class="pt-5 mt-5 mb-4  lh-1 fw-bold">Perù -
+								Foresta amazzonica</h3>
 						</div>
 					</div>
 				</div>
 
 				<div class="col">
 					<div
-						class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg"
-						style="background-image: url('resources/img/chiSiamoPage/italia.jpg');">
+						class="card card-cover h-100 overflow-hidden text-white bg-trasparent rounded-5 shadow-lg"
+						style="background-image: url('resources/img/chiSiamo/italia.jpg');">
 						<div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
-							<h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Italia -
-								Diverse regioni italiane</h2>
+							<h3 class="pt-5 mt-5 mb-4  lh-1 fw-bold">Italia -
+								Diverse regioni italiane</h3>
 						</div>
 					</div>
 				</div>
-
+				<div class="col">
+					<div
+						class="card card-cover h-100 overflow-hidden text-white bg-trasparent rounded-5 shadow-lg"
+						style="background-image: url('resources/img/chiSiamo/10.webp');">
+						<div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
+							<h3 class="pt-5 mt-5 mb-4  lh-1 fw-bold">Argentina -
+								Regione della Patagonia</h3>
+						</div>
+					</div>
+				</div>
 			</div>
 			<div class="row my-5">
 				<h3>Perchè tutto è iniziato dal Guatemala?</h3>
@@ -469,11 +480,12 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			class="row p-4 pb-0 pe-lg-0 pt-lg-5 d-flex justify-content-center align-items-center rounded-3 shadow-lg"
 			style="background-color: #93C572;">
 			<div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
-				<h3 class="display-5 fw-bold text-center-md ">Fai crescere la community
-					condividi WoodLot!</h3>
-				<p class="lead text-center-xs">TANTE FACCE, DIVERSE MOTIVAZIONI UN UNICO
-					OBIETTIVO: Let's green the planet</p>
-				<div class=" justify-content-md-start d-flex justify-content-center mb-4 mb-lg-3">
+				<h3 class="display-5 fw-bold text-center-md ">Fai crescere la
+					community condividi WoodLot!</h3>
+				<p class="lead text-center-xs">TANTE FACCE, DIVERSE MOTIVAZIONI
+					UN UNICO OBIETTIVO: Let's green the planet</p>
+				<div
+					class=" justify-content-md-start d-flex justify-content-center mb-4 mb-lg-3">
 					<section class="mb-4">
 						<!-- Facebook -->
 						<a class="btn btn-outline-dark btn-floating m-1"
@@ -512,7 +524,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			</div>
 		</div>
 	</div>
-		<div class="container my-5" id="registroDegliAlberi">
+	<div class="container my-5" id="registroDegliAlberi">
 		<h1 class="text-center mb-3">Registro degli alberi</h1>
 		<div class="row row-cols-1  row-cols-sm-1  row-cols-md-2 text-center">
 
@@ -521,7 +533,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					<input type="text" class="form-control" placeholder="Cerca per id"
 						aria-describedby="button-addon2" id="myInput"
 						onkeyup="myFunctionId()">
-					<button class="btn btn-outline-secondary" type="button"
+					<button class="btn btn-outline-success" type="button"
 						id="button-addon2">
 						<i class="fa-solid fa-magnifying-glass"></i>
 					</button>
@@ -534,7 +546,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						placeholder="Cerca per tipo albero"
 						aria-describedby="button-addon2" id="myInputTree"
 						onkeyup="myFunctionNameTree()">
-					<button class="btn btn-outline-secondary" type="button"
+					<button class="btn btn-outline-success" type="button"
 						id="button-addon2">
 						<i class="fa-solid fa-magnifying-glass"></i>
 					</button>
@@ -543,7 +555,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 
 		</div>
 		<table class="table text-center" id="myTable">
-			<thead style="background-color: #e5c59c;">
+			<thead>
 				<tr>
 					<th scope="col">Id</th>
 					<th scope="col">Albero</th>
@@ -552,7 +564,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					<th scope="col">Piantato il</th>
 				</tr>
 			</thead>
-			<tbody style="background-color: #f4ebc7;">
+			<tbody>
 				<%
 				if (ordini != null && ordini.size() != 0) {
 					Iterator<?> it2 = ordini.iterator();
@@ -571,6 +583,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					<td scope="row"><%=p.getId()%></td>
 					<td><%=p.getNome()%></td>
 					<td><%=p.getStato()%></td>
+					<td><%=ordine.getUtente().getNome()%> <%=ordine.getUtente().getCognome()%></td>
 					<td><%=formatDateTime%></td>
 				</tr>
 				<%

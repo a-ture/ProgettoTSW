@@ -1,20 +1,133 @@
 @charset "UTF-8";
 
-@import url(https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css);
+@import
+	url(https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css)
+	;
 
-body{
-	background:linear-gradient(180deg, #F4EBC7 5.73%, #FBD5B2 100%);
+body {
+	background: linear-gradient(180deg, #F4EBC7 5.73%, #FBD5B2 100%);
 }
-h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, p{
+
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, p {
 	color: black !important;
 }
 
-.btn-success{
+.btn-success {
+	background-color: #C4D89F;
+	border-color:#C4D89F;
+}
+.btn-success:hover {
 	background-color: #5E7250;
+	border-color:#5E7250;
+}
+footer {
+	background-color: #C4D89F;
 }
 
+a {
+	color: black;
+	text-decoration: none;
+}
 
+a:hover {
+	color: #F8BD7F;
+}
 
+.btn-primary {
+	background-color: #5E7250;
+	border-color: #5E7250;
+}
+
+.btn-primary:hover {
+	background-color: #94AD6E;
+	border-color: #94AD6E;
+}
+
+.btn-outline-light, .btn-outline-light:hover {
+	background-color: #F8BD7F;
+	border-color: #F8BD7F;
+}
+
+.btn-outline-success, .btn-outline-success:hover {
+	border-color: #93C572;
+	box-shadow: none;
+	color: white
+}
+
+.btn-outline-success {
+	background-color: #C4D89F;
+	border-color: #C4D89F;
+}
+
+.btn-outline-success:hover {
+	background-color: #93C572;
+}
+
+.btn-secondary {
+	background-color: #C4D89F;
+	border-color: #C4D89F;
+}
+
+.btn-secondary:hover {
+	background-color: #93C572;
+	border-color: #93C572;
+}
+
+.navbar-light .navbar-nav .show>.nav-link, .navbar-light .navbar-nav .nav-link.active
+	{
+	color: #94AD6E;
+}
+
+.navbar-light .navbar-nav .nav-link {
+	color: #94AD6E;
+}
+
+.navbar-toggler {
+	background-color: #C4D89F;
+}
+
+.navbar-light .navbar-toggler {
+	color: #C4D89F;
+	border-color: #C4D89F;
+}
+
+.bg-primary {
+	background-color: #C4D89F !important;
+}
+
+.bg-dark {
+	background-color: #C4D89F !important;
+}
+.bg-light{
+	background-color: #F4EBC7!important;
+}
+.table {
+	color: black;
+}
+
+thead {
+	background-color: #e5c59c;
+}
+
+tbody {
+	background-color: #f4ebc7;
+}
+.list-group-item {
+    position: relative;
+    display: block;
+    padding: 0.5rem 1rem;
+    color: #212529;
+    text-decoration: none;
+    background-color: transparent; 
+    border-color: transparent; 
+}
+#cosaPuoiFare {
+	background-color: #C4D89F;
+}
+
+#scegliIlTuoAlbero .card {
+	border-radius: 25px;
+}
 /*Stile pagina home*/
 /* Carousel pagina home */
 .carousel {
@@ -45,27 +158,11 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, p{
 	text-align: center;
 }
 
-.marketing h2 {
-	font-weight: 400;
-}
+
 /* rtl:begin:ignore */
 .marketing .col-lg-4 p {
 	margin-right: .75rem;
 	margin-left: .75rem;
-}
-
-/* Featurettes
-------------------------- */
-.featurette-divider {
-	margin: 5rem 0; /* Space out the Bootstrap <hr> more */
-}
-
-/* Thin out the marketing headings */
-.featurette-heading {
-	font-weight: 300;
-	line-height: 1;
-	/* rtl:remove */
-	letter-spacing: -.05rem;
 }
 
 /* RESPONSIVE CSS
@@ -87,7 +184,6 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, p{
 		margin-top: 7rem;
 	}
 }
-
 
 .bi {
 	vertical-align: -.125em;
@@ -178,7 +274,6 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, p{
 	}
 }
 
-
 #cosaPuoiFare .card {
 	transition: transform 0.2s ease;
 }
@@ -235,5 +330,262 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, p{
 	z-index: 1;
 	font-size: 64px;
 	margin-bottom: 5px
+}
+#btnCkt {
+	transition: all 0.5s;
+}
+
+#btnCkt span {
+	cursor: pointer;
+	display: inline-block;
+	position: relative;
+	transition: 0.5s;
+}
+
+#btnCkt span:after {
+	content: '\2192';
+	position: absolute;
+	opacity: 0;
+	top: 0;
+	right: -20px;
+	transition: 0.5s;
+}
+
+#btnCkt:hover span {
+	padding-right: 25px;
+}
+
+#btnCkt:hover span:after {
+	opacity: 1;
+	right: 0;
+}
+
+#regali .card:hover {
+	transform: scale(1.1);
+}
+
+#regali {
+	background-color: #93c572;
+}
+
+#regali .card {
+	transition: transform 0.2s ease;
+}
+
+#myBtn {
+	display: none; /* Hidden by default */
+	position: fixed; /* Fixed/sticky position */
+	bottom: 20px; /* Place the button at the bottom of the page */
+	right: 30px; /* Place the button 30px from the right */
+	z-index: 99; /* Make sure it does not overlap */
+	border: none; /* Remove borders */
+	outline: none; /* Remove outline */
+	background-color: #93c572; /* Set a background color */
+	color: white; /* Text color */
+	cursor: pointer; /* Add a mouse pointer on hover */
+	padding: 15px; /* Some padding */
+	border-radius: 10px; /* Rounded corners */
+	font-size: 18px; /* Increase font size */
+}
+
+#myBtn:hover {
+	background-color: #c4d89d; /* Add a dark-grey background on hover */
+}
+
+.badgeImg {
+	-webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+	filter: grayscale(100%);
+}
+
+#zodiaco img:hover {
+	border-color: #E1EBEE;
+	box-shadow: 0px 0px 10px 2px rgb(13, 110, 253);
+}
+
+a.dropdown-item:hover {
+	background-color: #C4D89F;
+	border-color: #C4D89F;
+}
+
+.btn-primary.dropdown-toggle:focus {
+	background-color: #C4D89F;
+	border-color: #C4D89F;
+	box-shadow: none;
+}
+
+.checked { /*<!-- Per cambiare il colore delle stelline -->*/
+	color: orange;
+}
+
+#btnCart {
+	transition: all 0.5s;
+}
+
+#btnCart span {
+	cursor: pointer;
+	display: inline-block;
+	position: relative;
+	transition: 0.5s;
+}
+
+#btnCart span:after {
+	content: '\002B';
+	position: absolute;
+	opacity: 0;
+	top: 0;
+	right: -20px;
+	transition: 0.5s;
+}
+
+#btnCart:hover span {
+	padding-right: 25px;
+}
+
+#btnCart:hover span:after {
+	opacity: 1;
+	right: 0;
+}
+
+.avatar {
+	width: 68px;
+	height: 68px;
+	border-radius: 50%;
+}
+
+.years-5 {
+	height: 98px;
+	text-align: center;
+	width: 98px;
+	border-radius: 100%;
+	border-style: solid;
+	border-width: 14px;
+	border-bottom-color: #5e7250;
+	border-left-color: #5e7250;
+	border-right-color: #5e7250;
+	border-top-color: #5e7250;
+}
+
+.years-4 {
+	height: 98px;
+	text-align: center;
+	width: 98px;
+	border-radius: 100%;
+	border-style: solid;
+	border-width: 14px;
+	border-bottom-color: #e5c59c;
+	border-left-color: #5e7250;
+	border-right-color: #5e7250;
+	border-top-color: #5e7250;
+}
+
+.years-3 {
+	height: 98px;
+	text-align: center;
+	width: 98px;
+	border-radius: 100%;
+	border-style: solid;
+	border-width: 14px;
+	border-bottom-color: #e5c59c;
+	border-left-color: #e5c59c;
+	border-right-color: #5e7250;
+	border-top-color: #5e7250;
+}
+
+.years-2 {
+	height: 98px;
+	text-align: center;
+	width: 98px;
+	border-radius: 100%;
+	border-style: solid;
+	border-width: 14px;
+	border-bottom-color: #e5c59c;
+	border-left-color: #e5c59c;
+	border-right-color: #e5c59c;
+	border-top-color: #5e7250;
+}
+
+.years-1 {
+	height: 98px;
+	text-align: center;
+	width: 98px;
+	border-radius: 100%;
+	border-style: solid;
+	border-width: 14px;
+	border-bottom-color: #e5c59c;
+	border-left-color: #e5c59c;
+	border-right-color: #e5c59c;
+	border-top-color: #e5c59c;
+}
+
+.box {
+	color: white;
+	background: #c4d89d;
+	width: 500px;
+	height: max-content;
+	border-bottom-right-radius: 20px;
+	border-top-left-radius: 20px;
+	padding: 20px;
+	padding-right: 60px;
+	box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px
+		-12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px
+		12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+#imageCategorie {
+	transition: transform .1s ease;
+	margin-top: 100px;
+	margin-left: -40px;
+	box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px
+		-12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px
+		12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+#imageCategorie:hover {
+	transform: scale(1.1);
+	/*
+  Change the scale value as much as you want to change the amount of zoom on hover.
+  */
+}
+
+#categorie {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.magnifier {
+	width: 640px;
+	margin: 50px auto;
+	position: relative;
+}
+
+.magnifier:hover {
+	cursor: none;
+	/*   cursor: crosshair; */
+}
+
+.large {
+	width: 175px;
+	height: 175px;
+	position: absolute;
+	border-radius: 100%;
+	box-shadow: 0 0 0 7px rgba(191, 191, 191, 0.85), 0 0 7px 7px
+		rgba(0, 0, 0, 0.25), inset 0 0 40px 2px rgba(191, 191, 191, 0.25);
+	display: none;
+}
+
+.small {
+	display: block;
+}
+
+.cardCategoriaImage img {
+	opacity: .8;
+	transform: translate(0, 0);
+
+	transition: opacity .25s ease-in-out;
+}
+
+.cardCategoriaImage img:hover {
+	opacity: 1;
 }
 

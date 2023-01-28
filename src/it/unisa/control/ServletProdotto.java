@@ -63,10 +63,7 @@ public class ServletProdotto extends HttpServlet {
 				if (action.equalsIgnoreCase("aggiungiCarrello")) {
 					String id = request.getParameter("id");
 					Albero prod = model.doRetriveByKey(id);
-					if (!prod.isDisponibile()) {
-						response.sendError(500);
-						return;
-					}
+					
 					carrello.aggiungiProdotto(prod);
 					redirectPage = "/pages/cart.jsp";
 				} else if (action.equalsIgnoreCase("eliminaProdottoCarrello")) {
@@ -82,10 +79,7 @@ public class ServletProdotto extends HttpServlet {
 					String azione = request.getParameter("azione");
 					if (azione.equals("più")) {
 						Albero a = model.doRetriveByKey(id);
-						if (a.getQuantità() < quantità + 1) {
-							response.sendError(500);
-							return;
-						}
+
 						carrello.aggiornaProdotti(a, quantità + 1);
 					} else if (azione.equals("meno")) {
 						if ((quantità - 1) == 0) {
@@ -199,21 +193,11 @@ public class ServletProdotto extends HttpServlet {
 				bean.setAltezza(altezza);
 				bean.setNome(nome);
 				bean.setNomeScientifico(nomeScientifico);
-				bean.setOnSale(co2);
-				bean.setPaeseDiOrigine(paeseDiOrigine);
+			
 				bean.setPrezzo(prezzo);
-				bean.setQuantità(quantità);
 				bean.setSalvaguardia(salvaguardia);
 				bean.setSottotitolo(sottotitolo);
-				bean.setDoveVienePiantato(doveVienePiantato);
-				bean.setOnSale(onSale);
-				bean.setSaldo(saldo);
-				bean.setTasse(tasse);
-
-				if (disponibile == 0)
-					bean.setDisponibile(false);
-				else
-					bean.setDisponibile(true);
+		
 
 				int sicAlimentare = Integer.parseInt(request.getParameter("ben1"));
 				int sviSoste = Integer.parseInt(request.getParameter("ben2"));
@@ -273,21 +257,10 @@ public class ServletProdotto extends HttpServlet {
 				bean.setAltezza(altezza);
 				bean.setNome(nome);
 				bean.setNomeScientifico(nomeScientifico);
-				bean.setOnSale(co2);
-				bean.setPaeseDiOrigine(paeseDiOrigine);
 				bean.setPrezzo(prezzo);
-				bean.setQuantità(quantità);
+
 				bean.setSalvaguardia(salvaguardia);
 				bean.setSottotitolo(sottotitolo);
-				bean.setDoveVienePiantato(doveVienePiantato);
-				bean.setOnSale(onSale);
-				bean.setSaldo(saldo);
-				bean.setTasse(tasse);
-
-				if (disponibile == 0)
-					bean.setDisponibile(false);
-				else
-					bean.setDisponibile(true);
 
 				int sicAlimentare = Integer.parseInt(request.getParameter("ben1"));
 				int sviSoste = Integer.parseInt(request.getParameter("ben2"));

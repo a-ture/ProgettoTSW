@@ -67,23 +67,6 @@ public class ServletCatalogo extends HttpServlet {
 				request.setAttribute("prodotti", prodotti);
 
 			
-			} else if (action.equals("saldi")) {
-				// esegue un filtro che restituisce il catalogo ordinato in base ai saldi
-				try {
-					Iterator<Albero> it = model.doRetriveAll(null).iterator();
-					while (it.hasNext()) {
-						Albero albero = it.next();
-						if (albero.getOnSale() != 0) {
-							prodotti.add(albero);
-						}
-					}
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-				request.removeAttribute("prodotti");
-
-				request.setAttribute("prodotti", prodotti);
-
 			} else if (action.equals("categoria")) {
 				// esegue un filtro che restituisce il catalogo ordinato in base alla categoria
 				String categoria = request.getParameter("categoria");
@@ -97,17 +80,6 @@ public class ServletCatalogo extends HttpServlet {
 					request.removeAttribute("prodotti");
 					request.setAttribute("prodotti", prodotti);
 				}
-			} else if (action.equals("vediAlberi")) {
-				// esegue un filtro che restituisce il catalogo ordinato in base agli alberi
-				try {
-					prodotti = model.doRetriveAll("");
-				} catch (SQLException e) {
-
-					e.printStackTrace();
-				}
-				request.removeAttribute("prodotti");
-				request.setAttribute("prodotti", prodotti);
-			
 			}  else if (action.equals("paese")) {
 				// esegue un filtro che restituisce il catalogo ordinato in base al paese
 				String paese = request.getParameter("paese");
@@ -116,7 +88,7 @@ public class ServletCatalogo extends HttpServlet {
 						Iterator<Albero> it = model.doRetriveAll(null).iterator();
 						while (it.hasNext()) {
 							Albero albero = it.next();
-							if (albero.getPaeseDiOrigine().equals(paese)) {
+							if (albero.getPaeseDiOrigine().getNome().equals(paese)) {
 								prodotti.add(albero);
 							}
 						}

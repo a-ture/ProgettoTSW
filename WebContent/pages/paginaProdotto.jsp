@@ -32,185 +32,6 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 <title><%=prodotto.getNome()%></title>
 <!--CSS-->
 
-<style>
-.checked { /*<!-- Per cambiare il colore delle stelline -->*/
-	color: orange;
-}
-
-#btnCart {
-	transition: all 0.5s;
-}
-
-#btnCart span {
-	cursor: pointer;
-	display: inline-block;
-	position: relative;
-	transition: 0.5s;
-}
-
-#btnCart span:after {
-	content: '\002B';
-	position: absolute;
-	opacity: 0;
-	top: 0;
-	right: -20px;
-	transition: 0.5s;
-}
-
-#btnCart:hover span {
-	padding-right: 25px;
-}
-
-#btnCart:hover span:after {
-	opacity: 1;
-	right: 0;
-}
-
-.avatar {
-	width: 68px;
-	height: 68px;
-	border-radius: 50%;
-}
-
-.years-5 {
-	height: 98px;
-	text-align: center;
-	width: 98px;
-	border-radius: 100%;
-	border-style: solid;
-	border-width: 14px;
-	border-bottom-color: #5e7250;
-	border-left-color: #5e7250;
-	border-right-color: #5e7250;
-	border-top-color: #5e7250;
-}
-
-.years-4 {
-	height: 98px;
-	text-align: center;
-	width: 98px;
-	border-radius: 100%;
-	border-style: solid;
-	border-width: 14px;
-	border-bottom-color: #e5c59c;
-	border-left-color: #5e7250;
-	border-right-color: #5e7250;
-	border-top-color: #5e7250;
-}
-
-.years-3 {
-	height: 98px;
-	text-align: center;
-	width: 98px;
-	border-radius: 100%;
-	border-style: solid;
-	border-width: 14px;
-	border-bottom-color: #e5c59c;
-	border-left-color: #e5c59c;
-	border-right-color: #5e7250;
-	border-top-color: #5e7250;
-}
-
-.years-2 {
-	height: 98px;
-	text-align: center;
-	width: 98px;
-	border-radius: 100%;
-	border-style: solid;
-	border-width: 14px;
-	border-bottom-color: #e5c59c;
-	border-left-color: #e5c59c;
-	border-right-color: #e5c59c;
-	border-top-color: #5e7250;
-}
-
-.years-1 {
-	height: 98px;
-	text-align: center;
-	width: 98px;
-	border-radius: 100%;
-	border-style: solid;
-	border-width: 14px;
-	border-bottom-color: #e5c59c;
-	border-left-color: #e5c59c;
-	border-right-color: #e5c59c;
-	border-top-color: #e5c59c;
-}
-
-.box {
-	color: white;
-	background: #c4d89d;
-	width: 500px;
-	height: max-content;
-	border-bottom-right-radius: 20px;
-	border-top-left-radius: 20px;
-	padding: 20px;
-	padding-right: 60px;
-	box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px
-		-12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px
-		12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-}
-
-#imageCategorie {
-	transition: transform .1s ease;
-	margin-top: 100px;
-	margin-left: -40px;
-	box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px
-		-12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px
-		12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-}
-
-#imageCategorie:hover {
-	transform: scale(1.1);
-	/*
-  Change the scale value as much as you want to change the amount of zoom on hover.
-  */
-}
-
-#categorie {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-
-.magnifier {
-	width: 640px;
-	margin: 50px auto;
-	position: relative;
-}
-
-.magnifier:hover {
-	cursor: none;
-	/*   cursor: crosshair; */
-}
-
-.large {
-	width: 175px;
-	height: 175px;
-	position: absolute;
-	border-radius: 100%;
-	box-shadow: 0 0 0 7px rgba(191, 191, 191, 0.85), 0 0 7px 7px
-		rgba(0, 0, 0, 0.25), inset 0 0 40px 2px rgba(191, 191, 191, 0.25);
-	display: none;
-}
-
-.small {
-	display: block;
-}
-
-.cardCategoriaImage img {
-	opacity: .8;
-	transform: translate(0, 0);
-	/*
-  Change the opacity value to change how "faded" you want the image to appear when it is not hovered.
-  */
-	transition: opacity .25s ease-in-out;
-}
-
-.cardCategoriaImage img:hover {
-	opacity: 1;
-}
-</style>
 </head>
 <body>
 	<!-- Header -->
@@ -272,17 +93,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			<div class="col">
 				<div class="row">
 					<h1 class="font-monospace"><%=prodotto.getNome()%>
-						<%
-						if (!prodotto.isDisponibile()) {
-						%>
-						<span class="badge mx-2 bg-dark">Sold Out</span>
-						<%
-						} else if (prodotto.getOnSale() != 0) {
-						%>
-						<span class="badge mx-2 bg-dark">In saldo</span>
-						<%
-						}
-						%>
+
 					</h1>
 				</div>
 				<div class="row">
@@ -301,33 +112,16 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				<hr>
 				<div class="row">
 					<div class="col">
-
-						<%
-						if (prodotto.getOnSale() != 0) {
-							double sconto = (prodotto.getPrezzo() * prodotto.getSaldo()) / 100;
-							double prezzo = prodotto.getPrezzo() - sconto;
-						%><p class="text-danger">
-							<span class="badge mx-2 bg-secondary">-<%=prodotto.getSaldo()%>%
-							</span> <i class="fa-solid fa-coins"></i>
-							<%=dFormat.format(prezzo)%>€
-						</p>
-
-						<%
-						} else {
-						%>
 						<p>
 							<i class="fa-solid fa-coins"></i> <strong>Prezzo: </strong>
 							<%=dFormat.format(prodotto.getPrezzo())%>€
-							<%
-							}
-							%>
 						</p>
 					</div>
 					<div class="col">
 						<p>
 							<i class="fa-solid fa-location-dot"></i><strong> Paese:
 							</strong>
-							<%=prodotto.getPaeseDiOrigine()%>
+							<%=prodotto.getPaeseDiOrigine().getNome()%>
 						</p>
 					</div>
 				</div>
@@ -356,19 +150,9 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				<hr>
 
 				<div class="text-center">
-					<%
-					if (prodotto.isDisponibile()) {
-					%>
 					<a type="button" class="btn btn-primary mb-3"
 						href="Prodotto?action=aggiungiCarrello&id=<%=prodotto.getId()%>"
 						id="btnCart"><span>Acquista</span></a>
-					<%
-					} else {
-					%>
-					<a type="button" class="btn btn-dark mb-3"> Prodotto Sold Out</a>
-					<%
-					}
-					%>
 				</div>
 			</div>
 		</div>
@@ -391,24 +175,26 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 							<h4 class="card-title">I miei superpoteri</h4>
 							<div class="row">
 								<div class="col">
-									<p class="card-text">
-										<i class="fa-solid fa-cloud"></i> <strong>CO2
-											Assorbita</strong>
+									<p class="card-text fs-5">
+										<i class="fa-solid fa-cloud"></i> CO<sub>2</sub> Assorbita
+
 									</p>
 								</div>
 
 								<div class="col">
 									<%
-									int stelleColorateCo2 = prodotto.getCo2();
+									int stelleColorateCo2 = prodotto.getCo2() % 7;
 									int stelleNonColorateCo2 = 5 - stelleColorateCo2;
 									for (int i = 0; i < stelleColorateCo2; i++) {
 									%>
-									<span class="fa fa-star checked"></span>
+									<span><img class="mx-1"
+										src="./resources/img/rating/Star1.svg"></span>
 									<%
 									}
 									for (int i = stelleNonColorateCo2; i > 0; i--) {
 									%>
-									<span class="fa fa-star"></span>
+									<span><img class="mx-1"
+										src="./resources/img/rating/Star5.svg"></span>
 									<%
 									}
 									%>
@@ -416,9 +202,8 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 							</div>
 							<div class="row">
 								<div class="col">
-									<p class="card-text">
-										<i class="fa-solid fa-seedling"></i> <strong>Salvaguardia
-											Ambientale</strong>
+									<p class="card-text fs-5">
+										<i class="fa-solid fa-seedling"></i>Salvaguardia Ambientale
 									</p>
 								</div>
 								<!-- Stelle -->
@@ -428,12 +213,14 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 									int stelleNonColorate = 5 - stelleColorate;
 									for (int i = 0; i < stelleColorate; i++) {
 									%>
-									<span class="fa fa-star checked"></span>
+									<span><img class="mx-1"
+										src="./resources/img/rating/Star1.svg"></span>
 									<%
 									}
 									for (int i = stelleNonColorate; i > 0; i--) {
 									%>
-									<span class="fa fa-star"></span>
+									<span><img class="mx-1"
+										src="./resources/img/rating/Star5.svg"></span>
 									<%
 									}
 									%>
@@ -444,14 +231,15 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				</div>
 			</div>
 			<div class="col">
-				<div class="card" style="background: #c4d89d;">
+				<div class="card d-flex justify-content-center"
+					style="background: #c4d89d;">
 					<div class="card-body">
 						<h4 class="card-title">
 							Usi Locali<a class="card-link" data-bs-toggle="modal"
 								data-bs-target="#informazioniUsiLocali"><i
 								class="fa-solid fa-circle-info text-end p-2"></i></a>
 						</h4>
-						<ul class="d-grid list-unstyled">
+						<ul class="list-group list-group-horizontal text-center d-flex align-items-center justify-content-center  m-3">
 							<%
 							Collection<UsoLocale> usiLocali = prodotto.getUsiLocali();
 							if (usiLocali != null && usiLocali.size() != 0) {
@@ -459,191 +247,195 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 								while (it.hasNext()) {
 									UsoLocale uso = (UsoLocale) it.next();
 							%>
-							<li class="d-flex gap-4"><img
-								class="bi text-muted flex-shrink-0 rounded-circle" width="98"
-								height="98" onerror="this.src='./resources//img/error.jpg'"
-								src="./ServletResources?codiceAzione=fotoUsoLocale&idUsoLocale=<%=uso.getId()%>">
+							<li class="d-flex gap-4 list-group-item">
 								<div>
+									<img class="bi text-muted flex-shrink-0 rounded-circle"
+										width="98" height="98"
+										onerror="this.src='./resources//img/error.jpg'"
+										src="./ServletResources?codiceAzione=fotoUsoLocale&idUsoLocale=<%=uso.getId()%>">
+
 									<h5 class="mb-0"><%=uso.getNome()%></h5>
-									<%=uso.getDescrizione()%>
-								</div></li>
-							<%
-							}
-							}
-							%>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<div class="col">
-				<div class="card d-flex align-items-center d-none d-md-block"
-					style="background: #c4d89d;">
-					<div class="card-body">
-						<h4 class="card-title">
-							Benefici <a class="card-link" data-bs-toggle="modal"
-								data-bs-target="#informazioniBenefici"><i
-								class="fa-solid fa-circle-info text-end p-2"></i></a>
-						</h4>
-
-						<ul class="list-group list-group-horizontal-md text-center">
-							<%
-							Collection<Beneficio> benefici = prodotto.getBenefici();
-							if (benefici != null && benefici.size() != 0) {
-								Iterator<?> it2 = benefici.iterator();
-
-								while (it2.hasNext()) {
-									Beneficio cat = (Beneficio) it2.next();
-							%>
-							<li class="list-group-item" style="max-width: 13rem;">
-								<div class="years-<%=(int) cat.getPercentuale()%> m-2">
-									<img onerror="this.src='./resources//img/error.jpg'"
-										src="./ServletResources?codiceAzione=fotoBeneficio&idBeneficio=<%=cat.getId()%>"
-										class="avatar">
-								</div>
-
-								<h5><%=cat.getNome()%></h5>
-								<p><%=cat.getPercentuale()%>/5
-								</p>
+									</div>
 							</li>
-							<%
-							}
-							}
-							%>
-
-						</ul>
-					</div>
+					
+					<%
+					}
+					}
+					%>
+					</ul>
 				</div>
 			</div>
 		</div>
+		<div class="col">
+			<div class="card d-flex align-items-center justify-content-center"
+				style="background: #c4d89d;">
+				<div class="card-body">
+					<h4 class="card-title">
+						Benefici <a class="card-link" data-bs-toggle="modal"
+							data-bs-target="#informazioniBenefici"><i
+							class="fa-solid fa-circle-info text-end p-2"></i></a>
+					</h4>
 
-		<!-- Dove Viene Piantato -->
-		<div class="text-center m-4">
-			<br> <br>
-			<h3>Dove Viene Piantato?</h3>
-			<p class="lead"><%=prodotto.getDoveVienePiantato()%></p>
-		</div>
-		<div class="text-center">
-			<div class="magnifier d-none d-sm-block">
-				<div class="large"
-					style="background: url('./ServletResources?codiceAzione=fotoPaeseDiOrigine&idPaese=<%=prodotto.getPaeseDiOrigine()%>') no-repeat;"></div>
+					<ul
+						class="list-group list-group-horizontal text-center d-flex align-items-center justify-content-center">
+						<%
+						Collection<Beneficio> benefici = prodotto.getBenefici();
+						if (benefici != null && benefici.size() != 0) {
+							Iterator<?> it2 = benefici.iterator();
 
-				<img
-					src="./ServletResources?codiceAzione=fotoPaeseDiOrigine&idPaese=<%=prodotto.getPaeseDiOrigine()%>"
-					class="img-fluid small" height="626px" width="925px"
-					onerror="this.src='./resources//img/error.jpg'">
+							while (it2.hasNext()) {
+								Beneficio cat = (Beneficio) it2.next();
+						%>
+						<li class="list-group-item" style="max-width: 10rem;">
+							<div class="years-<%=(int) cat.getPercentuale()%> m-2">
+								<img onerror="this.src='./resources//img/error.jpg'"
+									src="./ServletResources?codiceAzione=fotoBeneficio&idBeneficio=<%=cat.getId()%>"
+									class="avatar">
+							</div>
+
+							<h5><%=cat.getNome()%></h5>
+							<p><%=cat.getPercentuale()%>/5
+							</p>
+						</li>
+						<%
+						}
+						}
+						%>
+
+					</ul>
+				</div>
 			</div>
 		</div>
-		<!-- Categorie -->
-		<%Collection<Categoria> cat = prodotto.getCategorie();
+	</div>
+
+	<!-- Dove Viene Piantato -->
+	<div class="text-center m-4">
+		<br> <br>
+		<h3>Dove Viene Piantato?</h3>
+		<p class="lead"><%=prodotto.getPaeseDiOrigine().getDescrizione()%></p>
+	</div>
+	<div class="text-center">
+		<div class="magnifier d-none d-sm-block">
+			<div class="large"
+				style="background: url('./ServletResources?codiceAzione=fotoPaeseDiOrigine&idPaese=<%=prodotto.getPaeseDiOrigine()%>') no-repeat;"></div>
+
+			<img
+				src="./ServletResources?codiceAzione=fotoPaeseDiOrigine&idPaese=<%=prodotto.getPaeseDiOrigine()%>"
+				class="img-fluid small" height="626px" width="925px"
+				onerror="this.src='./resources//img/error.jpg'">
+		</div>
+	</div>
+	<!-- Categorie -->
+	<%Collection<Categoria> cat = prodotto.getCategorie();
 if (cat != null && cat.size() != 0) {
 	Iterator<Categoria> it = cat.iterator();
 	while (it.hasNext()) {
 		Categoria c = it.next();%>
 
-		<div id="categorie">
-			<div class="box">
-				<h1 class="text-center">
-					Perchè
-					<%=c.getNome()%>?
-				</h1><%=c.getDescrizione()%></div>
-			<div class="cardCategoriaImage">
-				<div id="imageCategorie">
-					<img id="<%=c.getId()%>" class="img-fluid rounded" height="600px"
-						width="600px" onerror="this.src='./resources//img/error.jpg'"
-						src="./ServletResources?codiceAzione=fotoCategoria&idCategoria=<%=c.getId()%>"
-						alt="img-200-300">
+	<div id="categorie">
+		<div class="box">
+			<h1 class="text-center">
+				Perchè
+				<%=c.getNome()%>?
+			</h1><%=c.getDescrizione()%></div>
+		<div class="cardCategoriaImage">
+			<div id="imageCategorie">
+				<img id="<%=c.getId()%>" class="img-fluid rounded" height="600px"
+					width="600px" onerror="this.src='./resources//img/error.jpg'"
+					src="./ServletResources?codiceAzione=fotoCategoria&idCategoria=<%=c.getId()%>"
+					alt="img-200-300">
+			</div>
+		</div>
+	</div>
+	<%}
+}%>
+	<div class="m-5"></div>
+	<div class="row b-example-divider"></div>
+	<!-- Cosa Vuol Dire Piantare Un albero con WoodLot -->
+	<br>
+	<br>
+	<h2 class="text-center">Cosa vuol dire piantare un albero con
+		WoodLot</h2>
+	<div class="row row-cols-1 row-cols-md-3 row-cols-lg-3 text-center m-5">
+		<div class="col">
+			<h1>
+				<i class="fa-solid fa-location-dot text-info"></i>
+			</h1>
+			<h4>Trasparenza e tracciabilità</h4>
+			<p>Tutti gli Alberi sono geolocalizzati e fotografati quando
+				vengono piantati. Dal momento dell'acquisto è necessario attendere
+				da alcune settimane a qualche mese prima che un albero sia pronto
+				per essere piantato.</p>
+		</div>
+		<div class="col">
+			<h1>
+				<i class="fa-solid fa-book text-warning"></i>
+			</h1>
+			<h4>Un racconto che dura nel tempo</h4>
+			<p>Ogni albero ha il proprio Diario, una pagina online dove
+				scoprirai le sue caratteristiche e seguirai la storia del progetto
+				di cui fa parte.</p>
+		</div>
+		<div class="col">
+			<h1>
+				<i class="fa-solid fa-gift text-danger"></i>
+			</h1>
+			<h4>Un regalo originale</h4>
+			<p>Regalare un albero è semplicissimo. Puoi farlo durante la
+				procedura d'acquisto o in qualunque momento dal tuo profilo,
+				scegliendo la modalità che preferisci (via mail, messaggio o
+				stampando un biglietto da consegnare a mano).</p>
+		</div>
+	</div>
+
+	<div class="row b-example-divider"></div>
+	<!-- Prodotti Consigliati  -->
+	<h1 class="m-3 text-center">Pianta altri alberi</h1>
+	<div class="row d-flex justify-content-center gb-3 ">
+		<%
+		if (prodotti != null && prodotti.size() != 0) {
+			Iterator<?> it = prodotti.iterator();
+			Iterator<?> it1 = fotoProdotti.iterator();
+			for (int i = 0; i < 4; i++) {
+				Albero bean = (Albero) it.next();
+				FotoProdotto bean1 = (FotoProdotto) it1.next();
+		%>
+		<div
+			class="col-lg-3 col-md-6 col-xs-12 col-sm-6
+                            col-xs-12 d-flex justify-content-center mb-3">
+
+			<div class="card text-center"
+				style="max-width: 18rem; border-radius: 25px;">
+				<img
+					src="./ServletResources?codiceAzione=fotoProdotto&idFoto=<%=bean1.getNomeFoto()%>"
+					onerror="this.src='./resources//img/error.jpg'"
+					class="card-img-top" />
+				<div class="card-body">
+					<h5 class="card-title"><%=bean.getNome()%></h5>
+					<p class="card-text">
+
+						<strong>CO<sub>2</sub></strong>: -<%=bean.getCo2()%>
+						kg
+					</p>
+				</div>
+				<ul class="list-group list-group-light list-group-small">
+					<li class="list-group-item px-4"><strong>Prezzo:</strong> <%=dFormat.format(bean.getPrezzo())%>
+						€</li>
+				</ul>
+				<div class="card-body">
+					<a href="Prodotto?action=leggiProdotto&id=<%=bean.getId()%>"
+						class="btn btn-rounded"
+						style="background-color: #5E7250; color: white">Scopri di più!</a>
 				</div>
 			</div>
 		</div>
 		<%}
 }%>
-		<div class="m-5"></div>
-		<div class="row b-example-divider"></div>
-		<!-- Cosa Vuol Dire Piantare Un albero con WoodLot -->
-		<br> <br>
-		<h2 class="text-center">Cosa vuol dire piantare un albero con
-			WoodLot</h2>
-		<div
-			class="row row-cols-1 row-cols-md-3 row-cols-lg-3 text-center m-5">
-			<div class="col">
-				<h1>
-					<i class="fa-solid fa-location-dot text-info"></i>
-				</h1>
-				<h4>Trasparenza e tracciabilità</h4>
-				<p>Tutti gli Alberi sono geolocalizzati e fotografati quando
-					vengono piantati. Dal momento dell'acquisto è necessario attendere
-					da alcune settimane a qualche mese prima che un albero sia pronto
-					per essere piantato.</p>
-			</div>
-			<div class="col">
-				<h1>
-					<i class="fa-solid fa-book text-warning"></i>
-				</h1>
-				<h4>Un racconto che dura nel tempo</h4>
-				<p>Ogni albero ha il proprio Diario, una pagina online dove
-					scoprirai le sue caratteristiche e seguirai la storia del progetto
-					di cui fa parte.</p>
-			</div>
-			<div class="col">
-				<h1>
-					<i class="fa-solid fa-gift text-danger"></i>
-				</h1>
-				<h4>Un regalo originale</h4>
-				<p>Regalare un albero è semplicissimo. Puoi farlo durante la
-					procedura d'acquisto o in qualunque momento dal tuo profilo,
-					scegliendo la modalità che preferisci (via mail, messaggio o
-					stampando un biglietto da consegnare a mano).</p>
-			</div>
-		</div>
-
-		<div class="row b-example-divider"></div>
-		<!-- Prodotti Consigliati  -->
-		<h1 class="m-3 text-center">Pianta altri alberi</h1>
-		<div
-			class="row row-cols-1 row-cols-md-2 row-cols-lg-4 mb-5 text-center">
-			<%
-			if (prodotti != null && prodotti.size() != 0) {
-				Iterator<?> it = prodotti.iterator();
-				Iterator<?> it1 = fotoProdotti.iterator();
-				for (int i = 0; i < 4; i++) {
-					Albero bean = (Albero) it.next();
-					FotoProdotto bean1 = (FotoProdotto) it1.next();
-			%>
-			<div class="col">
-				<div class="card h-100">
-					<img
-						src="./ServletResources?codiceAzione=fotoProdotto&idFoto=<%=bean1.getNomeFoto()%>"
-						class="card-img-top"
-						onerror="this.src='./resources//img/error.jpg'" />
-					<div class="card-body">
-						<h5 class="card-title"><%=bean.getNome()%>
-							<%if (bean.getOnSale() != 0) {%><span
-								class="badge mx-2 bg-secondary">In Saldo</span>
-							<%}%>
-						</h5>
-						<p class="card-text"><%=bean.getDescrizioneBreve()%></p>
-						<p class="card-text text-center"><%=dFormat.format(bean.getPrezzo())%>
-							€
-						</p>
-						<div class="text-center">
-							<a class="btn btn-success position-relative"
-								href="Prodotto?action=leggiProdotto&id=<%=bean.getId()%>">Piantalo
-								Ora <%if (bean.getOnSale() != 0) {%><span
-								class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
-									<span class="visually-hidden">In Saldo</span>
-							</span> <%}%>
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<%}
-}%>
-		</div>
-		<div class="col-md-12 text-center">
-			<a class="btn btn-primary m-3" href="Catalogo" role="button">Vedi
-				tutti gli alberi</a>
-		</div>
+	</div>
+	<div class="col-md-12 text-center">
+		<a class="btn btn-primary m-3" href="Catalogo" role="button">Vedi
+			tutti gli alberi</a>
+	</div>
 	</div>
 	<!-- Modal Informazioni Usi Locali -->
 	<div class="modal fade" id="informazioniUsiLocali" tabindex="-1"

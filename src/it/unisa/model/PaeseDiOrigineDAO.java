@@ -121,7 +121,7 @@ public class PaeseDiOrigineDAO implements GenericDAO<PaeseDiOrigine> {
 		try {
 			connection = ds.getConnection();
 			preparedStatement = connection.prepareStatement(selectSQL);
-			preparedStatement.setInt(1, Integer.parseInt(code));
+			preparedStatement.setString(1, code);
 
 			ResultSet rs = preparedStatement.executeQuery();
 

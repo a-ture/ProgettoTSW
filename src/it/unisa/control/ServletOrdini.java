@@ -126,20 +126,15 @@ public class ServletOrdini extends HttpServlet {
 		for (ProdottoCarrello prod : carrello.getProdotti()) {
 			ProdottoOrdine bean = new ProdottoOrdine();
 			bean.setDescrizione(prod.getProdotto().getDescrizione());
-			bean.setSaldo(prod.getProdotto().getSaldo());
 			bean.setNome(prod.getProdotto().getNome());
 			bean.setPrezzo(prod.getProdotto().getPrezzo());
 			bean.setQuantità(prod.getQuantità());
 			bean.setBreveDescrizione("Paese:" + prod.getProdotto().getPaeseDiOrigine() + ", Categorie:"
 					+ prod.getProdotto().getCategorie().size());
-			bean.setTasse(prod.getProdotto().getTasse());
 			bean.setStato("seme");
 
 			Albero a = prod.getProdotto();
-			a.setQuantità(a.getQuantità() - prod.getQuantità());
-			if (a.getQuantità() == 0)
-				a.setDisponibile(false);
-
+			
 			AlberoDAO dao1 = new AlberoDAO();
 			try {
 				dao1.updateQuantità(a);

@@ -21,7 +21,7 @@ Collection<?> errori = (Collection<?>) request.getAttribute("errori");
 	href="./resources/css/_variables.scss">
 <link rel="stylesheet" type="text/css"
 	href="./resources/css/_bootswatch.scss">
-
+<link rel="stylesheet" type="text/css" href="resources/css/style.css">
 <!-- JavaScript Bundle with Popper -->
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
@@ -30,7 +30,7 @@ Collection<?> errori = (Collection<?>) request.getAttribute("errori");
 <!-- FontAwesome -->
 <script src="https://kit.fontawesome.com/6bd8866cc2.js"
 	crossorigin="anonymous"></script>
-	
+
 <!-- jQuey -->
 <script src="https://code.jquery.com/jquery-3.6.0.js"
 	integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
@@ -41,26 +41,27 @@ Collection<?> errori = (Collection<?>) request.getAttribute("errori");
 <link rel="icon" type="image/x-icon" href="resources/img/logo.png">
 </head>
 <body>
-	<section class="h-100" style="background-color: #eee;">
-		<div class="container h-100">
+	<div class="vh-100 bg-dark">
+		<div class="container">
 			<div
-				class="row d-flex justify-content-center align-items-center h-100">
-				<div class="col-lg-12 col-xl-11">
+				class="row py-3 d-flex justify-content-center align-items-center">
+				<div class="col-xl-10">
 					<div class="card text-black" style="border-radius: 25px;">
-						<div class="card-body p-md-5">
+						<div class="card-body">
 							<div class="row justify-content-center">
-								<div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+								<div class="col-lg-6 col-xl-5 order-2 order-lg-1">
 
-									<p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Registrati</p>
+									<p class="text-center h1 fw-bold mt-1">Registrati</p>
 
 									<form action="Login?action=registrazione" name="signIn"
 										enctype='multipart/form-data' method="POST"
-										class="mx-1 mx-md-4 needs-validation" novalidate
-										autocomplete="off" id="formId" onsubmit="return false;">
+										class="needs-validation" novalidate autocomplete="off"
+										id="formId" onsubmit="return false;">
 
-										
+
 										<div class="d-flex flex-row align-items-center mb-4">
-											<i class="fas fa-user fa-lg me-3 fa-fw"></i>
+											<i
+												class="d-flex align-self-center fas fa-user fa-lg me-3 fa-fw"></i>
 											<div class="form-outline flex-fill mb-0">
 												<input type="text" id="nome" class="form-control"
 													placeholder="il tuo nome" required name="nome" /> <label
@@ -135,10 +136,9 @@ Collection<?> errori = (Collection<?>) request.getAttribute("errori");
 									</form>
 								</div>
 								<div
-									class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
-									<img
-										src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
-										class="img-fluid" alt="Sample image">
+									class="col-md-8 col-lg-6 d-flex justify-content-center align-items-center order-1 order-lg-2">
+									<img src="./resources/img/registrazione.svg" class="img-fluid"
+										alt="Sample image" style="max-height: 400px">
 								</div>
 							</div>
 						</div>
@@ -161,7 +161,7 @@ Collection<?> errori = (Collection<?>) request.getAttribute("errori");
 
 			</div>
 		</div>
-	</section>
+	</div>
 
 	<script type="text/javascript">
 

@@ -20,15 +20,6 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 <title>WoodLot</title>
 <link rel="stylesheet" type="text/css" href="resources/css/style.css">
 
-<style>
-#cosaPuoiFare {
-	background-color: #C4D89F;
-}
-
-#scegliIlTuoAlbero .card {
-	border-radius: 25px;
-}
-</style>
 </head>
 
 <body>
@@ -214,7 +205,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						<h5 class="card-title"><%=bean.getNome()%></h5>
 						<p class="card-text">
 							<strong>CO<sub>2</sub></strong>:
-							<%=bean.getCo2()%>
+							-<%=bean.getCo2()%>
 							kg
 						</p>
 					</div>

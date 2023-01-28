@@ -41,7 +41,7 @@ public class AlberoDAO implements GenericDAO<Albero> {
 
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
-
+		PaeseDiOrigineDAO dao = new PaeseDiOrigineDAO();
 		Albero bean = new Albero();
 
 		String selectSQL = "SELECT * FROM " + AlberoDAO.TABLE_NAME + " WHERE id = ?";
@@ -62,17 +62,16 @@ public class AlberoDAO implements GenericDAO<Albero> {
 				bean.setId(rs.getInt("id"));
 				bean.setNome(rs.getString("nome"));
 				bean.setNomeScientifico(rs.getString("nomeScientifico"));
-				bean.setOnSale(rs.getInt("onSale"));
-				bean.setPaeseDiOrigine(rs.getString("pid"));
+				
+				bean.setPaeseDiOrigine(dao.doRetriveByKey(rs.getString("pid")));
+				
 				bean.setPrezzo(rs.getDouble("prezzo"));
-				bean.setQuantità(rs.getInt("quantità"));
+
 				bean.setSalvaguardia(rs.getInt("Salvaguardia"));
 				bean.setCategories(findProductCategory(bean.getId()));
-				bean.setDoveVienePiantato(rs.getString("doveVienePiantato"));
+
 				bean.setSottotitolo(rs.getString("sottotitolo"));
-				bean.setSaldo(rs.getDouble("saldo"));
-				bean.setTasse(rs.getDouble("tasse"));
-				bean.setDisponibile(rs.getBoolean("disponibile"));
+
 				bean.setBenefici(findProductBenefits(bean.getId()));
 				bean.setCategorie(findProductCategory(bean.getId()));
 				bean.setUsiLocali(findProductUsiLocali(bean.getId()));
@@ -95,7 +94,7 @@ public class AlberoDAO implements GenericDAO<Albero> {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet rs = null;
-
+		PaeseDiOrigineDAO dao = new PaeseDiOrigineDAO();		
 		Collection<Albero> beans = new LinkedList<Albero>();
 
 		String selectSQL = "SELECT * FROM " + AlberoDAO.TABLE_NAME;
@@ -120,17 +119,13 @@ public class AlberoDAO implements GenericDAO<Albero> {
 				bean.setId(rs.getInt("id"));
 				bean.setNome(rs.getString("nome"));
 				bean.setNomeScientifico(rs.getString("nomeScientifico"));
-				bean.setOnSale(rs.getInt("onSale"));
-				bean.setPaeseDiOrigine(rs.getString("pid"));
+
+				bean.setPaeseDiOrigine(dao.doRetriveByKey(rs.getString("pid")));
 				bean.setPrezzo(rs.getDouble("prezzo"));
-				bean.setQuantità(rs.getInt("quantità"));
 				bean.setSalvaguardia(rs.getInt("Salvaguardia"));
 				bean.setCategories(findProductCategory(bean.getId()));
-				bean.setDoveVienePiantato(rs.getString("doveVienePiantato"));
+
 				bean.setSottotitolo(rs.getString("sottotitolo"));
-				bean.setSaldo(rs.getDouble("saldo"));
-				bean.setTasse(rs.getDouble("tasse"));
-				bean.setDisponibile(rs.getBoolean("disponibile"));
 				bean.setCategorie(findProductCategory(bean.getId()));
 				bean.setUsiLocali(findProductUsiLocali(bean.getId()));
 				bean.setBenefici(findProductBenefits(bean.getId()));
@@ -177,12 +172,10 @@ public class AlberoDAO implements GenericDAO<Albero> {
 			stmt.setString(4, item.getDescrizioneBreve());
 			stmt.setDouble(5, item.getAltezza());
 			stmt.setDouble(6, item.getPrezzo());
-			stmt.setString(7, item.getPaeseDiOrigine());
-			stmt.setDouble(8, item.getQuantità());
+			stmt.setString(7, item.getPaeseDiOrigine().getNome());
 			stmt.setDouble(9, item.getCo2());
 			stmt.setDouble(10, item.getSalvaguardia());
 			stmt.setString(11, item.getSottotitolo());
-			stmt.setString(12, item.getDoveVienePiantato());
 
 			stmt.executeUpdate();
 
@@ -237,8 +230,6 @@ public class AlberoDAO implements GenericDAO<Albero> {
 			connection.setAutoCommit(false);
 
 			preparedStatement = connection.prepareStatement(update);
-			preparedStatement.setInt(1, a.getQuantità());
-			preparedStatement.setBoolean(2, a.isDisponibile());
 			preparedStatement.setInt(3, a.getId());
 			preparedStatement.executeUpdate();
 			connection.commit();
@@ -280,17 +271,11 @@ public class AlberoDAO implements GenericDAO<Albero> {
 			stmt.setString(4, item.getDescrizioneBreve());
 			stmt.setDouble(5, item.getPrezzo());
 			stmt.setString(6, item.getSottotitolo());
-			stmt.setString(7, item.getDoveVienePiantato());
 			stmt.setDouble(8, item.getAltezza());
-			stmt.setString(9, item.getPaeseDiOrigine());
-			stmt.setInt(10, item.getOnSale());
-			stmt.setDouble(11, item.getQuantità());
+			stmt.setString(9, item.getPaeseDiOrigine().getNome());
 			stmt.setInt(12, item.getCo2());
 			stmt.setInt(13, item.getSalvaguardia());
-			stmt.setDouble(14, item.getTasse());
-			stmt.setDouble(15, item.getSaldo());
-			stmt.setBoolean(16, item.isDisponibile());
-
+	
 			stmt.setInt(17, item.getId());
 
 			stmt.executeUpdate();
@@ -497,17 +482,11 @@ public class AlberoDAO implements GenericDAO<Albero> {
 				bean.setId(rs.getInt("id"));
 				bean.setNome(rs.getString("nome"));
 				bean.setNomeScientifico(rs.getString("nomeScientifico"));
-				bean.setOnSale(rs.getInt("onSale"));
-				bean.setPaeseDiOrigine(rs.getString("pid"));
 				bean.setPrezzo(rs.getDouble("prezzo"));
-				bean.setQuantità(rs.getInt("quantità"));
 				bean.setSalvaguardia(rs.getInt("Salvaguardia"));
 				bean.setCategories(findProductCategory(bean.getId()));
-				bean.setDoveVienePiantato(rs.getString("doveVienePiantato"));
 				bean.setSottotitolo(rs.getString("sottotitolo"));
-				bean.setSaldo(rs.getDouble("saldo"));
-				bean.setTasse(rs.getDouble("tasse"));
-				bean.setDisponibile(rs.getBoolean("disponibile"));
+
 
 				prods.add(bean);
 			}

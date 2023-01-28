@@ -23,60 +23,6 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 <title>Catalogo</title>
 <!--CSS-->
 <link rel="stylesheet" type="text/css" href="resources/css/style.css">
-<style>
-#regali .card:hover {
-	transform: scale(1.1);
-}
-
-#regali {
-	background-color: #93c572;
-}
-
-#regali .card {
-	transition: transform 0.2s ease;
-}
-
-#myBtn {
-	display: none; /* Hidden by default */
-	position: fixed; /* Fixed/sticky position */
-	bottom: 20px; /* Place the button at the bottom of the page */
-	right: 30px; /* Place the button 30px from the right */
-	z-index: 99; /* Make sure it does not overlap */
-	border: none; /* Remove borders */
-	outline: none; /* Remove outline */
-	background-color: #93c572; /* Set a background color */
-	color: white; /* Text color */
-	cursor: pointer; /* Add a mouse pointer on hover */
-	padding: 15px; /* Some padding */
-	border-radius: 10px; /* Rounded corners */
-	font-size: 18px; /* Increase font size */
-}
-
-#myBtn:hover {
-	background-color: #c4d89d; /* Add a dark-grey background on hover */
-}
-
-.badgeImg {
-	-webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
-	filter: grayscale(100%);
-}
-
-#zodiaco img:hover {
-	border-color: #E1EBEE;
-	box-shadow: 0px 0px 10px 2px rgb(13, 110, 253);
-}
-
-a.dropdown-item:hover {
-	background-color: #C4D89F;
-	border-color: #C4D89F;
-}
-
-.btn-primary.dropdown-toggle:focus {
-	background-color: #C4D89F;
-	border-color: #C4D89F;
-	box-shadow: none;
-}
-</style>
 <!-- Favicon -->
 <link rel="icon" type="image/x-icon" href="resources/img/logo.png">
 </head>
@@ -154,6 +100,8 @@ a.dropdown-item:hover {
 						href="Catalogo?action=paese&paese=Italia">Italia</a></li>
 					<li><a class="dropdown-item"
 						href="Catalogo?action=paese&paese=Perù">Perù</a></li>
+						<li><a class="dropdown-item"
+						href="Catalogo?action=paese&paese=Argentina">Argentina</a></li>
 				</ul>
 			</div>
 			<!-- Usi -->
@@ -221,7 +169,7 @@ a.dropdown-item:hover {
 							<h5 class="card-title"><%=bean.getNome()%></h5>
 							<p class="card-text">
 								<strong>CO<sub>2</sub></strong>:
-								<%=bean.getCo2()%>
+								-<%=bean.getCo2()%>
 								kg
 							</p>
 						</div>
