@@ -12,6 +12,10 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, p {
 	color: black !important;
 }
 
+.text-white {
+	color: white !important;
+}
+
 .btn-success {
 	background-color: #C4D89F;
 	border-color: #C4D89F;
@@ -112,11 +116,13 @@ a:hover {
 .bg-light {
 	background-color: #F4EBC7 !important;
 }
+
 .alert-success {
-    color: white;
-    background-color: #C4D89F;
-    border-color: #C4D89F;
+	color: white;
+	background-color: #C4D89F;
+	border-color: #C4D89F;
 }
+
 .table {
 	color: black;
 }
@@ -128,9 +134,11 @@ thead {
 tbody {
 	background-color: #f4ebc7;
 }
-.text-primary{
+
+.text-primary {
 	color: #93C572 !important;
 }
+
 input.invalid {
 	background-color: #ffdddd;
 }

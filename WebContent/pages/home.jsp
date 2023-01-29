@@ -195,7 +195,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				class="col-lg-3 col-md-6 col-xs-12 col-sm-6
                             col-xs-12 d-flex justify-content-center">
 
-				<div class="card text-center"
+				<div class="col card text-center"
 					style="max-width: 18rem; border-radius: 25px;">
 					<img
 						src="./ServletResources?codiceAzione=fotoProdotto&idFoto=<%=bean1.getNomeFoto()%>"
@@ -204,8 +204,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					<div class="card-body">
 						<h5 class="card-title"><%=bean.getNome()%></h5>
 						<p class="card-text">
-							<strong>CO<sub>2</sub></strong>:
-							-<%=bean.getCo2()%>
+							<strong>CO<sub>2</sub></strong>: -<%=bean.getCo2()%>
 							kg
 						</p>
 					</div>
@@ -299,4 +298,21 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 	</div>
 	<!-- Footer -->
 	<%@ include file="../fragments/footer.jsp"%>
+
+	<!-- Animare le img al passare del mouse (consiglio alberi)-->
+	<script>
+		$(document).ready(function() {
+			$('.card-img-top').hover(function() {
+				$(this).animate({
+					width : '+=20%',
+					'margin-left' : '-=10%'
+				}, 500);
+			}, function() {
+				$(this).animate({
+					width : '100%',
+					'margin-left' : '0'
+				}, 500);
+			});
+		});
+	</script>
 </body>

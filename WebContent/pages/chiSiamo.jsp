@@ -30,6 +30,9 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 
 <!-- Favicon -->
 <link rel="icon" type="image/x-icon" href="resources/img/logo.png">
+<style>
+
+</style>
 </head>
 <body>
 	<!-- Header -->
@@ -123,7 +126,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			class="Sì, questo è esempio di DOM manipulation con jQuery. Nello specifico, questo codice gestisce gli eventi click su diversi elementi della pagina (ad esempio, il bottone "
 			myProfileButton") e modifica la classe degli elementi correlati (ad
 			esempio, il div "myProfileMenu") in base all'evento triggerato. In
-			questo caso, la classe "d-none" viene aggiunta o rimossadaglielementipermostrarlionasconderli.text-center">Il
+			questocaso, laclasse "d-none" vieneaggiuntaorimossadaglielementipermostrarlionasconderli.text-center">Il
 			nostro obiettivo principale è contrastare la crisi climatica
 			alimentando un modello di sviluppo sostenibile.</p>
 
@@ -250,13 +253,10 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			</div>
 
 			<div class="col-lg-6">
-				<svg class="bd-placeholder-img rounded-circle" width="140"
-					height="140" xmlns="http://www.w3.org/2000/svg" role="img"
-					aria-label="Placeholder: 140x140"
-					preserveAspectRatio="xMidYMid slice" focusable="false">
-						<title>Placeholder</title><rect width="100%" height="100%"
-						fill="#777"></rect>
-						<text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+				<img src = "./resources/img/team/IMG_8490.JPG" class="rounded mx-auto d-block" width="250"
+					height="250" xmlns="http://www.w3.org/2000/svg" role="img"
+					preserveAspectRatio="xMidYMid slice" > 
+				
 
 				<h2>Alessia Ture</h2>
 				<p>La mia idea di progresso è un mondo più sano e sostenibile.
@@ -327,7 +327,6 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
 					width="500" height="500" src="resources/img/chiSiamo/chiSiamo.jpg">
 
-
 			</div>
 		</div>
 
@@ -367,8 +366,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 
 		<div class="row featurette">
 			<div class="col-md-7 order-md-2">
-				<h2 class="">Piantare alberi è (sempre) una
-					buona idea?</h2>
+				<h2 class="">Piantare alberi è (sempre) una buona idea?</h2>
 				<p class="lead">Negli ultimi anni sono stati annunciati enormi
 					progetti di piantumazione di alberi. Sono popolari, raccontati in
 					molti canali mediatici e spesso hanno numeri sbalorditivi. Ci sono
@@ -414,8 +412,9 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						style="background-image: url('resources/img/chiSiamo/guatemala.jpg');">
 						<div
 							class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
-							<h4 class="pt-5 mt-5 mb-4 lh-1 fw-bold">Guatemala
-								- Regione del Petén</h4>
+							<h3 style="color: white !important"
+								class="pt-5 mt-5 mb-4 lh-1 fw-bold">Guatemala - Regione del
+								Petén</h3>
 						</div>
 					</div>
 				</div>
@@ -426,8 +425,9 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						style="background-image: url('resources/img/chiSiamo/pery.jpeg');">
 						<div
 							class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
-							<h3 class="pt-5 mt-5 mb-4  lh-1 fw-bold">Perù -
-								Foresta amazzonica</h3>
+							<h3 style="color: white !important"
+								class="pt-5 mt-5 mb-4  lh-1 fw-bold ">Perù - Foresta
+								amazzonica</h3>
 						</div>
 					</div>
 				</div>
@@ -436,9 +436,10 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					<div
 						class="card card-cover h-100 overflow-hidden text-white bg-trasparent rounded-5 shadow-lg"
 						style="background-image: url('resources/img/chiSiamo/italia.jpg');">
-						<div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
-							<h3 class="pt-5 mt-5 mb-4  lh-1 fw-bold">Italia -
-								Diverse regioni italiane</h3>
+						<div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1 ">
+							<h3 style="color: white !important"
+								class="pt-5 mt-5 mb-4  lh-1 fw-bold ">Italia - Diverse
+								regioni italiane</h3>
 						</div>
 					</div>
 				</div>
@@ -447,8 +448,9 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						class="card card-cover h-100 overflow-hidden text-white bg-trasparent rounded-5 shadow-lg"
 						style="background-image: url('resources/img/chiSiamo/10.webp');">
 						<div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
-							<h3 class="pt-5 mt-5 mb-4  lh-1 fw-bold">Argentina -
-								Regione della Patagonia</h3>
+							<h3 style="color: white !important"
+								class="pt-5 mt-5 mb-4  lh-1 fw-bold">Argentina - Regione
+								della Patagonia</h3>
 						</div>
 					</div>
 				</div>
@@ -670,12 +672,6 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			})
 		});
 	</script>
-	<!-- Per animare il team -->
-	<script type="text/javascript">
-		$(".hover").mouseleave(function() {
-			$(this).removeClass("hover");
-		});
-	</script>
 
 	<!--Manipolazione DOM  su pulsante Perchè WoodLot? -->
 	<script>
@@ -701,13 +697,12 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 							$(".perchèWLOl")
 									.append(
 											"<li><b>Una bella storia è importante:</b> un albero WoodLot è una storia che emoziona che chiunque può vivere in prima persona. È un racconto fatto di natura e dei contadini che se ne prendono cura. Un albero può raccontare la storia in cui credi e che vuoi condividere.</li>");
-							
+
 							$("html, body").animate({
-								   scrollTop: $(".perchèWLDiv").offset().top
-								}, 200);
+								scrollTop : $(".perchèWLDiv").offset().top
+							}, 200);
 
 						});
-		
 	</script>
 	<!--Manipolazione DOM  su pulsante Un albero, che idea! -->
 	<script>
@@ -728,8 +723,68 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 													+ "seguire la storia del progetto online. Originariamente ispirato dal celebre gioco online FarmVille,"
 													+ "WoodLot ha aggiornato il concetto del piantare alberi grazie alla propria piattaforma interattiva </p>");
 							$("html, body").animate({
-								   scrollTop: $(".ideaAlberoDiv").offset().top
-								}, 200);
+								scrollTop : $(".ideaAlberoDiv").offset().top
+							}, 200);
+						});
+	</script>
+
+	<!-- Animazione delle immagini Molto più di un albero -->
+	<script>
+		$(document)
+				.ready(
+						function() {
+							$(".featurette-image")
+									.eq(0)
+									.mouseenter(
+											function() {
+												$(this)
+														.after(
+																"<p class='text-overlay lead'>Dei contadini in vivivaio in Guatemala</p>");
+											});
+
+							$(".featurette-image").eq(0).mouseleave(function() {
+								$(".text-overlay").remove();
+							});
+
+							$(".featurette-image")
+									.eq(1)
+									.mouseenter(
+											function() {
+												$(this)
+														.after(
+																"<p class='text-overlay lead'>Dei bambini peruviani</p>");
+											});
+
+							$(".featurette-image").eq(1).mouseleave(function() {
+								$(".text-overlay").remove();
+							});
+
+							$(".featurette-image")
+									.eq(2)
+									.mouseenter(
+											function() {
+												$(this)
+														.after(
+																"<p class='text-overlay lead'>Piantumazione di un albero</p>");
+											});
+
+							$(".featurette-image").eq(2).mouseleave(function() {
+								$(".text-overlay").remove();
+							});
+
+							$(".featurette-image")
+									.eq(3)
+									.mouseenter(
+											function() {
+												$(this)
+														.after(
+																"<p class='text-overlay lead'>Una nostra contadina argetina</p>");
+											});
+
+							$(".featurette-image").eq(3).mouseleave(function() {
+								$(".text-overlay").remove();
+							});
+							
 						});
 	</script>
 </body>

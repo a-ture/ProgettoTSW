@@ -38,8 +38,8 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 	padding: 0.5rem 1rem;
 	color: #212529;
 	text-decoration: none;
-	background-color: transparent!important;
-	border-color: transparent!important;
+	background-color: transparent !important;
+	border-color: transparent !important;
 }
 </style>
 </head>
@@ -61,20 +61,12 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						<button type="button" data-bs-target="#demo" data-bs-slide-to="0"
 							class="active"></button>
 						<button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
-						<button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+
 					</div>
 
 					<!-- The slideshow/carousel -->
 					<div class="carousel-inner">
 						<div class="carousel-item active">
-
-							<img
-								src="./ServletResources?codiceAzione=fotoProdotto&idFoto=<%=foto[0].getNomeFoto()%>"
-								class="d-block w-100 img-fluid"
-								onerror="this.src='./resources/img/error.jpg'">
-
-						</div>
-						<div class="carousel-item">
 							<img
 								src="./ServletResources?codiceAzione=fotoProdotto&idFoto=<%=foto[1].getNomeFoto()%>"
 								class="d-block w-100 img-fluid"
@@ -193,7 +185,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 
 								<div class="col">
 									<%
-									int stelleColorateCo2 = prodotto.getCo2() % 7;
+									int stelleColorateCo2 = prodotto.getCo2() % 6;
 									int stelleNonColorateCo2 = 5 - stelleColorateCo2;
 									for (int i = 0; i < stelleColorateCo2; i++) {
 									%>
@@ -201,7 +193,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 										src="./resources/img/rating/Star1.svg"></span>
 									<%
 									}
-									for (int i = stelleNonColorateCo2; i > 0; i--) {
+									for (int i = 0; i < stelleNonColorateCo2; i++) {
 									%>
 									<span><img class="mx-1"
 										src="./resources/img/rating/Star5.svg"></span>
@@ -249,7 +241,8 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 								data-bs-target="#informazioniUsiLocali"><i
 								class="fa-solid fa-circle-info text-end p-2"></i></a>
 						</h4>
-						<ul class="list-group list-group-horizontal text-center d-flex align-items-center justify-content-center  m-3">
+						<ul
+							class="list-group list-group-horizontal text-center d-flex align-items-center justify-content-center  m-3">
 							<%
 							Collection<UsoLocale> usiLocali = prodotto.getUsiLocali();
 							if (usiLocali != null && usiLocali.size() != 0) {
@@ -265,187 +258,188 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 										src="./ServletResources?codiceAzione=fotoUsoLocale&idUsoLocale=<%=uso.getId()%>">
 
 									<h5 class="mb-0"><%=uso.getNome()%></h5>
-									</div>
+								</div>
 							</li>
-					
-					<%
-					}
-					}
-					%>
-					</ul>
+
+							<%
+							}
+							}
+							%>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="col">
+				<div class="card d-flex align-items-center justify-content-center"
+					style="background: #c4d89d;">
+					<div class="card-body">
+						<h4 class="card-title">
+							Benefici <a class="card-link" data-bs-toggle="modal"
+								data-bs-target="#informazioniBenefici"><i
+								class="fa-solid fa-circle-info text-end p-2"></i></a>
+						</h4>
+
+						<ul
+							class="list-group list-group-horizontal text-center d-flex align-items-center justify-content-center">
+							<%
+							Collection<Beneficio> benefici = prodotto.getBenefici();
+							if (benefici != null && benefici.size() != 0) {
+								Iterator<?> it2 = benefici.iterator();
+
+								while (it2.hasNext()) {
+									Beneficio cat = (Beneficio) it2.next();
+							%>
+							<li class="list-group-item" style="max-width: 10rem;">
+								<div class="years-<%=(int) cat.getPercentuale()%> m-2">
+									<img onerror="this.src='./resources//img/error.jpg'"
+										src="./ServletResources?codiceAzione=fotoBeneficio&idBeneficio=<%=cat.getId()%>"
+										class="avatar">
+								</div>
+
+								<h5><%=cat.getNome()%></h5>
+								<p><%=cat.getPercentuale()%>/5
+								</p>
+							</li>
+							<%
+							}
+							}
+							%>
+
+						</ul>
+					</div>
 				</div>
 			</div>
 		</div>
-		<div class="col">
-			<div class="card d-flex align-items-center justify-content-center"
-				style="background: #c4d89d;">
-				<div class="card-body">
-					<h4 class="card-title">
-						Benefici <a class="card-link" data-bs-toggle="modal"
-							data-bs-target="#informazioniBenefici"><i
-							class="fa-solid fa-circle-info text-end p-2"></i></a>
-					</h4>
 
-					<ul
-						class="list-group list-group-horizontal text-center d-flex align-items-center justify-content-center">
-						<%
-						Collection<Beneficio> benefici = prodotto.getBenefici();
-						if (benefici != null && benefici.size() != 0) {
-							Iterator<?> it2 = benefici.iterator();
+		<!-- Dove Viene Piantato -->
+		<div class="text-center m-4">
+			<br> <br>
+			<h3>Dove Viene Piantato?</h3>
+			<p class="lead"><%=prodotto.getPaeseDiOrigine().getDescrizione()%></p>
+		</div>
+		<div class="text-center">
+			<div class="magnifier d-none d-sm-block">
+				<div class="large"
+					style="background: url('./ServletResources?codiceAzione=fotoPaeseDiOrigine&idPaese=<%=prodotto.getPaeseDiOrigine().getNome()%>') no-repeat;"></div>
 
-							while (it2.hasNext()) {
-								Beneficio cat = (Beneficio) it2.next();
-						%>
-						<li class="list-group-item" style="max-width: 10rem;">
-							<div class="years-<%=(int) cat.getPercentuale()%> m-2">
-								<img onerror="this.src='./resources//img/error.jpg'"
-									src="./ServletResources?codiceAzione=fotoBeneficio&idBeneficio=<%=cat.getId()%>"
-									class="avatar">
-							</div>
-
-							<h5><%=cat.getNome()%></h5>
-							<p><%=cat.getPercentuale()%>/5
-							</p>
-						</li>
-						<%
-						}
-						}
-						%>
-
-					</ul>
-				</div>
+				<img
+					src="./ServletResources?codiceAzione=fotoPaeseDiOrigine&idPaese=<%=prodotto.getPaeseDiOrigine().getNome()%>"
+					class="img-fluid small" height="626px" width="925px"
+					onerror="this.src='./resources//img/error.jpg'">
 			</div>
 		</div>
-	</div>
-
-	<!-- Dove Viene Piantato -->
-	<div class="text-center m-4">
-		<br> <br>
-		<h3>Dove Viene Piantato?</h3>
-		<p class="lead"><%=prodotto.getPaeseDiOrigine().getDescrizione()%></p>
-	</div>
-	<div class="text-center">
-		<div class="magnifier d-none d-sm-block">
-			<div class="large"
-				style="background: url('./ServletResources?codiceAzione=fotoPaeseDiOrigine&idPaese=<%=prodotto.getPaeseDiOrigine()%>') no-repeat;"></div>
-
-			<img
-				src="./ServletResources?codiceAzione=fotoPaeseDiOrigine&idPaese=<%=prodotto.getPaeseDiOrigine()%>"
-				class="img-fluid small" height="626px" width="925px"
-				onerror="this.src='./resources//img/error.jpg'">
-		</div>
-	</div>
-	<!-- Categorie -->
-	<%Collection<Categoria> cat = prodotto.getCategorie();
+		<!-- Categorie -->
+		<%Collection<Categoria> cat = prodotto.getCategorie();
 if (cat != null && cat.size() != 0) {
 	Iterator<Categoria> it = cat.iterator();
 	while (it.hasNext()) {
 		Categoria c = it.next();%>
 
-	<div id="categorie">
-		<div class="box">
-			<h1 class="text-center">
-				Perchè
-				<%=c.getNome()%>?
-			</h1><%=c.getDescrizione()%></div>
-		<div class="cardCategoriaImage">
-			<div id="imageCategorie">
-				<img id="<%=c.getId()%>" class="img-fluid rounded" height="600px"
-					width="600px" onerror="this.src='./resources//img/error.jpg'"
-					src="./ServletResources?codiceAzione=fotoCategoria&idCategoria=<%=c.getId()%>"
-					alt="img-200-300">
-			</div>
-		</div>
-	</div>
-	<%}
-}%>
-	<div class="m-5"></div>
-	<div class="row b-example-divider"></div>
-	<!-- Cosa Vuol Dire Piantare Un albero con WoodLot -->
-	<br>
-	<br>
-	<h2 class="text-center">Cosa vuol dire piantare un albero con
-		WoodLot</h2>
-	<div class="row row-cols-1 row-cols-md-3 row-cols-lg-3 text-center m-5">
-		<div class="col">
-			<h1>
-				<i class="fa-solid fa-location-dot text-info"></i>
-			</h1>
-			<h4>Trasparenza e tracciabilità</h4>
-			<p>Tutti gli Alberi sono geolocalizzati e fotografati quando
-				vengono piantati. Dal momento dell'acquisto è necessario attendere
-				da alcune settimane a qualche mese prima che un albero sia pronto
-				per essere piantato.</p>
-		</div>
-		<div class="col">
-			<h1>
-				<i class="fa-solid fa-book text-warning"></i>
-			</h1>
-			<h4>Un racconto che dura nel tempo</h4>
-			<p>Ogni albero ha il proprio Diario, una pagina online dove
-				scoprirai le sue caratteristiche e seguirai la storia del progetto
-				di cui fa parte.</p>
-		</div>
-		<div class="col">
-			<h1>
-				<i class="fa-solid fa-gift text-danger"></i>
-			</h1>
-			<h4>Un regalo originale</h4>
-			<p>Regalare un albero è semplicissimo. Puoi farlo durante la
-				procedura d'acquisto o in qualunque momento dal tuo profilo,
-				scegliendo la modalità che preferisci (via mail, messaggio o
-				stampando un biglietto da consegnare a mano).</p>
-		</div>
-	</div>
-
-	<div class="row b-example-divider"></div>
-	<!-- Prodotti Consigliati  -->
-	<h1 class="m-3 text-center">Pianta altri alberi</h1>
-	<div class="row d-flex justify-content-center gb-3 ">
-		<%
-		if (prodotti != null && prodotti.size() != 0) {
-			Iterator<?> it = prodotti.iterator();
-			Iterator<?> it1 = fotoProdotti.iterator();
-			for (int i = 0; i < 4; i++) {
-				Albero bean = (Albero) it.next();
-				FotoProdotto bean1 = (FotoProdotto) it1.next();
-		%>
-		<div
-			class="col-lg-3 col-md-6 col-xs-12 col-sm-6
-                            col-xs-12 d-flex justify-content-center mb-3">
-
-			<div class="card text-center"
-				style="max-width: 18rem; border-radius: 25px;">
-				<img
-					src="./ServletResources?codiceAzione=fotoProdotto&idFoto=<%=bean1.getNomeFoto()%>"
-					onerror="this.src='./resources//img/error.jpg'"
-					class="card-img-top" />
-				<div class="card-body">
-					<h5 class="card-title"><%=bean.getNome()%></h5>
-					<p class="card-text">
-
-						<strong>CO<sub>2</sub></strong>: -<%=bean.getCo2()%>
-						kg
-					</p>
-				</div>
-				<ul class="list-group list-group-light list-group-small">
-					<li class="list-group-item px-4"><strong>Prezzo:</strong> <%=dFormat.format(bean.getPrezzo())%>
-						€</li>
-				</ul>
-				<div class="card-body">
-					<a href="Prodotto?action=leggiProdotto&id=<%=bean.getId()%>"
-						class="btn btn-rounded"
-						style="background-color: #5E7250; color: white">Scopri di più!</a>
+		<div id="categorie">
+			<div class="box">
+				<h1 class="text-center">
+					Perchè
+					<%=c.getNome()%>?
+				</h1><%=c.getDescrizione()%></div>
+			<div class="cardCategoriaImage">
+				<div id="imageCategorie">
+					<img id="<%=c.getId()%>" class="img-fluid rounded" height="600px"
+						width="600px" onerror="this.src='./resources//img/error.jpg'"
+						src="./ServletResources?codiceAzione=fotoCategoria&idCategoria=<%=c.getId()%>"
+						alt="img-200-300">
 				</div>
 			</div>
 		</div>
 		<%}
 }%>
-	</div>
-	<div class="col-md-12 text-center">
-		<a class="btn btn-primary m-3" href="Catalogo" role="button">Vedi
-			tutti gli alberi</a>
-	</div>
+		<div class="m-5"></div>
+		<div class="row b-example-divider"></div>
+		<!-- Cosa Vuol Dire Piantare Un albero con WoodLot -->
+		<br> <br>
+		<h2 class="text-center">Cosa vuol dire piantare un albero con
+			WoodLot</h2>
+		<div
+			class="row row-cols-1 row-cols-md-3 row-cols-lg-3 text-center m-5">
+			<div class="col">
+				<h1>
+					<i class="fa-solid fa-location-dot text-info"></i>
+				</h1>
+				<h4>Trasparenza e tracciabilità</h4>
+				<p>Tutti gli Alberi sono geolocalizzati e fotografati quando
+					vengono piantati. Dal momento dell'acquisto è necessario attendere
+					da alcune settimane a qualche mese prima che un albero sia pronto
+					per essere piantato.</p>
+			</div>
+			<div class="col">
+				<h1>
+					<i class="fa-solid fa-book text-warning"></i>
+				</h1>
+				<h4>Un racconto che dura nel tempo</h4>
+				<p>Ogni albero ha il proprio Diario, una pagina online dove
+					scoprirai le sue caratteristiche e seguirai la storia del progetto
+					di cui fa parte.</p>
+			</div>
+			<div class="col">
+				<h1>
+					<i class="fa-solid fa-gift text-danger"></i>
+				</h1>
+				<h4>Un regalo originale</h4>
+				<p>Regalare un albero è semplicissimo. Puoi farlo durante la
+					procedura d'acquisto o in qualunque momento dal tuo profilo,
+					scegliendo la modalità che preferisci (via mail, messaggio o
+					stampando un biglietto da consegnare a mano).</p>
+			</div>
+		</div>
+
+		<div class="row b-example-divider"></div>
+		<!-- Prodotti Consigliati  -->
+		<h1 class="m-3 text-center">Pianta altri alberi</h1>
+		<div class="row d-flex justify-content-center gb-3 ">
+			<%
+			if (prodotti != null && prodotti.size() != 0) {
+				Iterator<?> it = prodotti.iterator();
+				Iterator<?> it1 = fotoProdotti.iterator();
+				for (int i = 0; i < 4; i++) {
+					Albero bean = (Albero) it.next();
+					FotoProdotto bean1 = (FotoProdotto) it1.next();
+			%>
+			<div
+				class="col-lg-3 col-md-6 col-xs-12 col-sm-6
+                            col-xs-12 d-flex justify-content-center mb-3">
+
+				<div class="col card text-center"
+					style="max-width: 18rem; border-radius: 25px;">
+					<img
+						src="./ServletResources?codiceAzione=fotoProdotto&idFoto=<%=bean1.getNomeFoto()%>"
+						onerror="this.src='./resources//img/error.jpg'"
+						class="card-img-top" />
+					<div class="card-body">
+						<h5 class="card-title"><%=bean.getNome()%></h5>
+						<p class="card-text">
+
+							<strong>CO<sub>2</sub></strong>: -<%=bean.getCo2()%>
+							kg
+						</p>
+					</div>
+					<ul class="list-group list-group-light list-group-small">
+						<li class="list-group-item px-4"><strong>Prezzo:</strong> <%=dFormat.format(bean.getPrezzo())%>
+							€</li>
+					</ul>
+					<div class="card-body">
+						<a href="Prodotto?action=leggiProdotto&id=<%=bean.getId()%>"
+							class="btn btn-rounded"
+							style="background-color: #5E7250; color: white">Scopri di
+							più!</a>
+					</div>
+				</div>
+			</div>
+			<%}
+}%>
+		</div>
+		<div class="col-md-12 text-center">
+			<a class="btn btn-primary m-3" href="Catalogo" role="button">Vedi
+				tutti gli alberi</a>
+		</div>
 	</div>
 	<!-- Modal Informazioni Usi Locali -->
 	<div class="modal fade" id="informazioniUsiLocali" tabindex="-1"
@@ -522,7 +516,8 @@ if (cat != null && cat.size() != 0) {
 						finanziare un contadino per piantare un albero e sostenerlo fino a
 						quando non sarà produttivo. Con WoodLot infatti un albero è molto
 						più di un albero. Ecco cosa è incluso nel prezzo:</p>
-					<ol class="d-grid gap-4 my-2 list-group list-group-numbered">
+					<ol
+						class="d-grid gap-4 my-2 list-group list-group-numbered text-black">
 						<li class="d-flex">Avvio del progetto</li>
 						<li class="d-flex ">Costruzione del vivaio e produzione delle
 							piantine</li>
@@ -545,14 +540,11 @@ if (cat != null && cat.size() != 0) {
 						<li class="d-flex">Approvazione della foto e controllo delle
 							coordinate di ogni singolo albero da parte dei nostri agronomi
 							specializzati.</li>
-						<li class="d-flex">Assegnazione all’albero di un ID univoco e
+						<li class="">Assegnazione all’albero di un ID univoco e
 							inserimento dell’albero <a
-							href="ChiSiamoServlet#registroDegliAlberi" class="card-link">nel
-								registro pubblico</a>
+							href="ChiSiamoServlet#registroDegliAlberi"> nel registro</a> 
 						</li>
-						<li class="d-flex">Aggiornamenti periodici sul progetto, con
-							un focus sui benefici ambientali e sociali, pubblicati nel Diario
-							dell’Albero</li>
+
 					</ol>
 					<button type="button" class="btn btn-lg btn-primary mt-5 w-100"
 						data-bs-dismiss="modal">Ho capito!</button>
@@ -627,6 +619,22 @@ if (cat != null && cat.size() != 0) {
 		      }
 		    }
 		  });
+		});
+	</script>
+	<!-- Animare le img al passare del mouse (consiglio alberi)-->
+	<script>
+		$(document).ready(function() {
+			$('.card-img-top').hover(function() {
+				$(this).animate({
+					width : '+=20%',
+					'margin-left' : '-=10%'
+				}, 500);
+			}, function() {
+				$(this).animate({
+					width : '100%',
+					'margin-left' : '0'
+				}, 500);
+			});
 		});
 	</script>
 </body>

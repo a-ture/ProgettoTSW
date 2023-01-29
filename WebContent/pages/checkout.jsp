@@ -226,7 +226,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 							<div class="col-md-6">
 								<label for="cartaCreditoNumero" class="form-label">Numero
 									della carta di credito </label> <input type="text" class="form-control"
-									id="cartaCreditoNumero" placeholder="XXXX-XXXX-XXXX" required
+									id="cartaCreditoNumero" placeholder="XXXXXXXXXXXX" required
 									name="cartaCreditoNumero">
 								<div class="invalid-feedback">Il numero della carta di
 									credito è obbligatorio</div>

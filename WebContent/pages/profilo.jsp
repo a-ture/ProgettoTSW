@@ -335,7 +335,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 								<img style="max-heigt: 90px;"
 									src="./ServletResources?codiceAzione=fotoProdottoOrdine&idProdottoOrdine=<%=prodottoOrdine.getId()%>"
 									class="img-fluid rounded-start"
-									onerror="this.src='./resources//img/error.jpg'">
+									onerror="this.src='./resources//img/Seeding-bro.svg'">
 							</div>
 							<div class="col-md-8">
 								<div class="card-body">

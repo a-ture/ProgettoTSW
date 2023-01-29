@@ -100,7 +100,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						href="Catalogo?action=paese&paese=Italia">Italia</a></li>
 					<li><a class="dropdown-item"
 						href="Catalogo?action=paese&paese=Perù">Perù</a></li>
-						<li><a class="dropdown-item"
+					<li><a class="dropdown-item"
 						href="Catalogo?action=paese&paese=Argentina">Argentina</a></li>
 				</ul>
 			</div>
@@ -143,8 +143,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			<%
 			}
 			%>
-			<div
-				class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3"
+			<div class="row  d-flex justify-content-center mx-5 mt-3 gy-3"
 				id="catalogo">
 				<%
 				if (prodotti != null && prodotti.size() != 0) {
@@ -156,26 +155,24 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				%>
 				<!-- Card  -->
 				<div
-					class="col-lg-3 col-md-6 col-xs-12 col-sm-6
+					class="col-lg-3 col-md-4 col-xs-12 col-sm-6
                             col-xs-12 d-flex justify-content-center">
 
-					<div class="card text-center"
-						style="max-width: 18rem; border-radius: 25px;">
+					<div class="card text-center col"
+						style="max-width: 15rem; border-radius: 25px;">
 						<img
 							src="./ServletResources?codiceAzione=fotoProdotto&idFoto=<%=bean1.getNomeFoto()%>"
 							onerror="this.src='./resources//img/error.jpg'"
-							class="card-img-top" />
+							class="card-img-top" width="200" />
 						<div class="card-body">
 							<h5 class="card-title"><%=bean.getNome()%></h5>
 							<p class="card-text">
-								<strong>CO<sub>2</sub></strong>:
-								-<%=bean.getCo2()%>
+								<strong>CO<sub>2</sub></strong>: -<%=bean.getCo2()%>
 								kg
 							</p>
 						</div>
 						<ul class="list-group list-group-light list-group-small">
-							<li class="list-group-item px-4"><strong>Prezzo:</strong> <%=dFormat.format(bean.getPrezzo())%>
-								€</li>
+							<li class="list-group-item px-4"><strong>Prezzo:</strong> <%=dFormat.format(bean.getPrezzo())%>€</li>
 						</ul>
 						<div class="card-body">
 							<a href="Prodotto?action=leggiProdotto&id=<%=bean.getId()%>"
@@ -197,39 +194,43 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 	<%@ include file="../fragments/footer.jsp"%>
 
 	<script type="text/javascript">
-		// per animare il button torna su
-		//Get the button:
-		mybutton = document.getElementById("myBtn");
+		$(document).ready(
+				function() {
 
-		// When the user scrolls down 20px from the top of the document, show the button
-		window.onscroll = function() {
-			scrollFunction()
-		};
+					//Get the button:
+					var mybutton = $("#myBtn");
 
-		function scrollFunction() {
-			if (document.body.scrollTop > 20
-					|| document.documentElement.scrollTop > 20) {
-				mybutton.style.display = "block";
-			} else {
-				mybutton.style.display = "none";
-			}
-		}
+					$(window).scroll(
+							function() {
+								if ($(document).scrollTop() > 20
+										|| $(document).scrollTop() > 20) {
+									mybutton.show();
+								} else {
+									mybutton.hide();
+								}
+							});
 
-		// When the user clicks on the button, scroll to the top of the document
-		function topFunction() {
-			document.body.scrollTop = 0; // For Safari
-			document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-		}
+					// When the user clicks on the button, scroll to the top of the document
+					mybutton.click(function() {
+						$("html, body").animate({
+							scrollTop : 0
+						}, 200);
+					});
+				});
 	</script>
-	<!-- Cambiare src on hover -->
+	<!-- Animare le img al passare del mouse -->
 	<script>
-		$(".img-social").hover(function() {
-			$(this).attr("src", function(index, attr) {
-				return attr.replace(".png", "-active.png");
-			})
-		}, function() {
-			$(this).attr("src", function(index, attr) {
-				return attr.replace("-active.png", ".png");
+		$(document).ready(function() {
+			$('.card-img-top').hover(function() {
+				$(this).animate({
+					width : '+=20%',
+					'margin-left' : '-=10%'
+				}, 500);
+			}, function() {
+				$(this).animate({
+					width : '100%',
+					'margin-left' : '0'
+				}, 500);
 			});
 		});
 	</script>
