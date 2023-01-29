@@ -31,7 +31,17 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 <meta charset="UTF-8">
 <title><%=prodotto.getNome()%></title>
 <!--CSS-->
-
+<style>
+.list-group-item {
+	position: relative;
+	display: block;
+	padding: 0.5rem 1rem;
+	color: #212529;
+	text-decoration: none;
+	background-color: transparent!important;
+	border-color: transparent!important;
+}
+</style>
 </head>
 <body>
 	<!-- Header -->

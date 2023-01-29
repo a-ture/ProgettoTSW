@@ -61,10 +61,10 @@ public class ServletAdmin extends HttpServlet {
 		}
 		try {
 			Collection<Albero> prodotti = dao.doRetriveAll("");
-			request.setAttribute("prodotti", prodotti);
+			request.getSession().setAttribute("prodotti", prodotti);
 
 			Collection<Ordine> ordini = dao1.doRetriveAll("");
-			request.setAttribute("ordini", ordini);
+			request.getSession().setAttribute("ordini", ordini);
 
 			double totale = 0;
 			if (ordini != null && ordini.size() > 0) {
@@ -78,14 +78,14 @@ public class ServletAdmin extends HttpServlet {
 			request.setAttribute("totaleIncassi", totale);
 
 			Collection<Utente> utenti = dao2.doRetriveAll("");
-			request.setAttribute("utenti", utenti);
+			request.getSession().setAttribute("utenti", utenti);
 
 
 			Collection<Categoria> categorie = dao4.doRetriveAll(null);
-			request.setAttribute("categorie", categorie);
+			request.getSession().setAttribute("categorie", categorie);
 
 			Collection<UsoLocale> usi = dao5.doRetriveAll(null);
-			request.setAttribute("usi", usi);
+			request.getSession().setAttribute("usi", usi);
 
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -41,7 +41,7 @@ Collection<?> errori = (Collection<?>) request.getAttribute("errori");
 <link rel="icon" type="image/x-icon" href="resources/img/logo.png">
 </head>
 <body>
-	<div class="vh-100 bg-dark">
+	<div class="vh-100 mh-100 bg-dark ">
 		<div class="container">
 			<div
 				class="row py-3 d-flex justify-content-center align-items-center">

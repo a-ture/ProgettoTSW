@@ -4,12 +4,11 @@
 	import="java.util.*,it.unisa.beans.*, java.text.*, java.time.*, java.time.format.DateTimeFormatter"%>
 
 <%
-Collection<?> ordini = (Collection<?>) request.getAttribute("ordini");
-Collection<?> utenti = (Collection<?>) request.getAttribute("utenti");
-Collection<?> prodotti = (Collection<?>) request.getAttribute("prodotti");
-Collection<?> kits = (Collection<?>) request.getAttribute("kits");
-Collection<?> categorie = (Collection<?>) request.getAttribute("categorie");
-Collection<?> usi = (Collection<?>) request.getAttribute("usi");
+Collection<?> ordini = (Collection<?>) request.getSession().getAttribute("ordini");
+Collection<?> utenti = (Collection<?>) request.getSession().getAttribute("utenti");
+Collection<?> prodotti = (Collection<?>) request.getSession().getAttribute("prodotti");
+Collection<?> categorie = (Collection<?>) request.getSession().getAttribute("categorie");
+Collection<?> usi = (Collection<?>) request.getSession().getAttribute("usi");
 
 DecimalFormat dFormat = new DecimalFormat("0.00");
 %>
@@ -28,7 +27,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 <link rel="stylesheet" type="text/css"
 	href="resources/css/_bootswatch.scss">
 <link rel="stylesheet" type="text/css"
-	href="resources/css/styleAdmin.css">
+	href="resources/css/style.css">
 
 <!-- JavaScript Bundle with Popper -->
 <script
@@ -74,13 +73,13 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						<li class="nav-item"><a class="nav-link active"
 							aria-current="page" href="#dashboard"><i
 								class="fas fa-tachometer-alt"> Pannello di Controllo</i></a></li>
-						<li class="nav-item dropdown"><a class="nav-link"
+						<li class="nav-item dropdown"><a class="nav-link active"
 							href="#prod"><i class="fas fa-tshirt"> Gestione Prodotti</i></a></li>
-						<li class="nav-item"><a class="nav-link" href="#ordine"><i
+						<li class="nav-item"><a class="nav-link active" href="#ordine"><i
 								class="fas fa-shopping-cart"> Gestione Ordini</i></a></li>
-						<li class="nav-item"><a class="nav-link" href="#user"><i
+						<li class="nav-item"><a class="nav-link active" href="#user"><i
 								class="fas fa-user-circle"> Gestione Utenti</i></a></li>
-						<li class="nav-item"><a class="nav-link" href="#"
+						<li class="nav-item active"><a class="nav-link active" href="#"
 							data-bs-toggle="modal" data-bs-target="#exampleModal"><i
 								class="fas fa-sign-out-alt"> Log Out</i></a></li>
 					</ul>
@@ -91,11 +90,11 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 		<div id="dashboard">
 			<br>
 			<br>
-			<h1 class="my-5 border-bottom text-center">Welcome back!</h1>
+			<h1 class="my-5 text-center">Welcome back!</h1>
 			<div class="count-up mt-3 mb-5 text-center">
 				<div class="wrapper">
 					<div class="card h-100 w-100">
-						<img src="resources/img/chiSiamoPage/info_users.svg" height="200"
+						<img src="resources/img/chiSiamo/info_users.svg" height="200"
 							width="200" class="card-img-top">
 						<div class="card-body">
 							<h5 class="card-title">Utenti</h5>
@@ -105,7 +104,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				</div>
 				<div class="wrapper">
 					<div class="card h-100">
-						<img src="resources/img/chiSiamoPage/info_countries.svg"
+						<img src="resources/img/chiSiamo/info_countries.svg"
 							height="200" width="200" class="card-img-top">
 						<div class="card-body">
 							<h5 class="card-title text-center">Ordini</h5>
@@ -115,12 +114,12 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				</div>
 				<div class="wrapper">
 					<div class="card h-100">
-						<img src="resources/img/chiSiamoPage/info_trees.svg" height="200"
+						<img src="resources/img/chiSiamo/info_trees.svg" height="200"
 							width="200" class="card-img-top">
 						<div class="card-body">
 							<h5 class="card-title">Prodotti</h5>
 							<div class="counter"
-								data-count="<%=prodotti.size() + kits.size()%>">0</div>
+								data-count="<%=prodotti.size()%>">0</div>
 						</div>
 					</div>
 				</div>
@@ -138,7 +137,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						<input type="text" class="form-control" placeholder="Cerca per id"
 							aria-describedby="button-addon2" id="myInput1"
 							onkeyup="myFunctionId(0,'myInput1','myTable')">
-						<button class="btn btn-outline-secondary" type="button"
+						<button class="btn btn-outline-success" type="button"
 							id="button-addon2">
 							<i class="fa-solid fa-magnifying-glass"></i>
 						</button>
@@ -152,7 +151,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 							placeholder="Cerca per cliente"
 							aria-describedby="button-addon2" id="myInput2"
 							onkeyup="myFunctionId(1,'myInput2','myTable')">
-						<button class="btn btn-outline-secondary" type="button"
+						<button class="btn btn-outline-success" type="button"
 							id="button-addon2">
 							<i class="fa-solid fa-magnifying-glass"></i>
 
@@ -166,7 +165,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						<input type="text" class="form-control"
 							placeholder="dd/MM/yy - dd/MM/yy"
 							aria-describedby="button-addon2" id="myInput3">
-						<button class="btn btn-outline-secondary" type="button"
+						<button class="btn btn-outline-success" type="button"
 							id="button-addon2" onclick="myFunctionOrderData()">
 							<i class="fa-solid fa-magnifying-glass"></i>
 						</button>
@@ -216,7 +215,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 		</div>
 
 		<!-- Ordini -->
-		<div id="ordineAlert" class="alert alert-success m-5 d-none"
+		<div id="ordineAlert" class="alert alert-success m-5 d-none "
 			role="alert">
 			<div class="row">
 				<div class="col">
@@ -228,14 +227,14 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				</div>
 			</div>
 			<p>L'ordine contiene i seguenti prodotti:</p>
-			<ol id="prodottiOrdineAlert"></ol>
+			<ol id="prodottiOrdineAlert" class="text-black"></ol>
 			<hr>
 			<p class="mb-0" id="dettaglioOrdineAlert"></p>
 			<hr>
 			<p class="mb-0" id="UtenteOrdineAlert"></p>
 		</div>
 
-		<div class="alert alert-success  m-5 d-none" role="alert"
+		<div class="alert alert-success  m-5 d-none text-black" role="alert"
 			id="ordineFotoAlert">
 			<div class="row">
 				<div class="col">
@@ -254,7 +253,6 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 								<th scope="col">Id</th>
 								<th scope="col">Nome</th>
 								<th scope="col">Prezzo</th>
-								<th scope="col">Saldo</th>
 								<th scope="col">Quantità</th>
 								<th scope="col">Stato</th>
 								<th scope="col">Foto</th>
@@ -273,14 +271,14 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 		<div class="container my-5" id="registroDegliAlberi">
 			<h1 class="text-center mb-3">Alberi</h1>
 			<div
-				class="row row-cols-1  row-cols-sm-1  row-cols-md-3 g-3 text-center">
+				class="row row-cols-1  row-cols-sm-1  row-cols-md-2 g-3 text-center">
 				<!-- Cerca Per Id -->
 				<div class="col ">
 					<div class="input-group mb-3">
 						<input type="text" class="form-control" placeholder="Cerca per id"
 							aria-describedby="button-addon2" id="myInput4"
 							onkeyup="myFunctionId(0,'myInput4','myTable2')">
-						<button class="btn btn-outline-secondary" type="button"
+						<button class="btn btn-outline-success" type="button"
 							id="button-addon2">
 							<i class="fa-solid fa-magnifying-glass"></i>
 						</button>
@@ -293,26 +291,10 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 							placeholder="Cerca per paese"
 							aria-describedby="button-addon2" id="myInput5"
 							onkeyup="myFunctionId(2,'myInput5','myTable2')">
-						<button class="btn btn-outline-secondary" type="button"
+						<button class="btn btn-outline-success" type="button"
 							id="button-addon2">
 							<i class="fa-solid fa-magnifying-glass"></i>
 						</button>
-					</div>
-				</div>
-				<!-- Cerca Per Disponibile/ In Saldo / Prezzo  -->
-				<div class="col">
-					<div class="dropdown">
-						<button class="btn btn-secondary dropdown-toggle" type="button"
-							id="dropdownMenuButton2" data-bs-toggle="dropdown"
-							aria-expanded="false">Ordina Per</button>
-						<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
-
-							<li onclick="sortTableNumb('myTable2',5)"><a
-								class="dropdown-item">Saldo</a></li>
-							<li onclick="sortTableNumb('myTable2',6)"><a
-								class="dropdown-item">Quantità</a></li>
-
-						</ul>
 					</div>
 				</div>
 			</div>
@@ -324,9 +306,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 							<th scope="col" onclick="sortTableAlf(1,'myTable2')">Nome</th>
 							<th scope="col" onclick="sortTableAlf(2,'myTable2')">Paese</th>
 							<th scope="col" onclick="sortTableAlf(3,'myTable2')">Prezzo</th>
-							<th scope="col">In saldo</th>
-							<th scope="col">Saldo</th>
-							<th scope="col">Quantità</th>
+		
 							<th scope="col">Azioni</th>
 						</tr>
 					</thead>
@@ -340,11 +320,9 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						<tr>
 							<td scope="row" class="nr"><%=a.getId()%></td>
 							<td><%=a.getNome()%></td>
-							<td><%=a.getPaeseDiOrigine()%></td>
+							<td><%=a.getPaeseDiOrigine().getNome()%></td>
 							<td><%=dFormat.format(a.getPrezzo())%>€</td>
-							<td><%=a.getOnSale()%></td>
-							<td><%=a.getSaldo()%></td>
-							<td><%=a.getQuantità()%></td>
+			
 							<td><a class="botteneIdProdottoVedi" href="#prodottoIdAlert"><i
 									class="fa-solid fa-eye"></i></a> <a
 								class="botteneIdProdottoModifica" href="#ordine"><i
@@ -376,17 +354,17 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			<p id="prodottoDescrizioneAlert"></p>
 			<hr>
 			<p>L'albero ha i seguenti benefici:</p>
-			<ol id="prodottoBeneficiAlert"></ol>
+			<ol id="prodottoBeneficiAlert" class="text-black"></ol>
 			<hr>
 			<p>L'albero ha le seguenti categorie:</p>
-			<ol id="prodottoCategorieAlert"></ol>
+			<ol id="prodottoCategorieAlert" class="text-black"></ol>
 			<hr>
 			<p>L'albero ha i seguenti usi locali:</p>
-			<ol id="prodottoUsiLocaliAlert"></ol>
+			<ol id="prodottoUsiLocaliAlert" class="text-black"></ol>
 			<hr>
 		</div>
 
-		<div class="alert alert-success  m-5 d-none" role="alert"
+		<div class="alert alert-success  m-5 d-none text-black" role="alert"
 			id="prodottoFotoAlert">
 			<div class="row">
 				<div class="col">
@@ -427,92 +405,6 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 
 		</div>
 
-
-		<div class="container my-5" id="registroDegliAlberi">
-			<h1 class="text-center mb-3">Kits</h1>
-			<div
-				class="row row-cols-1  row-cols-sm-1  row-cols-md-3 g-3 text-center">
-
-				<!-- Cerca Per Id -->
-				<div class="col">
-					<div class="input-group mb-3">
-						<input type="text" class="form-control" placeholder="Cerca per id"
-							aria-describedby="button-addon2" id="myInput6"
-							onkeyup="myFunctionId(0,'myInput6','myTable4')">
-						<button class="btn btn-outline-secondary" type="button"
-							id="button-addon2">
-							<i class="fa-solid fa-magnifying-glass"></i>
-						</button>
-					</div>
-				</div>
-				<!-- Cerca Per Nome  -->
-				<div class="col">
-					<div class="input-group mb-3">
-						<input type="text" class="form-control"
-							placeholder="Cerca per nome"
-							aria-describedby="button-addon2" id="myInput7"
-							onkeyup="myFunctionId(1,'myInput7','myTable4')">
-						<button class="btn btn-outline-secondary" type="button"
-							id="button-addon2">
-							<i class="fa-solid fa-magnifying-glass"></i>
-						</button>
-					</div>
-				</div>
-			</div>
-			<div class="table-responsive-sm">
-				<table class="table bg-white" id="myTable4">
-					<thead>
-						<tr>
-							<td scope="row">Id</td>
-							<td onclick="sortTableAlf(1,'myTable4')">Nome</td>
-							<td>Saldo</td>
-							<td>Prezzo Kit</td>
-							<td>Disponibile</td>
-							<td>Azioni</td>
-						</tr>
-					</thead>
-					<%
-					if (kits != null && kits.size() != 0) {
-						Iterator<?> it13 = kits.iterator();
-						while (it13.hasNext()) {
-							KitAlberi k = (KitAlberi) it13.next();
-					%>
-					<tr>
-						<td scope="row" class="nr"><%=k.getId()%></td>
-						<td><%=k.getNome()%></td>
-						<td><%=k.getSaldo()%>%</td>
-						<td><%=dFormat.format(k.getPrezzoKit())%>€</td>
-						<td><%=k.isDisponibile()%></td>
-						<td><a class="botteneIdKitVedi" href="#kitDescrizioneAlert"><i
-								class="fa-solid fa-eye"></i></a> <a class="botteneIdKitModifica"
-							href="#ordine"><i class="fa-solid fa-pen-to-square"></i></a> <a
-							href="Prodotto?action=eliminaKitCatalogo&id=<%=k.getId()%>"><i
-								class="fa-solid fa-circle-xmark"></i></a></td>
-					</tr>
-					<%
-					}
-					}
-					%>
-				</table>
-			</div>
-		</div>
-
-		<div id="kitAlert" class="alert alert-success m-5 d-none" role="alert">
-			<div class="row">
-				<div class="col">
-					<h4 class="alert-heading" id="kitIdAlert"></h4>
-				</div>
-				<div class="col-1 text-end">
-					<button type="button" class="btn-close" id="closeKitAlert"
-						aria-label="Close"></button>
-				</div>
-			</div>
-			<p id="kitDescrizioneAlert"></p>
-			<hr>
-			<p>Il kit comprende i seguenti alberi:</p>
-			<ol id="prdottiKitAlert"></ol>
-			<hr>
-		</div>
 
 
 		<div class="container my-5" id="registroDegliAlberi">
@@ -923,89 +815,6 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 		</div>
 	</div>
 
-	<div class="form my-5">
-		<form action="Prodotto?action=inserisciKit" method="POST"
-			enctype="multipart/form-data" id="kitForm" name="kitForm"
-			onSubmit="return validateKit();">
-			<div class="fw-bold h3">Kit</div>
-			<hr>
-			<div class="row align-items-center d-none" id="idKitForm">
-				<div class="col-3 ">
-					<h5>Codice:</h5>
-				</div>
-				<div class="col-9">
-					<input class="form-control " type="text"
-						placeholder="Inserisci codice" name="idKit">
-
-				</div>
-			</div>
-			<div class="row align-items-center">
-				<div class="col-3 ">
-					<h5>Nome:</h5>
-				</div>
-				<div class="col-9">
-					<input class="form-control" type="text"
-						placeholder="Inserisci nome" name="nomeKit">
-					<div class="invalid-feedback">Inserisci un nome valido</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-3">
-					<h5>Descrizione:</h5>
-				</div>
-				<div class="col-9">
-					<textarea class="form-control"
-						placeholder="Inserisci la descrizione" name="descrizioneKit"> </textarea>
-					<div class="invalid-feedback">Inserisci una descrizione
-						adeguata</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-3">
-					<h5>Foto:</h5>
-				</div>
-				<div class="col-9">
-					<input type="file" class="form-control" name="fotoKit">
-				</div>
-			</div>
-			<div class="row align-items-center">
-				<div class="col-3 ">
-					<h5>Saldo:</h5>
-				</div>
-				<div class="col-9">
-					<input class="form-control" type="text"
-						placeholder="Inserisci saldo " name="saldoKit">
-					<div class="invalid-feedback">Inserisci un importo valido</div>
-				</div>
-			</div>
-			<div class="row align-items-center">
-				<div class="col-3 ">
-					<h5>Alberi:</h5>
-				</div>
-				<div class="col-9">
-					<select class="form-select" multiple name="alberiKit"
-						aria-label="multiple select example">
-						<%
-						if (prodotti != null && prodotti.size() != 0) {
-							Iterator<?> it1 = prodotti.iterator();
-							while (it1.hasNext()) {
-								Albero c = (Albero) it1.next();
-						%>
-						<option value="alb<%=c.getId()%>"><%=c.getNome()%></option>
-						<%
-						}
-						}
-						%>
-					</select>
-				</div>
-			</div>
-			<div class="row justify-content-center mt-4">
-				<button type="submit" class="col-3 btn btn-outline-dark"
-					id="kitFormButton">Inserisci</button>
-			</div>
-		</form>
-	</div>
-
 	<!-- Sezione Ordine -->
 	<div id="ordine" class="text-center fw-bold h3">Gestione Ordine</div>
 	<div class="form  my-5 d-none" id="uploadFotoOrdineForm">
@@ -1270,41 +1079,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 		}
 	}
 	
-	function validateKit (){
-		var nome =document.kitForm.nomeKit;
-		var descrizione =document.kitForm.descrizioneKit;
-		var saldo =document.kitForm.saldoKit;
-		var valid= true; 
-		
-		if(!validateNome(nome)){
-			nome.classList.add("was-validated");
-			nome.classList.add("is-invalid");
-			valid=false;
-		}else {
-			nome.classList.add("was-validated");
-			nome.classList.add("is-valid");
-		}
-		if (descrizione.value == ""){
-			descrizione.classList.add("was-validated");
-			descrizione.classList.add("is-invalid");
-			valid=false;
-		}
-		else {
-			descrizione.classList.add("was-validated");
-			descrizione.classList.add("is-valid");
-		}
-		
-		if (!validateNumber(saldo)){
-			saldo.classList.add("was-validated");
-			saldo.classList.add("is-invalid");
-			valid=false;
-		}
-		else {
-			saldo.classList.add("was-validated");
-			saldo.classList.add("is-valid");
-		}
-		return valid;
-	}	
+
 	</script>
 
 	<script>
@@ -1328,21 +1103,9 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 		});
 	}
 	
-	function myFunctionKitsPrice(){
-		
-	}
 	
 	$(document).ready(function() {
-		$(".botteneIdKitVedi").click(function() {
-			var $row = $(this).closest("tr");
-			var $id = $row.find(".nr").text();
-			$.get('KitJSON?codice=' + $id, function(resp) {
-				printKit(resp);
-			}).fail(function() {
-				alert("Request failed.");
-			});
-		});
-
+	
 		$(".botteneIdProdottoVedi").click(function() {
 			var $row = $(this).closest("tr");
 			var $id = $row.find(".nr").text();
@@ -1365,17 +1128,26 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			$(".uploadFoto-1").click(function() {
 				var $nomeFoto = $("#fotoCodice1").html().substring(7);
 				$("#codiceFotoUpload").val($nomeFoto);
-				$("#uploadFoto").removeClass("d-none")
+				$("#uploadFoto").removeClass("d-none");
+				$("html, body").animate({
+					   scrollTop: $("#uploadFoto").offset().top
+					}, 200);
 			});
 			$(".uploadFoto-2").click(function() {
 				var $nomeFoto = $("#fotoCodice2").html().substring(7);
 				$("#codiceFotoUpload").val($nomeFoto);
-				$("#uploadFoto").removeClass("d-none")
+				$("#uploadFoto").removeClass("d-none");
+				$("html, body").animate({
+					   scrollTop: $("#uploadFoto").offset().top
+					}, 200);
 			});
 			$(".uploadFoto-3").click(function() {
 				var $nomeFoto = $("#fotoCodice3").html().substring(7);
 				$("#codiceFotoUpload").val($nomeFoto);
-				$("#uploadFoto").removeClass("d-none")
+				$("#uploadFoto").removeClass("d-none");
+				$("html, body").animate({
+					   scrollTop: $("#uploadFoto").offset().top
+					}, 200);
 			});
 
 		});
@@ -1392,15 +1164,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 
 		});
 
-		$(".botteneIdKitModifica").click(function() {
-			var $row = $(this).closest("tr");
-			var $id = $row.find(".nr").text();
-			$.get('KitJSON?action=vista&codice=' + $id, function(resp) {
-				printKitForm(resp);
-			}).fail(function() {
-				alert("Request failed.");
-			});
-		});
+		
 
 		$(".botteneIdProdottoModifica").click(function() {
 			var $row = $(this).closest("tr");
@@ -1430,10 +1194,6 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			$("#prodottoAlert").addClass("d-none");
 		});
 
-		$("#closeKitAlert").click(function() {
-			$("#kitAlert").addClass("d-none");
-		});
-
 		$("#closeProdottoFotoAlert").click(function() {
 			$("#prodottoFotoAlert").addClass("d-none");
 		});
@@ -1447,6 +1207,9 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 	function uploadFotoAlbero(id) {
 		$("#uploadFotoOrdineForm").removeClass("d-none");
 		$("#codiceProdottoUpload").val(id);
+		$("html, body").animate({
+			   scrollTop: $("#uploadFotoOrdineForm").offset().top
+			}, 200);
 	}
 	
 	function printFotoOrdine(j) {
@@ -1460,6 +1223,9 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				'</td><td>' + e.stato + '</td><td><img src="./ServletResources?codiceAzione=fotoProdottoOrdine&idProdottoOrdine=' + e.id
 				+ '" class="img-thumbnail bg-secondary bg-gradient" style="max-width:60px;"></td> <td><a class="aggiornaAlbero" onclick="uploadFotoAlbero(' + e.id + ')"><i class=" text-dark fa-solid fa-pen-to-square"></i></a></td></tr>');
 		});
+		$("html, body").animate({
+			   scrollTop: $("#ordineFotoAlert").offset().top
+			}, 200);
 
 	}
 
@@ -1470,19 +1236,20 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 		$("#prodottiOrdineAlert").empty();
 		json.items.forEach((e) => {
 			$("#prodottiOrdineAlert").append("<li>" + "<b>Nome:</b> " + e.nome + ", Prezzo: " + e.prezzo + "€, Quantità: "
-				+ e.quantità + ", Saldo: " + e.saldo + "%, tasse: " + e.tasse + "%, Stato: " + e.stato +
+				+ e.quantità + ", tasse: " + e.tasse + "%, Stato: " + e.stato +
 				"</li>");
 		});
 
 		$("#dettaglioOrdineAlert").empty().append("<b>N. Prodotti:</b>" + json.totaleProdotti + ", ");
 		$("#dettaglioOrdineAlert").append("<b>Totale Ordine:</b>" + json.totalePagato + "€, ");
-		$("#dettaglioOrdineAlert").append("<b>Regalo?:</b>" + ", ");
-		$("#dettaglioOrdineAlert").append("<b>Messaggio Regalo</b>" + json.messaggioRegalo + ", ");
-		$("#dettaglioOrdineAlert").append("<b>Destinatario Regalo</b>" + json.destinatarioRegalo + ", ");
-
+	
 		$("#dettaglioOrdineAlert").empty().append("Ordine effettuato dall'utente: " + json.utente.id + "(" + json.utente.nome + " "
 			+ json.utente.cognome + ")" + ". E-mail:" +
 			json.utente.email);
+		
+		$("html, body").animate({
+			   scrollTop: $("#ordineAlert").offset().top
+			}, 200);
 	};
 
 	function printProdotto(j) {
@@ -1492,8 +1259,8 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 		$("#prodottoDescrizioneAlert").empty().append("<b>Nome Scientifico: </b>" + j.nomeScientifico + ",  sottotitolo: " + j.sottotitolo
 			+ ", descrizione breve:" + j.descrizioneBreve
 			+ " ,descrizione:" + j.descrizione + "<br>"
-			+ "Paese:" + j.paeseDiOrigine + " " + j.doveVienePiantato + "<br>"
-			+ "Altezza:" + j.altezza + " ,co2:" + j.co2 + " ,salvaguardia: " + j.salvaguardia);
+			+ "Paese:" + j.paeseDiOrigine.nome + " " + "<br>"
+			+ "Altezza:" + j.altezza + ",  CO<sub>2</sub>:" + j.co2 + " ,salvaguardia: " + j.salvaguardia);
 
 		$("#prodottoBeneficiAlert").empty();
 		j.benefici.forEach((e) => {
@@ -1512,6 +1279,9 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			$("#prodottoUsiLocaliAlert").append("<li>" + "<b>Nome:</b> " + e.nome + ", descrizione: " + e.descrizione +
 				"</li>");
 		});
+		$("html, body").animate({
+			   scrollTop: $("#prodottoAlert").offset().top
+			}, 200);
 	}
 
 	function printProdottoFoto(j) {
@@ -1524,18 +1294,10 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			$("#foto" + i).attr("src", "./ServletResources?codiceAzione=fotoProdotto&idFoto=" + e.nomeFoto);
 			$("#fotoCodice" + i).empty().append("Foto n." + e.nomeFoto);
 		});
-	}
-
-	function printKit(j) {
-		$("#kitAlert").removeClass("d-none");
-		$("#kitIdAlert").empty().append("<h4>Dettaglio kit n." + j.id + "</h4>")
-		$("#kitDescrizioneAlert").empty().append("<b> Nome: </b>" + j.nome + ", descrizione:" + j.descrizione + ", saldo:" + j.saldo);
-
-		$("#prdottiKitAlert").empty();
-		j.alberi.forEach((e) => {
-			$("#prdottiKitAlert").append("<li>" + "<b>Nome:</b> " + e.nome + ", prezzo: " + e.prezzo +
-				"€</li>");
-		});
+		
+		$("html, body").animate({
+			   scrollTop: $("#prodottoFotoAlert").offset().top
+			}, 200);
 	}
 
 	function printProdottoForm(j) {
@@ -1552,20 +1314,10 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 		$('input[name="co2"]').val(j.co2);
 		$('input[name="salvaguardia"]').val(j.salvaguardia);
 		$('input[name="altezza"]').val(j.altezza);
-		$('input[name="onSale"]').val(j.onSale);
 		$('input[name="co2"]').val(j.co2);
-		$('input[name="saldo"]').val(j.saldo);
-		$('input[name="quantità"]').val(j.quantità);
-		$('input[name="doveVienePiantato"]').val(j.doveVienePiantato);
 		$('input[name="tasse"]').val(j.tasse);
-		$('select[name="paese"]').val(j.paeseDiOrigine);
+		$('select[name="paese"]').val(j.paeseDiOrigine.nome);
 		
-		if(j.disponibile == false){
-			$('select[name="disponibile"]').val(0);
-		 }else{
-			 $('select[name="disponibile"]').val(1);
-		 }
-
 		$('select[name="onSale"]').val(j.onSale);
 		
 		j.benefici.forEach((e) => {
@@ -1585,20 +1337,6 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 
 	}
 
-	function printKitForm(j) {
-		alert(j);
-		$('#kitForm').attr("action", "Prodotto?action=aggiornaKit")
-		$('#kitFormButton').html("Modifica")
-		$('#idKitForm').removeClass("d-none")
-		$('input[name="idKit"]').val(j.id);
-		$('input[name="nomeKit"]').val(j.nome);
-		$('input[name="nomeScientifico"]').val(j.nomeScientifico);
-		$('input[name="saldoKit"]').val(j.saldo);
-		$('textArea[name="descrizioneKit"]').val(j.descrizione);
-			j.alberi.forEach((e) => {
-				$('select[name=alberiKit] option[value="alb' + e.id + '"]').attr("selected", 1);
-			});
-	}
 	</script>
 
 	<script type="text/javascript">

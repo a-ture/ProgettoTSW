@@ -23,6 +23,10 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 <!-- Animate.css -->
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+<!-- jQuey -->
+<script src="https://code.jquery.com/jquery-3.6.0.js"
+	integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+	crossorigin="anonymous"></script>
 
 <!-- Favicon -->
 <link rel="icon" type="image/x-icon" href="resources/img/logo.png">
@@ -33,7 +37,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 
 
 	<div class="p-5 text-center bg-image" id="welcome"
-		style="background-image: url('./resources/img/chiSiamo/intestazioneChiSiamo.avif'); height: 600px;">
+		style="background-image: url('./resources/img/chiSiamo/intestazioneChiSiamo.avif'); height: 700px;">
 		<div class="mask" style="background-color: rgba(0, 0, 0, 0.6);">
 			<div class="mask h-100">
 				<div class="d-flex my-5 py-5 align-items-middle h-100">
@@ -697,8 +701,13 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 							$(".perchèWLOl")
 									.append(
 											"<li><b>Una bella storia è importante:</b> un albero WoodLot è una storia che emoziona che chiunque può vivere in prima persona. È un racconto fatto di natura e dei contadini che se ne prendono cura. Un albero può raccontare la storia in cui credi e che vuoi condividere.</li>");
+							
+							$("html, body").animate({
+								   scrollTop: $(".perchèWLDiv").offset().top
+								}, 200);
 
 						});
+		
 	</script>
 	<!--Manipolazione DOM  su pulsante Un albero, che idea! -->
 	<script>
@@ -718,9 +727,10 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 											"<p class='lead mb-4'>WoodLot è la prima piattaforma al mondo che permette di piantare un albero a distanza e"
 													+ "seguire la storia del progetto online. Originariamente ispirato dal celebre gioco online FarmVille,"
 													+ "WoodLot ha aggiornato il concetto del piantare alberi grazie alla propria piattaforma interattiva </p>");
+							$("html, body").animate({
+								   scrollTop: $(".ideaAlberoDiv").offset().top
+								}, 200);
 						});
-		var p = $("p").first();
-		$("p").last().text("scrollTop:" + p.scrollTop());
 	</script>
 </body>
 </html>

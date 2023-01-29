@@ -11,15 +11,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import it.unisa.beans.Albero;
 import it.unisa.beans.Indirizzo;
 import it.unisa.beans.Utente;
 import it.unisa.beans.Ordine;
 import it.unisa.beans.ProdottoCarrello;
 import it.unisa.beans.ProdottoOrdine;
-import it.unisa.model.AlberoDAO;
-import it.unisa.model.Carrello;
 
+import it.unisa.model.Carrello;
 import it.unisa.model.IndirizzoDAO;
 import it.unisa.model.OrdineDAO;
 
@@ -113,35 +111,18 @@ public class ServletOrdini extends HttpServlet {
 		ordine.setTotaleProdotti(carrello.getQuantitàTotaleProdotti());
 		ordine.setUtente(utente);
 
-		if (request.getParameter("regalo") != null) {
-			ordine.setRegalo(true);
-			ordine.setMessaggioRegalo(request.getParameter("messaggioRegalo"));
-			ordine.setDestinatarioRegalo(request.getParameter("mailRegalo"));
-		} else {
-			ordine.setRegalo(false);
-			ordine.setMessaggioRegalo("");
-			ordine.setDestinatarioRegalo("");
-		}
-
 		for (ProdottoCarrello prod : carrello.getProdotti()) {
 			ProdottoOrdine bean = new ProdottoOrdine();
 			bean.setDescrizione(prod.getProdotto().getDescrizione());
 			bean.setNome(prod.getProdotto().getNome());
 			bean.setPrezzo(prod.getProdotto().getPrezzo());
 			bean.setQuantità(prod.getQuantità());
-			bean.setBreveDescrizione("Paese:" + prod.getProdotto().getPaeseDiOrigine() + ", Categorie:"
+			bean.setBreveDescrizione("Paese:" + prod.getProdotto().getPaeseDiOrigine().getNome() + ", Categorie:"
 					+ prod.getProdotto().getCategorie().size());
 			bean.setStato("seme");
-
-			Albero a = prod.getProdotto();
-			
-			AlberoDAO dao1 = new AlberoDAO();
-			try {
-				dao1.updateQuantità(a);
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			bean.setTasse(prod.getProdotto().getTasse());
 			ordine.aggiungiPrdotto(bean);
+
 		}
 
 		OrdineDAO dao = new OrdineDAO();

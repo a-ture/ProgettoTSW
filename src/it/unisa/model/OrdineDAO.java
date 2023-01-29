@@ -53,10 +53,7 @@ public class OrdineDAO implements GenericDAO<Ordine> {
 					ordine.setId(rs.getInt("id"));
 					ordine.setTotaleProdotti(rs.getInt("totaleProdotti"));
 					ordine.setTotalePagato(rs.getDouble("totalePagato"));
-					ordine.setRegalo(rs.getBoolean("regalo"));
-					ordine.setMessaggioRegalo(rs.getString("messaggioRegalo"));
 					ordine.setCreatoIl(rs.getTimestamp("creatoIl").toLocalDateTime());
-					ordine.setDestinatarioRegalo(rs.getString("destinatarioRegalo"));
 					ordine.setUtente(dao.doRetriveByKey(rs.getInt("uid") + ""));
 					ordine.setItems(findProductOrder(ordine.getId()));
 				}
@@ -82,11 +79,8 @@ public class OrdineDAO implements GenericDAO<Ordine> {
 					ordine.setId(rs.getInt("id"));
 					ordine.setTotaleProdotti(rs.getInt("totaleProdotti"));
 					ordine.setTotalePagato(rs.getDouble("totalePagato"));
-					ordine.setRegalo(rs.getBoolean("regalo"));
-					ordine.setMessaggioRegalo(rs.getString("messaggioRegalo"));
 					ordine.setCreatoIl(rs.getTimestamp("creatoIl").toLocalDateTime());
 					ordine.setUtente(dao.doRetriveByKey(rs.getInt("uid") + ""));
-					ordine.setDestinatarioRegalo(rs.getString("destinatarioRegalo"));
 					ordine.setItems(findProductOrder(ordine.getId()));
 					ordini.add(ordine);
 				}
@@ -96,20 +90,17 @@ public class OrdineDAO implements GenericDAO<Ordine> {
 	}
 
 	public void doSave(Ordine dao) throws SQLException {
-		String insertOrder = "INSERT INTO ordine (uid,  totaleProdotti, totalePagato, regalo, messaggioRegalo, destinatarioRegalo) "
-				+ "VALUES (?, ?, ?, ?, ?, ?)";
+		String insertOrder = "INSERT INTO ordine (uid,  totaleProdotti, totalePagato) "
+				+ "VALUES (?, ?, ?)";
 		String insertItem = "INSERT INTO prodottoOrdine "
-				+ "(oid, nome, descrizione, breveDescrizione, prezzo, saldo, quantità, tasse, stato) "
-				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				+ "(oid, nome, descrizione, breveDescrizione, prezzo, quantità, tasse, stato) "
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 		var conn = ds.getConnection();
 		conn.setAutoCommit(false);
 		try (var stmt = conn.prepareStatement(insertOrder, Statement.RETURN_GENERATED_KEYS)) {
 			stmt.setInt(1, dao.getUtente().getId());
 			stmt.setInt(2, dao.getTotaleProdotti());
 			stmt.setDouble(3, dao.getTotalePagato());
-			stmt.setBoolean(4, dao.isRegalo());
-			stmt.setString(5, dao.getMessaggioRegalo());
-			stmt.setString(6, dao.getDestinatarioRegalo());
 
 			stmt.executeUpdate();
 
@@ -123,10 +114,9 @@ public class OrdineDAO implements GenericDAO<Ordine> {
 					stmt2.setString(3, item.getDescrizione());
 					stmt2.setString(4, item.getBreveDescrizione());
 					stmt2.setDouble(5, item.getPrezzo());
-					stmt2.setDouble(6, item.getSaldo());
-					stmt2.setInt(7, item.getQuantità());
-					stmt2.setDouble(8, item.getTasse());
-					stmt2.setString(9, item.getStato());
+					stmt2.setInt(6, item.getQuantità());
+					stmt2.setDouble(7, item.getTasse());
+					stmt2.setString(8, item.getStato());
 
 					stmt2.execute();
 				}
@@ -156,20 +146,18 @@ public class OrdineDAO implements GenericDAO<Ordine> {
 
 	@Override
 	public int doUpdate(Ordine dao) throws SQLException {
-		String updateOrder = "UPDATE  ordine SET(totaleProdotti = ?, totalePagato =?, regalo=?, messaggioRegalo=?) "
+		String updateOrder = "UPDATE  ordine SET(totaleProdotti = ?, totalePagato =?) "
 				+ "WHERE uid = ? and id = ? ";
 		String updateItem = "UPDATE  prodottoOrdine SET(nome = ?, descrizione = ?, breveDescrizione = ?"
-				+ ", prezzo = ?, saldo = ?, quantità= ?, tasse=? ) " + "WHERE id = ? and oid = ?  ";
+				+ ", prezzo = ?, quantità= ?, tasse=? ) " + "WHERE id = ? and oid = ?  ";
 		var conn = ds.getConnection();
 
 		try {
 			var stmt = conn.prepareStatement(updateOrder);
 			stmt.setInt(1, dao.getTotaleProdotti());
 			stmt.setDouble(2, dao.getTotalePagato());
-			stmt.setBoolean(3, dao.isRegalo());
-			stmt.setString(4, dao.getMessaggioRegalo());
-			stmt.setInt(5, dao.getUtente().getId());
-			stmt.setInt(6, dao.getId());
+			stmt.setInt(3, dao.getUtente().getId());
+			stmt.setInt(4, dao.getId());
 
 			stmt.executeUpdate();
 
@@ -180,41 +168,21 @@ public class OrdineDAO implements GenericDAO<Ordine> {
 				stmt2.setString(2, item.getDescrizione());
 				stmt2.setString(3, item.getBreveDescrizione());
 				stmt2.setDouble(4, item.getPrezzo());
-				stmt2.setDouble(5, item.getSaldo());
-				stmt2.setInt(6, item.getQuantità());
-				stmt2.setDouble(7, item.getTasse());
-				stmt2.setInt(8, item.getId());
-				stmt2.setInt(9, dao.getId());
+				stmt2.setInt(5, item.getQuantità());
+				stmt2.setDouble(6, item.getTasse());
+				stmt2.setInt(7, item.getId());
+				stmt2.setInt(8, dao.getId());
 				stmt2.execute();
 			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-		
-		}
-
-		return 0;
-	}
-
-	public int doUpdateMexGift(Ordine dao) throws SQLException {
-		String updateOrder = "UPDATE  ordine SET messaggioRegalo=? " + "WHERE  id = ? ";
-
-		var conn = ds.getConnection();
-
-		try {
-			var stmt = conn.prepareStatement(updateOrder);
-
-			stmt.setString(1, dao.getMessaggioRegalo());
-			stmt.setInt(2, dao.getId());
-			stmt.executeUpdate();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
 
 		}
 
 		return 0;
 	}
+
 
 	@Override
 	public boolean doDelete(Ordine item) throws SQLException {
@@ -251,8 +219,6 @@ public class OrdineDAO implements GenericDAO<Ordine> {
 					bean.setId(rs.getInt("id"));
 					bean.setTotaleProdotti(rs.getInt("totaleProdotti"));
 					bean.setTotalePagato(rs.getDouble("totalePagato"));
-					bean.setRegalo(rs.getBoolean("regalo"));
-					bean.setMessaggioRegalo(rs.getString("messaggioRegalo"));
 					bean.setCreatoIl(rs.getTimestamp("creatoIl").toLocalDateTime());
 					bean.setUtente(dao.doRetriveByKey(rs.getInt("uid") + ""));
 					ordini.add(bean);
@@ -279,10 +245,8 @@ public class OrdineDAO implements GenericDAO<Ordine> {
 					bean.setId(rs.getInt("id"));
 					bean.setTotaleProdotti(rs.getInt("totaleProdotti"));
 					bean.setTotalePagato(rs.getDouble("totalePagato"));
-					bean.setRegalo(rs.getBoolean("regalo"));
-					bean.setMessaggioRegalo(rs.getString("messaggioRegalo"));
 					bean.setCreatoIl(rs.getTimestamp("creatoIl").toLocalDateTime());
-					bean.setDestinatarioRegalo(rs.getString("destinatarioRegalo"));
+
 				}
 			}
 		}
@@ -302,33 +266,6 @@ public class OrdineDAO implements GenericDAO<Ordine> {
 					ordine.setId(rs.getInt("id"));
 					ordine.setTotaleProdotti(rs.getInt("totaleProdotti"));
 					ordine.setTotalePagato(rs.getDouble("totalePagato"));
-					ordine.setRegalo(rs.getBoolean("regalo"));
-					ordine.setMessaggioRegalo(rs.getString("messaggioRegalo"));
-					ordine.setDestinatarioRegalo(rs.getString("destinatarioRegalo"));
-					ordine.setCreatoIl(rs.getTimestamp("creatoIl").toLocalDateTime());
-					ordine.setUtente(userBean);
-					ordine.setItems(findProductOrder(ordine.getId()));
-					ordini.add(ordine);
-				}
-			}
-		}
-		return ordini;
-	}
-
-	public Collection<Ordine> findGiftForUser(Utente userBean) throws SQLException {
-		Collection<Ordine> ordini = new LinkedList<Ordine>();
-		String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE destinatarioRegalo=? ";
-		try (var conn = ds.getConnection()) {
-			try (var stmt = conn.prepareStatement(selectSQL)) {
-				Ordine ordine = new Ordine();
-				stmt.setString(1, userBean.getEmail());
-				ResultSet rs = stmt.executeQuery();
-				while (rs.next()) {
-					ordine.setId(rs.getInt("id"));
-					ordine.setTotaleProdotti(rs.getInt("totaleProdotti"));
-					ordine.setTotalePagato(rs.getDouble("totalePagato"));
-					ordine.setRegalo(rs.getBoolean("regalo"));
-					ordine.setMessaggioRegalo(rs.getString("messaggioRegalo"));
 					ordine.setCreatoIl(rs.getTimestamp("creatoIl").toLocalDateTime());
 					ordine.setUtente(userBean);
 					ordine.setItems(findProductOrder(ordine.getId()));
@@ -373,7 +310,6 @@ public class OrdineDAO implements GenericDAO<Ordine> {
 					item.setBreveDescrizione(rs.getString("breveDescrizione"));
 					item.setTasse(rs.getInt("tasse"));
 					item.setPrezzo(rs.getDouble("prezzo"));
-					item.setSaldo(rs.getDouble("saldo"));
 					item.setQuantità(rs.getInt("quantità"));
 					item.setStato(rs.getString("stato"));
 
@@ -450,7 +386,7 @@ public class OrdineDAO implements GenericDAO<Ordine> {
 				stmt.setInt(2, idA);
 
 				stmt.executeUpdate();
-				
+
 			} catch (FileNotFoundException e) {
 				System.out.println(e);
 			} catch (IOException e) {

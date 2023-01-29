@@ -40,9 +40,11 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 	crossorigin="anonymous"></script>
 <!-- Favicon -->
 <link rel="icon" type="image/x-icon" href="resources/img/logo.png">
+ <!--CSS-->
+<link rel="stylesheet" type="text/css" href="resources/css/style.css">
 </head>
 <body>
-	<section class="h-100 gradient-custom">
+	<section class="vh-100 gradient-custom">
 		<div class="container py-5 h-100">
 			<div
 				class="row d-flex justify-content-center align-items-center h-100">
@@ -50,7 +52,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					<div class="card" style="border-radius: 10px;">
 						<div class="card-header px-4 py-5">
 							<h5 class="text-muted mb-0">
-								Grazie per il tuo ordine, <span style="color: #a8729a;">
+								Grazie per il tuo ordine, <span style="color: #93C572;">
 									<%=utente.getNome()%>
 								</span>!
 							</h5>
@@ -58,7 +60,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						<div class="card-body p-4">
 							<div
 								class="d-flex justify-content-between align-items-center mb-4">
-								<p class="lead fw-normal mb-0" style="color: #a8729a;">Il
+								<p class="lead fw-normal mb-0" style="color: #93C572;">Il
 									tuo ordine:</p>
 							</div>
 							<%
@@ -92,35 +94,15 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 							<%
 							}
 							%>
-							<div class="d-flex justify-content-between pt-2">
-								<p class="fw-bold mb-0">Dettagli ordine</p>
-							</div>
-							
-								<p class="text-muted mb-0">
-									Numero prodotti :
-									<%=ordine.getTotaleProdotti()%></p>
-								<%
-								if (ordine.isRegalo()) {
-								%>
-								<p class="text-muted mb-0 ">
-									Il tuo ordine è un regalo per
-									<%=ordine.getDestinatarioRegalo()%>
-								</p>
-								<p class="text-muted mb-0">
-									La tua dedica:
-									<%=ordine.getMessaggioRegalo()%>
-								</p>
-								<p class="text-muted mb-0">
-									Il codice per riscattare il regalo è
-									<%=ordine.getId()%>
-								</p>
-								<%
-								}
-								%>
-						
+					
+							<p class="text-muted mb-0">
+								Numero prodotti :
+								<%=ordine.getTotaleProdotti()%></p>
+
+
 						</div>
 						<div class="card-footer border-0 px-4 py-5"
-							style="background-color: #a8729a; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
+							style="background-color: #93C572; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
 							<h5
 								class="d-flex align-items-center justify-content-end text-white text-uppercase mb-0">
 								Totale: <span class="h2 mb-0 ms-2"><%=dFormat.format(ordine.getTotalePagato())%>€</span>
@@ -129,10 +111,11 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					</div>
 				</div>
 			</div>
-		</div>
-		<p class="text-center">
+			 <p class="text-center">
 			Torna alla <a href="Home">Home</a>
 		</p>
+		</div>
+		
 	</section>
 </body>
 </html>

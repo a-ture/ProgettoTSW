@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 /**
  * Questa classe rappresenta l'oggetto ProdottoOrdine
+ * 
  * @author raffaella & alessia
  *
  */
@@ -17,24 +18,23 @@ public class ProdottoOrdine implements Serializable {
 	private String breveDescrizione;
 	private double tasse;
 	private double prezzo;
-	private double saldo;
 	private int quantità;
 	private String stato;
 
 	/**
 	 * Costruttore con i parametri
-	 * @param id	codice identificativo
-	 * @param oid	codice dell'ordine
-	 * @param nome	nome del prodotto
-	 * @param descrizione	descrizione del prodotto
-	 * @param breveDescrizione	breve descrizione del prodotto
-	 * @param tasse	iva del prodotto
-	 * @param prezzo	prezzo del prodotto
-	 * @param saldo	prezzo+iva del prodotto
-	 * @param quantità	quantità del prodotto	
+	 * 
+	 * @param id               codice identificativo
+	 * @param oid              codice dell'ordine
+	 * @param nome             nome del prodotto
+	 * @param descrizione      descrizione del prodotto
+	 * @param breveDescrizione breve descrizione del prodotto
+	 * @param tasse            iva del prodotto
+	 * @param prezzo           prezzo del prodotto
+	 * @param quantità         quantità del prodotto
 	 */
 	public ProdottoOrdine(int id, int oid, String nome, String descrizione, String breveDescrizione, int tasse,
-			double prezzo, double saldo, int quantità) {
+			double prezzo, int quantità) {
 		super();
 		this.id = id;
 		this.oid = oid;
@@ -43,7 +43,6 @@ public class ProdottoOrdine implements Serializable {
 		this.breveDescrizione = breveDescrizione;
 		this.tasse = tasse;
 		this.prezzo = prezzo;
-		this.saldo = saldo;
 		this.quantità = quantità;
 	}
 
@@ -109,14 +108,6 @@ public class ProdottoOrdine implements Serializable {
 		this.prezzo = prezzo;
 	}
 
-	public double getSaldo() {
-		return saldo;
-	}
-
-	public void setSaldo(double saldo) {
-		this.saldo = saldo;
-	}
-
 	public int getQuantità() {
 		return quantità;
 	}
@@ -146,7 +137,6 @@ public class ProdottoOrdine implements Serializable {
 		temp = Double.doubleToLongBits(prezzo);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + quantità;
-		temp = Double.doubleToLongBits(saldo);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((stato == null) ? 0 : stato.hashCode());
 		temp = Double.doubleToLongBits(tasse);
@@ -186,8 +176,7 @@ public class ProdottoOrdine implements Serializable {
 			return false;
 		if (quantità != other.quantità)
 			return false;
-		if (Double.doubleToLongBits(saldo) != Double.doubleToLongBits(other.saldo))
-			return false;
+
 		if (stato == null) {
 			if (other.stato != null)
 				return false;
@@ -201,8 +190,8 @@ public class ProdottoOrdine implements Serializable {
 	@Override
 	public String toString() {
 		return "ProdottoOrdine [id=" + id + ", oid=" + oid + ", nome=" + nome + ", descrizione=" + descrizione
-				+ ", breveDescrizione=" + breveDescrizione + ", tasse=" + tasse + ", prezzo=" + prezzo + ", saldo="
-				+ saldo + ", quantità=" + quantità + ", stato=" + stato + "]";
+				+ ", breveDescrizione=" + breveDescrizione + ", tasse=" + tasse + ", prezzo=" + prezzo + ", quantità="
+				+ quantità + ", stato=" + stato + "]";
 	}
 
 }

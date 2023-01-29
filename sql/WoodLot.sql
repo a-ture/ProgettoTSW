@@ -106,7 +106,6 @@ CREATE TABLE utente (
     cognome VARCHAR(45) NOT NULL,
     password VARCHAR(45) NOT NULL,
     role VARCHAR(45) NOT NULL,
-    active BOOLEAN NOT NULL DEFAULT 0,
     PRIMARY KEY (id)
 );
 
@@ -425,9 +424,7 @@ INSERT INTO benefici_prodotti(pid,cid,percentuale)
 	VALUES (24,2,3);      
 INSERT INTO benefici_prodotti(pid,cid,percentuale) 
 	VALUES (24,3,5);      
- 
- 
-    
+
 INSERT INTO fotoProdotto (pid)
 	VALUES (1);
 INSERT INTO fotoProdotto (pid)

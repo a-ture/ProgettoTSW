@@ -20,7 +20,7 @@ public class Utente implements Cloneable, Serializable {
 	private String email;
 	private String password;
 	private String role;
-	private boolean active;
+	
 
 	/**
 	 * Costruttore senza parametri
@@ -122,7 +122,6 @@ public class Utente implements Cloneable, Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (active ? 1231 : 1237);
 		result = prime * result + ((cognome == null) ? 0 : cognome.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + id;
@@ -142,8 +141,6 @@ public class Utente implements Cloneable, Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Utente other = (Utente) obj;
-		if (active != other.active)
-			return false;
 		if (cognome == null) {
 			if (other.cognome != null)
 				return false;

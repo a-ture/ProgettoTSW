@@ -62,16 +62,12 @@ public class AlberoDAO implements GenericDAO<Albero> {
 				bean.setId(rs.getInt("id"));
 				bean.setNome(rs.getString("nome"));
 				bean.setNomeScientifico(rs.getString("nomeScientifico"));
-				
 				bean.setPaeseDiOrigine(dao.doRetriveByKey(rs.getString("pid")));
-				
 				bean.setPrezzo(rs.getDouble("prezzo"));
-
+				bean.setTasse(rs.getDouble("tasse"));
 				bean.setSalvaguardia(rs.getInt("Salvaguardia"));
 				bean.setCategories(findProductCategory(bean.getId()));
-
 				bean.setSottotitolo(rs.getString("sottotitolo"));
-
 				bean.setBenefici(findProductBenefits(bean.getId()));
 				bean.setCategorie(findProductCategory(bean.getId()));
 				bean.setUsiLocali(findProductUsiLocali(bean.getId()));
@@ -94,7 +90,7 @@ public class AlberoDAO implements GenericDAO<Albero> {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet rs = null;
-		PaeseDiOrigineDAO dao = new PaeseDiOrigineDAO();		
+		PaeseDiOrigineDAO dao = new PaeseDiOrigineDAO();
 		Collection<Albero> beans = new LinkedList<Albero>();
 
 		String selectSQL = "SELECT * FROM " + AlberoDAO.TABLE_NAME;
@@ -119,16 +115,15 @@ public class AlberoDAO implements GenericDAO<Albero> {
 				bean.setId(rs.getInt("id"));
 				bean.setNome(rs.getString("nome"));
 				bean.setNomeScientifico(rs.getString("nomeScientifico"));
-
 				bean.setPaeseDiOrigine(dao.doRetriveByKey(rs.getString("pid")));
 				bean.setPrezzo(rs.getDouble("prezzo"));
 				bean.setSalvaguardia(rs.getInt("Salvaguardia"));
 				bean.setCategories(findProductCategory(bean.getId()));
-
 				bean.setSottotitolo(rs.getString("sottotitolo"));
 				bean.setCategorie(findProductCategory(bean.getId()));
 				bean.setUsiLocali(findProductUsiLocali(bean.getId()));
 				bean.setBenefici(findProductBenefits(bean.getId()));
+				bean.setTasse(rs.getDouble("tasse"));
 				beans.add(bean);
 			}
 		} finally {
@@ -156,7 +151,7 @@ public class AlberoDAO implements GenericDAO<Albero> {
 
 		String insertSQL = "INSERT INTO " + AlberoDAO.TABLE_NAME
 				+ " (nome, nomeScientifico, descrizione, descrizioneBreve, altezza, prezzo,"
-				+ " pid, quantità, co2, salvaguardia, sottotitolo, doveVienePiantato) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				+ " pid, co2, salvaguardia, sottotitolo, tasse) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
 
 		String insertUso = "INSERT INTO albero_usiLocali (pid,uid) VALUES (?,?)";
 		String insertBenfit = "INSERT INTO benefici_prodotti (pid,cid,percentuale) VALUES (?,?,?)";
@@ -176,7 +171,7 @@ public class AlberoDAO implements GenericDAO<Albero> {
 			stmt.setDouble(9, item.getCo2());
 			stmt.setDouble(10, item.getSalvaguardia());
 			stmt.setString(11, item.getSottotitolo());
-
+			stmt.setDouble(12, item.getTasse());
 			stmt.executeUpdate();
 
 			ResultSet rs = stmt.getGeneratedKeys();
@@ -220,38 +215,10 @@ public class AlberoDAO implements GenericDAO<Albero> {
 		}
 	}
 
-	public void updateQuantità(Albero a) throws SQLException {
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
-
-		String update = "UPDATE  prodotto SET quantità = ?, disponibile = ? WHERE id=?";
-		try {
-			connection = ds.getConnection();
-			connection.setAutoCommit(false);
-
-			preparedStatement = connection.prepareStatement(update);
-			preparedStatement.setInt(3, a.getId());
-			preparedStatement.executeUpdate();
-			connection.commit();
-
-		} finally {
-			try {
-				if (preparedStatement != null)
-					preparedStatement.close();
-			} finally {
-				if (connection != null)
-					connection.close();
-			}
-		}
-
-	}
-
 	@Override
 	public int doUpdate(Albero item) throws SQLException {
 		String update = "UPDATE  prodotto SET nome = ?, nomeScientifico = ?, descrizione = ?, descrizioneBreve = ?, prezzo=?, sottotitolo = ?,"
-				+ " doveVienePiantato = ?,"
-				+ "altezza = ?, pid = ?, onSale = ?, quantità = ?, co2 = ?, salvaguardia = ?, tasse = ?, saldo = ?, disponibile = ? "
-				+ " WHERE id = ? ";
+				+ "altezza = ?, pid = ?, co2 = ?, salvaguardia = ?, tasse = ?  " + " WHERE id = ? ";
 
 		String updateBenfit = "UPDATE benefici_prodotti  SET percentuale =?  WHERE  pid =? AND cid=?";
 
@@ -275,8 +242,8 @@ public class AlberoDAO implements GenericDAO<Albero> {
 			stmt.setString(9, item.getPaeseDiOrigine().getNome());
 			stmt.setInt(12, item.getCo2());
 			stmt.setInt(13, item.getSalvaguardia());
-	
-			stmt.setInt(17, item.getId());
+			stmt.setDouble(14, item.getTasse());
+			stmt.setInt(15, item.getId());
 
 			stmt.executeUpdate();
 
@@ -486,7 +453,6 @@ public class AlberoDAO implements GenericDAO<Albero> {
 				bean.setSalvaguardia(rs.getInt("Salvaguardia"));
 				bean.setCategories(findProductCategory(bean.getId()));
 				bean.setSottotitolo(rs.getString("sottotitolo"));
-
 
 				prods.add(bean);
 			}

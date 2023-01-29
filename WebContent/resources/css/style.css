@@ -14,12 +14,14 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, p {
 
 .btn-success {
 	background-color: #C4D89F;
-	border-color:#C4D89F;
+	border-color: #C4D89F;
 }
+
 .btn-success:hover {
 	background-color: #5E7250;
-	border-color:#5E7250;
+	border-color: #5E7250;
 }
+
 footer {
 	background-color: #C4D89F;
 }
@@ -91,6 +93,14 @@ a:hover {
 	border-color: #C4D89F;
 }
 
+.nav-link {
+	color: #94AD6E;
+}
+
+.nav-link:hover {
+	color: #5E7250;
+}
+
 .bg-primary {
 	background-color: #C4D89F !important;
 }
@@ -98,8 +108,14 @@ a:hover {
 .bg-dark {
 	background-color: #C4D89F !important;
 }
-.bg-light{
-	background-color: #F4EBC7!important;
+
+.bg-light {
+	background-color: #F4EBC7 !important;
+}
+.alert-success {
+    color: white;
+    background-color: #C4D89F;
+    border-color: #C4D89F;
 }
 .table {
 	color: black;
@@ -112,15 +128,38 @@ thead {
 tbody {
 	background-color: #f4ebc7;
 }
-.list-group-item {
-    position: relative;
-    display: block;
-    padding: 0.5rem 1rem;
-    color: #212529;
-    text-decoration: none;
-    background-color: transparent; 
-    border-color: transparent; 
+.text-primary{
+	color: #93C572 !important;
 }
+input.invalid {
+	background-color: #ffdddd;
+}
+/* Hide all steps by default: */
+.tab {
+	display: none;
+}
+/* Make circles that indicate the steps of the form: */
+.step {
+	height: 15px;
+	width: 15px;
+	margin: 0 2px;
+	background-color: #bbbbbb;
+	border: none;
+	border-radius: 50%;
+	display: inline-block;
+	opacity: 0.5;
+}
+
+/* Mark the active step: */
+.step.active {
+	opacity: 1;
+}
+
+/* Mark the steps that are finished and valid: */
+.step.finish {
+	background-color: #04AA6D;
+}
+
 #cosaPuoiFare {
 	background-color: #C4D89F;
 }
@@ -157,7 +196,6 @@ tbody {
 	margin-bottom: 1.5rem;
 	text-align: center;
 }
-
 
 /* rtl:begin:ignore */
 .marketing .col-lg-4 p {
@@ -331,6 +369,7 @@ tbody {
 	font-size: 64px;
 	margin-bottom: 5px
 }
+
 #btnCkt {
 	transition: all 0.5s;
 }
@@ -581,7 +620,6 @@ a.dropdown-item:hover {
 .cardCategoriaImage img {
 	opacity: .8;
 	transform: translate(0, 0);
-
 	transition: opacity .25s ease-in-out;
 }
 
@@ -589,3 +627,109 @@ a.dropdown-item:hover {
 	opacity: 1;
 }
 
+.badgeImg {
+	-webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+	filter: grayscale(100%);
+}
+
+.progress-bar-container {
+	position: relative;
+}
+
+.progress-bar-container::before {
+	content: "";
+	position: absolute;
+	background-color: #f4ebc7;
+	height: 10px;
+	width: 100%;
+	top: 50%;
+	left: 0px;
+	transform: translateY(-50%);
+}
+
+#progress-bar-seme {
+	position: absolute;
+	background-color: #e5c59c;
+	height: 10px;
+	width: 20%;
+	top: 50%;
+	left: 0px;
+	transform: translateY(-50%);
+	transition: 0.3s ease;
+}
+
+#progress-bar- {
+	position: absolute;
+	background-color: #e5c59c;
+	height: 10px;
+	width: 0%;
+	top: 50%;
+	left: 0px;
+	transform: translateY(-50%);
+	transition: 0.3s ease;
+}
+
+#progress-bar-vivaio {
+	position: absolute;
+	background-color: #e5c59c;
+	height: 10px;
+	width: 50%;
+	top: 50%;
+	left: 0px;
+	transform: translateY(-50%);
+	transition: 0.3s ease;
+}
+
+#progress-bar-piantato {
+	position: absolute;
+	background-color: #e5c59c;
+	height: 10px;
+	width: 75%;
+	top: 50%;
+	left: 0px;
+	transform: translateY(-50%);
+	transition: 0.3s ease;
+}
+
+#progress-bar-fotografato {
+	position: absolute;
+	background-color: #e5c59c;
+	height: 10px;
+	width: 100%;
+	top: 50%;
+	left: 0px;
+	transform: translateY(-50%);
+	transition: 0.3s ease;
+}
+
+.circles-container {
+	display: flex;
+	justify-content: space-between;
+	max-width: 100%;
+}
+
+.circle {
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+	position: relative;
+	z-index: 2;
+	background-color: #d6d3d3;
+	transition: 0.4s ease;
+}
+
+.circle h3 {
+	position: absolute;
+	left: 37%;
+	top: 30%;
+	font-size: 20px;
+	color: blue;
+}
+
+.circle.active {
+	background-color: #93c572;
+}
+
+.circle.active h3 {
+	color: grey;
+}

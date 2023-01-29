@@ -9,10 +9,9 @@
 Utente utente = (Utente) request.getSession().getAttribute("utente");
 
 Collection<?> ordini = (Collection<?>) request.getSession().getAttribute("ordiniUtente");
-Collection<?> ordiniRegalati = (Collection<?>) request.getSession().getAttribute("ordiniRegalati");
 
 int numeroAlberiAcquistati = (int) request.getSession().getAttribute("numeroDiAlberiAcquistati");
-int numeroDiRegali = (int) request.getSession().getAttribute("numeroDiRegali");
+
 double totaleSpeso = (double) request.getSession().getAttribute("totaleSpeso");
 
 if (utente == null) {
@@ -31,114 +30,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 <link rel="stylesheet" type="text/css" href="resources/css/style.css">
 <!-- My Script -->
 <script src="resources/scripts/profiloScript.js"></script>
-<style type="text/css">
-.badgeImg {
-	-webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
-	filter: grayscale(100%);
-}
 
-.progress-bar-container {
-	position: relative;
-}
-
-.progress-bar-container::before {
-	content: "";
-	position: absolute;
-	background-color: #f4ebc7;
-	height: 10px;
-	width: 100%;
-	top: 50%;
-	left: 0px;
-	transform: translateY(-50%);
-}
-
-#progress-bar-seme {
-	position: absolute;
-	background-color: #e5c59c;
-	height: 10px;
-	width: 20%;
-	top: 50%;
-	left: 0px;
-	transform: translateY(-50%);
-	transition: 0.3s ease;
-}
-
-#progress-bar- {
-	position: absolute;
-	background-color: #e5c59c;
-	height: 10px;
-	width: 0%;
-	top: 50%;
-	left: 0px;
-	transform: translateY(-50%);
-	transition: 0.3s ease;
-}
-
-#progress-bar-vivaio {
-	position: absolute;
-	background-color: #e5c59c;
-	height: 10px;
-	width: 50%;
-	top: 50%;
-	left: 0px;
-	transform: translateY(-50%);
-	transition: 0.3s ease;
-}
-
-#progress-bar-piantato {
-	position: absolute;
-	background-color: #e5c59c;
-	height: 10px;
-	width: 75%;
-	top: 50%;
-	left: 0px;
-	transform: translateY(-50%);
-	transition: 0.3s ease;
-}
-
-#progress-bar-fotografato {
-	position: absolute;
-	background-color: #e5c59c;
-	height: 10px;
-	width: 100%;
-	top: 50%;
-	left: 0px;
-	transform: translateY(-50%);
-	transition: 0.3s ease;
-}
-
-.circles-container {
-	display: flex;
-	justify-content: space-between;
-	max-width: 100%;
-}
-
-.circle {
-	width: 60px;
-	height: 60px;
-	border-radius: 50%;
-	position: relative;
-	z-index: 2;
-	background-color: #d6d3d3;
-	transition: 0.4s ease;
-}
-
-.circle h3 {
-	position: absolute;
-	left: 37%;
-	top: 30%;
-	font-size: 20px;
-	color: blue;
-}
-
-.circle.active {
-	background-color: #93c572;
-}
-
-.circle.active h3 {
-	color: grey;
-}
-</style>
 <!-- Favicon -->
 <link rel="icon" type="image/x-icon" href="resources/img/logo.png">
 </head>
@@ -178,11 +70,6 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						alberi
 					</p>
 					<p>
-						<b> Hai fatto: </b>
-						<%=numeroDiRegali%>
-						regali
-					</p>
-					<p>
 						<b>Hai speso in totale:</b>
 						<%=dFormat.format(totaleSpeso)%>
 						€
@@ -207,7 +94,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			</div>
 			<!-- Sidebar -->
 			<div
-				class="d-flex flex-column flex-shrink-0 p-3 bg-light d-none d-lg-block"
+				class="d-flex flex-column flex-shrink-0 p-3 bg-trasparent d-none d-lg-block"
 				id="myProfileMenu" style="width: 280px;">
 				<a href="#"
 					class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
@@ -229,11 +116,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						id="badgeButton"> <i class="fa-solid fa-award"></i><span>
 								Badge </span>
 					</a></li>
-					<li class="nav-item"><a class="nav-link" href="#regali"
-						id="regaliButton"> <span> <i class="fa-solid fa-gifts"></i>
-								Regali
-						</span>
-					</a></li>
+
 					<li class="nav-item"><a class="nav-link" href="#indirizzo"
 						id="indirizzoButton"> <i class="fa-solid fa-map-location-dot"></i><span>
 								Indirizzi </span></a></li>
@@ -348,27 +231,6 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						</div>
 					</div>
 
-					<!-- News 3 -->
-					<div class="card mb-5" style="width: 65rem;">
-						<img class="card-img-top" src="./resources/img/profilo/news3.jpg"
-							alt="Card image cap">
-						<div class="card-body">
-							<p class="card-text">
-							<p>
-								<b>Regala un albero</b>
-							</p>
-							<p>Dicono che i regali più belli sono quelli che non si
-								possono incartare.</p>
-							<p>In qualsiasi momento, e per qualsiasi occasione, puoi
-								regalare un albero WoodLot a qualcuno che ami. Basta una mail o
-								un messaggio per consegnarlo al suo destinatario, e renderlo
-								parte di una community di custodi di alberi che cresce ogni
-								giorno.</p>
-							<p>Attraverso il tuo regalo, anche i tuoi cari parteciperanno
-								a rendere il mondo non solo più verde, ma anche più giusto</p>
-
-						</div>
-					</div>
 				</div>
 				<!-- Ordini -->
 				<div id="ordini" class="row d-none px-5">
@@ -407,23 +269,26 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						</tbody>
 					</table>
 					<!-- Ordini -->
-					<div id="ordineAlert" class="alert alert-success m-5 d-none"
-						role="alert">
-						<div class="row">
-							<div class="col">
-								<h4 class="alert-heading" id="numeroOrdineAlert"></h4>
+					<div class="d-flex justify-content-center text-black">
+						<div id="ordineAlert" class="alert alert-success  d-none"
+							role="alert">
+							<div class="row">
+								<div class="col">
+									<h4 class="alert-heading" id="numeroOrdineAlert"></h4>
+								</div>
+								<div class="col-1 text-end">
+									<button type="button" class="btn-close" id="closeOrdineAlert"
+										aria-label="Close"></button>
+								</div>
 							</div>
-							<div class="col-1 text-end">
-								<button type="button" class="btn-close" id="closeOrdineAlert"
-									aria-label="Close"></button>
-							</div>
-						</div>
-						<p>L'ordine contiene i seguenti prodotti:</p>
-						<ol id="prodottiOrdineAlert"></ol>
-						<hr>
-						<p class="mb-0" id="dettaglioOrdineAlert"></p>
+							<p>L'ordine contiene i seguenti prodotti:</p>
+							<ol id="prodottiOrdineAlert" class="text-black"></ol>
+							<hr>
+							<p class="mb-0" id="dettaglioOrdineAlert"></p>
 
+						</div>
 					</div>
+
 					<%
 					} else if (ordini.size() == 0) {
 					%>
@@ -477,7 +342,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 									<h5 class="card-title"><%=prodottoOrdine.getNome()%></h5>
 									<p class="card-text"><%=prodottoOrdine.getDescrizione()%></p>
 									<p class="card-text">
-										<b>Data di nascita:</b><%=formatDateTime%>
+										<b>Data di nascita: </b><%=formatDateTime%>
 									</p>
 									<%
 									String descrizione = prodottoOrdine.getBreveDescrizione();
@@ -488,15 +353,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 										<b>Paese:</b>
 										<%=name%>
 									</p>
-									<%
-									if (ordine.isRegalo()) {
-									%>
-									<p class="card-text">
-										Hai regalato questo ordine a <b><%=ordine.getDestinatarioRegalo()%></b>
-									</p>
-									<%
-									}
-									%>
+
 									<div class="progress-bar-container mb-3 ">
 										<div id="progress-bar-<%=prodottoOrdine.getStato()%>"></div>
 										<%
@@ -629,6 +486,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					int i = 0;
 					int p = 0;
 					int g = 0;
+					int a = 0;
 					Iterator<?> it4 = ordini.iterator();
 					while (it4.hasNext()) {
 						Ordine ordine = (Ordine) it4.next();
@@ -654,62 +512,24 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						p = 1;
 							else if (name.equalsIgnoreCase("guatemala"))
 						g = 1;
+							else if (name.equalsIgnoreCase("argentina"))
+						a = 1;
 						}
 					}
 
-					int paesi = i + p + g;
+					int paesi = i + p + g + a;
 					%>
 
 					<h1 class="text-center">I tuoi badge</h1>
 
-					<div class="row row-cols-1 row-cols-md-3 g-3 text-center">
-						<!-- Astrologo -->
-						<div class="card">
-							<img src="./resources/img/badge/astrologo.png"
-								class="card-img-top <%if (numeroAlberiAcquistati < 40)%>badgeImg "
-								alt="...">
-							<div class="card-body">
-								<h5 class="card-title">Astrologo</h5>
-								<%if (numeroAlberiAcquistati < 40) {%>
-								<a href="#!" class="btn btn-primary" data-bs-toggle="modal"
-									data-bs-target="#astrologoModal">Sblocca</a>
-								<%
-								} else {
-								%>
-								<p class="text-center text-success">
-									Hai comprato
-									<%=numeroAlberiAcquistati%>. Punta sempre più in alto!.
-								</p>
-								<%
-								}
-								%>
-							</div>
-						</div>
-						<!-- benefattore -->
-						<div class="card">
-							<img src="./resources/img/badge/benefattore.png"
-								class="card-img-top <%if (numeroDiRegali == 0)%> badgeImg"
-								alt="...">
-							<div class="card-body">
-								<h5 class="card-title">Benefattore</h5>
-								<%if (numeroDiRegali == 0) {%>
-								<a href="#!" class="btn btn-primary" data-bs-toggle="modal"
-									data-bs-target="#benefattoreModal">Sblocca</a>
-								<%
-								} else {
-								%>
-								<p class="text-center text-success">Hai fatto il tuo primo
-									regalo</p>
-								<%
-								}
-								%>
-							</div>
-						</div>
+					<div
+						class="row gx-1 gy-3 text-center d-flex justify-content-center">
+
+
 						<!-- Giramondo -->
-						<div class="card">
+						<div class="card col-xs-6 col-sm-3">
 							<img src="./resources/img/badge/giramondo.png"
-								class="card-img-top <%if (paesi < 3) {%>badgeImg" <%}%>
-								alt="...">
+								class="card-img-top <%if (paesi < 3) {%>badgeImg" <%}%>>
 							<div class="card-body">
 								<h5 class="card-title">Giramondo</h5>
 								<%
@@ -728,7 +548,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 							</div>
 						</div>
 						<!-- Matricola -->
-						<div class="card">
+						<div class="card col-xs-6 col-sm-3">
 							<img src="./resources/img/badge/matricola.png"
 								class="card-img-top <%if (numeroAlberiAcquistati == 0) {%>badgeImg"
 								<%}%> alt="...">
@@ -748,7 +568,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 							</div>
 						</div>
 						<!-- Multitasking -->
-						<div class="card">
+						<div class="card col-xs-6 col-sm-3">
 							<img src="./resources/img/badge/multitasking.png"
 								class="card-img-top <%if (maxCat < 3) {%> badgeImg" <%}%>
 								alt="...">
@@ -768,7 +588,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 							</div>
 						</div>
 						<!-- Tarzan -->
-						<div class="card">
+						<div class="card col-xs-6 col-sm-3">
 							<img src="./resources/img/badge/tarzan.png"
 								class="card-img-top <%if (numeroAlberiAcquistati < 20) {%> badgeImg"
 								<%}%> alt="...">
@@ -852,7 +672,8 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 								method="POST">
 								<div class="form-check form-switch">
 									<input class="form-check-input" type="checkbox" role="switch"
-										id="preferred" onchange="this.form.submit()" <%if(indirizzo.isPreferred()){%> checked <%} %>> <label
+										id="preferred" onchange="this.form.submit()"
+										<%if (indirizzo.isPreferred()) {%> checked <%}%>> <label
 										class="form-check-label" for="preferred">Preferito</label>
 								</div>
 							</form>
@@ -937,224 +758,14 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					</div>
 				</div>
 				<!-- Regali -->
-				<div id="regali" class="row d-none">
-					<h1 class="text-center">I tuoi regali</h1>
-					<p class="text-muted text-center">Qui puoi visualizzare i
-						regali che hai ricevuto.</p>
-					<%
-					if (ordiniRegalati != null && ordiniRegalati.size() != 0) {
-						Iterator<?> it8 = ordiniRegalati.iterator();
-						while (it8.hasNext()) {
-							Ordine ordine = (Ordine) it8.next();
-							if (ordine.getMessaggioRegalo().equals("riscattato")) {
-						Collection<ProdottoOrdine> prodotti = ordine.getItems();
-						Iterator<ProdottoOrdine> it9 = prodotti.iterator();
-						while (it9.hasNext()) {
-							ProdottoOrdine prodottoOrdine = it9.next();
-					%>
-					<div class="card m-3" style="max-width: 1440px;">
-						<div class="row g-3">
-							<div class="col-md-4">
-								<img
-									src="./ServletResources?codiceAzione=fotoProdottoOrdine&idProdottoOrdine=<%=prodottoOrdine.getId()%>"
-									class="img-fluid rounded-start" alt="..."
-									onerror="this.src='./resources//img/error.jpg'">
-							</div>
-							<div class="col-md-8">
-								<div class="card-body">
-									<h5 class="card-title"><%=prodottoOrdine.getNome()%></h5>
-									<h6 class="card-title"><%=ordine.getUtente().getNome()%>
-										ti ha regalato questo albero
-									</h6>
-									<p class="card-text"><%=prodottoOrdine.getDescrizione()%></p>
-									<p class="card-text">
-										<b>Data di nascita:</b><%=ordine.getCreatoIl()%>
-									</p>
 
-									<div class="progress-bar-container mb-3 ">
-										<div id="progress-bar-<%=prodottoOrdine.getStato()%>"></div>
-										<%
-										String spiegazione = "";
-										if (prodottoOrdine.getStato().equals("seme")) {
-											spiegazione = "Si comincia da un piccolo seme, al caldo nella terra.";
-										%>
-										<div class="circles-container">
-											<div class="circle active">
-												<h3>
-													<i class="fa-solid fa-leaf"></i>
-												</h3>
-											</div>
-											<div class="circle">
-												<h3>
-													<i class="fa-solid fa-seedling"></i>
-												</h3>
-											</div>
-											<div class="circle">
-												<h3>
-													<i class="fa-solid fa-location-dot"></i>
-												</h3>
-											</div>
-											<div class="circle">
-												<h3>
-													<i class="fa-solid fa-image"></i>
-												</h3>
-											</div>
-										</div>
-
-										<%
-										} else if (prodottoOrdine.getStato().equals("piantato")) {
-										spiegazione = "";
-										%>
-										<div class="circles-container">
-											<div class="circle active">
-												<h3>
-													<i class="fa-solid fa-leaf"></i>
-												</h3>
-											</div>
-											<div class="circle active">
-												<h3>
-													<i class="fa-solid fa-seedling"></i>
-												</h3>
-											</div>
-											<div class="circle active">
-												<h3>
-													<i class="fa-solid fa-location-dot"></i>
-												</h3>
-											</div>
-											<div class="circle">
-												<h3>
-													<i class="fa-solid fa-image"></i>
-												</h3>
-											</div>
-										</div>
-										<%
-										} else if (prodottoOrdine.getStato().equals("vivaio")) {
-										spiegazione = "La tua piantina è abbastanza grande da essere accolta in uno dei nostri vivai, insieme a tante altre.";
-										%>
-										<div class="circles-container">
-											<div class="circle active">
-												<h3>
-													<i class="fa-solid fa-leaf"></i>
-												</h3>
-											</div>
-											<div class="circle active">
-												<h3>
-													<i class="fa-solid fa-seedling"></i>
-												</h3>
-											</div>
-											<div class="circle">
-												<h3>
-													<i class="fa-solid fa-location-dot"></i>
-												</h3>
-											</div>
-											<div class="circle">
-												<h3>
-													<i class="fa-solid fa-image"></i>
-												</h3>
-											</div>
-										</div>
-										<%
-										} else if (prodottoOrdine.getStato().equals("fotografato")) {
-										spiegazione = "In posa! Ora che è abbastanza grande, ecco la foto del tuo albero!";
-										%>
-										<div class="circles-container">
-											<div class="circle active">
-												<h3>
-													<i class="fa-solid fa-leaf"></i>
-												</h3>
-											</div>
-											<div class="circle active">
-												<h3>
-													<i class="fa-solid fa-seedling"></i>
-												</h3>
-											</div>
-											<div class="circle">
-												<h3>
-													<i class="fa-solid fa-location-dot"></i>
-												</h3>
-											</div>
-											<div class="circle">
-												<h3>
-													<i class="fa-solid fa-image"></i>
-												</h3>
-											</div>
-										</div>
-										<%
-										}
-										%>
-									</div>
-									<div class="alert alert-primary" role="alert"
-										style="background-color: #e5c59c;"><%=spiegazione%>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<%
-					}
-					} else {
-					%>
-					<p class="text-center text-danger">
-						
-					</p>
-					<%
-					}
-					}
-					%>
-					<%
-					} 
-					%>
-					
-				</div>
 				<!-- Row END -->
 			</div>
 		</div>
 	</div>
 
-	<!-- Modal Astrologo -->
-	<div class="modal fade" id="astrologoModal" tabindex="-1"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Astrologo</h5>
-					<button type="button" class="btn-close" data-bs-dismiss="modal"
-						aria-label="Close"></button>
-				</div>
-				<div class="modal-body">Mira alle stelle e pianta l'albero del
-					tuo segno zodiacale.</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary"
-						data-bs-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary"
-						data-bs-dismiss="modal">Ok</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- Modal Benefattore -->
-	<div class="modal fade" id="benefattoreModal" tabindex="-1"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Benefattore</h5>
-					<button type="button" class="btn-close" data-bs-dismiss="modal"
-						aria-label="Close"></button>
-				</div>
-				<div class="modal-body">Sii generoso e regala almeno un
-					albero. Otterrai il riconoscimento quando la persona a cui hai
-					regalato l'albero, lo riscatterà, diventandone così custode e
-					iniziando a seguirne la storia.</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary"
-						data-bs-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary"
-						data-bs-dismiss="modal">Ok</button>
-				</div>
-			</div>
-		</div>
-	</div>
+
+
 	<!-- Modal Giramondo -->
 	<div class="modal fade" id="giramondoModal" tabindex="-1"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -1165,11 +776,16 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					<button type="button" class="btn-close" data-bs-dismiss="modal"
 						aria-label="Close"></button>
 				</div>
-				<div class="modal-body">Supera i confini e pianta almeno un
-					albero in 3 paesi diversi.</div>
+				<div class="modal-body row d-flex align-items-center">
+					<div class="col-4">
+						<img src="./resources/img/badge/giramondo.png" class="img-fluid">
+					</div>
+					<div class="col-8">Supera i confini e pianta almeno un albero
+						in 3 paesi diversi.</div>
+				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
-						data-bs-dismiss="modal">Close</button>
+						data-bs-dismiss="modal">Chiudi</button>
 					<button type="button" class="btn btn-primary"
 						data-bs-dismiss="modal">Ok</button>
 				</div>
@@ -1186,11 +802,16 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					<button type="button" class="btn-close" data-bs-dismiss="modal"
 						aria-label="Close"></button>
 				</div>
-				<div class="modal-body">Inizia la tua esperienza e pianta il
-					tuo primo albero.</div>
+				<div class="modal-body row d-flex align-items-center">
+					<div class="col-4">
+						<img src="./resources/img/badge/matricola.png" class="img-fluid">
+					</div>
+					<div class="col-8">Inizia la tua esperienza e pianta il tuo
+						primo albero.</div>
+				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
-						data-bs-dismiss="modal">Close</button>
+						data-bs-dismiss="modal">Chiudi</button>
 					<button type="button" class="btn btn-primary"
 						data-bs-dismiss="modal">Ok</button>
 				</div>
@@ -1207,12 +828,18 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					<button type="button" class="btn-close" data-bs-dismiss="modal"
 						aria-label="Close"></button>
 				</div>
-				<div class="modal-body">Gli alberi sanno essere utili in molti
-					modi. Pianta alberi che assolvono ad almeno 6 dei loro 8 usi e
-					benefici.</div>
+				<div class="modal-body row d-flex align-items-center">
+					<div class="col-4">
+						<img src="./resources/img/badge/multitasking.png"
+							class="img-fluid">
+					</div>
+					<div class="col-8">Gli alberi sanno essere utili in molti
+						modi. Pianta alberi che assolvono ad almeno 6 dei loro 8 usi e
+						benefici.</div>
+				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
-						data-bs-dismiss="modal">Close</button>
+						data-bs-dismiss="modal">Chiudi</button>
 					<button type="button" class="btn btn-primary"
 						data-bs-dismiss="modal">Ok</button>
 				</div>
@@ -1229,11 +856,16 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					<button type="button" class="btn-close" data-bs-dismiss="modal"
 						aria-label="Close"></button>
 				</div>
-				<div class="modal-body">Non essere timido e crea la tua prima
-					foresta.</div>
+				<div class="modal-body row d-flex align-items-center">
+					<div class="col-4">
+						<img src="./resources/img/badge/tarzan.png" class="img-fluid">
+					</div>
+					<div class="col-8">Non essere timido e crea la tua prima
+						foresta.</div>
+				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
-						data-bs-dismiss="modal">Close</button>
+						data-bs-dismiss="modal">Chiudi</button>
 					<button type="button" class="btn btn-primary"
 						data-bs-dismiss="modal">Ok</button>
 				</div>
@@ -1336,15 +968,13 @@ function printDettagliOrdine(json) {
 	$("#prodottiOrdineAlert").empty();
 	json.items.forEach((e) => {
 		$("#prodottiOrdineAlert").append("<li>" + "<b>Nome:</b> " + e.nome + ", Prezzo: " + e.prezzo + "€, Quantità: "
-			+ e.quantità + ", Saldo: " + e.saldo + "%, tasse: " + e.tasse + "%, Stato: " + e.stato +
+			+ e.quantità +  ", tasse: " + e.tasse + "%, Stato: " + e.stato +
 			"</li>");
 	});
 
 	$("#dettaglioOrdineAlert").empty().append("<b>N. Prodotti:</b>" + json.totaleProdotti + ", ");
 	$("#dettaglioOrdineAlert").append("<b>Totale Ordine:</b>" + json.totalePagato + "€, ");
-	$("#dettaglioOrdineAlert").append("<b>Regalo?:</b>" + json.regalo + ", ");
-	$("#dettaglioOrdineAlert").append("<b>Messaggio Regalo</b>" + json.messaggioRegalo + ", ");
-	$("#dettaglioOrdineAlert").append("<b>Destinatario Regalo</b>" + json.destinatarioRegalo + ", ");
+	
 }
 </script>
 	<script type="text/javascript">

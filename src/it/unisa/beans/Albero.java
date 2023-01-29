@@ -24,6 +24,7 @@ public class Albero implements Serializable {
 	private double altezza;
 	private int co2;
 	private int salvaguardia;
+	private double tasse;
 
 	private Collection<UsoLocale> usiLocali;
 	private Collection<Categoria> categorie;
@@ -32,25 +33,19 @@ public class Albero implements Serializable {
 	/**
 	 * Costruttore con parametri
 	 * 
-	 * @param id                codice identificativo
-	 * @param nome              nome dell'albero
-	 * @param nomeScientifico   nome scientifico dell'albero
-	 * @param paeseDiOrigine    paese di origine dell'albero
-	 * @param descrizione       descrizione dell'albero
-	 * @param descrizioneBreve  breve descrizione dell'albero
-	 * @param sottotitolo       informazione caratterizzante l'albero
-	 * @param doveVienePiantato dove verrà piantato l'albero
-	 * @param prezzo            prezzo per piantare l'albero
-	 * @param altezza           altezza dell'albero
-	 * @param co2               quantità di co2 assorbita
-	 * @param salvaguardia      caratteristiche ambientali
-	 * @param tasse             iva
-	 * @param saldo             tatale iva+prezzo
-	 * @param quantità          di quanti alberi di qeusto tipo diponiamo
-	 * @param onSale            percentuale di saldo
-	 * @param disponibile       TRUE è disponibile, FALSE non disponibile
-	 * @param usiLocali         gli usi che possono essere fatti con quell'albero
-	 * @param categorie         categoria a cui viene accomunato l'albero
+	 * @param id               codice identificativo
+	 * @param nome             nome dell'albero
+	 * @param nomeScientifico  nome scientifico dell'albero
+	 * @param paeseDiOrigine   paese di origine dell'albero
+	 * @param descrizione      descrizione dell'albero
+	 * @param descrizioneBreve breve descrizione dell'albero
+	 * @param sottotitolo      informazione caratterizzante l'albero
+	 * @param prezzo           prezzo per piantare l'albero
+	 * @param altezza          altezza dell'albero
+	 * @param co2              quantità di co2 assorbita
+	 * @param salvaguardia     caratteristiche ambientali
+	 * @param usiLocali        gli usi che possono essere fatti con quell'albero
+	 * @param categorie        categoria a cui viene accomunato l'albero
 	 */
 	public Albero(int id, String nome, String nomeScientifico, PaeseDiOrigine paeseDiOrigine, String descrizione,
 			String descrizioneBreve, String sottotitolo, double prezzo, double altezza, int co2, int salvaguardia,
@@ -201,6 +196,23 @@ public class Albero implements Serializable {
 		this.benefici = benefici;
 	}
 
+	public double getTasse() {
+		return tasse;
+	}
+
+	public void setTasse(double tasse) {
+		this.tasse = tasse;
+	}
+
+	@Override
+	public String toString() {
+		return "Albero [id=" + id + ", nome=" + nome + ", nomeScientifico=" + nomeScientifico + ", paeseDiOrigine="
+				+ paeseDiOrigine + ", descrizione=" + descrizione + ", descrizioneBreve=" + descrizioneBreve
+				+ ", sottotitolo=" + sottotitolo + ", prezzo=" + prezzo + ", altezza=" + altezza + ", co2=" + co2
+				+ ", salvaguardia=" + salvaguardia + ", tasse=" + tasse + ", usiLocali=" + usiLocali + ", categorie="
+				+ categorie + ", benefici=" + benefici + "]";
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -221,6 +233,8 @@ public class Albero implements Serializable {
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + salvaguardia;
 		result = prime * result + ((sottotitolo == null) ? 0 : sottotitolo.hashCode());
+		temp = Double.doubleToLongBits(tasse);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((usiLocali == null) ? 0 : usiLocali.hashCode());
 		return result;
 	}
@@ -284,21 +298,14 @@ public class Albero implements Serializable {
 				return false;
 		} else if (!sottotitolo.equals(other.sottotitolo))
 			return false;
+		if (Double.doubleToLongBits(tasse) != Double.doubleToLongBits(other.tasse))
+			return false;
 		if (usiLocali == null) {
 			if (other.usiLocali != null)
 				return false;
 		} else if (!usiLocali.equals(other.usiLocali))
 			return false;
 		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "Albero [id=" + id + ", nome=" + nome + ", nomeScientifico=" + nomeScientifico + ", paeseDiOrigine="
-				+ paeseDiOrigine + ", descrizione=" + descrizione + ", descrizioneBreve=" + descrizioneBreve
-				+ ", sottotitolo=" + sottotitolo + ", prezzo=" + prezzo + ", altezza=" + altezza + ", co2=" + co2
-				+ ", salvaguardia=" + salvaguardia + ", usiLocali=" + usiLocali + ", categorie=" + categorie
-				+ ", benefici=" + benefici + "]";
 	}
 
 	public Collection<UsoLocale> getUsiLocali() {
