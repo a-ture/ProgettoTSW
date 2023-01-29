@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page isErrorPage="true"%>
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>WoodLot-404</title>
+<title>WoodLot-403</title>
 <!--CSS-->
 <link rel="stylesheet" type="text/css"
 	href="resources/css/bootstrap.css">
@@ -23,23 +22,20 @@
 <!-- FontAwesome -->
 <script src="https://kit.fontawesome.com/6bd8866cc2.js"
 	crossorigin="anonymous"></script>
-
 </head>
-
 <body>
 	<div class="container">
 		<div class="row text-center">
 			<br>
 			<p>
-				La risorsa non è stata trovata. <br> Torna alla <a
+				OPS! Non hai accesso a questa pagina! <br>Torna alla <a
 					href="/Home">home</a>
 			</p>
 		</div>
 		<div class="row">
-			<img src="./resources/img/error/404.jpg" height="800px" width="800px"
-				class="img-fluid">
+			<img src="./resources/img/error/403.svg" height="800px" width="800px"
+				>
 		</div>
-
 	</div>
 </body>
 </html>

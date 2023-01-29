@@ -379,16 +379,16 @@ if (ordini == null || utenti == null || prodotti == null || categorie == null ||
 			<div class="row">
 				<div class="col-4">
 					<div class="row">
-						<img src="" class="rounded " alt="..." id="foto1"
-							onerror="this.src='./resources//img/error.jpg'">
+						<img src="" class="rounded img-fluid " alt="..." id="foto1"
+							onerror="this.src='./resources//img/error.jpg'" style="max-height:250px">
 					</div>
 					<p id="fotoCodice1">Foto n.</p>
 					<a class="btn btn-primary my-3 uploadFoto-1"> Upload Foto</a>
 				</div>
 				<div class="col-4">
 					<div class="row">
-						<img src="" class="rounded  " alt="..." id="foto2"
-							onerror="this.src='./resources//img/error.jpg'">
+						<img src="" class="rounded img-fluid  " alt="..." id="foto2"
+							onerror="this.src='./resources//img/error.jpg'" height="400" width="400"> 
 					</div>
 					<p id="fotoCodice2">Foto n.</p>
 					<a class="btn btn-primary my-3 uploadFoto-2"> Upload Foto</a>
@@ -396,8 +396,8 @@ if (ordini == null || utenti == null || prodotti == null || categorie == null ||
 				</div>
 				<div class="col-4">
 					<div class="row">
-						<img src="" class="rounded  " alt="..." id="foto3"
-							onerror="this.src='./resources//img/error.jpg'">
+						<img src="" class="rounded img-fluid " alt="..." id="foto3"
+							onerror="this.src='./resources//img/error.jpg'" height="400" width="400">
 					</div>
 					<p id="fotoCodice3">Foto n.</p>
 					<a class="btn btn-primary my-3 uploadFoto-3"> Upload Foto</a>
