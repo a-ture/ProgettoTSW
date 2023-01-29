@@ -24,6 +24,7 @@ import it.unisa.beans.Categoria;
 import it.unisa.model.Carrello;
 import it.unisa.model.CategoriaDAO;
 import it.unisa.model.FotoProdottoDAO;
+import it.unisa.model.PaeseDiOrigineDAO;
 import it.unisa.model.AlberoDAO;
 import it.unisa.model.UsoLocaleDAO;
 
@@ -139,8 +140,8 @@ public class ServletProdotto extends HttpServlet {
 				} else if (action.equalsIgnoreCase("eliminaAlberoCatalogo")) {
 					String id = request.getParameter("id");
 					model.doDelete(model.doRetriveByKey(id));
-		
-					Collection<Albero> prodotti =	model.doRetriveAll("");
+
+					Collection<Albero> prodotti = model.doRetriveAll("");
 					request.getSession().removeAttribute("prodotti");
 					request.getSession().setAttribute("prodotti", prodotti);
 					redirectPage = "/pages/admin.jsp";
@@ -161,13 +162,13 @@ public class ServletProdotto extends HttpServlet {
 		FotoProdottoDAO model1 = new FotoProdottoDAO();
 		UsoLocaleDAO model3 = new UsoLocaleDAO();
 		CategoriaDAO model4 = new CategoriaDAO();
+		PaeseDiOrigineDAO model5 = new PaeseDiOrigineDAO();
 		String action = request.getParameter("action");
 		String redirectPage;
 
 		try {
 			if (action.equalsIgnoreCase("aggiornaAlbero")) {
 				String id = request.getParameter("codiceProdotto");
-
 				String nome = request.getParameter("nome");
 				String nomeScientifico = request.getParameter("nomeScientifico");
 				double prezzo = Double.parseDouble(request.getParameter("prezzo"));
@@ -178,12 +179,12 @@ public class ServletProdotto extends HttpServlet {
 				int salvaguardia = Integer.parseInt(request.getParameter("salvaguardia"));
 				double altezza = Double.parseDouble(request.getParameter("altezza"));
 				double tasse = Double.parseDouble(request.getParameter("tasse"));
+
 				String paeseDiOrigine = request.getParameter("paese");
 
 				if (paeseDiOrigine.equals("Perù"))
 					paeseDiOrigine = "Perù";
 
-				
 				Albero bean = new Albero();
 				bean.setAltezza(altezza);
 				bean.setCo2(co2);
@@ -196,16 +197,15 @@ public class ServletProdotto extends HttpServlet {
 				bean.setPrezzo(prezzo);
 				bean.setSalvaguardia(salvaguardia);
 				bean.setSottotitolo(sottotitolo);
+				bean.setPaeseDiOrigine(model5.doRetriveByKey(paeseDiOrigine));
 
 				int sicAlimentare = Integer.parseInt(request.getParameter("ben1"));
 				int sviSoste = Integer.parseInt(request.getParameter("ben2"));
-				int assCO2 = Integer.parseInt(request.getParameter("ben3"));
-				int sviEconomico = Integer.parseInt(request.getParameter("ben4"));
+				int sviEconomico = Integer.parseInt(request.getParameter("ben3"));
 
 				Collection<Beneficio> benefits = new ArrayList<Beneficio>();
 				benefits.add(new Beneficio(1, sicAlimentare));
 				benefits.add(new Beneficio(2, sviSoste));
-				benefits.add(new Beneficio(4, assCO2));
 				benefits.add(new Beneficio(3, sviEconomico));
 
 				String[] catId = request.getParameterValues("categorie");
@@ -228,6 +228,9 @@ public class ServletProdotto extends HttpServlet {
 
 				System.out.println(bean);
 				model.doUpdate(bean);
+				Collection<Albero> prodotti = model.doRetriveAll("");
+				request.getSession().removeAttribute("prodotti");
+				request.getSession().setAttribute("prodotti", prodotti);
 
 			} else if (action.equalsIgnoreCase("inserisciAlbero")) {
 				String nome = request.getParameter("nome");
@@ -239,9 +242,12 @@ public class ServletProdotto extends HttpServlet {
 				int co2 = Integer.parseInt(request.getParameter("co2"));
 				int salvaguardia = Integer.parseInt(request.getParameter("salvaguardia"));
 				double altezza = Double.parseDouble(request.getParameter("altezza"));
-			
 				double tasse = Double.parseDouble(request.getParameter("tasse"));
-			
+				String paeseDiOrigine = request.getParameter("paese");
+
+				if (paeseDiOrigine.equals("Perù"))
+					paeseDiOrigine = "Perù";
+
 				Albero bean = new Albero();
 				bean.setAltezza(altezza);
 				bean.setCo2(co2);
@@ -254,16 +260,15 @@ public class ServletProdotto extends HttpServlet {
 				bean.setTasse(tasse);
 				bean.setSalvaguardia(salvaguardia);
 				bean.setSottotitolo(sottotitolo);
+				bean.setPaeseDiOrigine(model5.doRetriveByKey(paeseDiOrigine));
 
 				int sicAlimentare = Integer.parseInt(request.getParameter("ben1"));
 				int sviSoste = Integer.parseInt(request.getParameter("ben2"));
-				int assCO2 = Integer.parseInt(request.getParameter("ben3"));
-				int sviEconomico = Integer.parseInt(request.getParameter("ben4"));
+				int sviEconomico = Integer.parseInt(request.getParameter("ben3"));
 
 				Collection<Beneficio> benefits = new ArrayList<Beneficio>();
 				benefits.add(new Beneficio(1, sicAlimentare));
 				benefits.add(new Beneficio(2, sviSoste));
-				benefits.add(new Beneficio(4, assCO2));
 				benefits.add(new Beneficio(3, sviEconomico));
 
 				String[] catId = request.getParameterValues("categorie");
@@ -291,15 +296,23 @@ public class ServletProdotto extends HttpServlet {
 				while (it1.hasNext()) {
 					salvaFotoProdotto(request, it1.next().getNomeFoto());
 				}
+				Collection<Albero> prodotti = model.doRetriveAll("");
+				request.getSession().removeAttribute("prodotti");
+				request.getSession().setAttribute("prodotti", prodotti);
 			} else if (action.equalsIgnoreCase("aggiornaFotoAlbero")) {
 				String id = request.getParameter("codice");
 
 				salvaFotoProdotto(request, Integer.parseInt(id));
-
+				Collection<Albero> prodotti = model.doRetriveAll("");
+				request.getSession().removeAttribute("prodotti");
+				request.getSession().setAttribute("prodotti", prodotti);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
 		}
+
 		redirectPage = "/pages/admin.jsp";
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(redirectPage);
 		dispatcher.forward(request, response);

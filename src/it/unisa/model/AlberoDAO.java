@@ -168,10 +168,10 @@ public class AlberoDAO implements GenericDAO<Albero> {
 			stmt.setDouble(5, item.getAltezza());
 			stmt.setDouble(6, item.getPrezzo());
 			stmt.setString(7, item.getPaeseDiOrigine().getNome());
-			stmt.setDouble(9, item.getCo2());
-			stmt.setDouble(10, item.getSalvaguardia());
-			stmt.setString(11, item.getSottotitolo());
-			stmt.setDouble(12, item.getTasse());
+			stmt.setDouble(8, item.getCo2());
+			stmt.setDouble(9, item.getSalvaguardia());
+			stmt.setString(10, item.getSottotitolo());
+			stmt.setDouble(11, item.getTasse());
 			stmt.executeUpdate();
 
 			ResultSet rs = stmt.getGeneratedKeys();
@@ -238,12 +238,12 @@ public class AlberoDAO implements GenericDAO<Albero> {
 			stmt.setString(4, item.getDescrizioneBreve());
 			stmt.setDouble(5, item.getPrezzo());
 			stmt.setString(6, item.getSottotitolo());
-			stmt.setDouble(8, item.getAltezza());
-			stmt.setString(9, item.getPaeseDiOrigine().getNome());
-			stmt.setInt(12, item.getCo2());
-			stmt.setInt(13, item.getSalvaguardia());
-			stmt.setDouble(14, item.getTasse());
-			stmt.setInt(15, item.getId());
+			stmt.setDouble(7, item.getAltezza());
+			stmt.setString(8, item.getPaeseDiOrigine().getNome());
+			stmt.setInt(9, item.getCo2());
+			stmt.setInt(10, item.getSalvaguardia());
+			stmt.setDouble(11, item.getTasse());
+			stmt.setInt(12, item.getId());
 
 			stmt.executeUpdate();
 

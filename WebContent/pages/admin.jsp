@@ -11,6 +11,11 @@ Collection<?> categorie = (Collection<?>) request.getSession().getAttribute("cat
 Collection<?> usi = (Collection<?>) request.getSession().getAttribute("usi");
 
 DecimalFormat dFormat = new DecimalFormat("0.00");
+
+if (ordini == null || utenti == null || prodotti == null || categorie == null || usi == null) {
+	response.sendRedirect("./Admin");
+	return;
+}
 %>
 
 <!DOCTYPE html>
@@ -26,8 +31,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 	href="resources/css/_variables.scss">
 <link rel="stylesheet" type="text/css"
 	href="resources/css/_bootswatch.scss">
-<link rel="stylesheet" type="text/css"
-	href="resources/css/style.css">
+<link rel="stylesheet" type="text/css" href="resources/css/style.css">
 
 <!-- JavaScript Bundle with Popper -->
 <script
@@ -75,12 +79,13 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 								class="fas fa-tachometer-alt"> Pannello di Controllo</i></a></li>
 						<li class="nav-item dropdown"><a class="nav-link active"
 							href="#prod"><i class="fas fa-tshirt"> Gestione Prodotti</i></a></li>
-						<li class="nav-item"><a class="nav-link active" href="#ordine"><i
-								class="fas fa-shopping-cart"> Gestione Ordini</i></a></li>
+						<li class="nav-item"><a class="nav-link active"
+							href="#ordine"><i class="fas fa-shopping-cart"> Gestione
+									Ordini</i></a></li>
 						<li class="nav-item"><a class="nav-link active" href="#user"><i
 								class="fas fa-user-circle"> Gestione Utenti</i></a></li>
-						<li class="nav-item active"><a class="nav-link active" href="#"
-							data-bs-toggle="modal" data-bs-target="#exampleModal"><i
+						<li class="nav-item active"><a class="nav-link active"
+							href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"><i
 								class="fas fa-sign-out-alt"> Log Out</i></a></li>
 					</ul>
 				</div>
@@ -88,8 +93,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 		</nav>
 
 		<div id="dashboard">
-			<br>
-			<br>
+			<br> <br>
 			<h1 class="my-5 text-center">Welcome back!</h1>
 			<div class="count-up mt-3 mb-5 text-center">
 				<div class="wrapper">
@@ -104,8 +108,8 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				</div>
 				<div class="wrapper">
 					<div class="card h-100">
-						<img src="resources/img/chiSiamo/info_countries.svg"
-							height="200" width="200" class="card-img-top">
+						<img src="resources/img/chiSiamo/info_countries.svg" height="200"
+							width="200" class="card-img-top">
 						<div class="card-body">
 							<h5 class="card-title text-center">Ordini</h5>
 							<div class="counter" data-count="<%=ordini.size()%>">0</div>
@@ -118,8 +122,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 							width="200" class="card-img-top">
 						<div class="card-body">
 							<h5 class="card-title">Prodotti</h5>
-							<div class="counter"
-								data-count="<%=prodotti.size()%>">0</div>
+							<div class="counter" data-count="<%=prodotti.size()%>">0</div>
 						</div>
 					</div>
 				</div>
@@ -148,9 +151,8 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				<div class="col">
 					<div class="input-group mb-3">
 						<input type="text" class="form-control"
-							placeholder="Cerca per cliente"
-							aria-describedby="button-addon2" id="myInput2"
-							onkeyup="myFunctionId(1,'myInput2','myTable')">
+							placeholder="Cerca per cliente" aria-describedby="button-addon2"
+							id="myInput2" onkeyup="myFunctionId(1,'myInput2','myTable')">
 						<button class="btn btn-outline-success" type="button"
 							id="button-addon2">
 							<i class="fa-solid fa-magnifying-glass"></i>
@@ -288,9 +290,8 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				<div class="col ">
 					<div class="input-group mb-3">
 						<input type="text" class="form-control"
-							placeholder="Cerca per paese"
-							aria-describedby="button-addon2" id="myInput5"
-							onkeyup="myFunctionId(2,'myInput5','myTable2')">
+							placeholder="Cerca per paese" aria-describedby="button-addon2"
+							id="myInput5" onkeyup="myFunctionId(2,'myInput5','myTable2')">
 						<button class="btn btn-outline-success" type="button"
 							id="button-addon2">
 							<i class="fa-solid fa-magnifying-glass"></i>
@@ -306,7 +307,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 							<th scope="col" onclick="sortTableAlf(1,'myTable2')">Nome</th>
 							<th scope="col" onclick="sortTableAlf(2,'myTable2')">Paese</th>
 							<th scope="col" onclick="sortTableAlf(3,'myTable2')">Prezzo</th>
-		
+
 							<th scope="col">Azioni</th>
 						</tr>
 					</thead>
@@ -322,7 +323,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 							<td><%=a.getNome()%></td>
 							<td><%=a.getPaeseDiOrigine().getNome()%></td>
 							<td><%=dFormat.format(a.getPrezzo())%>€</td>
-			
+
 							<td><a class="botteneIdProdottoVedi" href="#prodottoIdAlert"><i
 									class="fa-solid fa-eye"></i></a> <a
 								class="botteneIdProdottoModifica" href="#ordine"><i
@@ -446,7 +447,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 
 		<div id="prod" class="text-center fw-bold h3">Gestione Prodotti</div>
 
-		<div class="form  my-5">
+		<div class="form  container mb-3">
 			<form action="Prodotto?action=inserisciAlbero" accept-charset="UTF-8"
 				class="needs-validation" novalidate autocomplete="off"
 				enctype="multipart/form-data" method="POST" id="prodottoForm">
@@ -462,7 +463,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						</div>
 						<div class="col-9">
 							<input class="form-control" type="text"
-								placeholder="Inserisci nome" name="nome">
+								placeholder="Inserisci il nome dell'albero" name="nome">
 							<div class="invalid-feedback">Inserisci un nome valido</div>
 						</div>
 					</div>
@@ -472,7 +473,8 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						</div>
 						<div class="col-9">
 							<input class="form-control" type="text"
-								placeholder="Inserisci nome scientifico" name="nomeScientifico">
+								placeholder="Inserisci il nome scientifico"
+								name="nomeScientifico">
 							<div class="invalid-feedback">Inserisci un nome valido</div>
 						</div>
 					</div>
@@ -482,15 +484,15 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						</div>
 						<div class="col-9">
 							<input class="form-control" type="text"
-								placeholder="Inserisci il prezzo" name="prezzo">
+								placeholder="Inserisci il prezzo dell'albero" name="prezzo">
 							<div class="invalid-feedback">Inserisci un prezzo valido</div>
 						</div>
 					</div>
 					<div class="row align-items-center">
-						<div class="col-3">
+						<div class="col-3 col-xs-6">
 							<h5>Sottotitolo</h5>
 						</div>
-						<div class="col-9">
+						<div class="col-9 ">
 							<input class="form-control" type="text"
 								placeholder="Inserisci sottotitolo" name="sottotitolo">
 							<div class="invalid-feedback">Inserisci un sottotitolo
@@ -520,22 +522,24 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					</div>
 					<div class="row align-items-center">
 						<div class="col-3 ">
-							<h5>CO2:</h5>
+							<h5>
+								CO<sub>2</sub>:
+							</h5>
 						</div>
 						<div class="col-9">
 							<input class="form-control" type="text"
-								placeholder="Inserisci nome" name="co2">
-							<div class="invalid-feedback">Inserisci un numero tra 1 e 5
-							</div>
+								placeholder="Inserisci un numero intero" name="co2">
+							<div class="invalid-feedback">Inserisci un numero intero</div>
 						</div>
 					</div>
-					<div class="row align-items-center">
-						<div class="col-3 ">
+					<div class="row">
+						<div class="col-3 col-xs-12">
 							<h5>Salvaguardia:</h5>
 						</div>
-						<div class="col-9">
+						<div class="col-9 ">
 							<input class="form-control" type="text"
-								placeholder="Inserisci nome" name="salvaguardia">
+								placeholder="Inserisci un numero intero tra 1 e 5"
+								name="salvaguardia">
 							<div class="invalid-feedback">Inserisci un numero tra 1 e 5
 							</div>
 						</div>
@@ -558,56 +562,15 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 
 					<div class="row align-items-center">
 						<div class="col-3 ">
-							<h5>OnSale:</h5>
-						</div>
-						<div class="col-9">
-							<select class="form-select form-select-sm" name="onSale">
-								<option value="1">vero</option>
-								<option selected value="0">falso</option>
-							</select>
-						</div>
-					</div>
-					<div class="row align-items-center">
-						<div class="col-3 ">
-							<h5>Saldo:</h5>
-						</div>
-						<div class="col-9">
-							<input class="form-control" type="text"
-								placeholder="Inserisci il saldo " name="saldo">
-							<div class="invalid-feedback">Inserisci un importo valido</div>
-						</div>
-					</div>
-					<div class="row align-items-center">
-						<div class="col-3 ">
-							<h5>Quantità:</h5>
-						</div>
-						<div class="col-9">
-							<input class="form-control" type="text"
-								placeholder="Inserisci nome scientifico" name="quantità">
-							<div class="invalid-feedback">Inserisci una quantità valida</div>
-						</div>
-					</div>
-					<div class="row align-items-center">
-						<div class="col-3 ">
 							<h5>Tasse:</h5>
 						</div>
 						<div class="col-9">
 							<input class="form-control" type="text"
-								placeholder="Inserisci nome" name="tasse">
+								placeholder="Inserisci l'importo delle tasse" name="tasse">
 							<div class="invalid-feedback">Inserisci un importo valido</div>
 						</div>
 					</div>
-					<div class="row align-items-center">
-						<div class="col-3 ">
-							<h5>Disponibile:</h5>
-						</div>
-						<div class="col-9">
-							<select class="form-select form-select-sm" name="disponibile">
-								<option selected value="1">vero</option>
-								<option value="0">falso</option>
-							</select>
-						</div>
-					</div>
+
 				</div>
 				<!-- Tab 3 -->
 				<div class="tab">
@@ -622,18 +585,8 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 								<option selected value="Perù">Perù</option>
 								<option value="Guatemala">Guatemala</option>
 								<option value="Italia">Italia</option>
+								<option value="Argentina">Argentina</option>
 							</select>
-						</div>
-					</div>
-					<div class="row align-items-center">
-						<div class="col-3 ">
-							<h5>Dove viene piantato:</h5>
-						</div>
-						<div class="col-9">
-							<input class="form-control" type="text"
-								placeholder="Inserisci nome scientifico"
-								name="doveVienePiantato">
-							<div class="invalid-feedback">Inserisci una descrizione</div>
 						</div>
 					</div>
 				</div>
@@ -647,7 +600,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						</div>
 						<div class="col-9">
 							<input class="form-control" type="text"
-								placeholder="Inserisci nome" name="ben1">
+								placeholder="Inserisci un numero intero tra 1 e 5" name="ben1">
 							<div class="invalid-feedback">Inserisci un numero da 1 a 5</div>
 						</div>
 					</div>
@@ -657,17 +610,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						</div>
 						<div class="col-9">
 							<input class="form-control" type="text"
-								placeholder="Inserisci nome scientifico" name="ben2">
-							<div class="invalid-feedback">Inserisci un numero da 1 a 5</div>
-						</div>
-					</div>
-					<div class="row align-items-center">
-						<div class="col-3 ">
-							<h5>Assorbimento CO2:</h5>
-						</div>
-						<div class="col-9">
-							<input class="form-control" type="text"
-								placeholder="Inserisci nome scientifico" name="ben4">
+								placeholder="Inserisci un numero intero tra 1 e 5" name="ben2">
 							<div class="invalid-feedback">Inserisci un numero da 1 a 5</div>
 						</div>
 					</div>
@@ -677,7 +620,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						</div>
 						<div class="col-9">
 							<input class="form-control" type="text"
-								placeholder="Inserisci nome" name="ben3">
+								placeholder="Inserisci un numero intero tra 1 e 5" name="ben3">
 							<div class="invalid-feedback">Inserisci un numero da 1 a 5</div>
 						</div>
 					</div>
@@ -743,7 +686,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						</div>
 						<div class="col-9">
 							<input type="file" class="form-control" id="inputGroupFile01"
-								name="foto1">
+								name="foto1" placeholder="Inserisci la foto dell'albero">
 						</div>
 					</div>
 					<div class="row">
@@ -752,7 +695,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						</div>
 						<div class="col-9">
 							<input type="file" class="form-control" id="inputGroupFile02"
-								name="foto2">
+								name="foto2" placeholder="Inserisci la foto dell'albero">
 						</div>
 					</div>
 					<div class="row">
@@ -761,7 +704,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						</div>
 						<div class="col-9">
 							<input type="file" class="form-control" id="inputGroupFile03"
-								name="foto3">
+								name="foto3" placeholder="Inserisci la foto dell'albero">
 						</div>
 					</div>
 				</div>
@@ -770,9 +713,9 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			<div class="container-fluid mt-5">
 				<div style="overflow: auto;">
 					<div style="float: right;">
-						<button class="btn btn-dark" type="button" id="prevBtn"
+						<button class="btn btn-primary" type="button" id="prevBtn"
 							onclick="nextPrev(-1)">Previous</button>
-						<button class="btn btn-dark" type="button" id="nextBtn"
+						<button class="btn btn-primary" type="button" id="nextBtn"
 							onclick="nextPrev(1)">Next</button>
 					</div>
 				</div>
@@ -783,7 +726,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				</div>
 			</div>
 		</div>
-		<div class="form my-5 d-none" id="uploadFoto">
+		<div class="container form my-5 d-none" id="uploadFoto">
 			<form action="Prodotto?action=aggiornaFotoAlbero"
 				enctype="multipart/form-data" method="POST">
 				<div class="fw-bold h3">Upload Foto</div>
@@ -803,12 +746,12 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					</div>
 					<div class="col-9">
 						<input type="file" class="form-control" id="inputGroupFile01"
-							name="foto1">
+							name="foto1" placeholder="Inserisci la foto dell'albero">
 					</div>
 				</div>
 				<br />
 				<div class="row justify-content-center">
-					<button type="submit" class="col-3 btn btn-outline-dark">Inserisci</button>
+					<button type="submit" class="col-3 btn btn-primary">Inserisci</button>
 
 				</div>
 			</form>
@@ -816,8 +759,9 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 	</div>
 
 	<!-- Sezione Ordine -->
-	<div id="ordine" class="text-center fw-bold h3">Gestione Ordine</div>
-	<div class="form  my-5 d-none" id="uploadFotoOrdineForm">
+	<div id="ordine" class="text-center fw-bold h3 d-none mt-5">Gestione
+		Ordine</div>
+	<div class="container form  my-5 d-none" id="uploadFotoOrdineForm">
 		<form action="Admin?action=aggiornaProdottoOrdine"
 			enctype="multipart/form-data" method="POST">
 			<div class="fw-bold h3">Aggiornamento Alberi</div>
@@ -855,7 +799,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				</div>
 			</div>
 			<div class="row justify-content-center mt-4">
-				<button type="submit" class="col-3 btn btn-outline-dark">Aggiorna</button>
+				<button type="submit" class="col-3 btn btn-primary">Aggiorna</button>
 			</div>
 		</form>
 	</div>
@@ -950,7 +894,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				}
 			}
 				
-			if( y[i].name == "sottotitolo" || y[i].name == "nomeScientifico" || y[i].name=="doveVienePiantato" ){
+			if( y[i].name == "sottotitolo" || y[i].name == "nomeScientifico"){
 				if (y[i].value == "") {
 					y[i].classList.add("is-invalid");
 					valid = false;
@@ -971,8 +915,8 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				}
 			}
 			
-			if(y[i].name ==  "co2" || y[i].name ==  "salvaguardia" || y[i].name == "ben1"  ||  y[i].name == "ben2"
-					||  y[i].name == "ben3" ||  y[i].name == "ben4"){
+			if(y[i].name ==  "salvaguardia" || y[i].name == "ben1"  ||  y[i].name == "ben2"
+					||   y[i].name == "ben4"){
 				if (validate5(y[i])) {
 					y[i].classList.add("was-validated");
 					y[i].classList.add("is-valid");
@@ -994,7 +938,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 				}
 			}
 			
-			if(y[i].name ==  "tasse" || y[i].name ==  "saldo" || y[i].name=="quantità"){
+			if(y[i].name ==  "tasse" || y[i].name ==  "co2" ){
 				if (validateNumber(y[i])) {
 					y[i].classList.add("was-validated");
 					y[i].classList.add("is-valid");
@@ -1205,6 +1149,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 	});
 	
 	function uploadFotoAlbero(id) {
+		$("#ordine").removeClass("d-none");
 		$("#uploadFotoOrdineForm").removeClass("d-none");
 		$("#codiceProdottoUpload").val(id);
 		$("html, body").animate({
@@ -1219,7 +1164,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 		$("#tableBody").empty();
 		j.items.forEach((e) => {
 			$("#tableBody").append('<tr> <td class="nrOrder">' + e.id + '</td><td>' + e.nome + '</td>' +
-				'<td>' + e.prezzo+'€' + '</td><td>' + e.saldo + '</td><td>' + e.quantità +
+				'<td>' + e.prezzo+'€'+ '</td><td>'  + e.quantità +
 				'</td><td>' + e.stato + '</td><td><img src="./ServletResources?codiceAzione=fotoProdottoOrdine&idProdottoOrdine=' + e.id
 				+ '" class="img-thumbnail bg-secondary bg-gradient" style="max-width:60px;"></td> <td><a class="aggiornaAlbero" onclick="uploadFotoAlbero(' + e.id + ')"><i class=" text-dark fa-solid fa-pen-to-square"></i></a></td></tr>');
 		});
@@ -1230,6 +1175,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 	}
 
 	function printDettagliOrdine(json) {
+		
 		$("#ordineAlert").removeClass("d-none");
 		$("#numeroOrdineAlert").empty().append("<h4>Dettaglio ordine n." + json.id + "</h4>");
 
@@ -1256,11 +1202,11 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 		$("#prodottoAlert").removeClass("d-none");
 		$("#prodottoIdAlert").empty().append("<h4>Dettaglio prodotto id." + j.id + "</h4>");
 
-		$("#prodottoDescrizioneAlert").empty().append("<b>Nome Scientifico: </b>" + j.nomeScientifico + ",  sottotitolo: " + j.sottotitolo
-			+ ", descrizione breve:" + j.descrizioneBreve
-			+ " ,descrizione:" + j.descrizione + "<br>"
-			+ "Paese:" + j.paeseDiOrigine.nome + " " + "<br>"
-			+ "Altezza:" + j.altezza + ",  CO<sub>2</sub>:" + j.co2 + " ,salvaguardia: " + j.salvaguardia);
+		$("#prodottoDescrizioneAlert").empty().append("<b>Nome Scientifico: </b>" + j.nomeScientifico + ", <b>sottotitolo:</b> " + j.sottotitolo
+			+ ", <b>descrizione breve:</b>" + j.descrizioneBreve
+			+ " ,<b>descrizione:</b>" + j.descrizione + ""
+			+ " <b>paese:</b>" + j.paeseDiOrigine.nome + ",  " + ""
+			+ "<b>altezza:</b>" + j.altezza + ", <b> CO<sub>2</sub>:</b>" + j.co2 + ", <b>salvaguardia: </b>" + j.salvaguardia);
 
 		$("#prodottoBeneficiAlert").empty();
 		j.benefici.forEach((e) => {
@@ -1287,12 +1233,13 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 	function printProdottoFoto(j) {
 		var i = 0;
 		$("#prodottoFotoAlert").removeClass("d-none");
-		$("#prodottoFotoIdAlert").empty().append("<h4>Foto prodotto." + "</h4>")
+		
 
 		j.forEach((e) => {
 			i++;
 			$("#foto" + i).attr("src", "./ServletResources?codiceAzione=fotoProdotto&idFoto=" + e.nomeFoto);
 			$("#fotoCodice" + i).empty().append("Foto n." + e.nomeFoto);
+			$("#prodottoFotoIdAlert").empty().append("<h4>Foto prodotto: "+ e.idProdotto+ "</h4>");
 		});
 		
 		$("html, body").animate({
@@ -1317,8 +1264,6 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 		$('input[name="co2"]').val(j.co2);
 		$('input[name="tasse"]').val(j.tasse);
 		$('select[name="paese"]').val(j.paeseDiOrigine.nome);
-		
-		$('select[name="onSale"]').val(j.onSale);
 		
 		j.benefici.forEach((e) => {
 			$('input[name=ben' + e.id + ']').val(e.percentuale);
