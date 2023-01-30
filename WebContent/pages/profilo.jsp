@@ -233,7 +233,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 
 				</div>
 				<!-- Ordini -->
-				<div id="ordini" class="row d-none px-5">
+				<div id="ordini" class="row  px-5">
 					<h1 class="text-center">I tuoi ordini</h1>
 					<%
 					if (ordini.size() != 0 && ordini != null) {
@@ -526,27 +526,6 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						class="row gx-1 gy-3 text-center d-flex justify-content-center">
 
 
-						<!-- Giramondo -->
-						<div class="card col-xs-6 col-sm-3">
-							<img src="./resources/img/badge/giramondo.png"
-								class="card-img-top <%if (paesi < 3) {%>badgeImg" <%}%>>
-							<div class="card-body">
-								<h5 class="card-title">Giramondo</h5>
-								<%
-								if (paesi < 3) {
-								%>
-								<a href="#!" class="btn btn-primary" data-bs-toggle="modal"
-									data-bs-target="#giramondoModal">Sblocca</a>
-								<%
-								} else {
-								%>
-								<p class="text-center text-success">I tuoi alberi sono in
-									giro per il mondo</p>
-								<%
-								}
-								%>
-							</div>
-						</div>
 						<!-- Matricola -->
 						<div class="card col-xs-6 col-sm-3">
 							<img src="./resources/img/badge/matricola.png"
@@ -560,11 +539,8 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 								<a href="#!" class="btn btn-primary" data-bs-toggle="modal"
 									data-bs-target="#matricolaModal">Sblocca</a>
 								<%
-								} else {
+								}
 								%>
-								<p class="text-center text-success">Sei una matricola, hai
-									piantato il tuo primo albero</p>
-								<%}%>
 							</div>
 						</div>
 						<!-- Multitasking -->
@@ -580,11 +556,8 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 								<a href="#!" class="btn btn-primary" data-bs-toggle="modal"
 									data-bs-target="#multitaskingModal">Sblocca</a>
 								<%
-								} else {
+								}
 								%>
-								<p class="text-center text-success">Hai comprato alberi che
-									assolvono a molti usi</p>
-								<%}%>
 							</div>
 						</div>
 						<!-- Tarzan -->
@@ -600,24 +573,16 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 								<a href="#!" class="btn btn-primary" data-bs-toggle="modal"
 									data-bs-target="#tarzanModal">Sblocca</a>
 								<%
-								} else {
-								%>
-								<p class="text-center text-success">
-									Congratulazioni la tua foresta conta
-									<%=numeroAlberiAcquistati%>
-									alberi
-								</p>
-								<%
 								}
 								%>
 							</div>
 						</div>
-						<div class="mb-5"></div>
+
 					</div>
 				</div>
 
 				<!-- Indirizzo -->
-				<div id="indirizzo" class="row px-5  pb-5">
+				<div id="indirizzo" class="row px-5  pb-5 d-none">
 					<h1 class="text-center">I tuoi indirizzi</h1>
 					<%
 					Collection<Indirizzo> indirizzi = utente.getIndirizzi();
@@ -764,34 +729,6 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 		</div>
 	</div>
 
-
-
-	<!-- Modal Giramondo -->
-	<div class="modal fade" id="giramondoModal" tabindex="-1"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Giramondo</h5>
-					<button type="button" class="btn-close" data-bs-dismiss="modal"
-						aria-label="Close"></button>
-				</div>
-				<div class="modal-body row d-flex align-items-center">
-					<div class="col-4">
-						<img src="./resources/img/badge/giramondo.png" class="img-fluid">
-					</div>
-					<div class="col-8">Supera i confini e pianta almeno un albero
-						in 3 paesi diversi.</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary"
-						data-bs-dismiss="modal">Chiudi</button>
-					<button type="button" class="btn btn-primary"
-						data-bs-dismiss="modal">Ok</button>
-				</div>
-			</div>
-		</div>
-	</div>
 	<!-- Modal Matricola -->
 	<div class="modal fade" id="matricolaModal" tabindex="-1"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -860,8 +797,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					<div class="col-4">
 						<img src="./resources/img/badge/tarzan.png" class="img-fluid">
 					</div>
-					<div class="col-8">Non essere timido e crea la tua prima
-						foresta.</div>
+					<div class="col-8">Diventa Tarzan comprando 20 alberi!</div>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"

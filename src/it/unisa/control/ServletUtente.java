@@ -75,4 +75,11 @@ public class ServletUtente extends HttpServlet {
 
 	}
 
+	/**
+	 * Metodo Post che richiama il doGet
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		doGet(request, response);
+	}
 }

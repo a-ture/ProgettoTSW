@@ -146,8 +146,8 @@ public class ServletOrdini extends HttpServlet {
 		}
 		System.out.println(ordine);
 		request.getSession().setAttribute("ordineUtente", ordine);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/ordineEffettuato.jsp");
-		dispatcher.forward(request, response);
+		
+		response.sendRedirect("Utente#ordini");
 		return;
 	}
 

@@ -23,7 +23,7 @@ import it.unisa.model.AlberoDAO;
 import it.unisa.model.UsoLocaleDAO;
 
 /**
- * Servlet per gestire la visione del calalogo in base alle sue categorie
+ * Servlet per gestire la visione del catalogo in base alle sue categorie
  */
 @WebServlet("/Catalogo")
 public class ServletCatalogo extends HttpServlet {

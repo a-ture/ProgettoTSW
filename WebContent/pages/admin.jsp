@@ -61,37 +61,37 @@ if (ordini == null || utenti == null || prodotti == null || categorie == null ||
 </head>
 
 <body>
-	<div class="container-fluid">
-		<nav id="adminNav"
-			class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
-			<div class="container-fluid">
-				<a class="navbar-brand" href="Home">WoodLot</a>
-				<button class="navbar-toggler" type="button"
-					data-bs-toggle="collapse" data-bs-target="#navbarNav"
-					aria-controls="navbarNav" aria-expanded="false"
-					aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse" id="navbarNav">
-					<ul class="navbar-nav">
-						<li class="nav-item"><a class="nav-link active"
-							aria-current="page" href="#dashboard"><i
-								class="fas fa-tachometer-alt"> Pannello di Controllo</i></a></li>
-						<li class="nav-item dropdown"><a class="nav-link active"
-							href="#prod"><i class="fas fa-tshirt"> Gestione Prodotti</i></a></li>
-						<li class="nav-item"><a class="nav-link active"
-							href="#ordine"><i class="fas fa-shopping-cart"> Gestione
-									Ordini</i></a></li>
-						<li class="nav-item"><a class="nav-link active" href="#user"><i
-								class="fas fa-user-circle"> Gestione Utenti</i></a></li>
-						<li class="nav-item active"><a class="nav-link active"
-							href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"><i
-								class="fas fa-sign-out-alt"> Log Out</i></a></li>
-					</ul>
-				</div>
-			</div>
-		</nav>
 
+	<nav id="adminNav" class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="Home">WoodLot</a>
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="collapse" data-bs-target="#navbarNav"
+				aria-controls="navbarNav" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav">
+					<li class="nav-item"><a class="nav-link active"
+						aria-current="page" href="#dashboard"><i
+							class="fas fa-tachometer-alt"></i> Pannello di Controllo</a></li>
+					<li class="nav-item dropdown"><a class="nav-link active"
+						href="#prod"><i class="fa-solid fa-tree"></i> Gestione
+							Prodotti</a></li>
+					<li class="nav-item"><a class="nav-link active"
+						href="#tabOrdini"><i class="fas fa-shopping-cart"></i>
+							Gestione Ordini</a></li>
+					<li class="nav-item"><a class="nav-link active" href="#tabUtente"><i
+							class="fas fa-user-circle"></i> Gestione Utenti</a></li>
+					<li class="nav-item active"><a class="nav-link active"
+						href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"><i
+							class="fas fa-sign-out-alt"> </i> Log Out</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div class="container-fluid">
 		<div id="dashboard">
 			<br> <br>
 			<h1 class="my-5 text-center">Welcome back!</h1>
@@ -129,7 +129,7 @@ if (ordini == null || utenti == null || prodotti == null || categorie == null ||
 			</div>
 		</div>
 
-		<div class="container my-5" id="registroDegliAlberi">
+		<div class="container my-5" >
 			<h1 class="text-center mb-3">Ordini</h1>
 			<div
 				class="row row-cols-1  row-cols-sm-1  row-cols-md-3 g-3 text-center">
@@ -174,7 +174,7 @@ if (ordini == null || utenti == null || prodotti == null || categorie == null ||
 					</div>
 				</div>
 			</div>
-			<div class="table-responsive-sm">
+			<div class="table-responsive-sm" id="tabOrdini">
 				<table class="table text-center my-2 bg-white " id="myTable">
 					<thead>
 						<tr>
@@ -326,7 +326,7 @@ if (ordini == null || utenti == null || prodotti == null || categorie == null ||
 
 							<td><a class="botteneIdProdottoVedi" href="#prodottoIdAlert"><i
 									class="fa-solid fa-eye"></i></a> <a
-								class="botteneIdProdottoModifica" href="#ordine"><i
+								class="botteneIdProdottoModifica" href="#prodottoForm"><i
 									class="fa-solid fa-pen-to-square"></i></a> <a
 								href="Prodotto?action=eliminaAlberoCatalogo&id=<%=a.getId()%>"><i
 									class="fa-solid fa-circle-xmark"></i></a> <a class="vediFoto"
@@ -380,7 +380,8 @@ if (ordini == null || utenti == null || prodotti == null || categorie == null ||
 				<div class="col-4">
 					<div class="row">
 						<img src="" class="rounded img-fluid " alt="..." id="foto1"
-							onerror="this.src='./resources//img/error.jpg'" style="max-height:250px">
+							onerror="this.src='./resources//img/error.jpg'"
+							style="max-height: 250px">
 					</div>
 					<p id="fotoCodice1">Foto n.</p>
 					<a class="btn btn-primary my-3 uploadFoto-1"> Upload Foto</a>
@@ -388,7 +389,8 @@ if (ordini == null || utenti == null || prodotti == null || categorie == null ||
 				<div class="col-4">
 					<div class="row">
 						<img src="" class="rounded img-fluid  " alt="..." id="foto2"
-							onerror="this.src='./resources//img/error.jpg'" height="400" width="400"> 
+							onerror="this.src='./resources//img/error.jpg'" height="400"
+							width="400">
 					</div>
 					<p id="fotoCodice2">Foto n.</p>
 					<a class="btn btn-primary my-3 uploadFoto-2"> Upload Foto</a>
@@ -397,7 +399,8 @@ if (ordini == null || utenti == null || prodotti == null || categorie == null ||
 				<div class="col-4">
 					<div class="row">
 						<img src="" class="rounded img-fluid " alt="..." id="foto3"
-							onerror="this.src='./resources//img/error.jpg'" height="400" width="400">
+							onerror="this.src='./resources//img/error.jpg'" height="400"
+							width="400">
 					</div>
 					<p id="fotoCodice3">Foto n.</p>
 					<a class="btn btn-primary my-3 uploadFoto-3"> Upload Foto</a>
@@ -408,7 +411,7 @@ if (ordini == null || utenti == null || prodotti == null || categorie == null ||
 
 
 
-		<div class="container my-5" id="registroDegliAlberi">
+		<div class="container my-5" id="tabUtente">
 			<h1 class="text-center mb-3">Utenti</h1>
 			<div class="table-responsive-sm">
 				<table class="table bg-white  " id="myTable3">
@@ -505,7 +508,7 @@ if (ordini == null || utenti == null || prodotti == null || categorie == null ||
 						</div>
 						<div class="col-9">
 							<textarea class="form-control"
-								placeholder="Inserisci la descrizione" name="descrizioneBreve"> </textarea>
+								placeholder="Inserisci la descrizione" name="descrizioneBreve"></textarea>
 							<div class="invalid-feedback">Inserisci una descrizione</div>
 						</div>
 					</div>
@@ -515,7 +518,7 @@ if (ordini == null || utenti == null || prodotti == null || categorie == null ||
 						</div>
 						<div class="col-9">
 							<textarea class="form-control"
-								placeholder="Inserisci la descrizione" name="descrizione"> </textarea>
+								placeholder="Inserisci la descrizione" name="descrizione"></textarea>
 							<div class="invalid-feedback">Inserisci una descrizione</div>
 						</div>
 
@@ -534,7 +537,7 @@ if (ordini == null || utenti == null || prodotti == null || categorie == null ||
 					</div>
 					<div class="row">
 						<div class="col-3 col-xs-12">
-							<h5>Salvaguardia:</h5>
+							<h5>Salvaguardia Ambientale:</h5>
 						</div>
 						<div class="col-9 ">
 							<input class="form-control" type="text"
@@ -686,7 +689,8 @@ if (ordini == null || utenti == null || prodotti == null || categorie == null ||
 						</div>
 						<div class="col-9">
 							<input type="file" class="form-control" id="inputGroupFile01"
-								name="foto1" placeholder="Inserisci la foto dell'albero">
+								name="inputGroupFile01" placeholder="Inserisci la foto dell'albero">
+							<div class="invalid-feedback">Inserisci una foto in formato jpeg</div>
 						</div>
 					</div>
 					<div class="row">
@@ -695,7 +699,8 @@ if (ordini == null || utenti == null || prodotti == null || categorie == null ||
 						</div>
 						<div class="col-9">
 							<input type="file" class="form-control" id="inputGroupFile02"
-								name="foto2" placeholder="Inserisci la foto dell'albero">
+								name="inputGroupFile02" placeholder="Inserisci la foto dell'albero">
+							<div class="invalid-feedback">Inserisci una foto in formato jpeg</div>
 						</div>
 					</div>
 					<div class="row">
@@ -704,7 +709,8 @@ if (ordini == null || utenti == null || prodotti == null || categorie == null ||
 						</div>
 						<div class="col-9">
 							<input type="file" class="form-control" id="inputGroupFile03"
-								name="foto3" placeholder="Inserisci la foto dell'albero">
+								name="inputGroupFile03" placeholder="Inserisci la foto dell'albero">
+							<div class="invalid-feedback">Inserisci una foto in formato jpeg</div>
 						</div>
 					</div>
 				</div>
@@ -870,7 +876,7 @@ if (ordini == null || utenti == null || prodotti == null || categorie == null ||
 		
 		for (r = 0; r < z.length; r++) {
 			if(z[r].name ==  "descrizione" || z[r].name == "descrizioneBreve" ){
-				if (z[r].value != "" && z[r].lenght != 0) {
+				if (z[r].value != "" && z[r].lenght >= 10) {
 					z[r].classList.add("was-validated");
 					z[r].classList.add("is-valid");
 				}
@@ -948,7 +954,16 @@ if (ordini == null || utenti == null || prodotti == null || categorie == null ||
 					valid = false;
 				}
 			}
-			
+				
+			if (y[i].name=="inputGroupFile01" || y[i].name=="inputGroupFile02" || y[i].name=="inputGroupFile03") {
+				if(validateInput(y[i])){
+					y[i].classList.add("was-validated");
+					y[i].classList.add("is-valid");
+				}else {
+					y[i].classList.add("is-invalid");
+					valid = false;
+				}
+			} 
 		}
 		if (valid) {
 			document.getElementsByClassName("step")[currentTab].className += " finish";
@@ -962,6 +977,16 @@ if (ordini == null || utenti == null || prodotti == null || categorie == null ||
 			x[i].className = x[i].className.replace(" active", "");
 		}
 		x[n].className += " active";
+	}
+	
+	function validateInput(y){
+		let regex = /^.*\.(jpeg|jpg|png|webp)$/i;
+		let str = y.value;
+		if (str.match(regex) && str != "") {
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	function validateHeight(y) {
@@ -1279,7 +1304,10 @@ if (ordini == null || utenti == null || prodotti == null || categorie == null ||
 
 		$('#prodottoForm').attr("action", "Prodotto?action=aggiornaAlbero");
 		$('#tab2').remove();
-
+		
+		$("html, body").animate({
+			   scrollTop: $("#prodottoForm").offset().top
+			}, 200);
 	}
 
 	</script>
