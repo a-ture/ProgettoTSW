@@ -39,7 +39,7 @@ public class ServletUtente extends HttpServlet {
 		Utente utente = (Utente) request.getSession().getAttribute("utente");
 
 		if (utente == null) {
-			response.sendRedirect("./Login");
+			response.sendError(401);
 			return;
 		}
 

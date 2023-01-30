@@ -27,12 +27,12 @@
 	<div class="container mt-5">
 		<div class="row text-center mt-5">
 			<br>
-			<p>
-				OPS! Devi essere autorizzato! <br>Torna alla <a href="/Home">home</a>
-			</p>
+			<h3 class="mt-3">
+				OPS! Devi essere autorizzato! <br>Torna alla <a href="Home">home</a>
+			</h3>
 		</div>
 		<div class="row">
-			<img src="./resources/img/error/401.svg" height="800px" width="800px"
+			<img src="./resources/img/error/401.svg" height="700px" 
 				>
 		</div>
 	</div>

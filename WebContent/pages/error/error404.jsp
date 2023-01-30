@@ -30,14 +30,14 @@
 	<div class="container">
 		<div class="row text-center">
 			<br>
-			<p>
+			<h3 class="mt-3">
 				La risorsa non è stata trovata. <br> Torna alla <a
-					href="/Home">home</a>
-			</p>
+					href="Home">home</a>
+			</h3>
 		</div>
 		<div class="row">
-			<img src="./resources/img/error/404.jpg" height="800px" width="800px"
-				class="img-fluid">
+			<img src="./resources/img/error/404.jpg" height="600px" 
+				>
 		</div>
 
 	</div>

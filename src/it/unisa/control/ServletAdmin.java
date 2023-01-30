@@ -56,7 +56,7 @@ public class ServletAdmin extends HttpServlet {
 
 		Utente admin = (Utente) request.getSession().getAttribute("admin");
 		if (admin == null) {
-			response.sendRedirect("./Login");
+			response.sendError(401);
 			return;
 		}
 		try {

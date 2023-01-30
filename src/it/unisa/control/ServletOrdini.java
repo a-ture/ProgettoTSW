@@ -51,6 +51,8 @@ public class ServletOrdini extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher(redirectPage);
 			dispatcher.forward(request, response);
 			return;
+		} else {
+			response.sendError(401);
 		}
 	}
 
@@ -146,7 +148,7 @@ public class ServletOrdini extends HttpServlet {
 		}
 		System.out.println(ordine);
 		request.getSession().setAttribute("ordineUtente", ordine);
-		
+
 		response.sendRedirect("Utente#ordini");
 		return;
 	}

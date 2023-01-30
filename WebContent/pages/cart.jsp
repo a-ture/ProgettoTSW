@@ -9,7 +9,7 @@
 <%
 DecimalFormat dFormat = new DecimalFormat("0.00");
 %>
-
+<%@ page errorPage="../errors/erro500.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>

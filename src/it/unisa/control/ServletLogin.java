@@ -1,6 +1,5 @@
 package it.unisa.control;
 
-
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -12,7 +11,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 
 import it.unisa.beans.Utente;
 import it.unisa.model.UtenteDAO;
@@ -48,7 +46,8 @@ public class ServletLogin extends HttpServlet {
 				return;
 			}
 			if (action.equals("checkout")) {
-				// utente che non ha effettuato il login prima di fare il checkout, una volta effettuare il login verrà reindirizzato nella pagine precedente
+				// utente che non ha effettuato il login prima di fare il checkout, una volta
+				// effettuare il login verrà reindirizzato nella pagine precedente
 				if (utente == null) {
 					request.getSession().setAttribute("tryLoggin", "try");
 					request.removeAttribute(action);
@@ -63,7 +62,7 @@ public class ServletLogin extends HttpServlet {
 				}
 			}
 			if (action.equals("registrazione")) {
-				//l'utente effettuerà la registrazione
+				// l'utente effettuerà la registrazione
 				if (utente == null) {
 					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/pages/signUpForm.jsp");
 					dispatcher.forward(request, response);
@@ -88,7 +87,7 @@ public class ServletLogin extends HttpServlet {
 			throws ServletException, IOException {
 
 		String action = request.getParameter("action");
-		
+
 		if (action != null) {
 			if (action.equals("registrazione")) {
 				registerUser(request, response);
@@ -103,7 +102,8 @@ public class ServletLogin extends HttpServlet {
 					response.sendError(500);
 					return;
 				}
-				if (utente == null || !utente.getPassword().equals(request.getParameter("password"))) {
+				System.out.print(utente);
+				if (utente.getEmail()== null || !utente.getPassword().equals(request.getParameter("password"))) {
 					request.getSession().removeAttribute("utente");
 					request.setAttribute("errori", new ArrayList<String>() {
 
@@ -117,7 +117,7 @@ public class ServletLogin extends HttpServlet {
 					dispatcher.forward(request, response);
 					return;
 				} else {
-					//nel caso di login andato a buon fine assegna il ruolo alla sessione
+					// nel caso di login andato a buon fine assegna il ruolo alla sessione
 					request.removeAttribute("errors");
 					if (utente.getRole().equals("cliente")) {
 						request.getSession().setAttribute("utente", utente);
@@ -205,7 +205,5 @@ public class ServletLogin extends HttpServlet {
 
 		return errors.size() > 0;
 	}
-
-
 
 }

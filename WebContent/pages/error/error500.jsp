@@ -25,15 +25,14 @@
 </head>
 <body>
 	<div class="container">
-		<div class="row text-center">
+		<div class="row text-center ">
 			<br>
-			<p>
-				OPS! Qualcosa è andato storto! <br>Torna alla <a href="/Home">home</a>
-			</p>
+			<h3 class="mt-3">
+				OPS! Qualcosa è andato storto! <br>Torna alla <a href="Home">home</a>
+			</h3>
 		</div>
 		<div class="row">
-			<img src="./resources/img/error/500.svg" height="800px" width="800px"
-				>
+			<img src="./resources/img/error/500.svg" height="600px" width="600px">
 		</div>
 	</div>
 </body>

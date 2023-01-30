@@ -903,8 +903,8 @@ function printDettagliOrdine(json) {
 
 	$("#prodottiOrdineAlert").empty();
 	json.items.forEach((e) => {
-		$("#prodottiOrdineAlert").append("<li>" + "<b>Nome:</b> " + e.nome + ", Prezzo: " + e.prezzo + "€, Quantità: "
-			+ e.quantità +  ", tasse: " + e.tasse + "%, Stato: " + e.stato +
+		$("#prodottiOrdineAlert").append("<li>" + "<b>Nome:</b> " + e.nome + ", <b>Prezzo:</b> " + e.prezzo + "€, <b>Quantità:</b> "
+			+ e.quantità +  ", <b>Tasse:</b> " + e.tasse + "%, <b>Stato:</b> " + e.stato +
 			"</li>");
 	});
 

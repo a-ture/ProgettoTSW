@@ -40,7 +40,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 							tuoi alberi sosterrai comunità di contadini locali e renderai più
 							verde il nostro pianeta.</h4>
 						<a class="btn btn-outline-light btn-lg" href="Catalogo"
-							role="button"> Scegli e regala</a>
+							role="button"> Scegli</a>
 					</div>
 				</div>
 			</div>
