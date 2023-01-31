@@ -327,6 +327,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						ProdottoOrdine prodottoOrdine = it2.next();
 						DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 						String formatDateTime = ordine.getCreatoIl().format(format);
+						for(int i = 0; i < prodottoOrdine.getQuantità(); i++){
 					%>
 
 					<div class="card my-3" style="max-width: 1300px;">
@@ -474,6 +475,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 						</div>
 					</div>
 					<%
+					}
 					}
 					}
 					%>

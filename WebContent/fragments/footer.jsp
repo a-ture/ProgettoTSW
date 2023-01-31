@@ -55,7 +55,7 @@
 			<li class="list-inline-item"><a data-bs-toggle="modal"
 				data-bs-target="#privacy">Privacy</a></li>
 		</ul>
-		<p class="copyright">WoodLot © 2022</p>
+		<p class="copyright">WoodLot © 2023</p>
 	</footer>
 
 
