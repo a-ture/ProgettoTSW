@@ -54,9 +54,8 @@ Collection<?> errori = (Collection<?>) request.getAttribute("errori");
 									<p class="text-center h1 fw-bold mt-1">Registrati</p>
 
 									<form action="Login?action=registrazione" name="signIn"
-										 method="POST"
-										class="needs-validation" novalidate autocomplete="off"
-										id="formId" onsubmit="return false;">
+										method="POST" class="needs-validation" novalidate
+										autocomplete="off" id="formId" onsubmit="return false;">
 
 
 										<div class="d-flex flex-row align-items-center mb-4">
@@ -124,8 +123,8 @@ Collection<?> errori = (Collection<?>) request.getAttribute("errori");
 											<input class="form-check-input" type="checkbox" value=""
 												id="condizioni" aria-describedby="invalidCheck3Feedback"
 												required> <label class="form-check-label"
-												for="condizioni"> Accetto i termini e le <a
-												href="condizioni.jsp">condizioni </a></label>
+												for="condizioni"> Accetto i termini e le condizioni
+											</label>
 											<div class="invalid-feedback">You must agree before
 												submitting.</div>
 										</div>

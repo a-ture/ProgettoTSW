@@ -22,8 +22,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 <head>
 <meta charset="UTF-8">
 <title>Conferma Ordine</title>
-<!-- MyScript -->
-<script src="resources/scripts/checkoutScript.js"></script>
+
 <!--CSS-->
 <link rel="stylesheet" type="text/css" href="resources/css/style.css">
 <!-- Favicon -->

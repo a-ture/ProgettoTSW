@@ -50,11 +50,6 @@ if (ordini == null || utenti == null || prodotti == null || categorie == null ||
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-<!-- MyScript -->
-<script src="resources/scripts/adminScript.js"></script>
-
-<!-- MyScript -->
-<script src="resources/scripts/adminScriptTable.js"></script>
 <!-- Favicon -->
 <link rel="icon" type="image/x-icon" href="resources/img/logo.png">
 
@@ -82,8 +77,9 @@ if (ordini == null || utenti == null || prodotti == null || categorie == null ||
 					<li class="nav-item"><a class="nav-link active"
 						href="#tabOrdini"><i class="fas fa-shopping-cart"></i>
 							Gestione Ordini</a></li>
-					<li class="nav-item"><a class="nav-link active" href="#tabUtente"><i
-							class="fas fa-user-circle"></i> Gestione Utenti</a></li>
+					<li class="nav-item"><a class="nav-link active"
+						href="#tabUtente"><i class="fas fa-user-circle"></i> Gestione
+							Utenti</a></li>
 					<li class="nav-item active"><a class="nav-link active"
 						href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"><i
 							class="fas fa-sign-out-alt"> </i> Log Out</a></li>
@@ -129,7 +125,7 @@ if (ordini == null || utenti == null || prodotti == null || categorie == null ||
 			</div>
 		</div>
 
-		<div class="container my-5" >
+		<div class="container my-5">
 			<h1 class="text-center mb-3">Ordini</h1>
 			<div
 				class="row row-cols-1  row-cols-sm-1  row-cols-md-3 g-3 text-center">
@@ -689,8 +685,10 @@ if (ordini == null || utenti == null || prodotti == null || categorie == null ||
 						</div>
 						<div class="col-9">
 							<input type="file" class="form-control" id="inputGroupFile01"
-								name="inputGroupFile01" placeholder="Inserisci la foto dell'albero">
-							<div class="invalid-feedback">Inserisci una foto in formato jpeg</div>
+								name="inputGroupFile01"
+								placeholder="Inserisci la foto dell'albero">
+							<div class="invalid-feedback">Inserisci una foto in formato
+								jpeg</div>
 						</div>
 					</div>
 					<div class="row">
@@ -699,8 +697,10 @@ if (ordini == null || utenti == null || prodotti == null || categorie == null ||
 						</div>
 						<div class="col-9">
 							<input type="file" class="form-control" id="inputGroupFile02"
-								name="inputGroupFile02" placeholder="Inserisci la foto dell'albero">
-							<div class="invalid-feedback">Inserisci una foto in formato jpeg</div>
+								name="inputGroupFile02"
+								placeholder="Inserisci la foto dell'albero">
+							<div class="invalid-feedback">Inserisci una foto in formato
+								jpeg</div>
 						</div>
 					</div>
 					<div class="row">
@@ -709,8 +709,10 @@ if (ordini == null || utenti == null || prodotti == null || categorie == null ||
 						</div>
 						<div class="col-9">
 							<input type="file" class="form-control" id="inputGroupFile03"
-								name="inputGroupFile03" placeholder="Inserisci la foto dell'albero">
-							<div class="invalid-feedback">Inserisci una foto in formato jpeg</div>
+								name="inputGroupFile03"
+								placeholder="Inserisci la foto dell'albero">
+							<div class="invalid-feedback">Inserisci una foto in formato
+								jpeg</div>
 						</div>
 					</div>
 				</div>
@@ -1337,6 +1339,91 @@ if (ordini == null || utenti == null || prodotti == null || categorie == null ||
 				$(this).removeClass('effect');
 			})
 		});
+	</script>
+	<script>
+	function myFunctionId(n, idInput, idTable) {
+		var input, filter, table, tr, td, i, txtValue;
+		input = document.getElementById(idInput);
+		filter = input.value.toUpperCase();
+		table = document.getElementById(idTable);
+		tr = table.getElementsByTagName("tr");
+		for (i = 0; i < tr.length; i++) {
+			td = tr[i].getElementsByTagName("td")[n];
+			if (td) {
+				txtValue = td.textContent || td.innerText;
+				if (txtValue.toUpperCase().indexOf(filter) > -1) {
+					tr[i].style.display = "";
+				} else {
+					tr[i].style.display = "none";
+				}
+			}
+		}
+	}
+
+	function sortTableNumb(id, n) {
+		var table, rows, switching, i, x, y, shouldSwitch;
+		table = document.getElementById(id);
+		switching = true;
+		while (switching) {
+			switching = false;
+			rows = table.rows;
+			for (i = 1; i < (rows.length - 1); i++) {
+				shouldSwitch = false;
+				x = rows[i].getElementsByTagName("td")[n];
+				y = rows[i + 1].getElementsByTagName("td")[n];
+				if (Number(x.innerHTML) > Number(y.innerHTML)) {
+					shouldSwitch = true;
+					break;
+				}
+			}
+			if (shouldSwitch) {
+				rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+				switching = true;
+			}
+		}
+	}
+
+	function sortTableAlf(n, idTable) {
+		var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+		table = document.getElementById(idTable);
+		switching = true;
+		dir = "asc";
+		while (switching) {
+			switching = false;
+			rows = table.rows;
+			for (i = 1; i < (rows.length - 1); i++) {
+				shouldSwitch = false;
+				x = rows[i].getElementsByTagName("TD")[n];
+				y = rows[i + 1].getElementsByTagName("TD")[n];
+				if (dir == "asc") {
+					if (x.innerHTML.toLowerCase() > y.innerHTML
+						.toLowerCase()) {
+
+						shouldSwitch = true;
+						break;
+					}
+				} else if (dir == "desc") {
+					if (x.innerHTML.toLowerCase() < y.innerHTML
+						.toLowerCase()) {
+
+						shouldSwitch = true;
+						break;
+					}
+				}
+			}
+			if (shouldSwitch) {
+				rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+				switching = true;
+
+				switchcount++;
+			} else {
+				if (switchcount == 0 && dir == "asc") {
+					dir = "desc";
+					switching = true;
+				}
+			}
+		}
+	}
 	</script>
 </body>
 </html>
