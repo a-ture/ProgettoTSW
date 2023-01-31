@@ -3,7 +3,7 @@
   <display-name>WoodLot</display-name>
  
  <welcome-file-list>
- <welcome-file>home.jsp</welcome-file>
+ <welcome-file>Home</welcome-file>
  </welcome-file-list>
  
  <login-config>

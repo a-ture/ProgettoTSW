@@ -709,7 +709,6 @@ INSERT INTO categoria (nome,descrizione)
 INSERT INTO categoria (nome,descrizione)
 	VALUES ("Sviluppo Sostenibile", "L’educazione è il motore dello sviluppo sostenibile. In questo Agriasilo, i valori fondamentali insegnati ai bambini sono il rispetto dell’ambiente, l’uso di materiali riciclati e l’interiorizzazione di uno stile di vita sostenibile a 360°!");
 
-
 INSERT INTO categorie_prodotti(pid,cid) 
 	VALUES (1,1);
 INSERT INTO categorie_prodotti(pid,cid) 
