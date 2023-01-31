@@ -876,7 +876,7 @@ if (ordini == null || utenti == null || prodotti == null || categorie == null ||
 		
 		for (r = 0; r < z.length; r++) {
 			if(z[r].name ==  "descrizione" || z[r].name == "descrizioneBreve" ){
-				if (z[r].value != "" && z[r].lenght >= 10) {
+				if (z[r].value != "" && z[r].lenght != 0) {
 					z[r].classList.add("was-validated");
 					z[r].classList.add("is-valid");
 				}

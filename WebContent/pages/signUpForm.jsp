@@ -54,7 +54,7 @@ Collection<?> errori = (Collection<?>) request.getAttribute("errori");
 									<p class="text-center h1 fw-bold mt-1">Registrati</p>
 
 									<form action="Login?action=registrazione" name="signIn"
-										enctype='multipart/form-data' method="POST"
+										 method="POST"
 										class="needs-validation" novalidate autocomplete="off"
 										id="formId" onsubmit="return false;">
 

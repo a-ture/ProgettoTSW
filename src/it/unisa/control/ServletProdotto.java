@@ -66,14 +66,17 @@ public class ServletProdotto extends HttpServlet {
 					Albero prod = model.doRetriveByKey(id);
 
 					carrello.aggiungiProdotto(prod);
-					redirectPage = "/pages/cart.jsp";
+					response.sendRedirect("Carrello");
+					return;
 				} else if (action.equalsIgnoreCase("eliminaProdottoCarrello")) {
 					String id = request.getParameter("id");
 					carrello.rimuoviProdotto(model.doRetriveByKey(id));
-					redirectPage = "/pages/cart.jsp";
+					response.sendRedirect("Carrello");
+					return;
 				} else if (action.equalsIgnoreCase("svuotaCarrello")) {
 					carrello.rimuoviTutti();
-					redirectPage = "/pages/cart.jsp";
+					response.sendRedirect("Carrello");
+					return;
 				} else if (action.equalsIgnoreCase("aggiornaQuantitàProdotto")) {
 					String id = request.getParameter("id");
 					int quantità = Integer.parseInt(request.getParameter("quantità"));
@@ -89,9 +92,8 @@ public class ServletProdotto extends HttpServlet {
 							carrello.aggiornaProdotti(model.doRetriveByKey(id), quantità - 1);
 						}
 					}
-					redirectPage = "/pages/cart.jsp";
-				} else if (action.equalsIgnoreCase("visualizzaCarrello")) {
-					redirectPage = "/pages/cart.jsp";
+					response.sendRedirect("Carrello");
+					return;
 				} else if (action.equalsIgnoreCase("leggiProdotto")) {
 
 					String id = request.getParameter("id");
@@ -164,7 +166,6 @@ public class ServletProdotto extends HttpServlet {
 		CategoriaDAO model4 = new CategoriaDAO();
 		PaeseDiOrigineDAO model5 = new PaeseDiOrigineDAO();
 		String action = request.getParameter("action");
-		String redirectPage;
 
 		try {
 			if (action.equalsIgnoreCase("aggiornaAlbero")) {
@@ -312,10 +313,9 @@ public class ServletProdotto extends HttpServlet {
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
 		}
-
-		redirectPage = "/pages/admin.jsp";
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(redirectPage);
-		dispatcher.forward(request, response);
+		
+		response.sendRedirect("Admin");
+		return;
 	}
 
 	private void salvaFotoProdotto(HttpServletRequest request, int pid) throws IOException, ServletException {

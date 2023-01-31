@@ -32,8 +32,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			<div class="mask h-100">
 				<div class="d-flex my-5 py-5 align-items-middle h-100">
 					<div>
-						<h1 class="mb-3 text-white">Pianta un albero, puoi regalarlo
-							a chi vuoi!</h1>
+						<h1 class="mb-3 text-white">Pianta un albero!</h1>
 						<h4 class="m-3 text-white">Siamo il primo sito che ti
 							permette di piantare un albero a distanza e seguire online la
 							storia del progetto che contribuirà a realizzare. Piantando i

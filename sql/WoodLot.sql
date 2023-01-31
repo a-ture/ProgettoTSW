@@ -570,7 +570,6 @@ INSERT INTO fotoProdotto (pid)
 INSERT INTO fotoProdotto (pid)
 	VALUES (24);
 
-     
 INSERT INTO usiLocali (nome,descrizione)
 	VALUES ("Medicina","Le foglie, le radici, la corteccia e/o i frutti vengono usati nella medicina tradizionale");
 INSERT INTO usiLocali (nome,descrizione)
@@ -699,9 +698,6 @@ INSERT INTO albero_usiLocali(pid,uid)
 INSERT INTO albero_usiLocali(pid,uid)
 	VALUES(24,7);
 
-
-
-
 INSERT INTO categoria (nome,descrizione)
 	VALUES ("Rischio estinzione", "L'albero è classificato come “in pericolo” nella Lista rossa delle specie minacciate dell’IUCN (Unione internazionale per la conservazione della natura) dal 2011.");
 INSERT INTO categoria (nome,descrizione)
@@ -762,4 +758,3 @@ INSERT INTO categorie_prodotti(pid,cid)
 	VALUES (23,3);
 INSERT INTO categorie_prodotti(pid,cid) 
 	VALUES (24,4);
-

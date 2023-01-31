@@ -78,7 +78,7 @@ Utente utenteHeader = (Utente) request.getSession().getAttribute("utente");
 							href="Utente">Profilo</a> <%}%>
 						</li>
 						<li class="nav-item"><a
-							href="Prodotto?action=visualizzaCarrello"><img
+							href="Carrello"><img
 								class="nav-link img-fluid"
 								src="./resources/img/header/carriola.svg" width="60" height="40"></a></li>
 					</ul>

@@ -146,11 +146,14 @@ public class ServletLogin extends HttpServlet {
 			throws ServletException, IOException {
 		if (validateForm(request)) {
 			Utente utente = new Utente();
+			
 			UtenteDAO dao = new UtenteDAO();
 			utente.setNome(request.getParameter("nome"));
 			utente.setCognome(request.getParameter("cognome"));
 			utente.setEmail(request.getParameter("email"));
 			utente.setPassword(request.getParameter("password"));
+			
+			System.out.print(utente);
 			utente.setRole("cliente");
 			try {
 				dao.doSave(utente);
