@@ -542,7 +542,7 @@ if (cat != null && cat.size() != 0) {
 							specializzati.</li>
 						<li class="">Assegnazione all’albero di un ID univoco e
 							inserimento dell’albero <a
-							href="ChiSiamoServlet#registroDegliAlberi"> nel registro</a> 
+							href="ChiSiamo#registroDegliAlberi"> nel registro</a> 
 						</li>
 
 					</ol>

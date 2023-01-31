@@ -24,7 +24,7 @@ import it.unisa.model.UtenteDAO;
 /**
  * Servlet per mostrare statistiche
  */
-@WebServlet("/ChiSiamoServlet")
+@WebServlet("/ChiSiamo")
 public class ServletChiSiamo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

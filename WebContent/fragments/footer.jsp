@@ -43,7 +43,7 @@
 		<!-- Section: Social media -->
 		<ul class="list-inline">
 			<li class="list-inline-item"><a href="Catalogo">Alberi</a></li>
-			<li class="list-inline-item"><a href="ChiSiamoServlet">Chi
+			<li class="list-inline-item"><a href="ChiSiamo">Chi
 					Siamo</a></li>
 			<li class="list-inline-item">
 				<!-- Button trigger modal cookie --> <a href="#"
