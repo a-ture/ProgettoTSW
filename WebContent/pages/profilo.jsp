@@ -905,13 +905,16 @@ function printDettagliOrdine(json) {
 
 	$("#prodottiOrdineAlert").empty();
 	json.items.forEach((e) => {
-		$("#prodottiOrdineAlert").append("<li>" + "<b>Nome:</b> " + e.nome + ", <b>Prezzo:</b> " + e.prezzo + "€, <b>Quantità:</b> "
+		var totalePagato = Number(e.prezzo);
+		var formattedPrice = totalePagato.toLocaleString('it-IT', { style: 'currency', currency: 'EUR' });
+		$("#prodottiOrdineAlert").append("<li>" + "<b>Nome:</b> " + e.nome + ", <b>Prezzo:</b> " + formattedPrice + ", <b>Quantità:</b> "
 			+ e.quantità +  ", <b>Tasse:</b> " + e.tasse + "%, <b>Stato:</b> " + e.stato +
 			"</li>");
 	});
-
-	$("#dettaglioOrdineAlert").empty().append("<b>N. Prodotti:</b>" + json.totaleProdotti + ", ");
-	$("#dettaglioOrdineAlert").append("<b>Totale Ordine:</b>" + json.totalePagato + "€, ");
+	var totalePagato1 = Number(json.totalePagato);
+	var formattedPrice1 = totalePagato1.toLocaleString('it-IT', { style: 'currency', currency: 'EUR' });
+	$("#dettaglioOrdineAlert").empty().append("<b>N. Prodotti:</b> " + json.totaleProdotti + ", ");
+	$("#dettaglioOrdineAlert").append("<b>Totale Ordine:</b> " + formattedPrice1);
 	
 }
 </script>

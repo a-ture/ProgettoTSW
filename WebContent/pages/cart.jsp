@@ -55,10 +55,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 									<hr class="my-4">
 									<div
 										class="row mb-4 d-flex justify-content-between align-items-center">
-										<div class="col-md-2 col-lg-2 col-xl-2">
-											<img src="" onerror="this.src='./resources//img/error.jpg'"
-												class="img-fluid">
-										</div>
+									
 										<div class="col-md-3 col-lg-3 col-xl-3">
 											<h6 class=""><%=prodotto.getNome()%></h6>
 											<h6 class="text-black mb-0"><%=dFormat.format(prodotto.getPrezzo())%>

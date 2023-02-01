@@ -31,7 +31,6 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 <!-- Favicon -->
 <link rel="icon" type="image/x-icon" href="resources/img/logo.png">
 <style>
-
 </style>
 </head>
 <body>
@@ -125,8 +124,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 		<p
 			class="Sì, questo è esempio di DOM manipulation con jQuery. Nello specifico, questo codice gestisce gli eventi click su diversi elementi della pagina (ad esempio, il bottone "
 			myProfileButton") e modifica la classe degli elementi correlati (ad
-			esempio, il div "myProfileMenu") in base all'evento triggerato. In
-			questocaso, laclasse "d-none" vieneaggiuntaorimossadaglielementipermostrarlionasconderli.text-center">Il
+			esempio, il div "myProfileMenu") in base all'evento triggerato. Inquestocaso, laclasse "d-none" vieneaggiuntaorimossadaglielementipermostrarlionasconderli.text-center">Il
 			nostro obiettivo principale è contrastare la crisi climatica
 			alimentando un modello di sviluppo sostenibile.</p>
 
@@ -237,9 +235,10 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 
 			<div class="col-lg-6">
 
-				<img src = "./resources/img/team/IMG_2623.jpg" class="rounded mx-auto d-block" width="250"
-					height="250" xmlns="http://www.w3.org/2000/svg" role="img"
-					preserveAspectRatio="xMidYMid slice" > 
+				<img src="./resources/img/team/IMG_2623.jpg"
+					class="rounded mx-auto d-block" width="250" height="250"
+					xmlns="http://www.w3.org/2000/svg" role="img"
+					preserveAspectRatio="xMidYMid slice">
 
 				<h2>Raffaella Spagnuolo</h2>
 				<p>Sono appassionata di viaggi, ho sempre creduto nella
@@ -249,10 +248,11 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 			</div>
 
 			<div class="col-lg-6">
-				<img src = "./resources/img/team/IMG_8490.JPG" class="rounded mx-auto d-block" width="250"
-					height="250" xmlns="http://www.w3.org/2000/svg" role="img"
-					preserveAspectRatio="xMidYMid slice" > 
-				
+				<img src="./resources/img/team/IMG_8490.JPG"
+					class="rounded mx-auto d-block" width="250" height="250"
+					xmlns="http://www.w3.org/2000/svg" role="img"
+					preserveAspectRatio="xMidYMid slice">
+
 
 				<h2>Alessia Ture</h2>
 				<p>La mia idea di progresso è un mondo più sano e sostenibile.
@@ -559,7 +559,6 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 		<table class="table text-center" id="myTable">
 			<thead>
 				<tr>
-					<th scope="col">Id</th>
 					<th scope="col">Albero</th>
 					<th scope="col">Stato</th>
 					<th scope="col">Piantato Da</th>
@@ -580,15 +579,16 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					ProdottoOrdine p = (ProdottoOrdine) it4.next();
 					DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 					String formatDateTime = ordine.getCreatoIl().format(format);
+					for (int i = 0; i < p.getQuantità(); i++) {
 				%>
 				<tr>
-					<td scope="row"><%=p.getId()%></td>
 					<td><%=p.getNome()%></td>
 					<td><%=p.getStato()%></td>
 					<td><%=ordine.getUtente().getNome()%> <%=ordine.getUtente().getCognome()%></td>
 					<td><%=formatDateTime%></td>
 				</tr>
 				<%
+				}
 				}
 				}
 				}
@@ -780,7 +780,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 							$(".featurette-image").eq(3).mouseleave(function() {
 								$(".text-overlay").remove();
 							});
-							
+
 						});
 	</script>
 </body>
