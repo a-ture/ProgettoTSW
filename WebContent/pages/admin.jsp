@@ -164,8 +164,8 @@ if (ordini == null || utenti == null || prodotti == null || categorie == null ||
 							placeholder="dd/MM/yy - dd/MM/yy"
 							aria-describedby="button-addon2" id="myInput3">
 						<button class="btn btn-outline-success" type="button"
-							id="button-addon2" onclick="myFunctionOrderData()">
-							<i class="fa-solid fa-magnifying-glass"></i>
+							id="button-addon2">
+							<i class="fa-solid fa-magnifying-glass" id="cercaPerData"></i>
 						</button>
 					</div>
 				</div>
@@ -385,8 +385,8 @@ if (ordini == null || utenti == null || prodotti == null || categorie == null ||
 				<div class="col-4">
 					<div class="row">
 						<img src="" class="rounded img-fluid  " alt="..." id="foto2"
-							onerror="this.src='./resources//img/error.jpg'" height="400"
-							width="400">
+							onerror="this.src='./resources//img/error.jpg'"
+							style="max-height: 250px">
 					</div>
 					<p id="fotoCodice2">Foto n.</p>
 					<a class="btn btn-primary my-3 uploadFoto-2"> Upload Foto</a>
@@ -395,8 +395,8 @@ if (ordini == null || utenti == null || prodotti == null || categorie == null ||
 				<div class="col-4">
 					<div class="row">
 						<img src="" class="rounded img-fluid " alt="..." id="foto3"
-							onerror="this.src='./resources//img/error.jpg'" height="400"
-							width="400">
+							onerror="this.src='./resources//img/error.jpg'"
+							style="max-height: 250px">
 					</div>
 					<p id="fotoCodice3">Foto n.</p>
 					<a class="btn btn-primary my-3 uploadFoto-3"> Upload Foto</a>
@@ -1053,28 +1053,7 @@ if (ordini == null || utenti == null || prodotti == null || categorie == null ||
 
 	</script>
 
-	<script>
-	
-	function myFunctionOrderData() {
-		$.get('OrdineJSON?action=data&date=' + $("#myInput3").val(), function(resp) {
-			printTableOrder(resp);
-		}).fail(function() {
-			alert("Request failed.");
-		});
-	}
-	
-	function printTableOrder(j){
-		$("#tableBodyOrdini").empty(); 
-		
-		j.forEach((e) => {
-			$("#tableBodyOrdini").append('<tr> <td scope="row" class="nr">'+e.id+'</td>'+
-					'<td>'+e.utente.email+'</td><td>'+e.totalePagato+'€</td><td>'+e.totaleProdotti+'</td><td>'+e.creatoIl.date.day+'/'+ e.creatoIl.date.month+'/'+e.creatoIl.date.year+'</td>'+
-					'<td> <a class="botteneIdOrdine"> <i class="fa-solid fa-eye"></i> </a> '+
-					'<a class="vediFotoOrdine"> <i class="fa-solid fa-images"> </i></a> </td> </tr>'); 
-		});
-	}
-	
-	
+	<script>	
 	$(document).ready(function() {
 	
 		$(".botteneIdProdottoVedi").click(function() {
@@ -1136,7 +1115,6 @@ if (ordini == null || utenti == null || prodotti == null || categorie == null ||
 		});
 
 		
-
 		$(".botteneIdProdottoModifica").click(function() {
 			var $row = $(this).closest("tr");
 			var $id = $row.find(".nr").text();
@@ -1172,6 +1150,15 @@ if (ordini == null || utenti == null || prodotti == null || categorie == null ||
 		$("#closeOrdineFotoAlert").click(function() {
 			$("#ordineFotoAlert").addClass("d-none");
 		});
+		
+		$("#cercaPerData").click(function(){
+				$.get('OrdineJSON?action=data&date=' + $("#myInput3").val(), function(resp) {
+					printTableOrder(resp);
+				}).fail(function() {
+					alert("Request failed.");
+				});
+			
+		});
 
 	});
 	
@@ -1190,8 +1177,10 @@ if (ordini == null || utenti == null || prodotti == null || categorie == null ||
 		$("#ordineFotoIdAlert").empty().append("<h4>Foto ordine n." + j.id + "</h4>");
 		$("#tableBody").empty();
 		j.items.forEach((e) => {
+			var totalePagato = Number(e.prezzo);
+			var formattedPrice = totalePagato.toLocaleString('it-IT', { style: 'currency', currency: 'EUR' });
 			$("#tableBody").append('<tr> <td class="nrOrder">' + e.id + '</td><td>' + e.nome + '</td>' +
-				'<td>' + e.prezzo+'€'+ '</td><td>'  + e.quantità +
+				'<td>' + formattedPrice +' '+ '</td><td>'  + e.quantità +
 				'</td><td>' + e.stato + '</td><td><img src="./ServletResources?codiceAzione=fotoProdottoOrdine&idProdottoOrdine=' + e.id
 				+ '" class="img-thumbnail bg-secondary bg-gradient" style="max-width:60px;"></td> <td><a class="aggiornaAlbero" onclick="uploadFotoAlbero(' + e.id + ')"><i class=" text-dark fa-solid fa-pen-to-square"></i></a></td></tr>');
 		});
@@ -1208,13 +1197,18 @@ if (ordini == null || utenti == null || prodotti == null || categorie == null ||
 
 		$("#prodottiOrdineAlert").empty();
 		json.items.forEach((e) => {
-			$("#prodottiOrdineAlert").append("<li>" + "<b>Nome:</b> " + e.nome + ", Prezzo: " + e.prezzo + "€, Quantità: "
-				+ e.quantità + ", tasse: " + e.tasse + "%, Stato: " + e.stato +
+			var totalePagato = Number(e.prezzo);
+			var formattedPrice = totalePagato.toLocaleString('it-IT', { style: 'currency', currency: 'EUR' });
+			$("#prodottiOrdineAlert").append("<li>" + "<b>Nome:</b> " + e.nome + ", <b>Prezzo:</b> " +formattedPrice + ", <b>Quantità:</b> "
+				+ e.quantità + ", <b>tasse:</b> " + e.tasse + "%, <b>Stato:</b> " + e.stato +
 				"</li>");
 		});
 
 		$("#dettaglioOrdineAlert").empty().append("<b>N. Prodotti:</b>" + json.totaleProdotti + ", ");
-		$("#dettaglioOrdineAlert").append("<b>Totale Ordine:</b>" + json.totalePagato + "€, ");
+		
+		var totalePagato = Number(json.totalePagato);
+		var formattedPrice = totalePagato.toFixed(2);
+		$("#dettaglioOrdineAlert").append("<b>Totale Ordine:</b>" +  formattedPrice + "€, ");
 	
 		$("#dettaglioOrdineAlert").empty().append("Ordine effettuato dall'utente: " + json.utente.id + "(" + json.utente.nome + " "
 			+ json.utente.cognome + ")" + ". E-mail:" +
@@ -1312,6 +1306,47 @@ if (ordini == null || utenti == null || prodotti == null || categorie == null ||
 			}, 200);
 	}
 
+	function printTableOrder(j){
+		$("#tableBodyOrdini").empty(); 
+		
+		j.forEach((e) => {
+			var totalePagato = Number(e.totalePagato);
+			var codice = Number(e.id);
+			var formattedPrice = totalePagato.toLocaleString('it-IT', { style: 'currency', currency: 'EUR' });
+			
+			$("#tableBodyOrdini").append()
+			$("#tableBodyOrdini").append('<tr> <td scope="row" class="nr">'+codice+'</td>'+
+					'<td class="utente">'+e.utente.email+'</td><td class="totale">'+ formattedPrice +'</td><td class="nProdotti">'+e.totaleProdotti+'</td><td class="data">'+e.creatoIl.date.day+'/'+ e.creatoIl.date.month+'/'+e.creatoIl.date.year+'</td>'+
+					'<td> <a class="botteneIdOrdine"><i class="fa-solid fa-eye"></i></a> '+
+					'<a class="vediFotoOrdine"><i class="fa-solid fa-images"> </i></a></td></tr>'); 
+		});
+		
+		$(document).on('click', '.botteneIdOrdine', function() {
+			$(".botteneIdOrdine").click(function() {
+				var $row = $(this).closest("tr");
+				var $codice = $row.find(".nr").text();
+				$.get('OrdineJSON?action=vedi&codice=' + $codice, function(resp) {
+					printDettagliOrdine(resp);
+				}).fail(function() {
+					alert("Request failed.");
+				});
+			});
+			});
+		
+			$(document).on('click', '.vediFotoOrdine', function() {
+				$(".vediFotoOrdine").click(function() {
+					var $row = $(this).closest("tr");
+					var $id = $row.find(".nr").text();
+
+					$.get('OrdineJSON?action=vedi&codice=' + $id, function(resp) {
+						printFotoOrdine(resp);
+					}).fail(function() {
+						alert("Request failed.");
+					});
+
+				});
+			});
+	}
 	</script>
 
 	<script type="text/javascript">

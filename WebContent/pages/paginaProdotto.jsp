@@ -162,7 +162,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 		<!-- Breve Descrizione  -->
 		<div
 			class="row row-cols-1 row-cols-lg-1 row-cols-xl-2 text-center  g-4">
-			<div class="col">
+			<div class="col h-100">
 				<div class="card" style="background: #c4d89d;">
 					<div class="card-body">
 						<h4 class="card-title">Descrizione Breve</h4>
@@ -170,7 +170,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					</div>
 				</div>
 			</div>
-			<div class="col">
+			<div class="col align-self-center">
 				<div class="col">
 					<div class="card" style="background: #c4d89d;">
 						<div class="card-body">
@@ -232,7 +232,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					</div>
 				</div>
 			</div>
-			<div class="col">
+			<div class="col align-self-center">
 				<div class="card d-flex justify-content-center"
 					style="background: #c4d89d;">
 					<div class="card-body">
@@ -269,7 +269,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 					</div>
 				</div>
 			</div>
-			<div class="col">
+			<div class="col ">
 				<div class="card d-flex align-items-center justify-content-center"
 					style="background: #c4d89d;">
 					<div class="card-body">
