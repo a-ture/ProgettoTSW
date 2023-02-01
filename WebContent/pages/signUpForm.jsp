@@ -164,117 +164,107 @@ Collection<?> errori = (Collection<?>) request.getAttribute("errori");
 
 	<script type="text/javascript">
 
-			var email = document.signIn.email;
-			var password = document.signIn.password;
-			var password1 = document.signIn.password1;
-			var nome = document.signIn.nome;
-			var cognome = document.signIn.cognome;
-			var condizioni =  document.signIn.condizioni;
-			var form= document.signIn;
-
-			let validNome = false;
-			let validCognome = false;
-			let validEmail = false;
-			let validPassword = false;
-			let validPassword1 = false;
-			let validCondizioni = false;
 			
-			
-			nome.addEventListener('blur', () => {
-			    let regex = /^[a-zA-Z]([ a-zA-Z]){1,10}$/;
-			    let str = nome.value;
-			    if (regex.test(str)) {
-			        nome.classList.add("is-valid");
-			        nome.classList.remove("is-invalid");
-			        validNome = true;
-			        
-			    } else {
-			        nome.classList.add("is-invalid");
-			        nome.classList.remove("is-valid");
-			        validNome = false;
-			    }
-			    
-			   nome.classList.add("was-validated");
-			});
-			
-			cognome.addEventListener('blur', () => {
-			    let regex = /^[a-zA-Z]([ a-zA-Z]){1,10}$/;
-			    let str = cognome.value;
-			    if (regex.test(str)) {
-			        cognome.classList.add("is-valid");
-			        cognome.classList.remove("is-invalid");
-			        validCognome = true;
-			    } else {
-			        cognome.classList.add("is-invalid");
-			        cognome.classList.remove("is-valid");
-			        validCognome = false;
-			    }
-			    
-			    cognome.classList.add("was-validated");
-			});
-			
-			email.addEventListener('blur', () => {
-			    let regex = /^([_\-\.a-zA-Z0-9]+)@([_\-\.a-zA-Z0-9]+)\.([a-zA-Z]){2,7}$/;
-			    let str = email.value;
-			    if (regex.test(str)) {
-			        email.classList.add("is-valid");
-			        email.classList.remove("is-invalid");
-			        validEmail = true;
-			    } else {
-			        email.classList.add("is-invalid");
-			        email.classList.remove("is-valid");
-			        validEmail = false;
-			    }
-			    
-			    email.classList.add("was-validated");
-			});
-			
-			password.addEventListener('blur', () => {
-				var password_lengh= password.value.length;
-				var password_lengh1= password1.value.length;
-				
-			    if (password_lengh == 0 || password_lengh < 3 || password_lengh > 20) { 
-			    	password.classList.add("is-invalid");
-			    	password.classList.remove("is-valid");
-			        validPassword = false;
-			    } else {
-			        password.classList.add("is-valid");
-			        password.classList.remove("is-invalid");
-			        validPassword = true;
-			    }
-			    password.classList.add("was-validated");
-			});
-			
-			password1.addEventListener('blur', () => {
-				var password_lengh= password.value.length;
-				var password_lengh1= password1.value.length;
-				
-			    if (password.value != password1.value ) {
-			    	password1.classList.add("is-invalid");
-			    	password1.classList.remove("is-valid");
-			        validPassword1 = false;
-			    } else {
-			        password1.classList.add("is-valid");
-			        password1.classList.remove("is-invalid");
-			        validPassword1 = true;
-			    }
-			    password1.classList.add("was-validated");
-			});
-			
-			condizioni.addEventListener('blur', () => {	
-			    if (condizioni.checked == false) {
-			    	condizioni.classList.add("is-invalid");
-			    	condizioni.classList.remove("is-valid");
-			        validCondizioni = false;
-			    } else {
-			        condizioni.classList.add("is-valid");
-			        condizioni.classList.remove("is-invalid");
-			        validCondizioni = true;
-			    }
-			    condizioni.classList.add("was-validated");
-			});
 			
 			function doCheck(){
+				
+				var email = document.signIn.email;
+				var password = document.signIn.password;
+				var password1 = document.signIn.password1;
+				var nome = document.signIn.nome;
+				var cognome = document.signIn.cognome;
+				var condizioni =  document.signIn.condizioni;
+				var form= document.signIn;
+
+				let validNome = false;
+				let validCognome = false;
+				let validEmail = false;
+				let validPassword = false;
+				let validPassword1 = false;
+				let validCondizioni = false;
+
+				    let regex = /^[a-zA-Z]([ a-zA-Z]){1,10}$/;
+				    let str = nome.value;
+				    if (regex.test(str)) {
+				        nome.classList.add("is-valid");
+				        nome.classList.remove("is-invalid");
+				        validNome = true;
+				        
+				    } else {
+				        nome.classList.add("is-invalid");
+				        nome.classList.remove("is-valid");
+				        validNome = false;
+				    }
+				    
+				   nome.classList.add("was-validated");
+
+					regex = /^[a-zA-Z]([ a-zA-Z]){1,10}$/;
+				    str = cognome.value;
+				    if (regex.test(str)) {
+				        cognome.classList.add("is-valid");
+				        cognome.classList.remove("is-invalid");
+				        validCognome = true;
+				    } else {
+				        cognome.classList.add("is-invalid");
+				        cognome.classList.remove("is-valid");
+				        validCognome = false;
+				    }
+				    
+				    cognome.classList.add("was-validated");
+
+					regex = /^([_\-\.a-zA-Z0-9]+)@([_\-\.a-zA-Z0-9]+)\.([a-zA-Z]){2,7}$/;
+				    str = email.value;
+				    if (regex.test(str)) {
+				        email.classList.add("is-valid");
+				        email.classList.remove("is-invalid");
+				        validEmail = true;
+				    } else {
+				        email.classList.add("is-invalid");
+				        email.classList.remove("is-valid");
+				        validEmail = false;
+				    }
+				    
+				    email.classList.add("was-validated");
+			
+					var password_lengh= password.value.length;
+					var password_lengh1= password1.value.length;
+					
+				    if (password_lengh == 0 || password_lengh < 3 || password_lengh > 20) { 
+				    	password.classList.add("is-invalid");
+				    	password.classList.remove("is-valid");
+				        validPassword = false;
+				    } else {
+				        password.classList.add("is-valid");
+				        password.classList.remove("is-invalid");
+				        validPassword = true;
+				    }
+				    password.classList.add("was-validated");
+
+					var password_lengh= password.value.length;
+					var password_lengh1= password1.value.length;
+					
+				    if (password.value != password1.value ) {
+				    	password1.classList.add("is-invalid");
+				    	password1.classList.remove("is-valid");
+				        validPassword1 = false;
+				    } else {
+				        password1.classList.add("is-valid");
+				        password1.classList.remove("is-invalid");
+				        validPassword1 = true;
+				    }
+				    password1.classList.add("was-validated");
+			
+				    if (condizioni.checked == false) {
+				    	condizioni.classList.add("is-invalid");
+				    	condizioni.classList.remove("is-valid");
+				        validCondizioni = false;
+				    } else {
+				        condizioni.classList.add("is-valid");
+				        condizioni.classList.remove("is-invalid");
+				        validCondizioni = true;
+				    }
+				    condizioni.classList.add("was-validated");
+				
 				if (validEmail && validNome && validCognome && validPassword1 && validPassword && validCondizioni){
 					//check email
 					var rispostaEmail = checkIfEmailExists($('#email').val());
