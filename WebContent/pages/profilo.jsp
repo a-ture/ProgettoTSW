@@ -28,8 +28,6 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 <title>Profilo</title>
 <!--CSS-->
 <link rel="stylesheet" type="text/css" href="resources/css/style.css">
-<!-- My Script -->
-<script src="resources/scripts/profiloScript.js"></script>
 
 <!-- Favicon -->
 <link rel="icon" type="image/x-icon" href="resources/img/logo.png">
@@ -893,6 +891,7 @@ DecimalFormat dFormat = new DecimalFormat("0.00");
 	});
 	
 	$("#addIndirizzo").click(function() {
+		$("#addIndirizzo").addClass("d-none");
 		$("#showIndirizzo").removeClass("d-none");
 	});
 
@@ -919,24 +918,25 @@ function printDettagliOrdine(json) {
 }
 </script>
 	<script type="text/javascript">
+	
 		
-		var nome = document.salvaIndirizzo.nome;
-		var cognome = document.salvaIndirizzo.cognome;
-		var citta = document.salvaIndirizzo.citta; 
-		var via = document.salvaIndirizzo.via;
-		var civico = document.salvaIndirizzo.civico; 
-		var provincia = document.salvaIndirizzo.provincia; 
-		var cap =  document.salvaIndirizzo.cap;
-		
-		let validNome = false;
-		let validCognome = false;
-		let validCitta = false;
-		let validVia = false;
-		let validCivico = false;
-		let validProvincia = false;
-		let validCap = false;
-		
-		nome.addEventListener('blur', () => {
+		function doCheck(){
+			var nome = document.salvaIndirizzo.nome;
+			var cognome = document.salvaIndirizzo.cognome;
+			var citta = document.salvaIndirizzo.citta; 
+			var via = document.salvaIndirizzo.via;
+			var civico = document.salvaIndirizzo.civico; 
+			var provincia = document.salvaIndirizzo.provincia; 
+			var cap =  document.salvaIndirizzo.cap;
+			
+			let validNome = false;
+			let validCognome = false;
+			let validCitta = false;
+			let validVia = false;
+			let validCivico = false;
+			let validProvincia = false;
+			let validCap = false;
+			
 			let regex = /^[a-zA-Z]([ a-zA-Z]){1,10}$/;
 			let str = nome.value;
 			if (regex.test(str)) {
@@ -950,11 +950,9 @@ function printDettagliOrdine(json) {
 			}
 			
 			nome.classList.add("was-validated");
-		});
-		
-		cognome.addEventListener('blur', () => {
-			let regex = /^[a-zA-Z]([ a-zA-Z]){1,10}$/;
-			let str = cognome.value;
+			
+			regex = /^[a-zA-Z]([ a-zA-Z]){1,10}$/;
+			str = cognome.value;
 			if (regex.test(str)) {
 				cognome.classList.add("is-valid");
 				cognome.classList.remove("is-invalid");
@@ -966,11 +964,9 @@ function printDettagliOrdine(json) {
 			}
 			
 			cognome.classList.add("was-validated");
-		});
-		
-		provincia.addEventListener('blur', () => {
-			let regex = /^[A-Z]{2}$/;
-			let str = provincia.value;
+			
+			regex = /^[A-Z]{2}$/;
+			str = provincia.value;
 			if (regex.test(str)) {
 				provincia.classList.add("is-valid");
 				provincia.classList.remove("is-invalid");
@@ -982,11 +978,9 @@ function printDettagliOrdine(json) {
 			}
 			
 			provincia.classList.add("was-validated");
-		});
-		
-		citta.addEventListener('blur', () => {
-			let regex = /^[a-zA-Z]([ a-zA-Z]){1,10}$/;
-			let str = citta.value;
+			
+			regex = /^[a-zA-Z]([ a-zA-Z]){1,10}$/;
+			str = citta.value;
 			if (regex.test(str)) {
 				citta.classList.add("is-valid");
 				citta.classList.remove("is-invalid");
@@ -998,11 +992,9 @@ function printDettagliOrdine(json) {
 			}
 			
 			citta.classList.add("was-validated");
-		});
-		
-		via.addEventListener('blur', () => {
-			let regex = /^[a-zA-Z]([ a-zA-Z])+$/;
-			let str = via.value;
+			
+			regex = /^[a-zA-Z]([ a-zA-Z])+$/;
+			str = via.value;
 			if (regex.test(str)) {
 				via.classList.add("is-valid");
 				via.classList.remove("is-invalid");
@@ -1014,11 +1006,9 @@ function printDettagliOrdine(json) {
 			}
 			
 			via.classList.add("was-validated");
-		});
-
-		cap.addEventListener('blur', () => {
-			let regex = /^\d{5}$/;
-			let str = cap.value;
+			
+			regex = /^\d{5}$/;
+			str = cap.value;
 			if (regex.test(str)) {
 				cap.classList.add("is-valid");
 				cap.classList.remove("is-invalid");
@@ -1030,11 +1020,9 @@ function printDettagliOrdine(json) {
 			}
 			
 			cap.classList.add("was-validated");
-		});
-		
-		civico.addEventListener('blur', () => {
-			let regex = /^[0-9]+$/;
-			let str = civico.value;
+			
+			regex = /^[0-9]+$/;
+			str = civico.value;
 			if (regex.test(str)) {
 				civico.classList.add("is-valid");
 				civico.classList.remove("is-invalid");
@@ -1046,9 +1034,7 @@ function printDettagliOrdine(json) {
 			}
 			
 			civico.classList.add("was-validated");
-		});
-		
-		function doCheck(){
+			
 			if(validNome && validCognome && validCitta && validVia && validCivico && validProvincia && validCap){
 				document.getElementById('formAddress').onsubmit='';
 				document.getElementById("formAddress").submit();
